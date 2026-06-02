@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceLanding from '@components/ServiceLanding.astro';
+import { serviceSchema, faqSchema } from '@utils/schema';
+import data from '@data/servicios/mentoria.json';
+
+const slug = 'mentoria';
+
+const pricing = {
+  title: 'Inversión orientativa',
+  rows: [
+    {
+      modalidad: 'Mensual',
+      alcance: 'Sesiones recurrentes para chefs, propietarios y equipos (presencial u online)',
+      rd: 'desde 15,000',
+      us: 'desde 250',
+      feat: true,
+    },
+  ],
+  note: 'Conversión aproximada 1 US$ ≈ 60 RD$. Precio orientativo «desde» por mes, ajustable según frecuencia y alcance. Compromiso mínimo sugerido de tres meses para ver resultados. Los desplazamientos fuera de Santo Domingo (Santiago, Punta Cana, etc.) se presupuestan aparte.',
+};
+
+const related = [
+  { label: 'Desarrollo de carta', href: '/consultoria/desarrollo-carta/', desc: 'Platos nuevos con escandallos, fichas técnicas y entrenamiento del equipo.' },
+  { label: 'Apertura y concepto', href: '/consultoria/apertura/', desc: 'Del concepto a la puesta en marcha de tu restaurante.' },
+  { label: 'Diagnóstico gastronómico', href: '/consultoria/diagnostico/', desc: 'Auditoría 360 con informe y plan de acción priorizado.' },
+];
+
+const photo = { src: '/images/platos/valerio-burger.jpg', alt: 'Andrés Valerio con un plato de Valerio Burger Club' };
+---
+
+<BaseLayout
+  title={data.meta_title}
+  description={data.meta_description}
+  image="/og/og-default.jpg"
+  canonicalPath={`/consultoria/${slug}/`}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={serviceSchema(data, slug, pricing.rows)} />
+    <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+  </Fragment>
+
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} />
+</BaseLayout>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

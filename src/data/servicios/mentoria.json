@@ -1,0 +1,98 @@
+{
+  "meta_title": "Mentoría gastronómica para chefs | Andrés Valerio",
+  "meta_description": "Mentoría gastronómica continua para chefs y equipos en RD. Formación, escandallos y liderazgo. Convierte tu cocina en un negocio rentable con Andrés Valerio.",
+  "hero": {
+    "eyebrow": "Mentoría y Acompañamiento",
+    "h1": "El mismo chef que diseña el plato <em>entrena a tu equipo</em>",
+    "lead": "Sesiones mensuales, presenciales u online, para alinear estrategia, técnica y costos. Andrés Valerio no subcontrata: él opera, entrena y te da decisiones con datos reales. Sin manuales genéricos, solo escandallos y food cost aplicados a tu cocina."
+  },
+  "para_quien": [
+    {
+      "title": "Chefs que quieren crecer",
+      "desc": "Profesionales que buscan desarrollar criterio culinario y liderazgo sin dejar de operar."
+    },
+    {
+      "title": "Propietarios de restaurantes",
+      "desc": "Dueños que necesitan una cocina rentable, autónoma y alineada con su visión."
+    },
+    {
+      "title": "Equipos de cocina",
+      "desc": "Brigadas que requieren organización, control de mermas y comunicación efectiva."
+    },
+    {
+      "title": "Emprendedores gastronómicos",
+      "desc": "Nuevos negocios que quieren arrancar con bases sólidas en costos y técnica."
+    }
+  ],
+  "metodo_intro": "No es una asesoría puntual ni un curso genérico. Es un acompañamiento mensual donde trabajamos juntos —en tu cocina o en línea— para diagnosticar, entrenar y ajustar cada aspecto de la operación. Sin intermediarios: Andrés está presente en cada sesión.",
+  "metodo": [
+    {
+      "title": "Alineación estratégica",
+      "desc": "Definimos juntos hacia dónde va tu cocina y qué necesita tu equipo para llegar sin desperdiciar recursos."
+    },
+    {
+      "title": "Criterio culinario y técnica",
+      "desc": "Entrenamos el paladar y las manos: desde fondos hasta emplatados, con el rigor de la alta cocina de calle."
+    },
+    {
+      "title": "Organización de partidas",
+      "desc": "Reestructuramos las estaciones para que cada cocinero sepa exactamente qué hacer, cuándo y cómo."
+    },
+    {
+      "title": "Control de mermas y costos",
+      "desc": "Implementamos sistemas para medir, reducir y rentabilizar cada gramo de ingrediente."
+    },
+    {
+      "title": "Fichas técnicas y escandallos",
+      "desc": "Documentamos tus recetas con precisión: costos reales, rendimientos y estándares de calidad."
+    },
+    {
+      "title": "Liderazgo y comunicación",
+      "desc": "Formamos a tu jefe de cocina o a ti para dirigir con autoridad, claridad y respeto."
+    }
+  ],
+  "incluye": [
+    "Diagnóstico inicial de cocina, equipo y carta.",
+    "Plan de trabajo mensual con objetivos medibles.",
+    "Sesiones de entrenamiento presencial u online (según tu ubicación).",
+    "Implementación de fichas técnicas y escandallos para cada receta.",
+    "Revisión periódica de food cost y ajuste de precios de carta.",
+    "Acompañamiento en la gestión de partidas y reducción de mermas.",
+    "Canal directo con Andrés para consultas entre sesiones."
+  ],
+  "ejemplo": {
+    "quote": "Un caso típico: un chef-propietario que sabe cocinar pero no entiende por qué el negocio no cierra. Sesión a sesión le enseño a leer sus costos sin sacrificar el sabor, a ordenar las partidas y a delegar, hasta que la cocina camina sola sin que él esté en cada servicio.",
+    "desc": "Así pasa de la incertidumbre a tener un equipo autónomo y un menú rentable, mes a mes."
+  },
+  "autoridad": "Andrés Valerio no es un consultor de escritorio. Opera Valerio Burger Club y formó cocineros reales con su Burger Master Academy. Su mentor, el chef John Guerrero (ChefBusiness), le enseñó que las decisiones se toman con escandallos y food cost, no con intuición. Por eso, cada recomendación que te da está probada en el fuego de su propia cocina.",
+  "faq": [
+    {
+      "q": "¿Esta mentoría es solo para chefs o también para propietarios sin experiencia en cocina?",
+      "a": "Es para ambos. Si eres propietario, te ayudamos a entender y controlar la cocina sin necesidad de ser el chef. Si eres chef, potenciamos tu liderazgo y criterio. Trabajamos con el perfil que más lo necesite."
+    },
+    {
+      "q": "¿Cómo son las sesiones? ¿Presenciales o virtuales?",
+      "a": "Según tu ubicación y preferencia. En Santo Domingo y Punta Cana podemos hacer sesiones presenciales en tu restaurante. Para el resto del país o el Caribe, trabajamos por videollamada con revisiones en tiempo real. La dinámica es la misma: observación, entrenamiento y ajuste."
+    },
+    {
+      "q": "¿Qué diferencia esta mentoría de un curso de cocina?",
+      "a": "Un curso te da información general. Esto es acompañamiento aplicado a tu realidad: usamos tus recetas, tus números y tu equipo. Andrés no enseña teoría; te ayuda a resolver los problemas concretos de tu operación, mes a mes."
+    },
+    {
+      "q": "¿Cada cuánto son las sesiones y cuánto duran?",
+      "a": "El formato estándar es una sesión principal al mes, de 3 a 4 horas, más seguimientos puntuales. Pero se adapta a la necesidad: si estás en apertura o crisis, podemos intensificar. El compromiso mínimo es de tres meses para ver resultados."
+    },
+    {
+      "q": "¿Tengo que compartir mis recetas y costos reales?",
+      "a": "Sí, porque trabajamos con total confidencialidad. Para mejorar tu food cost y estandarizar tus platos, necesitamos ver tus números reales. Es la única forma de tomar decisiones con datos, no con supuestos."
+    },
+    {
+      "q": "¿Qué resultados puedo esperar en los primeros meses?",
+      "a": "En el primer mes tendrás un diagnóstico claro y un plan de acción. A los tres meses, verás mejoras en organización, reducción de mermas y un equipo más autónomo. El retorno se mide en rentabilidad y en tu tranquilidad como líder."
+    }
+  ],
+  "cta": {
+    "h2": "Convierte tu cocina en un equipo rentable y autónomo.",
+    "text": "Solicita una sesión de diagnóstico sin costo y descubre cómo el acompañamiento de Andrés Valerio puede transformar tu operación. Escríbele directamente."
+  }
+}

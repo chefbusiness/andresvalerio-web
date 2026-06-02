@@ -8,21 +8,33 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 >
   <section class="hero section">
     <div class="container">
-      <div class="hero-content rv">
-        <span class="eyebrow">Chef & Consultor</span>
-        <h1>Andrés Valerio</h1>
-        <p class="hero-lead">
-          Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
-          y mentoría para equipos de cocina en República Dominicana.
-        </p>
-        <div class="hero-ctas">
-          <a href="/consultoria/" class="btn-primary">
-            Ver consultoría
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/sobre-mi/" class="btn-dark">Conocer más</a>
+      <div class="hero-grid">
+        <div class="hero-content rv">
+          <span class="eyebrow">Chef & Consultor</span>
+          <h1>Andrés Valerio</h1>
+          <p class="hero-lead">
+            Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
+            y mentoría para equipos de cocina en República Dominicana.
+          </p>
+          <div class="hero-ctas">
+            <a href="/consultoria/" class="btn-primary">
+              Ver consultoría
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/sobre-mi/" class="btn-dark">Conocer más</a>
+          </div>
+        </div>
+        <div class="hero-media rv d2">
+          <img
+            src="/images/chef/andres-emplatando.jpg"
+            alt="Chef Andrés Valerio terminando un plato"
+            width="960"
+            height="1440"
+            loading="eager"
+            class="hero-img"
+          />
         </div>
       </div>
     </div>
@@ -112,8 +124,40 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     background: var(--bone);
   }
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+    }
+  }
+
   .hero-content {
     max-width: 640px;
+  }
+
+  .hero-media {
+    display: none;
+  }
+
+  @media (min-width: 860px) {
+    .hero-media {
+      display: block;
+    }
+  }
+
+  .hero-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 24px 60px rgba(22, 36, 31, 0.22);
   }
 
   .hero h1 {

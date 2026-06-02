@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceLanding from '@components/ServiceLanding.astro';
+import { serviceSchema, faqSchema } from '@utils/schema';
+import data from '@data/servicios/apertura.json';
+
+const slug = 'apertura';
+
+const pricing = {
+  title: 'Inversión orientativa',
+  rows: [
+    {
+      modalidad: 'Por proyecto',
+      alcance: 'Del concepto a la puesta en marcha (viabilidad, carta, cocina y equipo)',
+      rd: 'desde 120,000',
+      us: 'desde 2,000',
+      feat: true,
+    },
+  ],
+  note: 'Conversión aproximada 1 US$ ≈ 60 RD$. Precio orientativo «desde» y ajustable según el alcance y el tamaño del proyecto. No incluye insumos de demos; los desplazamientos fuera de Santo Domingo (Santiago, Punta Cana, etc.) se presupuestan aparte.',
+};
+
+const related = [
+  { label: 'Desarrollo de carta', href: '/consultoria/desarrollo-carta/', desc: 'Platos nuevos con escandallos, fichas técnicas y entrenamiento del equipo.' },
+  { label: 'Mentoría y acompañamiento', href: '/consultoria/mentoria/', desc: 'Sesiones recurrentes para chefs, propietarios y equipos de cocina.' },
+  { label: 'Diagnóstico gastronómico', href: '/consultoria/diagnostico/', desc: 'Auditoría 360 con informe y plan de acción priorizado.' },
+];
+
+const photo = { src: '/images/chef/andres-pie.jpg', alt: 'Andrés Valerio, chef y consultor gastronómico' };
+---
+
+<BaseLayout
+  title={data.meta_title}
+  description={data.meta_description}
+  image="/og/og-default.jpg"
+  canonicalPath={`/consultoria/${slug}/`}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={serviceSchema(data, slug, pricing.rows)} />
+    <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+  </Fragment>
+
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} />
+</BaseLayout>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

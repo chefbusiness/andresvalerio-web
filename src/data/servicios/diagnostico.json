@@ -1,0 +1,98 @@
+{
+  "meta_title": "Diagnóstico gastronómico para restaurantes | Andrés Valerio",
+  "meta_description": "Auditoría 360 de tu restaurante: food cost, ingeniería de menú y operaciones. Mejora tu rentabilidad en 21 días. Solicita tu diagnóstico con Andrés Valerio.",
+  "hero": {
+    "eyebrow": "Consultoría gastronómica",
+    "h1": "Un <em>diagnóstico gastronómico</em> sin filtros para enderezar la cocina",
+    "lead": "Soy Andrés Valerio, chef y propietario de Valerio Burger Club. Aplico la misma mirada quirúrgica que uso en mi negocio para encontrar dónde pierdes dinero, sin intermediarios ni soluciones genéricas."
+  },
+  "para_quien": [
+    {
+      "title": "Restaurantes independientes",
+      "desc": "Negocios que sienten que trabajan más que nunca pero la caja no refleja el éxito de la sala."
+    },
+    {
+      "title": "Grupos y franquicias",
+      "desc": "Operaciones en expansión que necesitan estandarizar costos y procesos antes de abrir nuevas ubicaciones."
+    },
+    {
+      "title": "Hoteles y turismo",
+      "desc": "Cocinas de alto volumen en zonas como Punta Cana que buscan rentabilidad sin sacrificar la calidad del huésped."
+    },
+    {
+      "title": "Industria de alimentos",
+      "desc": "Empresas que cocinan a gran escala y requieren ingeniería de menú y control de food cost con precisión."
+    }
+  ],
+  "metodo_intro": "El diagnóstico revisa cada rincón de tu operación: desde la cocina hasta el P&L, pasando por la carta y tu equipo. Nada se queda sin auditar.",
+  "metodo": [
+    {
+      "title": "Operaciones y procesos",
+      "desc": "Mapeamos el flujo real en cocina y sala: tiempos, mermas, cuellos de botella y cumplimiento de estándares. Detectamos dónde se fuga eficiencia."
+    },
+    {
+      "title": "Estructura de costos y food cost",
+      "desc": "Desglosamos cada plato con escandallos reales, comparamos teórico vs. real y calculamos el food cost actual. Sin números maquillados."
+    },
+    {
+      "title": "Ingeniería de menú",
+      "desc": "Clasificamos cada ítem según margen y popularidad. Identificamos los platos estrella que te descapitalizan y las joyas ocultas que debes potenciar."
+    },
+    {
+      "title": "Equipo y organización",
+      "desc": "Evaluamos roles, habilidades y clima de cocina. Un equipo desalineado gasta más en mermas y horas extra que cualquier ingrediente."
+    },
+    {
+      "title": "Posicionamiento",
+      "desc": "Analizamos coherencia entre carta, precio y experiencia real. ¿Tu oferta cuenta la historia que quieres o está confundiendo a tus comensales?"
+    },
+    {
+      "title": "Informe y plan de acción priorizado",
+      "desc": "Cerramos con un documento ejecutivo que ordena los hallazgos por urgencia e impacto. Recibes una ruta clara para empezar a aplicar cambios desde el día uno."
+    }
+  ],
+  "incluye": [
+    "Informe ejecutivo con todos los hallazgos, cuantificados y explicados sin tecnicismos vacíos.",
+    "Escandallo de costos por plato, con el food cost real y el margen bruto de cada referencia.",
+    "Matriz de ingeniería de menú que cruza popularidad y rentabilidad de tu carta completa.",
+    "Diagnóstico operativo con los puntos críticos de cocina y sala que afectan la rentabilidad.",
+    "Recomendaciones concretas de estructura de equipo y redistribución de responsabilidades.",
+    "Plan de acción priorizado con plazos sugeridos, responsables y estimación de impacto.",
+    "Fichas técnicas estandarizadas de los platos analizados, listas para implementar en cocina."
+  ],
+  "ejemplo": {
+    "quote": "Un caso que veo seguido: un restaurante con dos años abierto, lleno casi todos los días, pero la caja no acompaña. Entro, reviso escandallos y procesos, y casi siempre aparece lo mismo — platos 'estrella' que en realidad pierden dinero y una cocina que se traba en hora pico. En unos 21 días sale el mapa y el plan de acción.",
+    "desc": "Márgenes inconsistentes pese a buena reputación: el diagnóstico ordena los hallazgos por impacto. Sin cifras inventadas, solo escandallos reales y decisiones con datos."
+  },
+  "autoridad": "Soy un operador real: diseño, ejecuto y vivo de los números de Valerio Burger Club. No vengo de oficina, vengo de la línea de cocina. Mis decisiones se basan en datos: escandallos, fichas técnicas y food cost, sin intermediarios que diluyan la verdad.",
+  "faq": [
+    {
+      "q": "¿Qué diferencia este diagnóstico de una auditoría contable convencional?",
+      "a": "Una auditoría contable mira los libros. Yo entro a la cocina, reviso procesos, mermas, recetas y cómo se comportan los costos en el día a día. Combino el ojo clínico del chef con la frialdad de los números, porque los costos se esconden en las tablas de cortar, no solo en los balances."
+    },
+    {
+      "q": "¿Cuánto tiempo pasa hasta ver resultados?",
+      "a": "El diagnóstico completo toma alrededor de 21 días. Pero durante el proceso ya vas a tener claridad sobre fugas que puedes tapar de inmediato. Al final recibes un plan priorizado, así que puedes empezar a aplicar mejoras incluso antes de la presentación final."
+    },
+    {
+      "q": "¿Puedo contratar solo el diagnóstico sin seguir con la consultoría?",
+      "a": "Sí. El diagnóstico es un servicio independiente que te entrega una radiografía completa y un plan de acción. Luego tú decides si implementas por tu cuenta o si prefieres que te acompañe en la ejecución con un servicio de consultoría continuada."
+    },
+    {
+      "q": "¿El diagnóstico incluye la implementación de las mejoras?",
+      "a": "No. El diagnóstico te da el mapa y las herramientas (fichas técnicas, escandallos, plan). La implementación la podemos trabajar por separado si lo necesitas. Esto asegura que el diagnóstico mantenga total objetividad: no hay conflicto de interés porque no dependo de venderte más horas."
+    },
+    {
+      "q": "¿Es obligatorio hacer el diagnóstico antes de contratar otro servicio de consultoría?",
+      "a": "No es obligatorio. Si ya tienes un encargo claro y quieres ir directo a, por ejemplo, el rediseño de la carta o la capacitación del equipo, podemos armar una propuesta a la medida. El diagnóstico es ideal cuando sientes que algo falla pero no sabes exactamente qué, o cuando quieres una foto real antes de invertir en cambios grandes."
+    },
+    {
+      "q": "¿Trabajas solo en Santo Domingo o también en Punta Cana y otras zonas del Caribe?",
+      "a": "Estoy basado en Santo Domingo pero me muevo a donde esté la cocina que necesite enderezarse. He trabajado con operaciones en Punta Cana y otras regiones. El diagnóstico puede ser totalmente presencial o combinado con trabajo remoto en las fases de análisis de datos, según tu ubicación y necesidades."
+    }
+  ],
+  "cta": {
+    "h2": "Empieza a sanear tu rentabilidad",
+    "text": "Escríbeme ahora y, en menos de 21 días, tendrás un plan de acción concreto para mejorar los números de tu negocio. Sin rodeos, sin intermediarios."
+  }
+}

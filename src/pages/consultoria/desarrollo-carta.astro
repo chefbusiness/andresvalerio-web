@@ -1,11 +1,36 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { serviceSchema, faqSchema } from '@utils/schema';
+
+const data = {
+  hero: { eyebrow: 'Desarrollo y renovación de carta', h1: 'Desarrollo y renovación de carta' },
+  meta_description:
+    'Diseño, desarrollo y estandarización de platos para restaurantes, grupos y hoteles en República Dominicana: escandallos, fichas técnicas, costos y entrenamiento del equipo.',
+  faq: [
+    { q: '¿Necesito un diagnóstico previo?', a: 'No siempre. Si el encargo está claro —renovar o crear platos concretos— vamos directos a la propuesta. El diagnóstico es para cuando el problema aún no tiene alcance definido.' },
+    { q: '¿Trabajas fuera de Santo Domingo?', a: 'Sí. Trabajo en Santiago, Punta Cana y otras zonas de turismo. El desplazamiento y la logística se presupuestan aparte según la ubicación.' },
+    { q: '¿Cuánto tarda el proceso?', a: 'Una renovación de sección suele cerrarse en dos o tres semanas, según el número de platos y la disponibilidad de insumos para las demos.' },
+    { q: '¿Qué pasa con los insumos de las demos?', a: 'El costo de los ingredientes para preparar las muestras corre por cuenta del cliente y se coordina antes de empezar. Mis honorarios cubren el desarrollo, la documentación y el entrenamiento.' },
+  ],
+};
+
+const pricingRows = [
+  { modalidad: 'Plato individual', alcance: '1 plato completo', rd: '11,000', us: '185' },
+  { modalidad: 'Renovación de sección', alcance: 'hasta 5 platos + entrenamiento', rd: '48,000', us: '800' },
+  { modalidad: 'Carta completa', alcance: 'hasta 12 platos', rd: '96,000', us: '1,600' },
+];
 ---
 
 <BaseLayout
   title="Desarrollo y Renovación de Carta · Chef Andrés Valerio · Consultoría Gastronómica RD"
   description="Diseño, desarrollo y estandarización de platos para restaurantes, grupos y hoteles en República Dominicana. Del concepto al pase: escandallos, fichas técnicas, costos y entrenamiento del equipo."
+  image="/og/og-default.jpg"
+  canonicalPath="/consultoria/desarrollo-carta/"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={serviceSchema(data, 'desarrollo-carta', pricingRows)} />
+    <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+  </Fragment>
   <section class="hero section">
     <div class="hero-bg"></div>
     <div class="container">
@@ -212,6 +237,37 @@ import BaseLayout from '@layouts/BaseLayout.astro';
           <button>¿Qué pasa con los insumos de las demos?<span class="pm"></span></button>
           <div class="a"><p>El costo de los ingredientes para preparar las muestras corre por cuenta del cliente y se coordina antes de empezar. Mis honorarios cubren el desarrollo, la documentación y el entrenamiento.</p></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="light sec-pad">
+    <div class="container">
+      <div class="sec-head rv">
+        <p class="eyebrow">Sigue explorando</p>
+        <h2>Otros servicios de consultoría</h2>
+      </div>
+      <div class="related-grid">
+        <a class="related-card rv" href="/consultoria/apertura/">
+          <h3>Apertura y concepto</h3>
+          <p>Del concepto a la puesta en marcha de tu restaurante.</p>
+          <span class="related-arrow">→</span>
+        </a>
+        <a class="related-card rv d1" href="/consultoria/mentoria/">
+          <h3>Mentoría y acompañamiento</h3>
+          <p>Sesiones recurrentes para chefs, propietarios y equipos.</p>
+          <span class="related-arrow">→</span>
+        </a>
+        <a class="related-card rv d2" href="/consultoria/diagnostico/">
+          <h3>Diagnóstico gastronómico</h3>
+          <p>Auditoría 360 con informe y plan de acción priorizado.</p>
+          <span class="related-arrow">→</span>
+        </a>
+        <a class="related-card rv d3" href="/consultoria/">
+          <h3>Ver todos los servicios</h3>
+          <p>Vuelve al hub de consultoría gastronómica.</p>
+          <span class="related-arrow">→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -849,6 +905,37 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       aspect-ratio: 16/10;
     }
   }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 640px) {
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 980px) {
+    .related-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .related-card {
+    display: block;
+    background: var(--paper, #FFFDF7);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(22, 36, 31, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(22, 36, 31, 0.08);
+    border-color: var(--brass, #BC9248);
+  }
+  .related-card h3 { font-size: 1.15rem; }
+  .related-card p { margin-top: 0.5rem; font-size: 0.9rem; color: var(--ink-soft, #5C6A60); }
+  .related-arrow { color: var(--pers, #DD5430); font-size: 1.2rem; display: inline-block; margin-top: 0.75rem; }
 </style>
 
 <script>

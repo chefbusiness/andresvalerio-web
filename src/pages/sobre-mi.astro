@@ -1,11 +1,16 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { personSchema } from '@utils/schema';
 ---
 
 <BaseLayout
   title="Sobre mí · Andrés Valerio · Chef & Consultor"
   description="De Venezuela a Santo Domingo. Más de 10 años de oficio en cocina honesta, de carácter y empuje."
+  canonicalPath="/sobre-mi/"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={personSchema()} />
+  </Fragment>
   <section class="about-hero section bg-teal">
     <div class="container">
       <div class="hero-grid rv">
@@ -18,9 +23,14 @@ import BaseLayout from '@layouts/BaseLayout.astro';
           </p>
         </div>
         <div class="hero-photo">
-          <div class="photo-placeholder">
-            <span>Foto del chef</span>
-          </div>
+          <img
+            src="/images/chef/andres-retrato.jpg"
+            alt="Chef Andrés Valerio sentado, cocina de calle"
+            width="960"
+            height="1200"
+            loading="eager"
+            class="chef-photo"
+          />
         </div>
       </div>
     </div>
@@ -144,16 +154,12 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     max-width: 50ch;
   }
 
-  .photo-placeholder {
+  .chef-photo {
     aspect-ratio: 4/5;
-    background: linear-gradient(135deg, var(--teal-2), var(--teal-3));
+    width: 100%;
+    object-fit: cover;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--bone-faint);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   }
 
   .eyebrow.light {
