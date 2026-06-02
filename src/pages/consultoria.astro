@@ -1,0 +1,329 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const services = [
+  {
+    num: '01',
+    title: 'Desarrollo y renovación de carta',
+    desc: 'Creación de menús con escandallos, fichas técnicas, demos y entrenamiento de equipo.',
+    href: '/consultoria/desarrollo-carta/',
+    featured: true,
+  },
+  {
+    num: '02',
+    title: 'Apertura y concepto',
+    desc: 'Del concepto a la puesta en marcha: viabilidad, carta, flujo de cocina, equipo.',
+    href: '/consultoria/apertura/',
+  },
+  {
+    num: '03',
+    title: 'Mentoría y acompañamiento',
+    desc: 'Sesiones recurrentes para chefs, propietarios y equipos de cocina.',
+    href: '/consultoria/mentoria/',
+  },
+  {
+    num: '04',
+    title: 'Diagnóstico gastronómico',
+    desc: 'Auditoría 360°: operaciones, costos, carta, equipo y posicionamiento.',
+    href: '/consultoria/diagnostico/',
+  },
+];
+---
+
+<BaseLayout
+  title="Consultoría gastronómica · Andrés Valerio"
+  description="Chef-consultor en Santo Domingo. Desarrollo de cartas, apertura de conceptos y mentoría para equipos de cocina."
+>
+  <section class="consult-hero section">
+    <div class="container rv">
+      <span class="eyebrow">Consultoría</span>
+      <h1>Chef consultor en República Dominicana</h1>
+      <p class="hero-lead">
+        Asesoría gastronómica para inversores, grupos de restauración, hoteles,
+        franquicias e industria de alimentos. El mismo chef que diseña el plato
+        es el que entrena a tu equipo.
+      </p>
+    </div>
+  </section>
+
+  <section class="para-quien section bg-teal">
+    <div class="container">
+      <div class="sec-head rv">
+        <span class="eyebrow light">Para quién</span>
+        <h2>Servicios para cada tipo de cliente</h2>
+      </div>
+      <div class="perfiles-grid">
+        <div class="perfil rv d1">
+          <span class="perfil-icon">🍽️</span>
+          <h3>Restaurantes</h3>
+          <p>Renovación de carta, optimización de costos y entrenamiento.</p>
+        </div>
+        <div class="perfil rv d2">
+          <span class="perfil-icon">🏢</span>
+          <h3>Grupos y franquicias</h3>
+          <p>Estandarización, apertura de nuevas unidades y formación.</p>
+        </div>
+        <div class="perfil rv d3">
+          <span class="perfil-icon">🏨</span>
+          <h3>Hoteles y turismo</h3>
+          <p>Conceptos F&B, cartas para múltiples outlets y capacitación.</p>
+        </div>
+        <div class="perfil rv d4">
+          <span class="perfil-icon">🏭</span>
+          <h3>Industria de alimentos</h3>
+          <p>I+D, desarrollo de productos y líneas de producción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="servicios section">
+    <div class="container">
+      <div class="sec-head rv">
+        <span class="eyebrow">Servicios</span>
+        <h2>¿Qué puedo hacer por ti?</h2>
+      </div>
+      <div class="services-list">
+        {services.map((s) => (
+          <a
+            href={s.href}
+            class:list={['service-card', 'rv', { featured: s.featured }]}
+          >
+            <span class="service-num font-mono">{s.num}</span>
+            <div class="service-content">
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+            <span class="service-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="como-trabajo section bg-teal">
+    <div class="container rv">
+      <span class="eyebrow light">Cómo trabajo</span>
+      <h2>Sin intermediarios, con datos</h2>
+      <div class="principios">
+        <div class="principio">
+          <h3>Quien diseña, ejecuta y entrena</h3>
+          <p>El mismo chef que crea la receta entrena a tu equipo.</p>
+        </div>
+        <div class="principio">
+          <h3>Sin intermediarios</h3>
+          <p>Trato directo, sin capas de gestión entre nosotros.</p>
+        </div>
+        <div class="principio">
+          <h3>Decisiones con datos</h3>
+          <p>Escandallos, fichas técnicas y costos claros desde el día uno.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final section">
+    <div class="container cta-center rv">
+      <span class="eyebrow">¿Hablamos?</span>
+      <h2>¿Tienes un proyecto en mente?</h2>
+      <p>Cuéntame qué necesitas y te preparo una propuesta a medida.</p>
+      <a href="/contacto/" class="btn-primary">
+        Contactar
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .consult-hero {
+    padding-top: calc(72px + var(--sec));
+  }
+
+  .consult-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-top: 1rem;
+  }
+
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-top: 1.5rem;
+    max-width: 60ch;
+  }
+
+  .bg-teal {
+    background: var(--teal);
+    color: var(--bone);
+  }
+
+  .bg-teal h2 {
+    color: var(--bone);
+  }
+
+  .eyebrow.light {
+    color: var(--brass);
+  }
+
+  .eyebrow.light::before {
+    background: var(--brass);
+  }
+
+  .perfiles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .perfiles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .perfiles-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .perfil {
+    background: var(--teal-2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(243, 236, 221, 0.08);
+  }
+
+  .perfil-icon {
+    font-size: 1.5rem;
+  }
+
+  .perfil h3 {
+    font-size: 1.25rem;
+    margin-top: 0.75rem;
+    color: var(--bone);
+  }
+
+  .perfil p {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--bone-soft);
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .service-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--paper);
+    border-radius: 8px;
+    border: 1px solid rgba(22, 36, 31, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(22, 36, 31, 0.08);
+    border-color: var(--brass);
+  }
+
+  .service-card.featured {
+    border-color: var(--pers);
+    background: linear-gradient(135deg, var(--paper), rgba(221, 84, 48, 0.03));
+  }
+
+  .service-num {
+    font-size: 0.75rem;
+    color: var(--pers);
+    min-width: 2rem;
+  }
+
+  .service-content {
+    flex: 1;
+  }
+
+  .service-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .service-content p {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+  }
+
+  .service-arrow {
+    font-size: 1.25rem;
+    color: var(--pers);
+    transition: transform 0.2s;
+  }
+
+  .service-card:hover .service-arrow {
+    transform: translateX(4px);
+  }
+
+  .como-trabajo h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+
+  .principios {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .principios {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .principio h3 {
+    font-size: 1.25rem;
+    color: var(--bone);
+  }
+
+  .principio p {
+    margin-top: 0.5rem;
+    color: var(--bone-soft);
+  }
+
+  .cta-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-center h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-top: 0.75rem;
+  }
+
+  .cta-center p {
+    margin-top: 1rem;
+    color: var(--ink-soft);
+    max-width: 40ch;
+  }
+
+  .cta-center .btn-primary {
+    margin-top: 2rem;
+  }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

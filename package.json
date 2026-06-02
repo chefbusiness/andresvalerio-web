@@ -1,0 +1,26 @@
+{
+  "name": "andresvalerio-web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Andrés Valerio · Chef & Consultor · marca personal",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/schibsted-grotesk": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@tailwindcss/postcss": "4.2.4",
+    "astro": "^6.3.7",
+    "sharp": "^0.34.5",
+    "tailwindcss": "4.2.4"
+  }
+}

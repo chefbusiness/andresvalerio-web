@@ -1,0 +1,264 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contacto · Andrés Valerio · Chef & Consultor"
+  description="¿Tienes un proyecto en mente? Cuéntame qué necesitas y te preparo una propuesta a medida."
+>
+  <section class="contact-hero section bg-teal">
+    <div class="container rv">
+      <span class="eyebrow light">Contacto</span>
+      <h1>¿Hablamos de tu proyecto?</h1>
+      <p class="hero-lead">
+        Cuéntame qué necesitas y te preparo una propuesta a medida.
+        Respondo en menos de 48 horas.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-form-section section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info rv">
+          <h2>Otras formas de contacto</h2>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <span class="method-icon">📱</span>
+              <div>
+                <h3>WhatsApp</h3>
+                <p>Escríbeme directo para consultas rápidas.</p>
+                <a href="https://wa.me/18098847605" class="method-link" target="_blank" rel="noopener noreferrer">
+                  Abrir WhatsApp →
+                </a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <span class="method-icon">✉️</span>
+              <div>
+                <h3>Correo</h3>
+                <p>Para propuestas formales y documentación.</p>
+                <a href="mailto:hola@andresvalerio.com" class="method-link">
+                  hola@andresvalerio.com
+                </a>
+              </div>
+            </div>
+            <div class="contact-method">
+              <span class="method-icon">📍</span>
+              <div>
+                <h3>Ubicación</h3>
+                <p>Santo Domingo, República Dominicana.</p>
+                <p class="method-note">Atiendo proyectos en todo el Caribe y LATAM.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form
+          name="contacto"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="contact-form rv"
+        >
+          <input type="hidden" name="form-name" value="contacto" />
+          <p class="hidden">
+            <label>No llenar si eres humano: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required placeholder="tu@correo.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="tipo">Tipo de proyecto</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">Seleccionar...</option>
+              <option value="desarrollo-carta">Desarrollo de carta</option>
+              <option value="apertura">Apertura y concepto</option>
+              <option value="mentoria">Mentoría</option>
+              <option value="diagnostico">Diagnóstico</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Cuéntame sobre tu proyecto..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary btn-full">
+            Enviar mensaje
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    padding-top: calc(72px + var(--sec));
+  }
+
+  .contact-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-top: 1rem;
+    color: var(--bone);
+  }
+
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--bone-soft);
+    margin-top: 1.5rem;
+    max-width: 50ch;
+  }
+
+  .eyebrow.light {
+    color: var(--brass);
+  }
+
+  .eyebrow.light::before {
+    background: var(--brass);
+  }
+
+  .bg-teal {
+    background: var(--teal);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1.2fr;
+    }
+  }
+
+  .contact-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-method {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .method-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .contact-method h3 {
+    font-size: 1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+  }
+
+  .contact-method p {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    margin-top: 0.25rem;
+  }
+
+  .method-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--pers);
+    font-weight: 500;
+  }
+
+  .method-link:hover {
+    text-decoration: underline;
+  }
+
+  .method-note {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-top: 0.25rem;
+  }
+
+  .contact-form {
+    background: var(--paper);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(22, 36, 31, 0.06);
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    border: 1px solid rgba(22, 36, 31, 0.15);
+    border-radius: 4px;
+    background: var(--bone);
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--pers);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

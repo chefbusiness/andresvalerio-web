@@ -1,0 +1,157 @@
+---
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Sobre mí', href: '/sobre-mi/' },
+  { label: 'Consultoría', href: '/consultoria/' },
+  { label: 'Recetas', href: '/recetas/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contacto', href: '/contacto/' },
+];
+
+const consultoriaLinks = [
+  { label: 'Desarrollo de carta', href: '/consultoria/desarrollo-carta/' },
+  { label: 'Apertura y concepto', href: '/consultoria/apertura/' },
+  { label: 'Mentoría', href: '/consultoria/mentoria/' },
+  { label: 'Diagnóstico', href: '/consultoria/diagnostico/' },
+];
+
+const socialLinks = [
+  { label: 'Instagram', href: 'https://instagram.com/vburgerclub', external: true },
+];
+---
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <span class="wordmark-name">Andrés Valerio</span>
+      <span class="wordmark-sub">Chef · Consultor</span>
+      <p class="footer-desc">
+        Chef-consultor en Santo Domingo. Desarrollo de cartas, apertura de conceptos
+        y mentoría para equipos de cocina.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title">Navegar</h4>
+      <ul>
+        {navLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title">Consultoría</h4>
+      <ul>
+        {consultoriaLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title">Sígueme</h4>
+      <ul>
+        {socialLinks.map((link) => (
+          <li>
+            <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <div class="container footer-legal-inner">
+      <span>&copy; {currentYear} Andrés Valerio. Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--footer-bg);
+    color: var(--bone-soft);
+    padding-top: clamp(48px, 8vw, 80px);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: clamp(48px, 8vw, 80px);
+  }
+
+  @media (min-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  .footer-brand .wordmark-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--bone);
+    display: block;
+  }
+
+  .footer-brand .wordmark-sub {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .footer-desc {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    max-width: 32ch;
+  }
+
+  .footer-col-title {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-col a {
+    font-size: 0.875rem;
+    color: var(--bone-soft);
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: var(--bone);
+  }
+
+  .footer-legal {
+    border-top: 1px solid rgba(243, 236, 221, 0.1);
+    padding: 1.5rem 0;
+  }
+
+  .footer-legal-inner {
+    font-size: 0.75rem;
+    color: var(--bone-faint);
+  }
+</style>

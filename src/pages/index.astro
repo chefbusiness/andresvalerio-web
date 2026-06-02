@@ -1,0 +1,287 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Andrés Valerio · Chef & Consultor Gastronómico"
+  description="Chef-consultor en Santo Domingo. Desarrollo de cartas, apertura de conceptos y mentoría para equipos de cocina."
+>
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-content rv">
+        <span class="eyebrow">Chef & Consultor</span>
+        <h1>Andrés Valerio</h1>
+        <p class="hero-lead">
+          Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
+          y mentoría para equipos de cocina en República Dominicana.
+        </p>
+        <div class="hero-ctas">
+          <a href="/consultoria/" class="btn-primary">
+            Ver consultoría
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/sobre-mi/" class="btn-dark">Conocer más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro section bg-teal">
+    <div class="container">
+      <div class="intro-grid rv">
+        <div class="intro-text">
+          <span class="eyebrow light">Quién es Andrés</span>
+          <h2>De Venezuela a Santo Domingo</h2>
+          <p>
+            Más de 10 años de oficio. Alta cocina de calle: técnica de alta cocina
+            aplicada a la cocina del día a día. Fundador de The Crime, creador de
+            Burger Master Academy y hoy al frente de Valerio Burger Club.
+          </p>
+          <a href="/sobre-mi/" class="btn-ghost">Leer mi historia</a>
+        </div>
+        <div class="intro-stats">
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">años de oficio</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label">conceptos creados</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">RD</span>
+            <span class="stat-label">Santo Domingo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="consultoria section">
+    <div class="container">
+      <div class="sec-head rv">
+        <span class="eyebrow">Servicios</span>
+        <h2>Consultoría gastronómica</h2>
+        <p>El mismo chef que diseña el plato es el que entrena a tu equipo.</p>
+      </div>
+      <div class="services-grid">
+        <a href="/consultoria/desarrollo-carta/" class="service-card rv d1">
+          <span class="service-num font-mono">01</span>
+          <h3>Desarrollo de carta</h3>
+          <p>Creación y renovación de menús con escandallos, fichas técnicas y entrenamiento.</p>
+        </a>
+        <a href="/consultoria/apertura/" class="service-card rv d2">
+          <span class="service-num font-mono">02</span>
+          <h3>Apertura y concepto</h3>
+          <p>Del concepto a la puesta en marcha: viabilidad, carta, flujo de cocina.</p>
+        </a>
+        <a href="/consultoria/mentoria/" class="service-card rv d3">
+          <span class="service-num font-mono">03</span>
+          <h3>Mentoría</h3>
+          <p>Sesiones recurrentes para chefs, propietarios y equipos de cocina.</p>
+        </a>
+        <a href="/consultoria/diagnostico/" class="service-card rv d4">
+          <span class="service-num font-mono">04</span>
+          <h3>Diagnóstico</h3>
+          <p>Auditoría 360°: operaciones, costos, carta, equipo y posicionamiento.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final section bg-teal">
+    <div class="container cta-center rv">
+      <span class="eyebrow light">¿Hablamos?</span>
+      <h2>¿Tienes un proyecto en mente?</h2>
+      <p>Cuéntame qué necesitas y te preparo una propuesta a medida.</p>
+      <a href="/contacto/" class="btn-primary">
+        Contactar
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: calc(72px + var(--sec));
+    background: var(--bone);
+  }
+
+  .hero-content {
+    max-width: 640px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin-top: 1rem;
+    line-height: 1;
+  }
+
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-top: 1.5rem;
+    max-width: 50ch;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .bg-teal {
+    background: var(--teal);
+    color: var(--bone);
+  }
+
+  .bg-teal .eyebrow {
+    color: var(--brass);
+  }
+
+  .bg-teal .eyebrow::before {
+    background: var(--brass);
+  }
+
+  .eyebrow.light {
+    color: var(--brass);
+  }
+
+  .eyebrow.light::before {
+    background: var(--brass);
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .intro-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+
+  .intro-text h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+    color: var(--bone);
+  }
+
+  .intro-text p {
+    margin-top: 1rem;
+    color: var(--bone-soft);
+    max-width: 50ch;
+  }
+
+  .intro-text .btn-ghost {
+    margin-top: 1.5rem;
+  }
+
+  .intro-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--brass);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    margin-top: 0.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .service-card {
+    background: var(--paper);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(22, 36, 31, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(22, 36, 31, 0.08);
+    border-color: var(--brass);
+  }
+
+  .service-num {
+    font-size: 0.75rem;
+    color: var(--pers);
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .service-card p {
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+  }
+
+  .cta-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-center h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-top: 0.75rem;
+    color: var(--bone);
+  }
+
+  .cta-center p {
+    margin-top: 1rem;
+    color: var(--bone-soft);
+    max-width: 40ch;
+  }
+
+  .cta-center .btn-primary {
+    margin-top: 2rem;
+  }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

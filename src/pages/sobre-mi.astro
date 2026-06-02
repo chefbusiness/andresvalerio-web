@@ -1,0 +1,285 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sobre mí · Andrés Valerio · Chef & Consultor"
+  description="De Venezuela a Santo Domingo. Más de 10 años de oficio en cocina honesta, de carácter y empuje."
+>
+  <section class="about-hero section bg-teal">
+    <div class="container">
+      <div class="hero-grid rv">
+        <div class="hero-text">
+          <span class="eyebrow light">Sobre mí</span>
+          <h1>Alta cocina de calle</h1>
+          <p class="hero-lead">
+            De Venezuela a Santo Domingo. Más de 10 años de oficio construyendo
+            conceptos con técnica, carácter y respeto al producto.
+          </p>
+        </div>
+        <div class="hero-photo">
+          <div class="photo-placeholder">
+            <span>Foto del chef</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="origen section">
+    <div class="container rv">
+      <span class="eyebrow">Origen</span>
+      <h2>Venezuela, Zi Teresa, 10 años de oficio</h2>
+      <p>
+        Aprendí a cocinar en Venezuela, sobre todo con mi tío. Luego lo tomé como
+        carrera en la escuela culinaria <strong>Zi Teresa</strong>. Desde entonces,
+        más de una década de disciplina, exigencia y libertad creativa.
+      </p>
+    </div>
+  </section>
+
+  <section class="filosofia section bg-teal">
+    <div class="container rv">
+      <div class="filosofia-content">
+        <span class="eyebrow light">Filosofía</span>
+        <blockquote>
+          "Cocina honesta, de carácter y empuje. Respeto al producto y una forma
+          divertida de presentarlo."
+        </blockquote>
+        <p>
+          Mi estilo es <strong>alta cocina de calle</strong>: técnica de alta cocina
+          aplicada a la cocina del día a día. Foco en creatividad y en la experiencia
+          del cliente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="trayectoria section">
+    <div class="container rv">
+      <span class="eyebrow">Trayectoria</span>
+      <h2>De The Crime a Valerio Burger Club</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-year font-mono">2014–2020</span>
+          <h3>The Crime</h3>
+          <p>Construido desde la nada en un país que no era el mío. Sacrificio, creatividad y reinventarse en pandemia.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year font-mono">2021–2024</span>
+          <h3>Burger Master Academy</h3>
+          <p>Formación de cocineros. Compartir técnica y oficio con la siguiente generación.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year font-mono">2025–hoy</span>
+          <h3>Valerio Burger Club</h3>
+          <p>Hamburguesa de autor en El Millón, Santo Domingo. Y ahora, consultoría gastronómica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="influencias section bg-teal">
+    <div class="container rv">
+      <span class="eyebrow light">Referentes</span>
+      <h2>David Muñoz, Albert Adrià, Álex Atala</h2>
+      <p>
+        Admiro la <strong>cocina francesa como base</strong>: "sin tradición no hay innovación".
+        Mi mentor: chef John Guerrero.
+      </p>
+    </div>
+  </section>
+
+  <section class="plato section">
+    <div class="container rv">
+      <span class="eyebrow">El plato que me representa</span>
+      <h2>Asado negro</h2>
+      <p>
+        Mi hogar, mi familia. Lo aprendí con mi madre. Es el plato que me define:
+        tradición, técnica y memoria.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-final section bg-teal">
+    <div class="container cta-center rv">
+      <span class="eyebrow light">¿Hablamos?</span>
+      <h2>¿Tienes un proyecto en mente?</h2>
+      <div class="cta-buttons">
+        <a href="/consultoria/" class="btn-primary">Ver consultoría</a>
+        <a href="/contacto/" class="btn-ghost">Contactar</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    padding-top: calc(72px + var(--sec));
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
+  }
+
+  .hero-text h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-top: 1rem;
+    color: var(--bone);
+  }
+
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--bone-soft);
+    margin-top: 1.5rem;
+    max-width: 50ch;
+  }
+
+  .photo-placeholder {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, var(--teal-2), var(--teal-3));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bone-faint);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  .eyebrow.light {
+    color: var(--brass);
+  }
+
+  .eyebrow.light::before {
+    background: var(--brass);
+  }
+
+  .bg-teal {
+    background: var(--teal);
+    color: var(--bone);
+  }
+
+  .bg-teal h2 {
+    color: var(--bone);
+  }
+
+  .bg-teal p {
+    color: var(--bone-soft);
+  }
+
+  .origen h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+
+  .origen p {
+    margin-top: 1rem;
+    max-width: 60ch;
+    font-size: 1.125rem;
+    color: var(--ink-soft);
+  }
+
+  .filosofia-content {
+    max-width: 640px;
+  }
+
+  .filosofia-content h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+
+  blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--bone);
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--brass);
+    line-height: 1.4;
+  }
+
+  .trayectoria h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+
+  .timeline {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .timeline-item {
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--pers);
+  }
+
+  .timeline-year {
+    font-size: 0.75rem;
+    color: var(--pers);
+  }
+
+  .timeline-item h3 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .timeline-item p {
+    margin-top: 0.5rem;
+    color: var(--ink-soft);
+  }
+
+  .influencias h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+
+  .plato h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+
+  .plato p {
+    margin-top: 1rem;
+    max-width: 60ch;
+    font-size: 1.125rem;
+    color: var(--ink-soft);
+  }
+
+  .cta-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-center h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-top: 0.75rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

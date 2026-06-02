@@ -1,0 +1,316 @@
+---
+const navItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Sobre mí', href: '/sobre-mi/' },
+  { label: 'Consultoría', href: '/consultoria/' },
+  { label: 'Recetas', href: '/recetas/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contacto', href: '/contacto/' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header" id="header">
+  <div class="header-inner container">
+    <a href="/" class="wordmark" aria-label="Andrés Valerio · Inicio">
+      <span class="wordmark-name">Andrés Valerio</span>
+      <span class="wordmark-sub">Chef · Consultor</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={['nav-link', { active: currentPath === item.href }]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a href="/contacto/" class="btn-primary cta-desktop">
+      Solicitar propuesta
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <button
+      class="burger"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-drawer"
+    >
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer-overlay" id="drawer-overlay" aria-hidden="true"></div>
+
+<aside class="drawer" id="mobile-drawer" aria-label="Menú móvil" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="wordmark-name">Andrés Valerio</span>
+    <button class="drawer-close" aria-label="Cerrar menú">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="drawer-nav">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class:list={['drawer-link', { active: currentPath === item.href }]}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+  <a href="/contacto/" class="btn-primary drawer-cta">
+    Solicitar propuesta
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</aside>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--bone);
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+  }
+
+  .site-header.scrolled {
+    background: rgba(243, 236, 221, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom-color: rgba(22, 36, 31, 0.08);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .wordmark-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .wordmark-sub {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .nav-desktop {
+    display: none;
+    gap: 2rem;
+  }
+
+  @media (min-width: 860px) {
+    .nav-desktop {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--ink);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--pers);
+  }
+
+  .cta-desktop {
+    display: none;
+  }
+
+  @media (min-width: 860px) {
+    .cta-desktop {
+      display: inline-flex;
+    }
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  @media (min-width: 860px) {
+    .burger {
+      display: none;
+    }
+  }
+
+  .burger-line {
+    width: 24px;
+    height: 2px;
+    background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .burger[aria-expanded="true"] .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .burger[aria-expanded="true"] .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger[aria-expanded="true"] .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 51, 48, 0.5);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .drawer-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    background: var(--bone);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .drawer.open {
+    transform: translateX(0);
+  }
+
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .drawer-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink);
+    padding: 4px;
+  }
+
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .drawer-link {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(22, 36, 31, 0.08);
+    transition: color 0.2s;
+  }
+
+  .drawer-link:hover,
+  .drawer-link.active {
+    color: var(--pers);
+  }
+
+  .drawer-cta {
+    margin-top: auto;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  const header = document.getElementById('header');
+  const burger = document.querySelector('.burger');
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const closeBtn = document.querySelector('.drawer-close');
+
+  function toggleDrawer(open: boolean) {
+    burger?.setAttribute('aria-expanded', String(open));
+    drawer?.setAttribute('aria-hidden', String(!open));
+    overlay?.setAttribute('aria-hidden', String(!open));
+    drawer?.classList.toggle('open', open);
+    overlay?.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  burger?.addEventListener('click', () => {
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    toggleDrawer(!isOpen);
+  });
+
+  closeBtn?.addEventListener('click', () => toggleDrawer(false));
+  overlay?.addEventListener('click', () => toggleDrawer(false));
+
+  drawer?.querySelectorAll('.drawer-link, .drawer-cta').forEach((link) => {
+    link.addEventListener('click', () => toggleDrawer(false));
+  });
+
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    header?.classList.toggle('scrolled', scrollY > 30);
+    lastScroll = scrollY;
+  }, { passive: true });
+</script>
