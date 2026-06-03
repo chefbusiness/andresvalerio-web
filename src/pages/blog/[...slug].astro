@@ -1,0 +1,291 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { articleSchema, faqSchema, breadcrumbSchema } from '@utils/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { data, id } = post;
+const { Content } = await render(post);
+
+const dateFmt = new Intl.DateTimeFormat('es-DO', { dateStyle: 'long' });
+
+const all = await getCollection('blog', ({ data }) => !data.draft);
+const related = data.related
+  .map((slug) => all.find((p) => p.id === slug))
+  .filter(Boolean)
+  .slice(0, 2);
+---
+
+<BaseLayout
+  title={`${data.title} · Blog de Andrés Valerio`}
+  description={data.description}
+  image={data.heroImage}
+  ogType="article"
+  canonicalPath={`/blog/${id}/`}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={articleSchema(data, id)} />
+    {data.faq.length > 0 && (
+      <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+    )}
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={breadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Blog', path: '/blog/' },
+        { name: data.title, path: `/blog/${id}/` },
+      ])}
+    />
+  </Fragment>
+
+  <article class="post">
+    <header class="post-hero section">
+      <div class="container">
+        <nav class="crumbs font-mono rv" aria-label="Migas de pan">
+          <a href="/">Inicio</a> <span>/</span>
+          <a href="/blog/">Blog</a> <span>/</span>
+          <span class="crumb-current">{data.category}</span>
+        </nav>
+        <span class="eyebrow rv">{data.category}</span>
+        <h1 class="rv">{data.title}</h1>
+        <p class="post-lead rv">{data.description}</p>
+        <div class="post-byline rv font-mono">
+          Por {data.author} · {dateFmt.format(data.pubDate)}
+          {data.readingMinutes && ` · ${data.readingMinutes} min de lectura`}
+        </div>
+      </div>
+    </header>
+
+    <div class="post-img-wrap container rv">
+      <img
+        src={data.heroImage}
+        alt={data.heroAlt}
+        width="1200"
+        height="675"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="post-body section">
+      <div class="container">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </div>
+
+    {data.faq.length > 0 && (
+      <section class="post-faq section bg-teal">
+        <div class="container">
+          <div class="sec-head rv">
+            <span class="eyebrow light">Preguntas frecuentes</span>
+            <h2>Lo que más me preguntan</h2>
+          </div>
+          <div class="faq-list">
+            {data.faq.map((f) => (
+              <details class="faq-item rv">
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="post-cta section">
+      <div class="container cta-center rv">
+        <span class="eyebrow">¿Hablamos de tu proyecto?</span>
+        <h2>Te acompaño de la idea a la apertura</h2>
+        <p>Consultoría gastronómica con datos, escandallos y entrenamiento de equipo.</p>
+        <a href="/consultoria/" class="btn-primary">
+          Ver consultoría
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    {related.length > 0 && (
+      <section class="post-related section bg-teal">
+        <div class="container">
+          <div class="sec-head rv">
+            <span class="eyebrow light">Sigue leyendo</span>
+            <h2>Más del blog</h2>
+          </div>
+          <div class="related-grid">
+            {related.map((p) => (
+              <a href={`/blog/${p!.id}/`} class="related-card rv">
+                <img src={p!.data.heroImage} alt={p!.data.heroAlt} width="600" height="400" loading="lazy" />
+                <div class="related-body">
+                  <span class="related-cat font-mono">{p!.data.category}</span>
+                  <h3>{p!.data.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .post-hero {
+    padding-top: calc(72px + var(--sec));
+    padding-bottom: 2rem;
+  }
+  .crumbs {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .crumbs a { color: var(--ink-soft); }
+  .crumbs a:hover { color: var(--pers); }
+  .crumb-current { color: var(--ink); }
+  .post-hero h1 {
+    font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+    margin-top: 0.75rem;
+    max-width: 20ch;
+  }
+  .post-lead {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-top: 1.25rem;
+    max-width: 62ch;
+  }
+  .post-byline {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .post-img-wrap { margin-top: 0.5rem; }
+  .post-img-wrap img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .prose {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+  .prose :global(p) { line-height: 1.8; margin-bottom: 1.25rem; color: var(--ink); font-size: 1.05rem; }
+  .prose :global(h2) { font-size: 1.85rem; margin: 2.75rem 0 1rem; }
+  .prose :global(h3) { font-size: 1.3rem; margin: 2rem 0 0.75rem; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin-bottom: 1.25rem; }
+  .prose :global(li) { line-height: 1.75; margin-bottom: 0.5rem; }
+  .prose :global(strong) { color: var(--ink); }
+  .prose :global(a) { color: var(--pers); text-decoration: underline; text-underline-offset: 3px; }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--pers);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75rem 0;
+    font-size: 0.9rem;
+  }
+  .prose :global(th), .prose :global(td) {
+    border: 1px solid rgba(22, 36, 31, 0.12);
+    padding: 0.65rem 0.85rem;
+    text-align: left;
+  }
+  .prose :global(th) {
+    background: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .prose :global(tbody tr:nth-child(even)) { background: rgba(243, 236, 221, 0.4); }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: var(--teal-2);
+    border: 1px solid rgba(243, 236, 221, 0.08);
+    border-radius: 8px;
+    padding: 1.1rem 1.5rem;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--bone);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; float: right; color: var(--brass); }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { margin-top: 0.85rem; color: var(--bone-soft); line-height: 1.7; }
+
+  .cta-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-center h2 { font-size: clamp(2rem, 4vw, 2.75rem); margin-top: 0.75rem; }
+  .cta-center p { margin-top: 1rem; color: var(--ink-soft); max-width: 46ch; }
+  .post-cta.section .cta-center p { color: var(--ink-soft); }
+  .cta-center .btn-primary { margin-top: 2rem; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+  .related-card {
+    background: var(--teal-2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(243, 236, 221, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+  }
+  .related-card:hover { transform: translateY(-3px); }
+  .related-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .related-body { padding: 1.1rem 1.25rem; }
+  .related-cat {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .related-body h3 { font-size: 1.1rem; margin-top: 0.4rem; color: var(--bone); }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

@@ -74,6 +74,115 @@ export function personSchema(): string {
   return JSON.stringify(schema);
 }
 
+interface RecipeLike {
+  title: string;
+  description: string;
+  heroImage: string;
+  category: string;
+  cuisine?: string;
+  prepMinutes: number;
+  cookMinutes: number;
+  servings: number;
+  yieldText?: string;
+  calories?: number;
+  ingredients: string[];
+  steps: string[];
+  keywords?: string[];
+  pubDate: Date;
+}
+
+const isoDuration = (min: number) => `PT${min}M`;
+
+/** Schema.org Recipe para una receta (rich results en Google). */
+export function recipeSchema(data: RecipeLike, slug: string): string {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: data.title,
+    description: data.description,
+    image: [`${SITE}${data.heroImage}`],
+    url: `${SITE}/recetas/${slug}/`,
+    author: {
+      '@type': 'Person',
+      name: 'Andrés Valerio',
+      url: `${SITE}/sobre-mi/`,
+    },
+    datePublished: data.pubDate.toISOString().slice(0, 10),
+    recipeCategory: data.category,
+    ...(data.cuisine ? { recipeCuisine: data.cuisine } : {}),
+    prepTime: isoDuration(data.prepMinutes),
+    cookTime: isoDuration(data.cookMinutes),
+    totalTime: isoDuration(data.prepMinutes + data.cookMinutes),
+    recipeYield: data.yieldText || `${data.servings} raciones`,
+    ...(data.keywords?.length ? { keywords: data.keywords.join(', ') } : {}),
+    recipeIngredient: data.ingredients,
+    recipeInstructions: data.steps.map((text, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      text,
+    })),
+    ...(data.calories
+      ? {
+          nutrition: {
+            '@type': 'NutritionInformation',
+            calories: `${data.calories} kcal`,
+          },
+        }
+      : {}),
+  };
+  return JSON.stringify(schema);
+}
+
+interface ArticleLike {
+  title: string;
+  description: string;
+  heroImage: string;
+  author: string;
+  pubDate: Date;
+  updatedDate?: Date;
+}
+
+/** Schema.org BlogPosting para un artículo del blog. */
+export function articleSchema(data: ArticleLike, slug: string): string {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: data.title,
+    description: data.description,
+    image: [`${SITE}${data.heroImage}`],
+    url: `${SITE}/blog/${slug}/`,
+    datePublished: data.pubDate.toISOString().slice(0, 10),
+    dateModified: (data.updatedDate || data.pubDate).toISOString().slice(0, 10),
+    author: {
+      '@type': 'Person',
+      name: data.author,
+      url: `${SITE}/sobre-mi/`,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Andrés Valerio',
+      url: SITE,
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}/blog/${slug}/` },
+  };
+  return JSON.stringify(schema);
+}
+
+/** Schema.org BreadcrumbList genérico. */
+export function breadcrumbSchema(items: { name: string; path: string }[]): string {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: `${SITE}${it.path}`,
+    })),
+  };
+  return JSON.stringify(schema);
+}
+
 /** Schema.org FAQPage a partir del bloque de preguntas frecuentes. */
 export function faqSchema(faq: Faq[]): string {
   const schema = {

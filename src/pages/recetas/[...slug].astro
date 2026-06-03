@@ -1,0 +1,423 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { recipeSchema, faqSchema, breadcrumbSchema } from '@utils/schema';
+
+export async function getStaticPaths() {
+  const recetas = await getCollection('recetas', ({ data }) => !data.draft);
+  return recetas.map((receta) => ({
+    params: { slug: receta.id },
+    props: { receta },
+  }));
+}
+
+const { receta } = Astro.props;
+const { data, id } = receta;
+const { Content } = await render(receta);
+
+const totalMinutes = data.prepMinutes + data.cookMinutes;
+const dateFmt = new Intl.DateTimeFormat('es-DO', { dateStyle: 'long' });
+
+// Recetas relacionadas
+const all = await getCollection('recetas', ({ data }) => !data.draft);
+const related = data.related
+  .map((slug) => all.find((r) => r.id === slug))
+  .filter(Boolean)
+  .slice(0, 2);
+
+const meta = [
+  { label: 'Dificultad', value: data.difficulty },
+  { label: 'Preparación', value: `${data.prepMinutes} min` },
+  { label: 'Cocción', value: data.cookMinutes > 0 ? `${data.cookMinutes} min` : '—' },
+  { label: 'Total', value: `${totalMinutes} min` },
+  { label: 'Raciones', value: data.yieldText || `${data.servings}` },
+];
+---
+
+<BaseLayout
+  title={`${data.title} · Receta de Andrés Valerio`}
+  description={data.description}
+  image={data.heroImage}
+  ogType="article"
+  canonicalPath={`/recetas/${id}/`}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={recipeSchema(data, id)} />
+    {data.faq.length > 0 && (
+      <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+    )}
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={breadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Recetas', path: '/recetas/' },
+        { name: data.title, path: `/recetas/${id}/` },
+      ])}
+    />
+  </Fragment>
+
+  <article class="receta">
+    <header class="receta-hero section">
+      <div class="container">
+        <nav class="crumbs font-mono rv" aria-label="Migas de pan">
+          <a href="/">Inicio</a> <span>/</span>
+          <a href="/recetas/">Recetas</a> <span>/</span>
+          <span class="crumb-current">{data.category}</span>
+        </nav>
+        <span class="eyebrow rv">{data.category}</span>
+        <h1 class="rv">{data.title}</h1>
+        <p class="receta-lead rv">{data.description}</p>
+        <div class="receta-meta rv">
+          {meta.map((m) => (
+            <div class="meta-item">
+              <span class="meta-label font-mono">{m.label}</span>
+              <span class="meta-value">{m.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <div class="receta-img-wrap container rv">
+      <img
+        src={data.heroImage}
+        alt={data.heroAlt}
+        width="1200"
+        height="675"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="receta-body section">
+      <div class="container receta-grid">
+        <aside class="ingredientes rv">
+          <h2>Ingredientes</h2>
+          <ul class="ing-list">
+            {data.ingredients.map((ing) => (
+              <li>{ing}</li>
+            ))}
+          </ul>
+          {data.tips.length > 0 && (
+            <div class="tips">
+              <h3>Tips del chef</h3>
+              <ul>
+                {data.tips.map((t) => <li>{t}</li>)}
+              </ul>
+            </div>
+          )}
+        </aside>
+
+        <div class="preparacion rv">
+          <h2>Preparación</h2>
+          <ol class="steps">
+            {data.steps.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+
+          <div class="prose">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {data.faq.length > 0 && (
+      <section class="receta-faq section bg-teal">
+        <div class="container">
+          <div class="sec-head rv">
+            <span class="eyebrow light">Preguntas frecuentes</span>
+            <h2>Dudas sobre esta receta</h2>
+          </div>
+          <div class="faq-list">
+            {data.faq.map((f) => (
+              <details class="faq-item rv">
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="receta-related section">
+        <div class="container">
+          <div class="sec-head rv">
+            <span class="eyebrow">Sigue cocinando</span>
+            <h2>Otras recetas</h2>
+          </div>
+          <div class="related-grid">
+            {related.map((r) => (
+              <a href={`/recetas/${r!.id}/`} class="related-card rv">
+                <img src={r!.data.heroImage} alt={r!.data.heroAlt} width="600" height="400" loading="lazy" />
+                <div class="related-body">
+                  <span class="related-cat font-mono">{r!.data.category}</span>
+                  <h3>{r!.data.title}</h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="receta-cta section bg-teal">
+      <div class="container cta-center rv">
+        <span class="eyebrow light">Del recetario a tu restaurante</span>
+        <h2>¿Quieres una carta que venda?</h2>
+        <p>
+          Desarrollo cartas con escandallos, fichas técnicas y entrenamiento de
+          equipo. El mismo chef que crea la receta entrena a tu cocina.
+        </p>
+        <a href="/consultoria/desarrollo-carta/" class="btn-primary">
+          Ver consultoría de carta
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <p class="receta-date container font-mono">
+      Publicada el {dateFmt.format(data.pubDate)}
+      {data.updatedDate && ` · Actualizada el ${dateFmt.format(data.updatedDate)}`}
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .receta-hero {
+    padding-top: calc(72px + var(--sec));
+    padding-bottom: 2rem;
+  }
+  .crumbs {
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .crumbs a { color: var(--ink-soft); }
+  .crumbs a:hover { color: var(--pers); }
+  .crumb-current { color: var(--ink); }
+  .receta-hero h1 {
+    font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+    margin-top: 0.75rem;
+    max-width: 18ch;
+  }
+  .receta-lead {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    margin-top: 1.25rem;
+    max-width: 60ch;
+  }
+  .receta-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(22, 36, 31, 0.1);
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .meta-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .meta-value { font-size: 1.05rem; color: var(--ink); font-weight: 500; }
+
+  .receta-img-wrap {
+    margin-top: 0.5rem;
+  }
+  .receta-img-wrap img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .receta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  @media (min-width: 900px) {
+    .receta-grid {
+      grid-template-columns: 320px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .ingredientes {
+      position: sticky;
+      top: 96px;
+    }
+  }
+
+  .ingredientes h2,
+  .preparacion h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .ing-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .ing-list li {
+    padding: 0.65rem 0 0.65rem 1.75rem;
+    border-bottom: 1px solid rgba(22, 36, 31, 0.08);
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .ing-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pers);
+  }
+  .tips {
+    margin-top: 2rem;
+    background: var(--paper);
+    border: 1px solid rgba(221, 84, 48, 0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  .tips h3 {
+    font-size: 1rem;
+    color: var(--pers-deep);
+    margin-bottom: 0.75rem;
+  }
+  .tips ul { padding-left: 1.1rem; margin: 0; }
+  .tips li { font-size: 0.875rem; color: var(--ink-soft); margin-bottom: 0.5rem; line-height: 1.6; }
+
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3.25rem;
+    line-height: 1.7;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    background: var(--pers);
+    color: var(--bone);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    border-radius: 50%;
+  }
+
+  .prose :global(h2) { font-size: 1.6rem; margin: 2.5rem 0 1rem; }
+  .prose :global(h3) { font-size: 1.2rem; margin: 1.75rem 0 0.75rem; }
+  .prose :global(p) { line-height: 1.75; margin-bottom: 1rem; color: var(--ink-soft); }
+  .prose :global(ul) { padding-left: 1.25rem; margin-bottom: 1rem; }
+  .prose :global(li) { line-height: 1.7; margin-bottom: 0.4rem; color: var(--ink-soft); }
+  .prose :global(strong) { color: var(--ink); }
+  .prose :global(em) { color: var(--pers-deep); }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: var(--teal-2);
+    border: 1px solid rgba(243, 236, 221, 0.08);
+    border-radius: 8px;
+    padding: 1.1rem 1.5rem;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--bone);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; float: right; color: var(--brass); }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { margin-top: 0.85rem; color: var(--bone-soft); line-height: 1.7; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .related-card {
+    background: var(--paper);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(22, 36, 31, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(22, 36, 31, 0.1);
+  }
+  .related-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .related-body { padding: 1.25rem; }
+  .related-cat {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pers);
+  }
+  .related-body h3 { font-size: 1.15rem; margin-top: 0.4rem; }
+
+  .cta-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-center h2 { font-size: clamp(2rem, 4vw, 2.75rem); margin-top: 0.75rem; }
+  .cta-center p { margin-top: 1rem; color: var(--bone-soft); max-width: 46ch; }
+  .cta-center .btn-primary { margin-top: 2rem; }
+
+  .receta-date {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

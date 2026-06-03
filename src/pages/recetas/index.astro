@@ -1,0 +1,222 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const recetas = (await getCollection('recetas', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const featured = recetas.find((r) => r.data.featured) ?? recetas[0];
+const rest = recetas.filter((r) => r.id !== featured?.id);
+---
+
+<BaseLayout
+  title="Recetas del Chef Andrés Valerio"
+  description="Recetas de salsas, hamburguesas y cocina de calle del Chef Andrés Valerio. Paso a paso, con tips de chef y fichas técnicas para que te salgan perfectas en casa."
+  canonicalPath="/recetas/"
+>
+  <section class="recetas-hero section">
+    <div class="container rv">
+      <span class="eyebrow">Recetario</span>
+      <h1>Recetas del chef</h1>
+      <p class="hero-lead">
+        Salsas, hamburguesas y cocina de calle con técnica de alta cocina. Paso a
+        paso, con los trucos que uso en mi día a día para que te salgan perfectas.
+      </p>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="recetas-featured section">
+      <div class="container">
+        <a href={`/recetas/${featured.id}/`} class="featured-card rv">
+          <div class="featured-img">
+            <img
+              src={featured.data.heroImage}
+              alt={featured.data.heroAlt}
+              width="800"
+              height="600"
+              loading="eager"
+            />
+          </div>
+          <div class="featured-body">
+            <span class="featured-tag font-mono">Destacada · {featured.data.category}</span>
+            <h2>{featured.data.title}</h2>
+            <p>{featured.data.description}</p>
+            <span class="featured-link">
+              Ver receta
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <section class="recetas-grid-sec section">
+    <div class="container">
+      <div class="sec-head rv">
+        <span class="eyebrow">Todas las recetas</span>
+        <h2>Para cocinar este finde</h2>
+      </div>
+      <div class="recetas-grid">
+        {rest.map((r) => (
+          <a href={`/recetas/${r.id}/`} class="receta-card rv">
+            <div class="card-img">
+              <img src={r.data.heroImage} alt={r.data.heroAlt} width="600" height="400" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <span class="card-cat font-mono">{r.data.category}</span>
+              <h3>{r.data.title}</h3>
+              <p>{r.data.description}</p>
+              <span class="card-time font-mono">⏱ {r.data.prepMinutes + r.data.cookMinutes} min · {r.data.difficulty}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="recetas-cta section bg-teal">
+    <div class="container cta-center rv">
+      <span class="eyebrow light">¿Cocinas en serio?</span>
+      <h2>Llevo tu carta al siguiente nivel</h2>
+      <p>
+        Si tienes un restaurante, desarrollo cartas con escandallos, fichas
+        técnicas y entrenamiento de equipo. Hablemos.
+      </p>
+      <a href="/consultoria/" class="btn-primary">
+        Ver consultoría
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .recetas-hero {
+    padding-top: calc(72px + var(--sec));
+    padding-bottom: 2rem;
+  }
+  .recetas-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-top: 1rem;
+  }
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    margin-top: 1.5rem;
+    max-width: 56ch;
+  }
+
+  .recetas-featured { padding-top: 1rem; }
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--paper);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(221, 84, 48, 0.18);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .featured-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(22, 36, 31, 0.12);
+  }
+  @media (min-width: 860px) {
+    .featured-card { grid-template-columns: 1.1fr 1fr; }
+  }
+  .featured-img img {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+    display: block;
+  }
+  .featured-body {
+    padding: clamp(1.75rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-tag {
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pers);
+  }
+  .featured-body h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    margin: 0.75rem 0 1rem;
+  }
+  .featured-body p { color: var(--ink-soft); line-height: 1.7; }
+  .featured-link {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--pers);
+    font-weight: 500;
+  }
+
+  .recetas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  @media (min-width: 640px) { .recetas-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .recetas-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .receta-card {
+    background: var(--paper);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(22, 36, 31, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .receta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(22, 36, 31, 0.1);
+  }
+  .card-img img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .card-body { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
+  .card-cat {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pers);
+  }
+  .card-body h3 { font-size: 1.25rem; margin: 0.4rem 0 0.6rem; }
+  .card-body p { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+  .card-time {
+    margin-top: 1rem;
+    font-size: 0.6875rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .cta-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-center h2 { font-size: clamp(2rem, 4vw, 2.75rem); margin-top: 0.75rem; }
+  .cta-center p { margin-top: 1rem; color: var(--bone-soft); max-width: 46ch; }
+  .cta-center .btn-primary { margin-top: 2rem; }
+</style>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>
