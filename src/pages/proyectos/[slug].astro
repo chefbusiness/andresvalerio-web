@@ -13,6 +13,7 @@ const c = proyectosContenido[p.slug];
 const otros = proyectos.filter((x) => x.slug !== p.slug);
 const heroTitle = c?.heroTitle ?? p.nombre;
 const heroLead = c?.heroLead ?? p.resumen;
+const banda = p.banda ?? (p.galeria && p.galeria[0]);
 ---
 
 <BaseLayout
@@ -45,18 +46,19 @@ const heroLead = c?.heroLead ?? p.resumen;
         </div>
       </section>
 
-      {p.galeria && p.galeria.length > 0 && (
+      {banda && (
         <figure class="ctx-band">
-          <img src={p.galeria[0]} alt={`${p.nombre} — ${p.categoria}`} width="1600" height="893" loading="lazy" />
+          <img src={banda} alt={`${p.nombre} — ${p.categoria}`} width="1600" height="893" loading="lazy" />
         </figure>
       )}
 
       <!-- PARA QUIÉN -->
+      {c.paraQuien && c.paraQuien.length > 0 && (
       <section class="section bg-teal">
         <div class="container">
           <div class="sec-head rv">
-            <span class="eyebrow light">Para quién</span>
-            <h2>Pensado para tu evento</h2>
+            <span class="eyebrow light">{c.secLabels?.paraQuien?.eyebrow ?? 'Para quién'}</span>
+            <h2>{c.secLabels?.paraQuien?.titulo ?? 'Pensado para ti'}</h2>
           </div>
           <div class="pq-grid">
             {c.paraQuien.map((x, i) => (
@@ -69,13 +71,15 @@ const heroLead = c?.heroLead ?? p.resumen;
           </div>
         </div>
       </section>
+      )}
 
       <!-- FORMATOS -->
+      {c.formatos && c.formatos.length > 0 && (
       <section class="section">
         <div class="container">
           <div class="sec-head rv">
-            <span class="eyebrow">Experiencias</span>
-            <h2>Formatos de parrilla a elegir</h2>
+            <span class="eyebrow">{c.secLabels?.formatos?.eyebrow ?? 'Experiencias'}</span>
+            <h2>{c.secLabels?.formatos?.titulo ?? 'Lo que ofrecemos'}</h2>
           </div>
           <div class="fmt-grid">
             {c.formatos.map((f, i) => (
@@ -87,13 +91,15 @@ const heroLead = c?.heroLead ?? p.resumen;
           </div>
         </div>
       </section>
+      )}
 
       <!-- QUÉ INCLUYE -->
+      {c.queIncluye && c.queIncluye.length > 0 && (
       <section class="section bg-teal">
         <div class="container incluye-grid">
           <div class="rv">
-            <span class="eyebrow light">Qué incluye</span>
-            <h2>Servicio completo, llave en mano</h2>
+            <span class="eyebrow light">{c.secLabels?.incluye?.eyebrow ?? 'Qué incluye'}</span>
+            <h2>{c.secLabels?.incluye?.titulo ?? 'Servicio completo'}</h2>
           </div>
           <ul class="incluye-list rv d1">
             {c.queIncluye.map((item) => (
@@ -107,6 +113,7 @@ const heroLead = c?.heroLead ?? p.resumen;
           </ul>
         </div>
       </section>
+      )}
 
       <!-- GALERÍA -->
       {p.galeria && p.galeria.length > 1 && (

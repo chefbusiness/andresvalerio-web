@@ -12,10 +12,20 @@ export interface ProyectoContenido {
   formatos: { nombre: string; desc: string }[];
   queIncluye: string[];
   faq: { q: string; a: string }[];
+  secLabels?: {
+    paraQuien?: { eyebrow: string; titulo: string };
+    formatos?: { eyebrow: string; titulo: string };
+    incluye?: { eyebrow: string; titulo: string };
+  };
 }
 
 export const proyectosContenido: Record<string, ProyectoContenido> = {
   "bbq-parrilla-events": {
+    "secLabels": {
+      "paraQuien": { "eyebrow": "Para quién", "titulo": "Pensado para tu evento" },
+      "formatos": { "eyebrow": "Experiencias", "titulo": "Formatos de parrilla a elegir" },
+      "incluye": { "eyebrow": "Qué incluye", "titulo": "Servicio completo, llave en mano" }
+    },
     "metaTitle": "BBQ Parrilla Events by Valerio | Parrilla para eventos en RD",
     "metaDescription": "Llevamos la parrilla y el fuego a tu evento en Santo Domingo y todo RD. Cortes premium, show en vivo, servicio completo. Pide tu presupuesto a medida.",
     "heroTitle": "Fuego, cortes y sabor: evento a la parrilla",

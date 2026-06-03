@@ -12,7 +12,8 @@ export interface Proyecto {
   resumen: string;        // tarjeta + lead del hero (provisional)
   estado: string;         // etiqueta de estado
   externo?: string;       // URL externa (Valerio Burger Club tiene web propia)
-  imagen?: string;        // foto real (opcional); si no, bloque de marca
+  imagen?: string;        // foto real de hero/tarjeta (opcional); si no, bloque de marca
+  banda?: string;         // imagen de la cinta/banda de contexto (opcional)
   highlights: string[];   // puntos provisionales
   galeria?: string[];     // imágenes de galería (opcional)
   sitioProximamente?: boolean; // muestra placeholder de web dedicada futura
@@ -71,7 +72,8 @@ export const proyectos: Proyecto[] = [
     resumen:
       'Servicio itinerante de parrilla y asador para eventos: llevamos el fuego, los cortes y el espectáculo a bodas, eventos corporativos y celebraciones en toda RD.',
     estado: 'Activo',
-    imagen: '/images/proyectos/bbq/01-asado-cruz-finca.jpg',
+    imagen: '/images/proyectos/bbq/02-bbq-pitmaster-corporate.jpg',
+    banda: '/images/proyectos/bbq/04-equipamiento-detalle.jpg',
     highlights: [
       'Parrilla y BBQ para eventos (B2C y B2B)',
       'Montaje, parrilleros y cortes premium',
