@@ -377,6 +377,10 @@ const meta = [
   .prose :global(li) { line-height: 1.7; margin-bottom: 0.4rem; color: var(--ink-soft); }
   .prose :global(strong) { color: var(--ink); }
   .prose :global(em) { color: var(--pers-deep); }
+  .prose :global(table) { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-collapse: collapse; margin: 1.5rem 0; }
+  .prose :global(th), .prose :global(td) { border: 1px solid rgba(22, 36, 31, 0.12); padding: 0.6rem 0.8rem; text-align: left; min-width: 9rem; }
+  .prose :global(pre) { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+  .prose :global(code) { overflow-wrap: anywhere; word-break: break-word; }
 
   .faq-list {
     display: flex;

@@ -130,7 +130,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     display: flex;
     align-items: center;
     min-height: clamp(58vh, 66vh, 620px);
-    padding-top: calc(72px + var(--sec));
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2rem, 6vw, 4rem);
   }
 
   .contact-hero .container {

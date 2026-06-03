@@ -238,7 +238,10 @@ const related = data.related
     font-style: italic;
   }
   .prose :global(table) {
+    display: block;
     width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-collapse: collapse;
     margin: 1.75rem 0;
     font-size: 0.9rem;
@@ -247,7 +250,10 @@ const related = data.related
     border: 1px solid rgba(22, 36, 31, 0.12);
     padding: 0.65rem 0.85rem;
     text-align: left;
+    min-width: 9rem;
   }
+  .prose :global(pre) { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+  .prose :global(code) { overflow-wrap: anywhere; word-break: break-word; }
   .prose :global(th) {
     background: var(--paper);
     font-family: var(--font-mono);
