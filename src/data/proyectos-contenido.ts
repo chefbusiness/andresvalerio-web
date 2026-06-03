@@ -9,12 +9,12 @@ export interface ProyectoContenido {
   heroLead: string;
   intro: string[];
   paraQuien: { titulo: string; desc: string }[];
-  formatos: { nombre: string; desc: string; precioRD?: string; precioUS?: string }[];
+  formatos: { nombre: string; desc: string; precioRD?: string; precioUS?: string; imagen?: string }[];
   carnes?: {
     eyebrow: string;
     titulo: string;
     intro: string[];
-    cortes: { nombre: string; origen: string; desc: string }[];
+    cortes: { nombre: string; origen: string; desc: string; imagen?: string }[];
   };
   queIncluye: string[];
   faq: { q: string; a: string }[];
@@ -70,54 +70,63 @@ export const proyectosContenido: Record<string, ProyectoContenido> = {
     "formatos": [
       {
         "nombre": "Asado argentino",
+        "imagen": "/images/proyectos/bbq/formatos/asado-argentino.jpg",
         "desc": "El clásico ritual gaucho con cortes al asador, cocción lenta y sabores intensos.",
         "precioRD": "3,500",
         "precioUS": "58"
       },
       {
         "nombre": "Asador a la cruz",
+        "imagen": "/images/proyectos/bbq/formatos/asador-cruz.jpg",
         "desc": "Técnica tradicional con el animal ensartado, cocinado lentamente frente a las brasas.",
         "precioRD": "3,200",
         "precioUS": "53"
       },
       {
         "nombre": "Parrilla uruguaya",
+        "imagen": "/images/proyectos/bbq/formatos/parrilla-uruguaya.jpg",
         "desc": "La parrilla montevideana: cortes gruesos, fuego a la leña y el punto justo.",
         "precioRD": "3,500",
         "precioUS": "58"
       },
       {
         "nombre": "BBQ texano",
+        "imagen": "/images/proyectos/bbq/formatos/bbq-texano.jpg",
         "desc": "Brisket ahumado por horas, costillas glaseadas y el auténtico sabor del sur de EE.UU.",
         "precioRD": "3,800",
         "precioUS": "63"
       },
       {
         "nombre": "Rodizio brasileño",
+        "imagen": "/images/proyectos/bbq/formatos/rodizio.jpg",
         "desc": "El churrasco gaúcho servido en espeto, con cortes continuos y guarniciones tropicales.",
         "precioRD": "3,800",
         "precioUS": "63"
       },
       {
         "nombre": "Asador criollo dominicano",
+        "imagen": "/images/proyectos/bbq/formatos/asador-criollo.jpg",
         "desc": "Nuestro asado al carbón con los cortes y sazones que nos saben a hogar dominicano.",
         "precioRD": "2,200",
         "precioUS": "37"
       },
       {
         "nombre": "Parrillada llanera",
+        "imagen": "/images/proyectos/bbq/formatos/parrillada-llanera.jpg",
         "desc": "La tradición de los llanos: carnes a la brasa con yuca, plátano y ají.",
         "precioRD": "2,800",
         "precioUS": "47"
       },
       {
         "nombre": "Show de fuego en vivo",
+        "imagen": "/images/proyectos/bbq/formatos/show-fuego.jpg",
         "desc": "Una experiencia teatral donde el chef manipula el fuego y los cortes ante tus invitados.",
         "precioRD": "4,500",
         "precioUS": "75"
       },
       {
         "nombre": "Brunch parrillero corporativo",
+        "imagen": "/images/proyectos/bbq/formatos/brunch-parrillero.jpg",
         "desc": "Desayuno-almuerzo ejecutivo con parrilla, estaciones de jugos y café, ideal para equipos.",
         "precioRD": "2,500",
         "precioUS": "42"
@@ -132,41 +141,49 @@ export const proyectosContenido: Record<string, ProyectoContenido> = {
       "cortes": [
         {
           "nombre": "T-bone (Tibón)",
+          "imagen": "/images/proyectos/bbq/cortes/tibon.jpg",
           "origen": "EE.UU. · USDA",
           "desc": "El corte rey: un lado de solomillo y otro de chatas, jugoso y de sabor profundo."
         },
         {
           "nombre": "Ribeye (Chuletón)",
+          "imagen": "/images/proyectos/bbq/cortes/ribeye.jpg",
           "origen": "EE.UU. · Angus",
           "desc": "Marmoleo excepcional, veteado y tierno, ideal para fuego alto."
         },
         {
           "nombre": "Solomillo / Lomo fino",
+          "imagen": "/images/proyectos/bbq/cortes/solomillo.jpg",
           "origen": "EE.UU. · USDA",
           "desc": "La pieza más tierna, magra y delicada, perfecta para paladares exigentes."
         },
         {
           "nombre": "Picaña / Tapilla",
+          "imagen": "/images/proyectos/bbq/cortes/picana.jpg",
           "origen": "EE.UU. / Latinoamérica",
           "desc": "Corte con capa de grasa que al fuego se convierte en sabor y jugosidad."
         },
         {
           "nombre": "Brisket",
+          "imagen": "/images/proyectos/bbq/cortes/brisket.jpg",
           "origen": "EE.UU. · BBQ texano",
           "desc": "Pecho ahumado por horas, desmenuzable y con corteza de especias."
         },
         {
           "nombre": "Short rib / Costilla",
+          "imagen": "/images/proyectos/bbq/cortes/costilla.jpg",
           "origen": "EE.UU.",
           "desc": "Costillar de res de cocción lenta, carne que se despega del hueso."
         },
         {
           "nombre": "Pollo",
+          "imagen": "/images/proyectos/bbq/cortes/pollo.jpg",
           "origen": "Local dominicano",
           "desc": "Pechugas, muslos y alitas frescas, marinadas y asadas al punto."
         },
         {
           "nombre": "Cerdo",
+          "imagen": "/images/proyectos/bbq/cortes/cerdo.jpg",
           "origen": "Local / EE.UU.",
           "desc": "Costillas, secreto o presa, con el balance justo de grasa y magro."
         }
