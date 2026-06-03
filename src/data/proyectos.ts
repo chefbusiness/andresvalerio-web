@@ -35,6 +35,11 @@ export const proyectos: Proyecto[] = [
       'Concepto, carta y operación propios',
       'La cocina donde se prueba todo lo que asesoro',
     ],
+    galeria: [
+      '/images/proyectos/vbc/01.jpg',
+      '/images/proyectos/vbc/02.jpg',
+      '/images/proyectos/vbc/03.jpg',
+    ],
   },
   {
     slug: 'burger-master-academy',
@@ -44,11 +49,13 @@ export const proyectos: Proyecto[] = [
     resumen:
       'Cursos de Valerio sobre hamburguesas, panes, carnes y aderezos: el conocimiento de la cocina de producto, llevado a cocineros, emprendedores y aficionados.',
     estado: 'Activo',
+    imagen: '/images/proyectos/bma/hero.jpg',
     highlights: [
       'Cursos de hamburguesas, panes, carnes y aderezos',
       'Método práctico, de la técnica al pase',
       'Para cocineros, emprendedores y aficionados',
     ],
+    sitioProximamente: true,
   },
   {
     slug: 'catering-fast-good',
@@ -58,6 +65,7 @@ export const proyectos: Proyecto[] = [
     resumen:
       'Servicio de catering y chef at home: la propuesta fast-good de Valerio llevada a eventos, celebraciones y experiencias privadas.',
     estado: 'Activo',
+    imagen: '/images/proyectos/catering/hero.jpg',
     highlights: [
       'Catering para eventos y celebraciones',
       'Experiencias de chef at home',

@@ -84,7 +84,13 @@ const socialLinks = [
 
   <div class="footer-legal">
     <div class="container footer-legal-inner">
-      <span>&copy; {currentYear} Andrés Valerio. Todos los derechos reservados.</span>
+      <span class="footer-copy">&copy; {currentYear} Andrés Valerio. Todos los derechos reservados.</span>
+      <nav class="footer-legal-links" aria-label="Enlaces legales">
+        <a href="/legal/terminos/">Aviso legal</a>
+        <a href="/legal/privacidad/">Privacidad</a>
+        <a href="/legal/cookies/">Cookies</a>
+      </nav>
+      <span class="footer-dev">Desarrollado por <a href="https://gastroseo.com" target="_blank" rel="noopener noreferrer">GastroSEO</a></span>
     </div>
   </div>
 </footer>
@@ -170,5 +176,28 @@ const socialLinks = [
   .footer-legal-inner {
     font-size: 0.75rem;
     color: var(--bone-soft);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+  .footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+  .footer-legal-links a,
+  .footer-dev a {
+    color: var(--bone-soft);
+    text-decoration: none;
+  }
+  .footer-legal-links a:hover,
+  .footer-dev a:hover {
+    color: var(--pers);
+  }
+  .footer-dev a { color: var(--brass); }
+  @media (max-width: 640px) {
+    .footer-legal-inner { justify-content: flex-start; }
   }
 </style>
