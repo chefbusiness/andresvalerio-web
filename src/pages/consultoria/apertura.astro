@@ -27,6 +27,7 @@ const related = [
 ];
 
 const photo = { src: '/images/chef/chef-2.jpeg', alt: 'Andrés Valerio, chef y consultor gastronómico' };
+const contextImage = { src: '/images/contexto/apertura.jpg', alt: 'Mesa de trabajo de apertura de concepto: plano de cocina, borrador de carta, notas de proyecto y muestras de producto' };
 ---
 
 <BaseLayout
@@ -40,7 +41,7 @@ const photo = { src: '/images/chef/chef-2.jpeg', alt: 'Andrés Valerio, chef y c
     <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
   </Fragment>
 
-  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} />
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} />
 </BaseLayout>
 
 <script>

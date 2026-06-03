@@ -12,31 +12,41 @@ import { personSchema } from '@utils/schema';
     <script type="application/ld+json" is:inline set:html={personSchema()} />
   </Fragment>
   <section class="hero">
-    <div class="hero-photo" aria-hidden="true"></div>
-    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-content rv">
-        <span class="eyebrow">Chef & Consultor</span>
-        <h1>Andrés Valerio</h1>
-        <p class="hero-lead">
-          Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
-          y mentoría para equipos de cocina en República Dominicana.
-        </p>
-        <div class="hero-ctas">
-          <a href="/consultoria/" class="btn-primary">
-            Ver consultoría
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="/sobre-mi/" class="btn-ghost">Conocer más</a>
+      <div class="hero-grid">
+        <div class="hero-content rv">
+          <span class="eyebrow">Chef & Consultor</span>
+          <h1>Andrés Valerio</h1>
+          <p class="hero-lead">
+            Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
+            y mentoría para equipos de cocina en República Dominicana.
+          </p>
+          <div class="hero-ctas">
+            <a href="/consultoria/" class="btn-primary">
+              Ver consultoría
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="/sobre-mi/" class="btn-ghost">Conocer más</a>
+          </div>
+          <div class="hero-trust">
+            <span>Chef-propietario de Valerio Burger Club</span>
+            <span class="dot"></span>
+            <span>Santo Domingo · Santiago · Punta Cana</span>
+          </div>
         </div>
-        <div class="hero-trust">
-          <span>Chef-propietario de Valerio Burger Club</span>
-          <span class="dot"></span>
-          <span>Santo Domingo · Santiago · Punta Cana</span>
-        </div>
+        <figure class="hero-figure rv d2">
+          <div class="hero-figure-glow" aria-hidden="true"></div>
+          <img
+            src="/images/hero/andres-hero.jpg"
+            alt="Andrés Valerio, chef y consultor gastronómico, sosteniendo una pieza de carne madurada en cocina"
+            width="960"
+            height="1280"
+            fetchpriority="high"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -161,23 +171,48 @@ import { personSchema } from '@utils/schema';
     overflow: hidden;
   }
 
-  /* Capa de foto a sangre completa */
-  .hero-photo {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background-image: url(/images/hero/home-hero.jpg);
-    background-size: cover;
-    background-position: center right;
+  /* Layout partido: texto a la izquierda, retrato de Andrés a la derecha */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: center;
   }
 
-  /* Scrim para legibilidad (refuerzo en la base y del lado del texto) */
-  .hero-scrim {
+  @media (min-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1.08fr 0.92fr;
+    }
+  }
+
+  .hero-figure {
+    position: relative;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-figure img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 16px;
+    border: 1px solid var(--line-dark);
+    box-shadow: 0 44px 90px -42px rgba(0, 0, 0, 0.66);
+  }
+
+  /* Glow de marca detrás del retrato */
+  .hero-figure-glow {
     position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      linear-gradient(100deg, rgba(13, 42, 39, 0.92) 0%, rgba(13, 42, 39, 0.72) 30%, rgba(13, 42, 39, 0.32) 58%, rgba(13, 42, 39, 0.05) 100%);
+    inset: -12% -8%;
+    z-index: 0;
+    background: radial-gradient(circle at 62% 42%, rgba(221, 84, 48, 0.32), transparent 64%);
+    filter: blur(8px);
+    pointer-events: none;
   }
 
   /* Glow sutil de marca + dotted-grid muy tenue sobre el scrim */
@@ -258,13 +293,12 @@ import { personSchema } from '@utils/schema';
     background: var(--pers);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 880px) {
     .hero {
-      min-height: clamp(72vh, 78vh, 680px);
-      background-position: center;
+      min-height: auto;
     }
-    .hero-photo {
-      background-position: 60% center;
+    .hero-figure img {
+      max-width: 380px;
     }
   }
 

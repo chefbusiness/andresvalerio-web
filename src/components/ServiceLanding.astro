@@ -30,9 +30,10 @@ interface Props {
   photo: { src: string; alt: string };
   pricing: { title: string; rows: PricingRow[]; note: string };
   related: RelatedLink[];
+  contextImage?: { src: string; alt: string };
 }
 
-const { slug, data, photo, pricing, related } = Astro.props;
+const { slug, data, photo, pricing, related, contextImage } = Astro.props;
 void slug;
 
 // Etiquetas cortas para el "flow" del ejemplo: primera palabra significativa de cada paso.
@@ -117,6 +118,12 @@ const incluyeCols = [data.incluye.slice(0, half), data.incluye.slice(half)];
     <p class="method-note rv">El mismo chef que diseña el plato es el que entrena a tu equipo para ejecutarlo. No te dejo un PDF y me voy.</p>
   </div>
 </section>
+
+{contextImage && (
+  <figure class="ctx-band">
+    <img src={contextImage.src} alt={contextImage.alt} width="1600" height="900" loading="lazy" />
+  </figure>
+)}
 
 <!-- QUÉ INCLUYE -->
 <section class="section bg-teal">
@@ -479,6 +486,18 @@ const incluyeCols = [data.incluye.slice(0, half), data.incluye.slice(half)];
     color: var(--ink);
     max-width: 62ch;
     line-height: 1.3;
+  }
+
+  /* ---------- BANDA DE CONTEXTO (a sangre) ---------- */
+  .ctx-band {
+    margin: 0;
+    overflow: hidden;
+  }
+  .ctx-band img {
+    width: 100%;
+    height: clamp(280px, 44vh, 520px);
+    object-fit: cover;
+    display: block;
   }
 
   /* ---------- QUÉ INCLUYE ---------- */
