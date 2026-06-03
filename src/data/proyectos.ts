@@ -14,6 +14,8 @@ export interface Proyecto {
   externo?: string;       // URL externa (Valerio Burger Club tiene web propia)
   imagen?: string;        // foto real (opcional); si no, bloque de marca
   highlights: string[];   // puntos provisionales
+  galeria?: string[];     // imágenes de galería (opcional)
+  sitioProximamente?: boolean; // muestra placeholder de web dedicada futura
 }
 
 export const proyectos: Proyecto[] = [
@@ -67,12 +69,19 @@ export const proyectos: Proyecto[] = [
     categoria: 'Parrilla · Eventos',
     tagline: 'Fuego, humo y producto',
     resumen:
-      'Servicio independiente de parrilla y BBQ para eventos: paquetes, montaje y ejecución con el sello de producto y fuego de Valerio.',
+      'Servicio itinerante de parrilla y asador para eventos: llevamos el fuego, los cortes y el espectáculo a bodas, eventos corporativos y celebraciones en toda RD.',
     estado: 'Activo',
+    imagen: '/images/proyectos/bbq/01-asado-cruz-finca.jpg',
     highlights: [
       'Parrilla y BBQ para eventos (B2C y B2B)',
-      'Paquetes y montaje a medida',
-      'Marca propia (dominio propio próximamente)',
+      'Montaje, parrilleros y cortes premium',
+      'Marca propia (web dedicada próximamente)',
     ],
+    galeria: [
+      '/images/proyectos/bbq/01-asado-cruz-finca.jpg',
+      '/images/proyectos/bbq/02-bbq-pitmaster-corporate.jpg',
+      '/images/proyectos/bbq/04-equipamiento-detalle.jpg',
+    ],
+    sitioProximamente: true,
   },
 ];
