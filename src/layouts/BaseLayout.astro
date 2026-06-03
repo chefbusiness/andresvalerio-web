@@ -1,4 +1,13 @@
 ---
+// Fuentes self-hosted vía JS import → Vite emite y reescribe las URLs de los .woff2
+// (importarlas con @import dentro de global.css NO emite los archivos → 404 en producción).
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource/schibsted-grotesk/400.css';
+import '@fontsource/schibsted-grotesk/500.css';
+import '@fontsource/schibsted-grotesk/700.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 import '~/styles/global.css';
 import SEO from '@components/SEO.astro';
 import Header from '@components/Header.astro';
@@ -12,6 +21,9 @@ interface Props {
   noindex?: boolean;
   bodyClass?: string;
   canonicalPath?: string;
+  /** 'dark' = hero con foto oscura → header transparente con texto claro arriba.
+      'light' = hero claro → header crema desde el inicio. Default 'dark'. */
+  heroTheme?: 'dark' | 'light';
 }
 
 const {
@@ -22,6 +34,7 @@ const {
   noindex = false,
   bodyClass = '',
   canonicalPath,
+  heroTheme = 'dark',
 } = Astro.props;
 
 const GA_ID = import.meta.env.PUBLIC_GA_ID;
@@ -69,7 +82,7 @@ const GSC_VERIFICATION = import.meta.env.PUBLIC_GSC_VERIFICATION;
 
   <slot name="head" />
 </head>
-<body class={bodyClass}>
+<body class={bodyClass} data-hero={heroTheme}>
   <a href="#main" class="skip-link">Saltar al contenido</a>
   <Header />
   <main id="main">

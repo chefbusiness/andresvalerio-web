@@ -27,21 +27,12 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      i18n: {
-        defaultLocale: 'es',
-        locales: { es: 'es-DO', en: 'en-US' },
-      },
       filter: (page) => !page.includes('/404'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
     }),
   ],
-  i18n: {
-    defaultLocale: 'es',
-    locales: ['es', 'en'],
-    routing: {
-      prefixDefaultLocale: false,
-    },
-  },
+  // i18n eliminado: no hay contenido /en todavía y generaba un bucle de redirección
+  // infinito en /en/. Reintroducir junto con las traducciones reales.
 });

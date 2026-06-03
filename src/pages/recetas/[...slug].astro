@@ -58,14 +58,16 @@ const meta = [
   </Fragment>
 
   <article class="receta">
-    <header class="receta-hero section">
+    <header class="receta-hero" style={`--hero-img:url(${data.heroImage})`}>
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="hero-scrim" aria-hidden="true"></div>
       <div class="container">
         <nav class="crumbs font-mono rv" aria-label="Migas de pan">
           <a href="/">Inicio</a> <span>/</span>
           <a href="/recetas/">Recetas</a> <span>/</span>
           <span class="crumb-current">{data.category}</span>
         </nav>
-        <span class="eyebrow rv">{data.category}</span>
+        <span class="eyebrow light rv">{data.category}</span>
         <h1 class="rv">{data.title}</h1>
         <p class="receta-lead rv">{data.description}</p>
         <div class="receta-meta rv">
@@ -191,28 +193,61 @@ const meta = [
 
 <style>
   .receta-hero {
-    padding-top: calc(72px + var(--sec));
-    padding-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(56vh, 64vh, 620px);
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+    background: var(--teal);
+    overflow: hidden;
+  }
+  .receta-hero .container {
+    position: relative;
+    z-index: 1;
+  }
+  .receta-hero .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--hero-img);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .receta-hero .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(13, 42, 39, 0.5), rgba(13, 42, 39, 0.82));
+    pointer-events: none;
+  }
+  .receta-hero .eyebrow.light {
+    color: var(--brass);
+  }
+  .receta-hero .eyebrow.light::before {
+    background: var(--brass);
   }
   .crumbs {
     font-size: 0.75rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     margin-bottom: 1.25rem;
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
   }
-  .crumbs a { color: var(--ink-soft); }
-  .crumbs a:hover { color: var(--pers); }
-  .crumb-current { color: var(--ink); }
+  .crumbs a { color: var(--bone-soft); }
+  .crumbs a:hover { color: var(--pers-on-dark); }
+  .crumb-current { color: var(--bone); }
   .receta-hero h1 {
     font-size: clamp(2.25rem, 5.5vw, 3.75rem);
     margin-top: 0.75rem;
     max-width: 18ch;
+    color: var(--bone);
   }
   .receta-lead {
     font-size: 1.2rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     margin-top: 1.25rem;
     max-width: 60ch;
   }
@@ -222,16 +257,16 @@ const meta = [
     gap: 1.75rem;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(22, 36, 31, 0.1);
+    border-top: 1px solid rgba(243, 236, 221, 0.18);
   }
   .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
   .meta-label {
     font-size: 0.625rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
   }
-  .meta-value { font-size: 1.05rem; color: var(--ink); font-weight: 500; }
+  .meta-value { font-size: 1.05rem; color: var(--bone); font-weight: 500; }
 
   .receta-img-wrap {
     margin-top: 0.5rem;
@@ -337,7 +372,7 @@ const meta = [
 
   .prose :global(h2) { font-size: 1.6rem; margin: 2.5rem 0 1rem; }
   .prose :global(h3) { font-size: 1.2rem; margin: 1.75rem 0 0.75rem; }
-  .prose :global(p) { line-height: 1.75; margin-bottom: 1rem; color: var(--ink-soft); }
+  .prose :global(p) { line-height: 1.75; margin-bottom: 1rem; color: var(--ink); }
   .prose :global(ul) { padding-left: 1.25rem; margin-bottom: 1rem; }
   .prose :global(li) { line-height: 1.7; margin-bottom: 0.4rem; color: var(--ink-soft); }
   .prose :global(strong) { color: var(--ink); }

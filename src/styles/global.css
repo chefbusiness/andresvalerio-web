@@ -1,11 +1,5 @@
-@import "@fontsource/instrument-serif/400.css";
-@import "@fontsource/instrument-serif/400-italic.css";
-@import "@fontsource/schibsted-grotesk/400.css";
-@import "@fontsource/schibsted-grotesk/500.css";
-@import "@fontsource/schibsted-grotesk/700.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
-
+/* Las fuentes (@fontsource) se importan vía JS en BaseLayout.astro para que Vite
+   emita los .woff2; importarlas aquí con @import deja las URLs sin emitir (404). */
 @import "tailwindcss";
 
 :root {
@@ -16,13 +10,19 @@
   --teal-2: #16413C;
   --teal-3: #1E524B;
   --ink: #16241F;
-  --ink-soft: #5C6A60;
+  --ink-soft: #51604D;
   --bone-soft: rgba(243, 236, 221, 0.7);
   --bone-faint: rgba(243, 236, 221, 0.42);
   --pers: #DD5430;
   --pers-deep: #B23E1E;
+  --pers-on-dark: #F08A5D;
   --brass: #BC9248;
   --footer-bg: #0D2A27;
+
+  /* Líneas finas y glow — usados por las landings (faltaban → bordes/grid invisibles) */
+  --line-light: rgba(22, 36, 31, 0.14);
+  --line-dark: rgba(243, 236, 221, 0.16);
+  --pers-soft: rgba(221, 84, 48, 0.12);
 
   --font-display: 'Instrument Serif', serif;
   --font-body: 'Schibsted Grotesk', sans-serif;
@@ -58,6 +58,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Escala base más generosa (Schibsted Grotesk tiene x-height pequeña → 16px se ve diminuto).
+     Sube la tipografía basada en rem de forma uniforme. */
+  font-size: 118.75%;
 }
 
 body {
@@ -91,6 +94,26 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Foco visible accesible (WCAG 2.4.7) — faltaba por completo */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--pers);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.bg-teal a:focus-visible,
+.dark a:focus-visible,
+.bg-teal button:focus-visible,
+.dark button:focus-visible,
+.bg-teal summary:focus-visible {
+  outline-color: var(--brass);
 }
 
 img {
@@ -146,7 +169,7 @@ img {
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.75rem;
-  background: var(--pers);
+  background: var(--pers-deep);
   color: white;
   font-family: var(--font-body);
   font-weight: 500;
@@ -159,8 +182,8 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(221, 84, 48, 0.3);
-  background: var(--pers-deep);
+  box-shadow: 0 8px 20px rgba(178, 62, 30, 0.35);
+  background: #9A3517;
 }
 
 .btn-ghost {
@@ -183,6 +206,29 @@ img {
   transform: translateY(-2px);
   border-color: var(--brass);
   background: rgba(243, 236, 221, 0.08);
+}
+
+/* Variante ghost para fondos claros (el ghost normal es crema → invisible sobre bone) */
+.btn-ghost-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border-radius: 4px;
+  border: 1px solid var(--line-light);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost-dark:hover {
+  transform: translateY(-2px);
+  border-color: var(--pers-deep);
+  color: var(--pers-deep);
 }
 
 .btn-dark {
@@ -213,7 +259,7 @@ img {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--pers);
+  color: var(--pers-deep);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -223,7 +269,18 @@ img {
   content: '';
   width: 2rem;
   height: 2px;
-  background: var(--pers);
+  background: var(--pers-deep);
+}
+
+/* Seguridad de contraste: en cualquier banda teal, los títulos van claros
+   (evita h2 oscuro sobre fondo oscuro en CTAs de blog/recetas y demás). */
+.bg-teal h1,
+.bg-teal h2,
+.bg-teal h3,
+.dark h1,
+.dark h2,
+.dark h3 {
+  color: var(--bone);
 }
 
 .sec-head {
@@ -231,12 +288,12 @@ img {
 }
 
 .sec-head h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.4rem, 5vw, 3.7rem);
   margin-top: 0.75rem;
 }
 
 .sec-head p {
-  font-size: 1.125rem;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
   color: var(--ink-soft);
   max-width: 60ch;
   margin-top: 1rem;

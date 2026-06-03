@@ -96,6 +96,19 @@ const currentPath = Astro.url.pathname;
     border-bottom-color: rgba(22, 36, 31, 0.08);
   }
 
+  /* Sobre heros con foto oscura: header transparente con leve scrim y texto claro
+     en el tope; al hacer scroll vuelve a crema + tinta (regla .scrolled de arriba). */
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) {
+    background: linear-gradient(to bottom, rgba(13, 42, 39, 0.55), rgba(13, 42, 39, 0));
+    border-bottom-color: transparent;
+  }
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) .wordmark-name { color: var(--bone); }
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) .wordmark-sub { color: var(--bone-soft); }
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) .nav-link { color: var(--bone-soft); }
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) .nav-link:hover,
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) .nav-link.active { color: var(--bone); }
+  :global(body[data-hero="dark"]) .site-header:not(.scrolled) .burger-line { background: var(--bone); }
+
   .header-inner {
     display: flex;
     align-items: center;
@@ -160,6 +173,18 @@ const currentPath = Astro.url.pathname;
 
   .cta-desktop {
     display: none;
+  }
+
+  /* CTA del header compacto (no debe competir con el wordmark ni inflarse con la escala global) */
+  .header-inner .cta-desktop {
+    padding: 0.5rem 1rem;
+    font-size: 0.78rem;
+    gap: 0.4rem;
+    box-shadow: none;
+  }
+  .header-inner .cta-desktop svg {
+    width: 13px;
+    height: 13px;
   }
 
   @media (min-width: 860px) {

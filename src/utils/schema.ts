@@ -52,7 +52,7 @@ export function personSchema(): string {
     description:
       'Chef-propietario de Valerio Burger Club y consultor gastronómico en Santo Domingo. Más de 10 años de oficio en "alta cocina de calle".',
     url: `${SITE}/sobre-mi/`,
-    image: `${SITE}/images/chef/andres-retrato.jpg`,
+    image: `${SITE}/images/chef/chef-2.jpeg`,
     nationality: { '@type': 'Country', name: 'Venezuela' },
     alumniOf: { '@type': 'EducationalOrganization', name: 'Escuela culinaria Zi Teresa' },
     knowsAbout: [

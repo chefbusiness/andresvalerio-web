@@ -11,26 +11,22 @@ import { personSchema } from '@utils/schema';
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={personSchema()} />
   </Fragment>
-  <section class="about-hero section bg-teal">
+
+  <section class="about-hero">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-grid rv">
-        <div class="hero-text">
-          <span class="eyebrow light">Sobre mí</span>
-          <h1>Alta cocina de calle</h1>
-          <p class="hero-lead">
-            De Venezuela a Santo Domingo. Más de 10 años de oficio construyendo
-            conceptos con técnica, carácter y respeto al producto.
-          </p>
-        </div>
-        <div class="hero-photo">
-          <img
-            src="/images/chef/andres-retrato.jpg"
-            alt="Chef Andrés Valerio sentado, cocina de calle"
-            width="960"
-            height="1200"
-            loading="eager"
-            class="chef-photo"
-          />
+      <div class="hero-text rv">
+        <span class="eyebrow light">Sobre mí</span>
+        <h1>Alta cocina <em>de calle</em></h1>
+        <p class="hero-lead">
+          De Venezuela a Santo Domingo. Más de 10 años de oficio construyendo
+          conceptos con técnica, carácter y respeto al producto.
+        </p>
+        <div class="hero-meta rv d1">
+          <span class="chip">Venezuela → Santo Domingo</span>
+          <span class="chip">+10 años de oficio</span>
+          <span class="chip">Chef-propietario</span>
         </div>
       </div>
     </div>
@@ -38,17 +34,32 @@ import { personSchema } from '@utils/schema';
 
   <section class="origen section">
     <div class="container rv">
-      <span class="eyebrow">Origen</span>
-      <h2>Venezuela, Zi Teresa, 10 años de oficio</h2>
-      <p>
-        Aprendí a cocinar en Venezuela, sobre todo con mi tío. Luego lo tomé como
-        carrera en la escuela culinaria <strong>Zi Teresa</strong>. Desde entonces,
-        más de una década de disciplina, exigencia y libertad creativa.
-      </p>
+      <div class="origen-grid">
+        <div class="origen-text">
+          <span class="eyebrow">Origen</span>
+          <h2>Venezuela, Zi Teresa, 10 años de oficio</h2>
+          <p>
+            Aprendí a cocinar en Venezuela, sobre todo con mi tío. Luego lo tomé como
+            carrera en la escuela culinaria <strong>Zi Teresa</strong>. Desde entonces,
+            más de una década de disciplina, exigencia y libertad creativa.
+          </p>
+        </div>
+        <figure class="origen-photo rv d1">
+          <div class="photo-glow"></div>
+          <img
+            src="/images/chef/andres-cocina.jpg"
+            alt="Chef Andrés Valerio trabajando en cocina"
+            width="900"
+            height="1100"
+            loading="lazy"
+          />
+        </figure>
+      </div>
     </div>
   </section>
 
   <section class="filosofia section bg-teal">
+    <div class="filosofia-glow"></div>
     <div class="container rv">
       <div class="filosofia-content">
         <span class="eyebrow light">Filosofía</span>
@@ -67,20 +78,25 @@ import { personSchema } from '@utils/schema';
 
   <section class="trayectoria section">
     <div class="container rv">
-      <span class="eyebrow">Trayectoria</span>
-      <h2>De The Crime a Valerio Burger Club</h2>
+      <div class="sec-head">
+        <span class="eyebrow">Trayectoria</span>
+        <h2>De The Crime a Valerio Burger Club</h2>
+      </div>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item rv">
+          <span class="node" aria-hidden="true"></span>
           <span class="timeline-year font-mono">2014–2020</span>
           <h3>The Crime</h3>
           <p>Construido desde la nada en un país que no era el mío. Sacrificio, creatividad y reinventarse en pandemia.</p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item rv d1">
+          <span class="node" aria-hidden="true"></span>
           <span class="timeline-year font-mono">2021–2024</span>
           <h3>Burger Master Academy</h3>
           <p>Formación de cocineros. Compartir técnica y oficio con la siguiente generación.</p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item rv d2">
+          <span class="node" aria-hidden="true"></span>
           <span class="timeline-year font-mono">2025–hoy</span>
           <h3>Valerio Burger Club</h3>
           <p>Hamburguesa de autor en El Millón, Santo Domingo. Y ahora, consultoría gastronómica.</p>
@@ -91,27 +107,54 @@ import { personSchema } from '@utils/schema';
 
   <section class="influencias section bg-teal">
     <div class="container rv">
-      <span class="eyebrow light">Referentes</span>
-      <h2>David Muñoz, Albert Adrià, Álex Atala</h2>
-      <p>
-        Admiro la <strong>cocina francesa como base</strong>: "sin tradición no hay innovación".
-        Mi mentor: chef John Guerrero.
-      </p>
+      <div class="influencias-grid">
+        <div class="influencias-text">
+          <span class="eyebrow light">Referentes</span>
+          <h2>David Muñoz, Albert Adrià, Álex Atala</h2>
+          <p>
+            Admiro la <strong>cocina francesa como base</strong>: "sin tradición no hay innovación".
+            Mi mentor: chef John Guerrero.
+          </p>
+        </div>
+        <ul class="ref-list">
+          <li><strong>David Muñoz</strong> — atrevimiento y ruptura.</li>
+          <li><strong>Albert Adrià</strong> — técnica y vanguardia.</li>
+          <li><strong>Álex Atala</strong> — producto y raíz.</li>
+          <li><strong>Cocina francesa</strong> — la base de todo.</li>
+          <li><strong>Chef John Guerrero</strong> — mi mentor.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section class="plato section">
     <div class="container rv">
-      <span class="eyebrow">El plato que me representa</span>
-      <h2>Asado negro</h2>
-      <p>
-        Mi hogar, mi familia. Lo aprendí con mi madre. Es el plato que me define:
-        tradición, técnica y memoria.
-      </p>
+      <div class="plato-grid">
+        <figure class="plato-photo rv">
+          <div class="photo-glow"></div>
+          <img
+            src="/images/chef/andres-emplatando.jpg"
+            alt="Chef Andrés Valerio emplatando"
+            width="900"
+            height="1100"
+            loading="lazy"
+          />
+        </figure>
+        <div class="plato-text rv d1">
+          <span class="eyebrow">El plato que me representa</span>
+          <h2>Asado negro</h2>
+          <p>
+            Mi hogar, mi familia. Lo aprendí con mi madre. Es el plato que me define:
+            tradición, técnica y memoria.
+          </p>
+          <p class="plato-pull">Tradición, técnica y memoria <em>en un mismo plato</em>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="cta-final section bg-teal">
+    <div class="final-glow"></div>
     <div class="container cta-center rv">
       <span class="eyebrow light">¿Hablamos?</span>
       <h2>¿Tienes un proyecto en mente?</h2>
@@ -125,41 +168,75 @@ import { personSchema } from '@utils/schema';
 
 <style>
   .about-hero {
-    padding-top: calc(72px + var(--sec));
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
     align-items: center;
+    min-height: clamp(72vh, 82vh, 780px);
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2rem, 6vw, 4rem);
   }
 
-  @media (min-width: 768px) {
-    .hero-grid {
-      grid-template-columns: 1.5fr 1fr;
-    }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url(/images/chef/chef-2.jpeg);
+    background-size: cover;
+    background-position: 50% 18%;
+    background-repeat: no-repeat;
+  }
+
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(105deg, rgba(13, 42, 39, 0.82) 0%, rgba(13, 42, 39, 0.6) 48%, rgba(13, 42, 39, 0.42) 100%),
+      linear-gradient(180deg, rgba(13, 42, 39, 0.45), rgba(13, 42, 39, 0.8));
+    pointer-events: none;
+  }
+
+  .hero-text {
+    max-width: 640px;
   }
 
   .hero-text h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
     margin-top: 1rem;
     color: var(--bone);
+    line-height: 1.02;
+  }
+
+  .hero-text h1 em {
+    font-style: italic;
+    color: var(--pers);
   }
 
   .hero-lead {
-    font-size: 1.25rem;
+    font-size: clamp(1.05rem, 1.7vw, 1.28rem);
     color: var(--bone-soft);
     margin-top: 1.5rem;
     max-width: 50ch;
   }
 
-  .chef-photo {
-    aspect-ratio: 4/5;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 2rem;
+  }
+
+  .hero-meta .chip {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.55em 1em;
+    border: 1px solid var(--line-dark);
+    border-radius: 4px;
+    color: var(--bone);
+    background: rgba(13, 42, 39, 0.4);
+    backdrop-filter: blur(2px);
   }
 
   .eyebrow.light {
@@ -183,6 +260,20 @@ import { personSchema } from '@utils/schema';
     color: var(--bone-soft);
   }
 
+  /* Origen */
+  .origen-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 820px) {
+    .origen-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
   .origen h2 {
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-top: 0.75rem;
@@ -193,6 +284,58 @@ import { personSchema } from '@utils/schema';
     max-width: 60ch;
     font-size: 1.125rem;
     color: var(--ink-soft);
+  }
+
+  .origen-photo,
+  .plato-photo {
+    position: relative;
+    margin: 0;
+    border-radius: 10px;
+  }
+
+  .photo-glow {
+    position: absolute;
+    inset: -16px;
+    background: radial-gradient(60% 60% at 70% 20%, rgba(221, 84, 48, 0.28), transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+  }
+
+  .origen-photo img,
+  .plato-photo img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--line-light);
+    box-shadow: 0 24px 60px -30px rgba(22, 36, 31, 0.5);
+  }
+
+  /* Filosofía */
+  .filosofia {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filosofia-glow {
+    position: absolute;
+    left: -8%;
+    bottom: -20%;
+    width: 44vw;
+    height: 44vw;
+    max-width: 520px;
+    max-height: 520px;
+    background: radial-gradient(circle, rgba(221, 84, 48, 0.18), transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .filosofia .container {
+    position: relative;
+    z-index: 1;
   }
 
   .filosofia-content {
@@ -207,12 +350,17 @@ import { personSchema } from '@utils/schema';
   blockquote {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.75rem, 3.4vw, 2.4rem);
     color: var(--bone);
     margin: 1.5rem 0;
     padding-left: 1.5rem;
     border-left: 3px solid var(--brass);
-    line-height: 1.4;
+    line-height: 1.3;
+  }
+
+  /* Trayectoria */
+  .sec-head {
+    margin-bottom: 1rem;
   }
 
   .trayectoria h2 {
@@ -221,20 +369,70 @@ import { personSchema } from '@utils/schema';
   }
 
   .timeline {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    position: relative;
+  }
+
+  @media (min-width: 820px) {
+    .timeline {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    /* connector line across the row of nodes */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      right: 9px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pers), rgba(221, 84, 48, 0.35));
+      z-index: 0;
+    }
   }
 
   .timeline-item {
+    position: relative;
     padding-left: 1.5rem;
     border-left: 2px solid var(--pers);
   }
 
+  .timeline-item .node {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--pers);
+    border: 4px solid var(--bone);
+    box-shadow: 0 0 0 1px var(--pers);
+    z-index: 1;
+  }
+
+  @media (min-width: 820px) {
+    .timeline-item {
+      padding-left: 0;
+      padding-top: 2.25rem;
+      padding-right: 1.5rem;
+      border-left: 0;
+    }
+
+    .timeline-item .node {
+      left: 0;
+      top: 0;
+    }
+  }
+
   .timeline-year {
+    display: inline-block;
     font-size: 0.75rem;
-    color: var(--pers);
+    color: var(--pers-deep);
+    letter-spacing: 0.08em;
   }
 
   .timeline-item h3 {
@@ -245,6 +443,22 @@ import { personSchema } from '@utils/schema';
   .timeline-item p {
     margin-top: 0.5rem;
     color: var(--ink-soft);
+    max-width: 36ch;
+  }
+
+  /* Influencias / referentes */
+  .influencias-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  @media (min-width: 820px) {
+    .influencias-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
   }
 
   .influencias h2 {
@@ -252,16 +466,101 @@ import { personSchema } from '@utils/schema';
     margin-top: 0.75rem;
   }
 
+  .influencias-text p {
+    margin-top: 1rem;
+    max-width: 48ch;
+  }
+
+  .ref-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ref-list li {
+    position: relative;
+    padding-left: 2rem;
+    color: var(--bone-soft);
+    font-size: 1.05rem;
+  }
+
+  .ref-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--pers);
+    border-radius: 50%;
+  }
+
+  .ref-list li strong {
+    color: var(--bone);
+    font-weight: 600;
+  }
+
+  /* Plato */
+  .plato-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 820px) {
+    .plato-grid {
+      grid-template-columns: 0.8fr 1.2fr;
+    }
+  }
+
   .plato h2 {
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-top: 0.75rem;
   }
 
-  .plato p {
+  .plato-text p {
     margin-top: 1rem;
     max-width: 60ch;
     font-size: 1.125rem;
     color: var(--ink-soft);
+  }
+
+  .plato-pull {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    color: var(--ink);
+    line-height: 1.25;
+    margin-top: 1.5rem !important;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--pers);
+  }
+
+  .plato-pull em {
+    color: var(--pers-deep);
+  }
+
+  /* CTA final */
+  .cta-final {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(70% 120% at 50% 0%, rgba(221, 84, 48, 0.2), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cta-final .container {
+    position: relative;
+    z-index: 1;
   }
 
   .cta-center {

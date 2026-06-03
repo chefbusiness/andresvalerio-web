@@ -16,9 +16,11 @@ const dateFmt = new Intl.DateTimeFormat('es-DO', { dateStyle: 'medium' });
   description="Artículos sobre cocina, negocio gastronómico y apertura de restaurantes en República Dominicana, escritos por el Chef Andrés Valerio."
   canonicalPath="/blog/"
 >
-  <section class="blog-hero section">
+  <section class="blog-hero">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container rv">
-      <span class="eyebrow">Blog</span>
+      <span class="eyebrow light">Blog</span>
       <h1>Cocina y negocio gastronómico</h1>
       <p class="hero-lead">
         Lo que he aprendido entre fogones y números: técnica, costos, apertura de
@@ -100,13 +102,45 @@ const dateFmt = new Intl.DateTimeFormat('es-DO', { dateStyle: 'medium' });
 
 <style>
   .blog-hero {
-    padding-top: calc(72px + var(--sec));
-    padding-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(52vh, 60vh, 560px);
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+    background: var(--teal);
+    overflow: hidden;
   }
-  .blog-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-top: 1rem; }
+  .blog-hero .container {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url(/images/chef/andres-cocina.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(13, 42, 39, 0.5), rgba(13, 42, 39, 0.82));
+    pointer-events: none;
+  }
+  .blog-hero .eyebrow.light {
+    color: var(--brass);
+  }
+  .blog-hero .eyebrow.light::before {
+    background: var(--brass);
+  }
+  .blog-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-top: 1rem; color: var(--bone); }
   .hero-lead {
     font-size: 1.25rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     margin-top: 1.5rem;
     max-width: 58ch;
   }

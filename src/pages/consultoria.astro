@@ -33,12 +33,16 @@ const services = [
 <BaseLayout
   title="Consultoría gastronómica · Andrés Valerio"
   description="Chef-consultor en Santo Domingo. Desarrollo de cartas, apertura de conceptos y mentoría para equipos de cocina."
+  canonicalPath="/consultoria/"
 >
-  <section class="consult-hero section">
-    <div class="container rv">
-      <span class="eyebrow">Consultoría</span>
-      <h1>Chef consultor en República Dominicana</h1>
-      <p class="hero-lead">
+  <section class="consult-hero">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="container">
+      <p class="crumb rv">Inicio &nbsp;/&nbsp; <strong>Consultoría</strong></p>
+      <span class="eyebrow rv d1">Consultoría</span>
+      <h1 class="rv d2">Chef consultor en República Dominicana</h1>
+      <p class="hero-lead rv d3">
         Asesoría gastronómica para inversores, grupos de restauración, hoteles,
         franquicias e industria de alimentos. El mismo chef que diseña el plato
         es el que entrena a tu equipo.
@@ -54,22 +58,42 @@ const services = [
       </div>
       <div class="perfiles-grid">
         <div class="perfil rv d1">
-          <span class="perfil-icon">🍽️</span>
+          <span class="perfil-head">
+            <span class="perfil-n font-mono">01</span>
+            <svg class="perfil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 3v6a3 3 0 0 0 6 0V3M9 3v18M18 3c-1.5 1-2.5 3-2.5 6 0 2 .8 3 2.5 3.5V21" />
+            </svg>
+          </span>
           <h3>Restaurantes</h3>
           <p>Renovación de carta, optimización de costos y entrenamiento.</p>
         </div>
         <div class="perfil rv d2">
-          <span class="perfil-icon">🏢</span>
+          <span class="perfil-head">
+            <span class="perfil-n font-mono">02</span>
+            <svg class="perfil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21h18M5 21V8l6-3v16M19 21V11l-8-4M8 11h0M8 14h0M8 17h0" />
+            </svg>
+          </span>
           <h3>Grupos y franquicias</h3>
           <p>Estandarización, apertura de nuevas unidades y formación.</p>
         </div>
         <div class="perfil rv d3">
-          <span class="perfil-icon">🏨</span>
+          <span class="perfil-head">
+            <span class="perfil-n font-mono">03</span>
+            <svg class="perfil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21h18M4 21V9h16v12M8 21v-4h3v4M4 9V5h7v4M15 13h1M15 17h1" />
+            </svg>
+          </span>
           <h3>Hoteles y turismo</h3>
           <p>Conceptos F&B, cartas para múltiples outlets y capacitación.</p>
         </div>
         <div class="perfil rv d4">
-          <span class="perfil-icon">🏭</span>
+          <span class="perfil-head">
+            <span class="perfil-n font-mono">04</span>
+            <svg class="perfil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21h18M4 21V10l6 4V10l6 4V6l4 2v13M7 18h0M13 18h0M19 18h0" />
+            </svg>
+          </span>
           <h3>Industria de alimentos</h3>
           <p>I+D, desarrollo de productos y líneas de producción.</p>
         </div>
@@ -102,19 +126,24 @@ const services = [
   </section>
 
   <section class="como-trabajo section bg-teal">
-    <div class="container rv">
-      <span class="eyebrow light">Cómo trabajo</span>
-      <h2>Sin intermediarios, con datos</h2>
+    <div class="container">
+      <div class="sec-head rv">
+        <span class="eyebrow light">Cómo trabajo</span>
+        <h2>Sin intermediarios, con datos</h2>
+      </div>
       <div class="principios">
-        <div class="principio">
+        <div class="principio rv d1">
+          <div class="principio-num font-mono">01 <span class="bar"></span></div>
           <h3>Quien diseña, ejecuta y entrena</h3>
           <p>El mismo chef que crea la receta entrena a tu equipo.</p>
         </div>
-        <div class="principio">
+        <div class="principio rv d2">
+          <div class="principio-num font-mono">02 <span class="bar"></span></div>
           <h3>Sin intermediarios</h3>
           <p>Trato directo, sin capas de gestión entre nosotros.</p>
         </div>
-        <div class="principio">
+        <div class="principio rv d3">
+          <div class="principio-num font-mono">03 <span class="bar"></span></div>
           <h3>Decisiones con datos</h3>
           <p>Escandallos, fichas técnicas y costos claros desde el día uno.</p>
         </div>
@@ -139,17 +168,67 @@ const services = [
 
 <style>
   .consult-hero {
-    padding-top: calc(72px + var(--sec));
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: clamp(70vh, 80vh, 760px);
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+  }
+
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url(/images/chef/andres-emplatando.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(105deg, rgba(13, 42, 39, 0.82) 0%, rgba(13, 42, 39, 0.6) 48%, rgba(13, 42, 39, 0.42) 100%),
+      linear-gradient(180deg, rgba(13, 42, 39, 0.5), rgba(13, 42, 39, 0.82));
+    pointer-events: none;
+  }
+
+  .crumb {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--brass);
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  .crumb strong {
+    color: var(--bone);
+    font-weight: 500;
+  }
+
+  .consult-hero .eyebrow {
+    color: var(--brass);
+  }
+
+  .consult-hero .eyebrow::before {
+    background: var(--brass);
   }
 
   .consult-hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2.7rem, 7vw, 5.6rem);
+    line-height: 1;
     margin-top: 1rem;
+    color: var(--bone);
   }
 
   .hero-lead {
-    font-size: 1.25rem;
-    color: var(--ink-soft);
+    font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+    color: var(--bone-soft);
     margin-top: 1.5rem;
     max-width: 60ch;
   }
@@ -174,7 +253,11 @@ const services = [
   .perfiles-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1px;
+    background: var(--line-dark);
+    border: 1px solid var(--line-dark);
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   @media (min-width: 640px) {
@@ -191,24 +274,42 @@ const services = [
 
   .perfil {
     background: var(--teal-2);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(243, 236, 221, 0.08);
+    padding: 34px 30px;
+    transition: background 0.3s;
+  }
+
+  .perfil:hover {
+    background: var(--teal-3);
+  }
+
+  .perfil-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .perfil-n {
+    font-size: 0.72rem;
+    color: var(--pers);
+    letter-spacing: 0.1em;
   }
 
   .perfil-icon {
-    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    color: var(--brass);
   }
 
   .perfil h3 {
-    font-size: 1.25rem;
-    margin-top: 0.75rem;
+    font-size: 1.5rem;
+    margin-top: 0;
     color: var(--bone);
   }
 
   .perfil p {
     margin-top: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 0.92rem;
     color: var(--bone-soft);
   }
 
@@ -222,29 +323,35 @@ const services = [
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.5rem 2rem;
+    padding: 1.6rem 2rem;
     background: var(--paper);
     border-radius: 8px;
-    border: 1px solid rgba(22, 36, 31, 0.06);
+    border: 1px solid var(--line-light);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   }
 
   .service-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(22, 36, 31, 0.08);
-    border-color: var(--brass);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -30px rgba(22, 36, 31, 0.4);
+    border-color: var(--pers);
   }
 
   .service-card.featured {
     border-color: var(--pers);
-    background: linear-gradient(135deg, var(--paper), rgba(221, 84, 48, 0.03));
+    background: linear-gradient(135deg, var(--paper), rgba(221, 84, 48, 0.045));
+    box-shadow: 0 24px 50px -32px rgba(221, 84, 48, 0.5);
+  }
+
+  .service-card.featured:hover {
+    box-shadow: 0 28px 56px -28px rgba(221, 84, 48, 0.55);
   }
 
   .service-num {
     font-size: 0.75rem;
     color: var(--pers);
+    letter-spacing: 0.1em;
     min-width: 2rem;
   }
 
@@ -269,7 +376,7 @@ const services = [
   }
 
   .service-card:hover .service-arrow {
-    transform: translateX(4px);
+    transform: translateX(6px);
   }
 
   .como-trabajo h2 {
@@ -290,14 +397,50 @@ const services = [
     }
   }
 
+  .principio {
+    padding-top: 22px;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .principio-num {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--pers);
+    margin-bottom: 16px;
+  }
+
+  .principio-num .bar {
+    flex: 1;
+    height: 1px;
+    background: var(--line-dark);
+  }
+
   .principio h3 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     color: var(--bone);
   }
 
   .principio p {
     margin-top: 0.5rem;
     color: var(--bone-soft);
+  }
+
+  .cta-final {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(60% 100% at 50% 0%, var(--pers-soft), transparent 60%);
+    pointer-events: none;
   }
 
   .cta-center {

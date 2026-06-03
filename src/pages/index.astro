@@ -1,40 +1,41 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { personSchema } from '@utils/schema';
 ---
 
 <BaseLayout
   title="Andrés Valerio · Chef & Consultor Gastronómico"
   description="Chef-consultor en Santo Domingo. Desarrollo de cartas, apertura de conceptos y mentoría para equipos de cocina."
+  canonicalPath="/"
 >
-  <section class="hero section">
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={personSchema()} />
+  </Fragment>
+  <section class="hero">
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content rv">
-          <span class="eyebrow">Chef & Consultor</span>
-          <h1>Andrés Valerio</h1>
-          <p class="hero-lead">
-            Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
-            y mentoría para equipos de cocina en República Dominicana.
-          </p>
-          <div class="hero-ctas">
-            <a href="/consultoria/" class="btn-primary">
-              Ver consultoría
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a href="/sobre-mi/" class="btn-dark">Conocer más</a>
-          </div>
+      <div class="hero-content rv">
+        <span class="eyebrow">Chef & Consultor</span>
+        <h1>Andrés Valerio</h1>
+        <p class="hero-lead">
+          Cocina honesta, de carácter y empuje. Desarrollo de cartas, apertura de conceptos
+          y mentoría para equipos de cocina en República Dominicana.
+        </p>
+        <div class="hero-ctas">
+          <a href="/consultoria/" class="btn-primary">
+            Ver consultoría
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/sobre-mi/" class="btn-ghost">Conocer más</a>
         </div>
-        <div class="hero-media rv d2">
-          <img
-            src="/images/chef/andres-emplatando.jpg"
-            alt="Chef Andrés Valerio terminando un plato"
-            width="960"
-            height="1440"
-            loading="eager"
-            class="hero-img"
-          />
+        <div class="hero-trust">
+          <span>Chef-propietario de Valerio Burger Club</span>
+          <span class="dot"></span>
+          <span>Santo Domingo · Santiago · Punta Cana</span>
         </div>
       </div>
     </div>
@@ -83,23 +84,48 @@ import BaseLayout from '@layouts/BaseLayout.astro';
           <span class="service-num font-mono">01</span>
           <h3>Desarrollo de carta</h3>
           <p>Creación y renovación de menús con escandallos, fichas técnicas y entrenamiento.</p>
+          <span class="service-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/consultoria/apertura/" class="service-card rv d2">
           <span class="service-num font-mono">02</span>
           <h3>Apertura y concepto</h3>
           <p>Del concepto a la puesta en marcha: viabilidad, carta, flujo de cocina.</p>
+          <span class="service-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/consultoria/mentoria/" class="service-card rv d3">
           <span class="service-num font-mono">03</span>
           <h3>Mentoría</h3>
           <p>Sesiones recurrentes para chefs, propietarios y equipos de cocina.</p>
+          <span class="service-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/consultoria/diagnostico/" class="service-card rv d4">
           <span class="service-num font-mono">04</span>
           <h3>Diagnóstico</h3>
           <p>Auditoría 360°: operaciones, costos, carta, equipo y posicionamiento.</p>
+          <span class="service-arrow" aria-hidden="true">→</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section class="vbc section">
+    <div class="container">
+      <a href="https://valerioburgerclub.com" target="_blank" rel="noopener" class="vbc-card rv">
+        <div class="vbc-glow" aria-hidden="true"></div>
+        <div class="vbc-body">
+          <span class="eyebrow">Chef-propietario</span>
+          <h2>Valerio Burger Club</h2>
+          <p class="vbc-lead">
+            No solo asesoro: opero. Mi restaurante es donde la teoría se cocina cada día.
+            Producto, costos, equipo y pase, vividos en primera persona.
+          </p>
+          <span class="vbc-link">
+            Visitar Valerio Burger Club
+            <span class="vbc-arrow" aria-hidden="true">→</span>
+          </span>
+        </div>
+        <p class="vbc-tagline font-mono">Pasión · técnica · fuego</p>
+      </a>
     </div>
   </section>
 
@@ -120,55 +146,86 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 <style>
   .hero {
-    padding-top: calc(72px + var(--sec));
-    background: var(--bone);
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    position: relative;
+    isolation: isolate; /* crea contexto de apilamiento: la foto (z-index:-2) se pinta sobre el fondo teal */
+    display: flex;
     align-items: center;
+    min-height: clamp(78vh, 86vh, 820px);
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(3rem, 7vw, 5.5rem);
+    background: var(--teal);
+    overflow: hidden;
   }
 
-  @media (min-width: 860px) {
-    .hero-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 4rem;
-    }
+  /* Capa de foto a sangre completa */
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url(/images/hero/home-hero.jpg);
+    background-size: cover;
+    background-position: center right;
+  }
+
+  /* Scrim para legibilidad (refuerzo en la base y del lado del texto) */
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(100deg, rgba(13, 42, 39, 0.92) 0%, rgba(13, 42, 39, 0.72) 30%, rgba(13, 42, 39, 0.32) 58%, rgba(13, 42, 39, 0.05) 100%);
+  }
+
+  /* Glow sutil de marca + dotted-grid muy tenue sobre el scrim */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(243, 236, 221, 0.16) 1px, transparent 1px);
+    background-size: 38px 38px;
+    opacity: 0.35;
+    mask-image: radial-gradient(120% 90% at 88% 10%, #000, transparent 68%);
+  }
+
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    top: -14%;
+    right: -8%;
+    width: 50vw;
+    height: 50vw;
+    max-width: 560px;
+    max-height: 560px;
+    background: radial-gradient(circle, rgba(221, 84, 48, 0.22), transparent 66%);
+  }
+
+  .hero .container {
+    position: relative;
+    z-index: 1;
   }
 
   .hero-content {
     max-width: 640px;
   }
 
-  .hero-media {
-    display: none;
-  }
-
-  @media (min-width: 860px) {
-    .hero-media {
-      display: block;
-    }
-  }
-
-  .hero-img {
-    width: 100%;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 24px 60px rgba(22, 36, 31, 0.22);
-  }
-
   .hero h1 {
     font-size: clamp(3rem, 8vw, 5rem);
     margin-top: 1rem;
     line-height: 1;
+    color: var(--bone);
+    text-shadow: 0 2px 24px rgba(13, 42, 39, 0.45);
   }
 
   .hero-lead {
     font-size: 1.25rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     margin-top: 1.5rem;
     max-width: 50ch;
   }
@@ -178,6 +235,33 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     gap: 1rem;
     margin-top: 2rem;
     flex-wrap: wrap;
+  }
+
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 2.5rem;
+    font-size: 0.86rem;
+    color: var(--bone-soft);
+    flex-wrap: wrap;
+  }
+
+  .hero-trust .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--pers);
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: clamp(72vh, 78vh, 680px);
+      background-position: center;
+    }
+    .hero-photo {
+      background-position: 60% center;
+    }
   }
 
   .bg-teal {
@@ -253,7 +337,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     font-size: 0.6875rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--bone-faint);
+    color: var(--bone-soft);
     margin-top: 0.5rem;
   }
 
@@ -273,21 +357,23 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     background: var(--paper);
     padding: 2rem;
     border-radius: 8px;
-    border: 1px solid rgba(22, 36, 31, 0.06);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    border: 1px solid var(--line-light);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     text-decoration: none;
     color: inherit;
+    position: relative;
   }
 
   .service-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(22, 36, 31, 0.08);
-    border-color: var(--brass);
+    box-shadow: 0 24px 50px -30px rgba(22, 36, 31, 0.4);
+    border-color: rgba(221, 84, 48, 0.45);
   }
 
   .service-num {
     font-size: 0.75rem;
-    color: var(--pers);
+    color: var(--pers-deep);
+    letter-spacing: 0.1em;
   }
 
   .service-card h3 {
@@ -297,8 +383,123 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
   .service-card p {
     margin-top: 0.75rem;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     color: var(--ink-soft);
+  }
+
+  .service-arrow {
+    display: inline-block;
+    margin-top: 1.25rem;
+    color: var(--pers);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover .service-arrow {
+    transform: translateX(6px);
+  }
+
+  .vbc {
+    background: var(--bone-2);
+  }
+
+  .vbc-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: end;
+    background: var(--teal);
+    color: var(--bone);
+    border: 1px solid var(--line-dark);
+    border-radius: 12px;
+    padding: clamp(36px, 5vw, 64px);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+
+  @media (min-width: 768px) {
+    .vbc-card {
+      grid-template-columns: 1.7fr 1fr;
+    }
+  }
+
+  .vbc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 60px -32px rgba(22, 36, 31, 0.6);
+    border-color: rgba(221, 84, 48, 0.55);
+  }
+
+  .vbc-glow {
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 60%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(221, 84, 48, 0.28), transparent 65%);
+    pointer-events: none;
+  }
+
+  .vbc-body {
+    position: relative;
+    max-width: 52ch;
+  }
+
+  .vbc-card .eyebrow {
+    color: var(--pers);
+  }
+
+  .vbc-card .eyebrow::before {
+    background: var(--pers);
+  }
+
+  .vbc-card h2 {
+    font-size: clamp(2rem, 4.6vw, 3.2rem);
+    margin-top: 0.75rem;
+    color: var(--bone);
+    line-height: 1;
+  }
+
+  .vbc-lead {
+    margin-top: 1.25rem;
+    color: var(--bone-soft);
+  }
+
+  .vbc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  .vbc-arrow {
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+
+  .vbc-card:hover .vbc-arrow {
+    transform: translateX(6px);
+  }
+
+  .vbc-tagline {
+    position: relative;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pers);
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .vbc-tagline {
+      text-align: right;
+    }
   }
 
   .cta-center {

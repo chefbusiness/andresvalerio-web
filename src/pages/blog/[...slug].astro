@@ -48,14 +48,16 @@ const related = data.related
   </Fragment>
 
   <article class="post">
-    <header class="post-hero section">
+    <header class="post-hero" style={`--hero-img:url(${data.heroImage})`}>
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="hero-scrim" aria-hidden="true"></div>
       <div class="container">
         <nav class="crumbs font-mono rv" aria-label="Migas de pan">
           <a href="/">Inicio</a> <span>/</span>
           <a href="/blog/">Blog</a> <span>/</span>
           <span class="crumb-current">{data.category}</span>
         </nav>
-        <span class="eyebrow rv">{data.category}</span>
+        <span class="eyebrow light rv">{data.category}</span>
         <h1 class="rv">{data.title}</h1>
         <p class="post-lead rv">{data.description}</p>
         <div class="post-byline rv font-mono">
@@ -143,35 +145,68 @@ const related = data.related
 
 <style>
   .post-hero {
-    padding-top: calc(72px + var(--sec));
-    padding-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(56vh, 64vh, 620px);
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+    background: var(--teal);
+    overflow: hidden;
+  }
+  .post-hero .container {
+    position: relative;
+    z-index: 1;
+  }
+  .post-hero .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--hero-img);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .post-hero .hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(13, 42, 39, 0.5), rgba(13, 42, 39, 0.82));
+    pointer-events: none;
+  }
+  .post-hero .eyebrow.light {
+    color: var(--brass);
+  }
+  .post-hero .eyebrow.light::before {
+    background: var(--brass);
   }
   .crumbs {
     font-size: 0.75rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     margin-bottom: 1.25rem;
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
   }
-  .crumbs a { color: var(--ink-soft); }
-  .crumbs a:hover { color: var(--pers); }
-  .crumb-current { color: var(--ink); }
+  .crumbs a { color: var(--bone-soft); }
+  .crumbs a:hover { color: var(--pers-on-dark); }
+  .crumb-current { color: var(--bone); }
   .post-hero h1 {
     font-size: clamp(2.25rem, 5.5vw, 3.75rem);
     margin-top: 0.75rem;
     max-width: 20ch;
+    color: var(--bone);
   }
   .post-lead {
     font-size: 1.25rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     margin-top: 1.25rem;
     max-width: 62ch;
   }
   .post-byline {
     margin-top: 1.5rem;
     font-size: 0.75rem;
-    color: var(--ink-soft);
+    color: var(--bone-soft);
     letter-spacing: 0.04em;
   }
 
