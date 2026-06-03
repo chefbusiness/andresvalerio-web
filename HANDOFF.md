@@ -1,66 +1,68 @@
-# Handoff — andresvalerio.com · sesión 2026-06-03
+# Handoff — andresvalerio.com · sesión 2026-06-03/04
 
-Marca personal del **Chef Andrés Valerio** (Santo Domingo, RD). Astro + Tailwind v4, salida estática, deploy en Netlify.
+Marca personal del **Chef Andrés Valerio** (Santo Domingo, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). Working dir: `web/`.
-Último commit: `59a4ab2` (todo pusheado y sincronizado con origin).
+**Último commit: `a1efebf`** — todo pusheado y sincronizado con origin. 22 páginas. Site: `andresvalerio-web.netlify.app` / dominio `andresvalerio.com`.
 
-> Contexto: este desarrollo se empezó con OpenCode/Qwen3.7; Claude Code tomó el control esta sesión, lo auditó y lo completó.
+> Esta sesión recuperó el trabajo tras un apagón térmico y avanzó muchísimo. Lee también la memoria en `~/.claude/projects/-Users-johnguerrero-andres-valerio-web/memory/` (MEMORY.md indexa todo).
 
 ---
 
 ## ✅ Hecho esta sesión
 
-1. **Navegación arreglada** — quitados Recetas/Blog del Header/Footer (eran Fase 2; causaban 404).
-2. **3 landings de consultoría nuevas**: `/consultoria/apertura/`, `/mentoria/`, `/diagnostico/`.
-   - Contenido generado con `bridge.py` (DeepSeek) tras keyword research + SERP.
-   - Componente reutilizable `src/components/ServiceLanding.astro` + datos en `src/data/servicios/*.json`.
-   - Cada una: hero → para quién → método → qué incluye → ejemplo → precios RD$/US$ → autoridad → FAQ → otros servicios → CTA.
-3. **Imágenes reales** optimizadas con `sips` (de `../Fotos Andrés`, `../imagenes-2026`, `../imagenes-2024`):
-   - `public/images/chef/`: andres-retrato, andres-pie, andres-emplatando, andres-cocina
-   - `public/images/platos/valerio-burger.jpg`
-   - `public/og/og-default.jpg` (1200×630, recorte de foto de cocina)
-   - Colocadas en: home (hero), sobre-mí (retrato), secciones de autoridad de las landings.
-4. **SEO/infra**:
-   - Schema.org: `Person/Chef` (sobre-mí) + `Service/Offer/FAQPage` (las 4 landings, incl. desarrollo-carta). Util: `src/utils/schema.ts`.
-   - GA4 + Microsoft Clarity + verificación GSC condicionales en `BaseLayout.astro` (solo si existen las env vars).
-   - `canonical` cableado (prop `canonicalPath` BaseLayout→SEO) + slot `head` en BaseLayout para inyectar JSON-LD.
-   - Interenlazado reforzado: añadido bloque "otros servicios" a la landing estrella (ya no queda aislada).
-5. **Honestidad de contenido**: los `ejemplo.quote` salían como testimonios de clientes inventados → reescritos como escenarios típicos narrados por el chef.
-6. **Build verificado**: 8 páginas, 0 enlaces internos rotos, todas las imágenes existen, sitemap correcto.
+### Home (`index.astro`)
+- **Hero a sangre** con foto REAL de Andrés (chaqueta blanca + corte de carne, `andres-hero.jpg`). NO tarjeta (rechazada por John).
+- Bloque **Valerio Burger Club** con foto real del burger (`andres-burger.jpg`) integrada.
+- **Banda de contexto** clara (IA street-food "SMASH BURGERS") tras la intro. Eliminada la mediterránea (olio d'oliva) por off-brand.
+- Quitada la mención a **The Crime** en la intro.
+- **CTA final con fondo de fuego + parallax** (componente `CtaFinal.astro`).
+
+### Sección Proyectos (NUEVA, completa) — `/proyectos/` + `[slug].astro` dinámico
+- Nav en Header + Footer. Hub con tarjetas + 4 landings:
+  - **BBQ Parrilla Events**: hero parrillero, cinta equipamiento, intro, para quién, **9 formatos con precios RD$/US$** (orientativos, ver research abajo), sección **"Nuestra carne"** (8 cortes con thumbnails), qué incluye, galería, FAQ, **placeholder de web dedicada futura** (dominio/nombre pendientes que pasará John).
+  - **Valerio Burger Club**: contenido + galería de fotos reales + enlace externo a valerioburgerclub.com.
+  - **Burger Master Academy**: 5 cursos (Perfecta Hamburguesa I/II, Maestría Carnes Premium, Hot Dogs Gourmet *muy pronto*, Pastrami Perfection *muy pronto*) con thumbnails, hero real, placeholder web futura. **SIN marca The Crime** (fuente: thecrimesc.com/burger-master-academy-cursos).
+  - **Catering Fast Good**: contenido + hero + 4 formatos con thumbnails.
+- Contenido en `src/data/proyectos-contenido.ts` (generado con **bridge.py/DeepSeek**). Datos/imágenes en `src/data/proyectos.ts`. Imágenes Nano Banana + reales en `public/images/proyectos/<slug>/`.
+
+### Otros
+- **CTA de fuego (`CtaFinal.astro`) en TODAS las páginas** (home, consultoría, sobre-mí, proyectos, ServiceLanding ×4, recetas, blog).
+- **Auditoría responsive (P0/P1 corregidos)**: tablas de prosa con scroll, burger nav 44px, heros móvil sobre-mi/consultoria, padding contacto.
+- **Páginas legales** `/legal/terminos`, `/legal/privacidad`, `/legal/cookies` (`LegalPage.astro`, adaptadas de valerioburgerclub.com, ley 172-13). Footer con enlaces legales + **"Desarrollado por GastroSEO"** (gastroseo.com).
 
 ---
 
-## ⏳ Pendiente / para mañana
+## ⏳ Pendiente
 
-### Bloqueado por el cliente (John/Andrés) — confirmar datos
-1. **Contacto real de Andrés**: hoy se usa `wa.me/18098847605` y `hola@andresvalerio.com` (en `contacto.astro`, `Footer.astro` y `desarrollo-carta.astro`). La guía maestra §9 avisa: NO usar datos de ChefBusiness/John. **Verificar y reemplazar si procede.**
-2. **Precios** de apertura/mentoría/diagnóstico: puestos como "orientativos desde" (de guía §7). Validar cifras finales (guía §11).
+### Cliente / datos
+1. **Legales**: falta **razón social + domicilio fiscal** exactos del titular (ahora "Andrés Valerio, Santo Domingo, RD" + email). Validar.
+2. **Precios BBQ**: son **orientativos "desde"** (research de mercado RD: catering RD$1,500–5,000/persona; ribeye Angus súper RD$700–900/lb). Validar cifras finales con Andrés. Tabla en `proyectos-contenido.ts` (bbq formatos).
+3. **BBQ y Burger Master Academy** tendrán **web dedicada propia** (dominio/nombre pendientes) → al recibirlos, sustituir el placeholder "Próximamente" por el enlace.
+4. Teléfono `wa.me/18098847605` (dominicano) — confirmar con Valerio (provisional en producción).
 
-### Deploy
-3. **Confirmar conexión repo↔Netlify (CI/CD)**. Si no está enlazado: Netlify UI → Site config → Build & deploy → Continuous deployment. Base dir `web`, build `npm run build`, publish `web/dist`.
-4. **Env vars en Netlify** para activar analytics: `PUBLIC_GA_ID`, `PUBLIC_MICROSOFT_CLARITY_ID`, `PUBLIC_GSC_VERIFICATION`, `PUBLIC_WHATSAPP`, `PUBLIC_CONTACT_EMAIL`.
-5. **Dominio**: conectar `andresvalerio.com` (recomprado, en Hostinger) a Netlify. Redirect apex→www ya está en `netlify.toml`.
+### Infra
+5. **Dominio**: fijar **www.andresvalerio.com como primario** en Netlify (el cert SSL ya cubre apex+www; el código ya apunta a www). Luego verificar en GSC + enviar sitemap `https://www.andresvalerio.com/sitemap-index.xml`.
+6. **Env vars analytics** en Netlify: `PUBLIC_GA_ID`, `PUBLIC_MICROSOFT_CLARITY_ID`, `PUBLIC_GSC_VERIFICATION`, `PUBLIC_WHATSAPP`, `PUBLIC_CONTACT_EMAIL`.
 
-### Fase 2 (contenido)
-6. **Recetas** (`/recetas`) y **Blog** (`/blog`) — content collections de Astro. Quitados del menú; volver a añadirlos al construirlos. Recuperar contenido de la web vieja: `../capturas-web-vieja/` (carpetas Blog, recetas, sobre mi, galerias).
-7. Versión **EN** (`/en/...`) — i18n ya configurado en `astro.config.mjs`, contenido pendiente.
-8. Opcional: imagen real `andres-cocina.jpg` (toma horizontal de cocina) está optimizada pero sin colocar; candidata para fondos/secciones.
+### Mejoras (P2)
+7. Pulir P2 responsive (mínimos de `clamp()` de algún h1 grandes en 320px).
+8. Revisar en móvil real las páginas de proyectos nuevas.
 
 ---
 
-## 🔧 Cómo retomar / comandos clave
+## 🔧 Cómo retomar / comandos
 
 ```bash
 cd /Users/johnguerrero/andres-valerio-web/web
 git pull
 npm run dev          # desarrollo local
-npm run build        # ⚠️ CALIENTA CPU — ver regla térmica abajo
+npm run build        # Astro ~4s, trivial térmicamente; push a main = deploy en la nube (preferir)
 ```
 
-- **Contenido**: SIEMPRE `bridge.py` (DeepSeek) → `python3 /Users/johnguerrero/chefbusiness-ai/bridge.py --task content --domain chefbusiness --lang es --system <archivo> --prompt <archivo> --output <archivo>`. Prompts de ejemplo usados: estaban en `/tmp/avimg/` (temporales, pueden no persistir).
-- **Imágenes**: skill `generate-images` (Nano Banana 2) para huecos; fotos reales en `../Fotos Andrés`, `../imagenes-2026`, `../imagenes-2024`. Maestro de prompts: `IMAGENES_MAESTRO_ANDRESVALERIO.md`.
-- **Guía maestra del proyecto**: `../claude-desktop-guide-web-andresvalerio/GUIA-MAESTRA-andresvalerio.md` (fuente de verdad de diseño, contenido, precios y mapa del sitio).
+- **Contenido**: SIEMPRE `bridge.py` (DeepSeek) — `python3 /Users/johnguerrero/chefbusiness-ai/bridge.py --task content --domain chefbusiness --lang es --system "<str>" --prompt "<str>" --max-tokens 9000+ --output <archivo>`. ⚠️ deepseek-v4-pro es de razonamiento: usar `--max-tokens` alto (9000–12000) o devuelve JSON truncado/vacío. Pedir JSON estricto.
+- **Imágenes**: skill `generate-images` / Nano Banana (Gemini). Endpoint y patrón en la skill; key en `~/.claude/skills/generate-images/secrets.env`. Usar `curl` (Python tiene bug SSL en macOS). Estética: oscura, fast-good, producto/fuego — **NUNCA mediterráneo/aceite de oliva ni The Crime**.
 
-## ⚠️ Reglas de la sesión (memorizadas)
-- **Térmica**: la CPU del Mac apaga el equipo si supera **65°C** (verano, Madrid). Monitorear con `istats cpu temp`; ralentizar/espaciar tareas; **preferir builds en la nube** (Netlify), no locales repetidos; **no usar Playwright**.
-- **Contenido**: bridge.py + nano-banana; keyword research + SERP ANTES; contenido enriquecido (tablas, datos, FAQ, mín. 2 imágenes en cuerpo + 1 destacada distinta); ortografía perfecta, tono humano; **sin páginas huérfanas**, interenlazado claro hacia conversión.
+## ⚠️ Reglas (memorizadas)
+- **Térmica**: el Mac apaga a ~65°C. Monitorear `istats cpu temp`; preferir builds en la nube; **no Playwright**.
+- **Estética Valerio**: fast-good / street food / cocina de producto RD, oscura (VBC). Fotos reales para hero/persona. Ver memoria `valerio-brand-aesthetic.md`.
+- **Contenido**: bridge.py + Nano Banana; SERP antes; enriquecido (FAQ, tablas, imágenes); interenlazado; sin huérfanas.
