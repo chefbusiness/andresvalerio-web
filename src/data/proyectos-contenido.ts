@@ -9,7 +9,13 @@ export interface ProyectoContenido {
   heroLead: string;
   intro: string[];
   paraQuien: { titulo: string; desc: string }[];
-  formatos: { nombre: string; desc: string }[];
+  formatos: { nombre: string; desc: string; precioRD?: string; precioUS?: string }[];
+  carnes?: {
+    eyebrow: string;
+    titulo: string;
+    intro: string[];
+    cortes: { nombre: string; origen: string; desc: string }[];
+  };
   queIncluye: string[];
   faq: { q: string; a: string }[];
   secLabels?: {
@@ -22,108 +28,184 @@ export interface ProyectoContenido {
 export const proyectosContenido: Record<string, ProyectoContenido> = {
   "bbq-parrilla-events": {
     "secLabels": {
-      "paraQuien": { "eyebrow": "Para quién", "titulo": "Pensado para tu evento" },
-      "formatos": { "eyebrow": "Experiencias", "titulo": "Formatos de parrilla a elegir" },
-      "incluye": { "eyebrow": "Qué incluye", "titulo": "Servicio completo, llave en mano" }
+      "paraQuien": {
+        "eyebrow": "Para quién",
+        "titulo": "Pensado para tu evento"
+      },
+      "formatos": {
+        "eyebrow": "Experiencias",
+        "titulo": "Formatos de parrilla a elegir"
+      },
+      "incluye": {
+        "eyebrow": "Qué incluye",
+        "titulo": "Servicio completo, llave en mano"
+      }
     },
-    "metaTitle": "BBQ Parrilla Events by Valerio | Parrilla para eventos en RD",
-    "metaDescription": "Llevamos la parrilla y el fuego a tu evento en Santo Domingo y todo RD. Cortes premium, show en vivo, servicio completo. Pide tu presupuesto a medida.",
-    "heroTitle": "Fuego, cortes y sabor: evento a la parrilla",
-    "heroLead": "BBQ Parrilla Events by Valerio lleva el asador a donde estés. Montamos la parrilla, encendemos el fuego y servimos una experiencia de carne y brasas que tus invitados no olvidarán.",
+    "metaTitle": "BBQ Parrilla Events by Valerio | Eventos y Parrilla en RD",
+    "metaDescription": "Chef Andrés Valerio lleva la parrilla a tu evento en Santo Domingo. Asado argentino, BBQ texano, show de fuego. Carnes premium, servicio llave en mano. ¡Cotiza!",
+    "heroTitle": "Parrilla Valerio: fuego, sabor y show en vivo",
+    "heroLead": "Chef Andrés Valerio transforma tu evento en una experiencia inolvidable con parrilla en vivo, carnes premium y el show del fuego. Perfecto para bodas, eventos corporativos y celebraciones en Santo Domingo.",
     "intro": [
-      "En BBQ Parrilla Events by Valerio transformamos tu celebración en un espectáculo de fuego y sabor. Somos un servicio de parrilla itinerante premium: llevamos nuestros equipos, nuestros cortes seleccionados y nuestro equipo de parrilleros profesionales a cualquier rincón de República Dominicana. Bodas, cumpleaños, eventos corporativos o reuniones privadas: nosotros ponemos la parrilla, el humo y la sazón.",
-      "Detrás de cada brasa está el chef Andrés Valerio, creador de Valerio Burger Club y apasionado del fuego como técnica y como show. No hacemos alta cocina; hacemos cocina de producto, honesta y directa, donde la calidad de la carne y el punto exacto de cocción son los protagonistas. Cada evento es una experiencia en vivo: el chisporroteo, el aroma, el corte en el momento. Puro fast-good dominicano con estándar de chef."
+      "BBQ Parrilla Events by Valerio es el servicio itinerante de parrilla y asador del chef Andrés Valerio, diseñado para llevar una experiencia gastronómica de altura a tu evento en Santo Domingo y toda República Dominicana. Desde una íntima boda campestre hasta un gran evento corporativo, encendemos el fuego para crear momentos que se saborean.",
+      "Como chef propietario de Valerio Burger Club, Andrés Valerio conoce el lenguaje del fuego y la carne. Cada parrillada es un espectáculo donde el chisporroteo, el aroma y la técnica se unen para ofrecer cortes perfectos, jugosos y llenos de sabor. Más que un servicio, es un show que enciende los sentidos y convierte tu celebración en un recuerdo imborrable."
     ],
     "paraQuien": [
       {
         "titulo": "Bodas y celebraciones privadas",
-        "desc": "Para parejas que quieren una recepción diferente, con estación de parrilla en vivo y menú personalizado. Desde el coctel hasta el plato principal, el fuego marca el ritmo de la fiesta."
+        "desc": "Haz de tu boda, aniversario o cumpleaños una experiencia sensorial con una parrilla en vivo que deleitará a tus invitados. Cada corte se sirve en su punto exacto, con el fuego como testigo."
       },
       {
         "titulo": "Eventos corporativos y de marca",
-        "desc": "Activaciones, lanzamientos, cenas de empresa o team building. La parrilla como punto de encuentro y diferenciación para sorprender a clientes y colaboradores."
+        "desc": "Impresiona a tus clientes, empleados o socios con un show de parrilla en vivo que habla de excelencia. Ideal para lanzamientos, cierres de año o activaciones de marca."
       },
       {
         "titulo": "Wedding planners y agencias",
-        "desc": "Aliado estratégico para planners y agencias que buscan un servicio de catering de parrilla confiable, con montaje impecable y sabor consistente. Gestionamos todo para que ustedes brillen."
+        "desc": "Ofrece a tus novios un servicio de parrilla premium que eleva cualquier boda. Nos coordinamos contigo para que la experiencia gastronómica sea impecable y sin estrés."
       },
       {
         "titulo": "Fincas y eventos al aire libre",
-        "desc": "Celebraciones en fincas, jardines o terrazas. El asador a la cruz o la parrilla uruguaya se integran al paisaje dominicano para una experiencia rústica y elegante."
+        "desc": "Llevamos el fuego a tu finca o espacio al aire libre en cualquier rincón del país. Una experiencia rústica y elegante que conecta con la naturaleza y el buen comer."
       }
     ],
     "formatos": [
       {
         "nombre": "Asado argentino",
-        "desc": "Cortes tradicionales al estilo gaucho, cocción lenta a las brasas con chimichurri casero."
+        "desc": "El clásico ritual gaucho con cortes al asador, cocción lenta y sabores intensos.",
+        "precioRD": "3,500",
+        "precioUS": "58"
       },
       {
         "nombre": "Asador a la cruz",
-        "desc": "Cordero o cochino entero ensartado y cocido al calor del fuego, girando lentamente durante horas."
+        "desc": "Técnica tradicional con el animal ensartado, cocinado lentamente frente a las brasas.",
+        "precioRD": "3,200",
+        "precioUS": "53"
       },
       {
         "nombre": "Parrilla uruguaya",
-        "desc": "Carnes maduradas al fuego directo sobre parrilla inclinada, jugosidad y sello perfecto."
+        "desc": "La parrilla montevideana: cortes gruesos, fuego a la leña y el punto justo.",
+        "precioRD": "3,500",
+        "precioUS": "58"
       },
       {
         "nombre": "BBQ texano",
-        "desc": "Brisket ahumado por horas, ribs glaseadas y pulled pork al estilo sureño de Texas."
+        "desc": "Brisket ahumado por horas, costillas glaseadas y el auténtico sabor del sur de EE.UU.",
+        "precioRD": "3,800",
+        "precioUS": "63"
       },
       {
         "nombre": "Rodizio brasileño",
-        "desc": "Cortes ensartados servidos al estilo churrasquería, con espadas que van y vienen directo a la mesa."
+        "desc": "El churrasco gaúcho servido en espeto, con cortes continuos y guarniciones tropicales.",
+        "precioRD": "3,800",
+        "precioUS": "63"
       },
       {
         "nombre": "Asador criollo dominicano",
-        "desc": "Nuestra tradición: pollo, cerdo y res al carbón, con longaniza y guineítos al rescoldo."
+        "desc": "Nuestro asado al carbón con los cortes y sazones que nos saben a hogar dominicano.",
+        "precioRD": "2,200",
+        "precioUS": "37"
       },
       {
         "nombre": "Parrillada llanera",
-        "desc": "Cortes de res y cerdo a la parrilla con toques de la sabana, yuca, plátano y ajíes."
+        "desc": "La tradición de los llanos: carnes a la brasa con yuca, plátano y ají.",
+        "precioRD": "2,800",
+        "precioUS": "47"
       },
       {
         "nombre": "Show de fuego en vivo",
-        "desc": "El parrillero como protagonista: flames, cortes a la vista y emplatado en directo frente a los invitados."
+        "desc": "Una experiencia teatral donde el chef manipula el fuego y los cortes ante tus invitados.",
+        "precioRD": "4,500",
+        "precioUS": "75"
       },
       {
         "nombre": "Brunch parrillero corporativo",
-        "desc": "Estación de parrilla con huevos, carnes frías, vegetales asados y panes para un desayuno-almuerzo diferente."
+        "desc": "Desayuno-almuerzo ejecutivo con parrilla, estaciones de jugos y café, ideal para equipos.",
+        "precioRD": "2,500",
+        "precioUS": "42"
       }
     ],
+    "carnes": {
+      "eyebrow": "Nuestra carne",
+      "titulo": "El origen importa: del corte al fuego",
+      "intro": [
+        "En Valerio, cada corte cuenta una historia de origen y calidad. Seleccionamos carnes rojas de res importadas de Estados Unidos (USDA/Angus) porque su marmoleo garantiza terneza y sabor inigualables. El T-bone, ribeye, solomillo y brisket llegan con la consistencia que exigen los fuegos largos y las brasas intensas. Para el pollo y otros cortes, privilegiamos lo local: frescura dominicana que apoya al productor y honra nuestra tierra. El cerdo viaja desde EE.UU. o desde fincas locales, según la receta. Respetamos cada pieza, cada fuego y cada punto para que en tu evento solo haya perfección."
+      ],
+      "cortes": [
+        {
+          "nombre": "T-bone (Tibón)",
+          "origen": "EE.UU. · USDA",
+          "desc": "El corte rey: un lado de solomillo y otro de chatas, jugoso y de sabor profundo."
+        },
+        {
+          "nombre": "Ribeye (Chuletón)",
+          "origen": "EE.UU. · Angus",
+          "desc": "Marmoleo excepcional, veteado y tierno, ideal para fuego alto."
+        },
+        {
+          "nombre": "Solomillo / Lomo fino",
+          "origen": "EE.UU. · USDA",
+          "desc": "La pieza más tierna, magra y delicada, perfecta para paladares exigentes."
+        },
+        {
+          "nombre": "Picaña / Tapilla",
+          "origen": "EE.UU. / Latinoamérica",
+          "desc": "Corte con capa de grasa que al fuego se convierte en sabor y jugosidad."
+        },
+        {
+          "nombre": "Brisket",
+          "origen": "EE.UU. · BBQ texano",
+          "desc": "Pecho ahumado por horas, desmenuzable y con corteza de especias."
+        },
+        {
+          "nombre": "Short rib / Costilla",
+          "origen": "EE.UU.",
+          "desc": "Costillar de res de cocción lenta, carne que se despega del hueso."
+        },
+        {
+          "nombre": "Pollo",
+          "origen": "Local dominicano",
+          "desc": "Pechugas, muslos y alitas frescas, marinadas y asadas al punto."
+        },
+        {
+          "nombre": "Cerdo",
+          "origen": "Local / EE.UU.",
+          "desc": "Costillas, secreto o presa, con el balance justo de grasa y magro."
+        }
+      ]
+    },
     "queIncluye": [
-      "Montaje completo de estación de parrilla en el lugar del evento.",
-      "Parrilleros profesionales liderados por el chef Andrés Valerio.",
-      "Selección de cortes premium según el formato elegido (res, cerdo, cordero, pollo, etc.).",
-      "Guarniciones artesanales: papas asadas, vegetales de temporada, ensaladas frescas.",
-      "Salsas caseras: chimichurri tradicional, criolla, BBQ dominicana y más.",
-      "Vajilla, utensilios y atención de principio a fin durante el servicio.",
-      "Opción de barra de fuego (show cooking) con interacción en vivo.",
-      "Adaptación a locaciones sin infraestructura: trabajamos con nuestra propia energía y agua."
+      "Montaje de estación de parrilla y asador en el lugar del evento.",
+      "Chef parrillero y asistente durante todo el servicio.",
+      "Selección de cortes premium según el formato elegido.",
+      "Guarniciones y salsas artesanales (opciones tradicionales y creativas).",
+      "Vajilla, cubiertos y servilletas ecológicas.",
+      "Degustación previa para eventos corporativos y bodas (opcional).",
+      "Limpieza completa post-evento.",
+      "Coordinación con wedding planners y agencias."
     ],
     "faq": [
       {
-        "q": "¿En qué zonas de República Dominicana ofrecen el servicio?",
-        "a": "Vamos a cualquier punto del país. Nuestra base está en Santo Domingo, pero nos desplazamos con equipo propio a fincas, hoteles y locaciones en todo el territorio dominicano, ajustando la logística según la distancia."
+        "q": "¿Qué tipo de carne usan y de dónde proviene?",
+        "a": "Nuestras carnes rojas de res son importadas de EE.UU. (USDA/Angus) por su calidad superior y marmoleo. El pollo es fresco local dominicano, y el cerdo puede ser local o americano. Cada corte se selecciona para garantizar el mejor sabor en cada formato."
       },
       {
-        "q": "¿Cuánto tiempo necesitan para el montaje?",
-        "a": "Dependiendo del formato y el número de invitados, llegamos entre 3 y 5 horas antes del evento para tener todo listo. En formatos como el asador a la cruz, el encendido inicia incluso antes para garantizar la cocción perfecta."
+        "q": "¿Cómo se calcula el precio final de mi evento?",
+        "a": "Los precios desde son orientativos por persona. El presupuesto final se ajusta a la cantidad de invitados, el formato elegido, las guarniciones y la distancia. Te hacemos una cotización a medida sin compromiso."
       },
       {
-        "q": "¿Tienen opciones para invitados con dietas especiales?",
-        "a": "Sí, adaptamos las guarniciones y podemos incluir opciones vegetarianas o sin gluten. Aunque el protagonista es la parrilla, siempre hay alternativas para todos los gustos."
+        "q": "¿Cuánto tiempo antes debo reservar?",
+        "a": "Recomendamos reservar con al menos 2-3 semanas de anticipación para eventos estándar, y 1-2 meses para bodas o grandes corporativos. Siempre puedes consultarnos disponibilidad de última hora."
       },
       {
-        "q": "¿Cómo se calcula el presupuesto?",
-        "a": "Cada evento es único. Preparamos un presupuesto a medida según el número de invitados, el formato de experiencia que elijas y los detalles del montaje. Contáctanos y te armamos una propuesta sin compromiso."
+        "q": "¿Se desplazan a cualquier lugar de República Dominicana?",
+        "a": "Sí, somos un servicio itinerante. Vamos a Santo Domingo, Punta Cana, La Romana, Santiago y cualquier rincón del país. Aplican costos de desplazamiento según distancia."
       },
       {
-        "q": "¿Puedo personalizar el menú?",
-        "a": "Claro, esa es la ventaja de trabajar con un chef. Podemos mezclar formatos, incluir cortes específicos o crear un menú completamente a tu gusto. Cuéntanos tu idea y la llevamos al fuego."
+        "q": "¿Qué incluye exactamente el servicio?",
+        "a": "Incluye montaje, chef parrillero, asistente, carnes, guarniciones, salsas, vajilla, cubiertos y limpieza. Todo llave en mano para que solo te preocupes de disfrutar."
       },
       {
-        "q": "¿Qué pasa si llueve el día del evento?",
-        "a": "Trabajamos con carpas y estructuras cubiertas para proteger la parrilla y el área de servicio. Siempre tenemos un plan B para que la lluvia no apague el fuego ni la fiesta."
+        "q": "¿Hacen degustaciones previas?",
+        "a": "Sí, ofrecemos degustación para bodas y eventos corporativos (con costo adicional). Así puedes elegir los cortes y guarniciones que mejor se adapten a tu evento."
       }
     ]
   }
