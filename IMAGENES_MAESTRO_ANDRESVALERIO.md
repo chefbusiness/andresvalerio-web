@@ -6,6 +6,20 @@
 
 ---
 
+## ⚠️ DIRECCIÓN DE MARCA (override — John, 2026-06-03)
+
+La identidad de Valerio es **fast-good / street food / cocina de producto dominicana**,
+con la estética **oscura y limpia de Valerio Burger Club** (ladrillo, lámparas de calor,
+madera handcraft, luz cálida baja, fuego, hamburguesa de autor, parrilla). Esto **anula**
+el "editorial mediterráneo claro y aireado" de las secciones de abajo cuando haya conflicto.
+
+- **Hero de la home**: FOTO REAL de Andrés a sangre de fondo (mostrar a la persona). No IA, no tarjeta.
+- **Bandas/contexto (IA OK si alineadas)**: oscuras, moody, warm low-key light, fondo oscuro,
+  producto, plancha/parrilla/fuego, brioche, persimón/brass.
+- **PROHIBIDO**: aceite de oliva / "olio oliva", productos mediterráneos, hierbas mediterráneas
+  como protagonistas, magret de pato / fine dining francés, cacerolas de cobre, still-life claro
+  y aireado. Y **nunca The Crime** ni logos de terceros (evento Honeywell/ASSA ABLOY).
+
 ## Estilo Visual
 
 ### Mood General
