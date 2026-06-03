@@ -5,6 +5,7 @@ const navLinks = [
   { label: 'Inicio', href: '/' },
   { label: 'Sobre mí', href: '/sobre-mi/' },
   { label: 'Consultoría', href: '/consultoria/' },
+  { label: 'Proyectos', href: '/proyectos/' },
   { label: 'Recetas', href: '/recetas/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'Contacto', href: '/contacto/' },
@@ -15,6 +16,13 @@ const consultoriaLinks = [
   { label: 'Apertura y concepto', href: '/consultoria/apertura/' },
   { label: 'Mentoría', href: '/consultoria/mentoria/' },
   { label: 'Diagnóstico', href: '/consultoria/diagnostico/' },
+];
+
+const proyectosLinks = [
+  { label: 'Valerio Burger Club', href: '/proyectos/valerio-burger-club/' },
+  { label: 'Burger Master Academy', href: '/proyectos/burger-master-academy/' },
+  { label: 'Catering Fast Good', href: '/proyectos/catering-fast-good/' },
+  { label: 'BBQ Parrilla Events', href: '/proyectos/bbq-parrilla-events/' },
 ];
 
 const socialLinks = [
@@ -46,6 +54,15 @@ const socialLinks = [
       <h4 class="footer-col-title">Consultoría</h4>
       <ul>
         {consultoriaLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-title">Proyectos</h4>
+      <ul>
+        {proyectosLinks.map((link) => (
           <li><a href={link.href}>{link.label}</a></li>
         ))}
       </ul>
