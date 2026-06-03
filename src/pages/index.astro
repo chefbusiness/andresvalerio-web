@@ -72,6 +72,10 @@ import { personSchema } from '@utils/schema';
     </div>
   </section>
 
+  <figure class="ctx-band">
+    <img src="/images/contexto/cocina-valerio.jpg" alt="Andrés Valerio montando hamburguesas de autor bajo las lámparas de calor de su cocina" width="1400" height="934" loading="lazy" />
+  </figure>
+
   <section class="consultoria section">
     <div class="container">
       <div class="sec-head rv">
@@ -132,7 +136,9 @@ import { personSchema } from '@utils/schema';
     </div>
   </section>
 
-  <section class="cta-final section bg-teal">
+  <section class="cta-final section">
+    <div class="cta-bg" aria-hidden="true"></div>
+    <div class="cta-scrim" aria-hidden="true"></div>
     <div class="container cta-center rv">
       <span class="eyebrow light">¿Hablamos?</span>
       <h2>¿Tienes un proyecto en mente?</h2>
@@ -447,11 +453,8 @@ import { personSchema } from '@utils/schema';
 
   .vbc-glow {
     position: absolute;
-    top: -40%;
-    right: -10%;
-    width: 60%;
-    height: 160%;
-    background: radial-gradient(circle, rgba(221, 84, 48, 0.28), transparent 65%);
+    inset: 0;
+    background: radial-gradient(120% 90% at 86% 6%, rgba(221, 84, 48, 0.26), transparent 58%);
     pointer-events: none;
   }
 
@@ -529,6 +532,33 @@ import { personSchema } from '@utils/schema';
     text-transform: uppercase;
     color: var(--pers);
     text-align: left;
+  }
+
+  .cta-final {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url(/images/cta/fuego.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* parallax en desktop */
+  }
+  .cta-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(70% 90% at 50% 45%, rgba(13, 42, 39, 0.55), rgba(13, 42, 39, 0.82)),
+      linear-gradient(180deg, rgba(13, 42, 39, 0.7), rgba(13, 42, 39, 0.88));
+  }
+  @media (max-width: 880px) {
+    /* iOS ignora background-attachment: fixed → fondo estático en móvil */
+    .cta-bg { background-attachment: scroll; }
   }
 
   .cta-center {
