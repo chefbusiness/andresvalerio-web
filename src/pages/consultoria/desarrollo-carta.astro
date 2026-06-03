@@ -127,6 +127,10 @@ const pricingRows = [
     </div>
   </section>
 
+  <figure class="ctx-band">
+    <img src="/images/contexto/escandallos.jpg" alt="Cuaderno de recetas junto a una hoja de escandallo de costos sobre una tabla de madera" width="1600" height="900" loading="lazy" />
+  </figure>
+
   <section class="dark sec-pad">
     <div class="container">
       <div class="case rv">
@@ -539,6 +543,17 @@ const pricingRows = [
   .step p {
     font-size: 0.96rem;
     color: var(--ink-soft);
+  }
+
+  .ctx-band {
+    margin: 0;
+    overflow: hidden;
+  }
+  .ctx-band img {
+    width: 100%;
+    height: clamp(280px, 44vh, 520px);
+    object-fit: cover;
+    display: block;
   }
 
   .method-note {

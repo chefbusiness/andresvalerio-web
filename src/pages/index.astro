@@ -72,6 +72,10 @@ import { personSchema } from '@utils/schema';
     </div>
   </section>
 
+  <figure class="ctx-band">
+    <img src="/images/contexto/ingredientes.jpg" alt="Ingredientes frescos sobre una mesa de madera: tomates, albahaca, romero, ajo, sal marina y aceite de oliva con luz natural de ventana" width="1600" height="900" loading="lazy" />
+  </figure>
+
   <section class="consultoria section">
     <div class="container">
       <div class="sec-head rv">
@@ -262,6 +266,17 @@ import { personSchema } from '@utils/schema';
     .hero-photo {
       background-position: 60% center;
     }
+  }
+
+  .ctx-band {
+    margin: 0;
+    overflow: hidden;
+  }
+  .ctx-band img {
+    width: 100%;
+    height: clamp(280px, 44vh, 520px);
+    object-fit: cover;
+    display: block;
   }
 
   .bg-teal {
