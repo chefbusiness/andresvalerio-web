@@ -73,7 +73,7 @@ import { personSchema } from '@utils/schema';
   </section>
 
   <figure class="ctx-band">
-    <img src="/images/contexto/cocina-valerio.jpg" alt="Andrés Valerio montando hamburguesas de autor bajo las lámparas de calor de su cocina" width="1400" height="934" loading="lazy" />
+    <img src="/images/contexto/home-banda.jpg" alt="Hamburguesa de autor de Valerio: pan brioche, carne a la parrilla, queso y onion crispy, servida en un puesto de street food" width="1600" height="893" loading="lazy" />
   </figure>
 
   <section class="consultoria section">
@@ -553,8 +553,8 @@ import { personSchema } from '@utils/schema';
     inset: 0;
     z-index: -1;
     background:
-      radial-gradient(70% 90% at 50% 45%, rgba(13, 42, 39, 0.55), rgba(13, 42, 39, 0.82)),
-      linear-gradient(180deg, rgba(13, 42, 39, 0.7), rgba(13, 42, 39, 0.88));
+      radial-gradient(58% 68% at 50% 52%, rgba(13, 42, 39, 0.6), transparent 78%),
+      linear-gradient(180deg, rgba(13, 42, 39, 0.28), rgba(13, 42, 39, 0.46));
   }
   @media (max-width: 880px) {
     /* iOS ignora background-attachment: fixed → fondo estático en móvil */
@@ -572,11 +572,13 @@ import { personSchema } from '@utils/schema';
     font-size: clamp(2rem, 4vw, 3rem);
     margin-top: 0.75rem;
     color: var(--bone);
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
   }
 
   .cta-center p {
     margin-top: 1rem;
     color: var(--bone-soft);
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
     max-width: 40ch;
   }
 
