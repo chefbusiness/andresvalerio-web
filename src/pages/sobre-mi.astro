@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import CtaFinal from '@components/CtaFinal.astro';
 import { personSchema } from '@utils/schema';
 ---
 
@@ -153,17 +154,12 @@ import { personSchema } from '@utils/schema';
     </div>
   </section>
 
-  <section class="cta-final section bg-teal">
-    <div class="final-glow"></div>
-    <div class="container cta-center rv">
-      <span class="eyebrow light">¿Hablamos?</span>
-      <h2>¿Tienes un proyecto en mente?</h2>
-      <div class="cta-buttons">
-        <a href="/consultoria/" class="btn-primary">Ver consultoría</a>
-        <a href="/contacto/" class="btn-ghost">Contactar</a>
-      </div>
-    </div>
-  </section>
+  <CtaFinal title="¿Tienes un proyecto en mente?">
+    <Fragment slot="buttons">
+      <a href="/consultoria/" class="btn-primary">Ver consultoría</a>
+      <a href="/contacto/" class="btn-ghost">Contactar</a>
+    </Fragment>
+  </CtaFinal>
 </BaseLayout>
 
 <style>

@@ -5,6 +5,8 @@
 // Inyecta Schema.org Service + FAQPage vía <slot name="head"> desde la página.
 // Nivel premium "gold standard" (ver consultoria/desarrollo-carta.astro), data-driven.
 
+import CtaFinal from '@components/CtaFinal.astro';
+
 interface Faq { q: string; a: string; }
 interface TitleDesc { title: string; desc: string; }
 interface PricingRow { modalidad: string; alcance: string; rd: string; us: string; feat?: boolean; }
@@ -257,19 +259,7 @@ const incluyeCols = [data.incluye.slice(0, half), data.incluye.slice(half)];
 </section>
 
 <!-- CTA FINAL -->
-<section class="section bg-teal final" id="contacto">
-  <div class="container cta-center rv">
-    <span class="eyebrow light center">¿Hablamos?</span>
-    <h2>{data.cta.h2}</h2>
-    <p class="lead">{data.cta.text}</p>
-    <a href="/contacto/" class="btn-primary">
-      Solicitar propuesta
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </div>
-</section>
+<CtaFinal id="contacto" title={data.cta.h2} text={data.cta.text} ctaLabel="Solicitar propuesta" />
 
 <style>
   /* ---------- HERO (a sangre completa con foto de fondo) ---------- */

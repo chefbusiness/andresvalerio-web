@@ -1,0 +1,96 @@
+---
+// CTA final reutilizable (antes del footer) con fondo de fuego/parrilla + parallax.
+// Imagen generada con Nano Banana, estética Valerio (fast-good, fuego).
+// Usar en todas las páginas para coherencia. Botones: por defecto uno; para varios,
+// pasar contenido por el slot "buttons".
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  id?: string;
+}
+const { eyebrow = '¿Hablamos?', title, text, ctaLabel = 'Contactar', ctaHref = '/contacto/', id } = Astro.props;
+const hasButtons = Astro.slots.has('buttons');
+---
+
+<section class="cta-fire section" id={id}>
+  <div class="cta-fire-bg" aria-hidden="true"></div>
+  <div class="cta-fire-scrim" aria-hidden="true"></div>
+  <div class="container cta-fire-inner rv">
+    <span class="eyebrow">{eyebrow}</span>
+    <h2>{title}</h2>
+    {text && <p>{text}</p>}
+    <div class="cta-fire-actions">
+      {hasButtons ? (
+        <slot name="buttons" />
+      ) : (
+        <a href={ctaHref} class="btn-primary">
+          {ctaLabel}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-fire {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    text-align: center;
+  }
+  .cta-fire-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: url(/images/cta/fuego.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* parallax en desktop */
+  }
+  .cta-fire-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(58% 68% at 50% 52%, rgba(13, 42, 39, 0.6), transparent 78%),
+      linear-gradient(180deg, rgba(13, 42, 39, 0.28), rgba(13, 42, 39, 0.46));
+  }
+  @media (max-width: 880px) {
+    /* iOS ignora background-attachment: fixed → fondo estático en móvil */
+    .cta-fire-bg { background-attachment: scroll; }
+  }
+
+  .cta-fire-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta-fire .eyebrow { color: var(--pers); justify-content: center; }
+  .cta-fire .eyebrow::before { display: none; }
+  .cta-fire h2 {
+    font-size: clamp(2rem, 4.6vw, 3.2rem);
+    margin: 0.3em 0 0;
+    color: var(--bone);
+    max-width: 18ch;
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+  }
+  .cta-fire p {
+    margin: 1rem auto 0;
+    color: var(--bone-soft);
+    max-width: 46ch;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+  }
+  .cta-fire-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>

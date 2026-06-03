@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import CtaFinal from '@components/CtaFinal.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -85,19 +86,13 @@ const dateFmt = new Intl.DateTimeFormat('es-DO', { dateStyle: 'medium' });
     </section>
   )}
 
-  <section class="blog-cta section bg-teal">
-    <div class="container cta-center rv">
-      <span class="eyebrow light">¿Tienes un proyecto?</span>
-      <h2>Del artículo a tu cocina real</h2>
-      <p>Si quieres acompañamiento profesional para tu restaurante, hablemos.</p>
-      <a href="/consultoria/" class="btn-primary">
-        Ver consultoría
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-  </section>
+  <CtaFinal
+    eyebrow="¿Tienes un proyecto?"
+    title="Del artículo a tu cocina real"
+    text="Si quieres acompañamiento profesional para tu restaurante, hablemos."
+    ctaLabel="Ver consultoría"
+    ctaHref="/consultoria/"
+  />
 </BaseLayout>
 
 <style>
