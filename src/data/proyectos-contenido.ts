@@ -41,30 +41,30 @@ export const proyectosContenido: Record<string, ProyectoContenido> = {
         "titulo": "Servicio completo, llave en mano"
       }
     },
-    "metaTitle": "BBQ Parrilla Events by Valerio | Eventos y Parrilla en RD",
-    "metaDescription": "Chef Andrés Valerio lleva la parrilla a tu evento en Santo Domingo. Asado argentino, BBQ texano, show de fuego. Carnes premium, servicio llave en mano. ¡Cotiza!",
-    "heroTitle": "Parrilla Valerio: fuego, sabor y show en vivo",
-    "heroLead": "Chef Andrés Valerio transforma tu evento en una experiencia inolvidable con parrilla en vivo, carnes premium y el show del fuego. Perfecto para bodas, eventos corporativos y celebraciones en Santo Domingo.",
+    "metaTitle": "Bestia Fire | Parrillas BBQ & Events con Chef Andrés Valerio",
+    "metaDescription": "Bestia Fire: parrilla itinerante del Chef Andrés Valerio en Rep. Dominicana. Fuego real, carnes premium y show en vivo para bodas y eventos. ¡Cotiza!",
+    "heroTitle": "Bestia Fire: donde el fuego se convierte en espectáculo",
+    "heroLead": "El Chef Andrés Valerio enciende la parrilla para transformar tu celebración en un festín inolvidable. Directo desde Santo Domingo, llevamos el calor, el humo y la mejor carne a tu evento en toda la isla.",
     "intro": [
-      "BBQ Parrilla Events by Valerio es el servicio itinerante de parrilla y asador del chef Andrés Valerio, diseñado para llevar una experiencia gastronómica de altura a tu evento en Santo Domingo y toda República Dominicana. Desde una íntima boda campestre hasta un gran evento corporativo, encendemos el fuego para crear momentos que se saborean.",
-      "Como chef propietario de Valerio Burger Club, Andrés Valerio conoce el lenguaje del fuego y la carne. Cada parrillada es un espectáculo donde el chisporroteo, el aroma y la técnica se unen para ofrecer cortes perfectos, jugosos y llenos de sabor. Más que un servicio, es un show que enciende los sentidos y convierte tu celebración en un recuerdo imborrable."
+      "Bestia Fire es el servicio de parrilla y asador del Chef Andrés Valerio, una bestia itinerante diseñada para llevar el sabor del fuego real a tu evento en Santo Domingo y toda República Dominicana. Olvídate del catering tradicional: aquí encendemos las brasas frente a tus invitados y creamos una experiencia gastronómica que se huele, se escucha y se devora con todos los sentidos.",
+      "Como creador de Valerio Burger Club, Andrés domina el lenguaje de la parrilla como nadie. Cada pieza al fuego es una declaración de principios: cortes que chisporrotean, jugosidad exacta y esa costra dorada que solo se logra con técnica, respeto por la materia prima y un toque salvaje. Bestia Fire no es solo comida; es un show visual y sensorial que marca el pulso de tu celebración."
     ],
     "paraQuien": [
       {
         "titulo": "Bodas y celebraciones privadas",
-        "desc": "Haz de tu boda, aniversario o cumpleaños una experiencia sensorial con una parrilla en vivo que deleitará a tus invitados. Cada corte se sirve en su punto exacto, con el fuego como testigo."
+        "desc": "Tu boda merece un festín a la altura de la historia que están escribiendo. Bestia Fire convierte el banquete en un ritual alrededor del fuego, con cortes premium y ese aroma que enamora antes del primer bocado."
       },
       {
         "titulo": "Eventos corporativos y de marca",
-        "desc": "Impresiona a tus clientes, empleados o socios con un show de parrilla en vivo que habla de excelencia. Ideal para lanzamientos, cierres de año o activaciones de marca."
+        "desc": "Impregna tu evento de empresa con la personalidad salvaje de una parrilla de primer nivel. Perfecto para agasajar clientes, premiar equipos o lanzar productos donde el humo y la exquisitez sean los protagonistas."
       },
       {
         "titulo": "Wedding planners y agencias",
-        "desc": "Ofrece a tus novios un servicio de parrilla premium que eleva cualquier boda. Nos coordinamos contigo para que la experiencia gastronómica sea impecable y sin estrés."
+        "desc": "Aliadas estratégicas que buscan un diferencial absoluto en sus eventos. Bestia Fire llega con todo el montaje y la dirección del Chef Andrés Valerio para que tú te concentres en brillar con una experiencia gastronómica brutal."
       },
       {
         "titulo": "Fincas y eventos al aire libre",
-        "desc": "Llevamos el fuego a tu finca o espacio al aire libre en cualquier rincón del país. Una experiencia rústica y elegante que conecta con la naturaleza y el buen comer."
+        "desc": "El susurro del campo y el crepitar de las brasas son la combinación perfecta para celebraciones al aire libre. Desde Punta Cana hasta La Romana, llevamos el asador a donde el cemento no llega, sin perder un ápice de sofisticación."
       }
     ],
     "formatos": [
@@ -136,7 +136,7 @@ export const proyectosContenido: Record<string, ProyectoContenido> = {
       "eyebrow": "Nuestra carne",
       "titulo": "El origen importa: del corte al fuego",
       "intro": [
-        "En Valerio, cada corte cuenta una historia de origen y calidad. Seleccionamos carnes rojas de res importadas de Estados Unidos (USDA/Angus) porque su marmoleo garantiza terneza y sabor inigualables. El T-bone, ribeye, solomillo y brisket llegan con la consistencia que exigen los fuegos largos y las brasas intensas. Para el pollo y otros cortes, privilegiamos lo local: frescura dominicana que apoya al productor y honra nuestra tierra. El cerdo viaja desde EE.UU. o desde fincas locales, según la receta. Respetamos cada pieza, cada fuego y cada punto para que en tu evento solo haya perfección."
+        "En Bestia Fire elegimos cada proteína como un cazador elige su presa: con instinto y precisión. Trabajamos con carne de res importada de Estados Unidos bajo los estándares USDA y la genética superior Angus, cortes de mármol perfecto que se deshacen en boca. El pollo es frescura local dominicana, criado con orgullo en nuestra tierra; mientras que el cerdo viaja desde fincas locales o desde EE.UU., según dicte la receta y la ocasión. Respetamos la fibra, el punto, la llama y el descanso de cada corte, porque para nosotros el fuego no es solo calor: es carácter."
       ],
       "cortes": [
         {
@@ -202,27 +202,27 @@ export const proyectosContenido: Record<string, ProyectoContenido> = {
     "faq": [
       {
         "q": "¿Qué tipo de carne usan y de dónde proviene?",
-        "a": "Nuestras carnes rojas de res son importadas de EE.UU. (USDA/Angus) por su calidad superior y marmoleo. El pollo es fresco local dominicano, y el cerdo puede ser local o americano. Cada corte se selecciona para garantizar el mejor sabor en cada formato."
+        "a": "En Bestia Fire trabajamos con proteínas de primera. La res es importada de Estados Unidos con certificación USDA y genética Angus, garantizando marmoleo y sabor superior. El pollo es cien por ciento local dominicano, fresco y de excelente calidad. El cerdo alterna entre origen local y americano, escogiendo siempre la mejor opción disponible para tu evento."
       },
       {
         "q": "¿Cómo se calcula el precio final de mi evento?",
-        "a": "Los precios desde son orientativos por persona. El presupuesto final se ajusta a la cantidad de invitados, el formato elegido, las guarniciones y la distancia. Te hacemos una cotización a medida sin compromiso."
+        "a": "Cada presupuesto de Bestia Fire se arma a la medida de tu celebración. Evaluamos el tipo de proteína que deseas, el número de invitados, la duración del servicio de parrilla en vivo y la distancia de desplazamiento desde nuestra base en Santo Domingo. Así nos aseguramos de que pagues solo por una experiencia hecha a tu medida."
       },
       {
         "q": "¿Cuánto tiempo antes debo reservar?",
-        "a": "Recomendamos reservar con al menos 2-3 semanas de anticipación para eventos estándar, y 1-2 meses para bodas o grandes corporativos. Siempre puedes consultarnos disponibilidad de última hora."
+        "a": "Nuestras llamas se encienden con agenda limitada para garantizar la calidad. Recomendamos asegurar tu fecha con al menos tres semanas de anticipación, especialmente en temporada alta de bodas. Si tienes un evento de última hora, igual nos puedes escribir: si Bestia Fire tiene disponibilidad, estará rugiendo en tu fiesta."
       },
       {
         "q": "¿Se desplazan a cualquier lugar de República Dominicana?",
-        "a": "Sí, somos un servicio itinerante. Vamos a Santo Domingo, Punta Cana, La Romana, Santiago y cualquier rincón del país. Aplican costos de desplazamiento según distancia."
+        "a": "Sin problema. Aunque nuestro hogar es Santo Domingo, la bestia recorre todo el país. Llevamos el show de parrilla a Punta Cana, La Romana, Santiago o cualquier rincón donde quieras impresionar con fuego real. Solo necesitamos un espacio para montar el asador y muchas ganas de celebrar."
       },
       {
         "q": "¿Qué incluye exactamente el servicio?",
-        "a": "Incluye montaje, chef parrillero, asistente, carnes, guarniciones, salsas, vajilla, cubiertos y limpieza. Todo llave en mano para que solo te preocupes de disfrutar."
+        "a": "Bestia Fire es una experiencia integral. Incluye el montaje del puesto de parrilla en vivo, la presencia del Chef Andrés Valerio y su equipo de cocina, las proteínas seleccionadas y todo el show de fuego durante tu evento. Podemos añadir personal de servicio y coordinación previa, pero cada detalle se conversa según el alma de tu celebración."
       },
       {
         "q": "¿Hacen degustaciones previas?",
-        "a": "Sí, ofrecemos degustación para bodas y eventos corporativos (con costo adicional). Así puedes elegir los cortes y guarniciones que mejor se adapten a tu evento."
+        "a": "Claro que sí. Nada como probar la bestia antes de soltarla en tu día especial. Organizamos una degustación privada para que sientas la calidad de los cortes y definamos juntos el menú exacto que recibirán tus invitados. Es la mejor forma de garantizar que el sabor supere las expectativas."
       }
     ]
   },

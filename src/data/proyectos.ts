@@ -79,11 +79,11 @@ export const proyectos: Proyecto[] = [
   },
   {
     slug: 'bbq-parrilla-events',
-    nombre: 'BBQ Parrilla Events by Valerio',
+    nombre: 'Bestia Fire',
     categoria: 'Parrilla · Eventos',
-    tagline: 'Fuego, humo y producto',
+    tagline: 'Parrillas BBQ & Events',
     resumen:
-      'Servicio itinerante de parrilla y asador para eventos: llevamos el fuego, los cortes y el espectáculo a bodas, eventos corporativos y celebraciones en toda RD.',
+      'La marca de parrilla, BBQ y asador de Andrés Valerio para eventos: llevamos el fuego, los cortes y el espectáculo a bodas, eventos corporativos y celebraciones en toda RD.',
     estado: 'Activo',
     imagen: '/images/proyectos/bbq/02-bbq-pitmaster-corporate.jpg',
     banda: '/images/proyectos/bbq/04-equipamiento-detalle.jpg',
