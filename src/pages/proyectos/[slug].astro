@@ -30,7 +30,12 @@ const banda = p.banda ?? (p.galeria && p.galeria[0]);
       <h1 class="rv d2">{heroTitle}</h1>
       <p class="lead rv d3">{heroLead}</p>
       <div class="hero-ctas rv d4">
-        {p.externo
+        {p.sitioDedicado ? (
+          <>
+            <a href={p.sitioDedicado.url} target="_blank" rel="noopener noreferrer" class="btn-primary">Visitar {p.sitioDedicado.nombre} →</a>
+            <a href="/contacto/" class="btn-ghost">Pedir presupuesto</a>
+          </>
+        ) : p.externo
           ? <a href={p.externo} target="_blank" rel="noopener noreferrer" class="btn-primary">Visitar {p.nombre} →</a>
           : <a href="/contacto/" class="btn-primary">Pedir presupuesto →</a>}
       </div>
@@ -199,7 +204,16 @@ const banda = p.banda ?? (p.galeria && p.galeria[0]);
         </div>
       </section>
 
-      {p.sitioProximamente && (
+      {p.sitioDedicado ? (
+        <section class="section">
+          <div class="container proximamente rv">
+            <span class="prox-tag font-mono">Web dedicada</span>
+            <p class="sd-marca">{p.sitioDedicado.nombre} <span class="sd-slogan">— {p.sitioDedicado.slogan}</span></p>
+            <p>{p.nombre} ya tiene su propia web. Descubre formatos, cortes y reserva la fecha de tu evento directamente en {p.sitioDedicado.nombre}.</p>
+            <a class="btn-dark" href={p.sitioDedicado.url} target="_blank" rel="noopener noreferrer">Visitar {p.sitioDedicado.nombre} →</a>
+          </div>
+        </section>
+      ) : p.sitioProximamente && (
         <section class="section">
           <div class="container proximamente rv">
             <span class="prox-tag font-mono">Próximamente</span>
@@ -274,7 +288,7 @@ const banda = p.banda ?? (p.galeria && p.galeria[0]);
   .proj-hero .eyebrow::before { background: var(--brass); }
   .proj-hero h1 { font-size: clamp(2.4rem, 6.5vw, 5rem); margin: 0.3em 0 0.4em; color: var(--bone); line-height: 1; text-shadow: 0 2px 24px rgba(13,42,39,0.45); }
   .proj-hero .lead { color: var(--bone-soft); max-width: 56ch; }
-  .hero-ctas { margin-top: 38px; }
+  .hero-ctas { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 0.85rem; }
 
   .intro-block { max-width: 70ch; }
   .intro-block p { font-size: clamp(1.05rem, 1.7vw, 1.25rem); color: var(--ink-soft); line-height: 1.75; }
@@ -356,6 +370,8 @@ const banda = p.banda ?? (p.galeria && p.galeria[0]);
   .proximamente { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
   .prox-tag { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pers-deep); border: 1px solid var(--line-light); border-radius: 999px; padding: 0.5em 1.1em; }
   .proximamente p { color: var(--ink-soft); max-width: 50ch; }
+  .proximamente .sd-marca { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--ink); max-width: none; line-height: 1.05; }
+  .proximamente .sd-slogan { color: var(--pers-deep); font-style: italic; }
   .btn-dark.is-disabled { opacity: 0.5; pointer-events: none; cursor: default; }
 
   .proj-note { display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pers-deep); border: 1px solid var(--line-light); border-radius: 999px; padding: 0.5em 1em; margin-bottom: 2.5rem; }

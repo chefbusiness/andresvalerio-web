@@ -17,6 +17,11 @@ export interface Proyecto {
   highlights: string[];   // puntos provisionales
   galeria?: string[];     // imágenes de galería (opcional)
   sitioProximamente?: boolean; // muestra placeholder de web dedicada futura
+  sitioDedicado?: {       // web propia ya publicada del proyecto
+    url: string;
+    nombre: string;       // marca de la web dedicada (p.ej. "Bestia Fire")
+    slogan: string;       // slogan de la marca
+  };
 }
 
 export const proyectos: Proyecto[] = [
@@ -85,13 +90,17 @@ export const proyectos: Proyecto[] = [
     highlights: [
       'Parrilla y BBQ para eventos (B2C y B2B)',
       'Montaje, parrilleros y cortes premium',
-      'Marca propia (web dedicada próximamente)',
+      'Bestia Fire: Parrillas BBQ & Events, con web propia',
     ],
     galeria: [
       '/images/proyectos/bbq/01-asado-cruz-finca.jpg',
       '/images/proyectos/bbq/02-bbq-pitmaster-corporate.jpg',
       '/images/proyectos/bbq/04-equipamiento-detalle.jpg',
     ],
-    sitioProximamente: true,
+    sitioDedicado: {
+      url: 'https://bestiafire.pro/',
+      nombre: 'Bestia Fire',
+      slogan: 'Parrillas BBQ & Events',
+    },
   },
 ];
