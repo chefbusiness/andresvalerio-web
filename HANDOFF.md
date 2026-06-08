@@ -1,16 +1,23 @@
-# Handoff — andresvalerio.com · sesión 2026-06-03/04
+# Handoff — andresvalerio.com · sesión 2026-06-08 (BBQ → Bestia Fire)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). Working dir: `web/`.
-**Último commit: `a1efebf`** — todo pusheado y sincronizado con origin. 22 páginas. Site: `andresvalerio-web.netlify.app` / dominio `andresvalerio.com`.
+**Último commit: `c641868`** — todo pusheado y sincronizado con origin. 22 páginas. Site: `andresvalerio-web.netlify.app` / dominio `andresvalerio.com`.
 
 > Esta sesión recuperó el trabajo tras un apagón térmico y avanzó muchísimo. Lee también la memoria en `~/.claude/projects/-Users-johnguerrero-andres-valerio-web/memory/` (MEMORY.md indexa todo).
 
 ---
 
-## ✅ Hecho esta sesión
+## ✅ Hecho esta sesión (2026-06-08)
 
-### Home (`index.astro`)
+### Rebranding BBQ Parrilla Events → **Bestia Fire**
+- El proyecto BBQ ahora es la marca **Bestia Fire** (slogan *"Parrillas BBQ & Events"*), con **web propia ya publicada: `https://bestiafire.pro/`**. El slug se mantiene `/proyectos/bbq-parrilla-events/` por SEO.
+- `proyectos.ts`: nuevo campo reutilizable **`sitioDedicado` { url, nombre, slogan }** (sustituye a `sitioProximamente` cuando la web ya existe). BBQ pasó de `sitioProximamente` a `sitioDedicado`. `nombre` → "Bestia Fire", tagline/resumen ajustados.
+- `[slug].astro`: hero con doble CTA ("Visitar Bestia Fire →" externo + "Pedir presupuesto"); el bloque "Próximamente" se convierte en bloque **"Web dedicada"** activo cuando hay `sitioDedicado` (Burger Master Academy sigue con "Próximamente").
+- **Contenido regenerado con bridge.py** (DeepSeek v4-pro): meta, heroTitle/Lead, intro, paraQuien, carnes.intro y las 6 FAQ → voz Bestia Fire, conservando a Chef Andrés Valerio como el chef detrás y TODOS los datos estructurados (9 formatos con precios, 8 cortes). Footer + meta de /proyectos también dicen "Bestia Fire".
+- ⚠️ **Imágenes siguen siendo las genéricas** de `public/images/proyectos/bbq/` — pendiente generar las de Bestia Fire con Nano Banana (hero, formatos, cortes).
+
+### Home (`index.astro`) — sesiones previas (2026-06-03/04)
 - **Hero a sangre** con foto REAL de Andrés (chaqueta blanca + corte de carne, `andres-hero.jpg`). NO tarjeta (rechazada por John).
 - Bloque **Valerio Burger Club** con foto real del burger (`andres-burger.jpg`) integrada.
 - **Banda de contexto** clara (IA street-food "SMASH BURGERS") tras la intro. Eliminada la mediterránea (olio d'oliva) por off-brand.
@@ -37,7 +44,7 @@ Repo: `chefbusiness/andresvalerio-web` (rama `main`). Working dir: `web/`.
 ### Cliente / datos
 1. **Legales**: falta **razón social + domicilio fiscal** exactos del titular (ahora "Andrés Valerio, Santo Domingo, RD" + email). Validar.
 2. **Precios BBQ**: son **orientativos "desde"** (research de mercado RD: catering RD$1,500–5,000/persona; ribeye Angus súper RD$700–900/lb). Validar cifras finales con Andrés. Tabla en `proyectos-contenido.ts` (bbq formatos).
-3. **BBQ y Burger Master Academy** tendrán **web dedicada propia** (dominio/nombre pendientes) → al recibirlos, sustituir el placeholder "Próximamente" por el enlace.
+3. ✅ **BBQ → Bestia Fire** (`bestiafire.pro`) YA enlazado (2026-06-08). **Burger Master Academy** sigue con web dedicada pendiente (`sitioProximamente`) → al recibir dominio/nombre, pasar a `sitioDedicado` igual que Bestia Fire. **Pendiente Bestia Fire: imágenes reales de marca** (Nano Banana) para reemplazar el stock genérico.
 4. Teléfono `wa.me/18098847605` (dominicano) — confirmar con Valerio (provisional en producción).
 
 ### Infra
