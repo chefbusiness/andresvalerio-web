@@ -1,8 +1,8 @@
-# Handoff — andresvalerio.com · sesión 2026-06-08 (BBQ → Bestia Fire)
+# Handoff — andresvalerio.com · sesión 2026-06-24 (clúster blog SEO: food cost + permisos)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). Working dir: `web/`.
-**Último commit: `c641868`** — todo pusheado y sincronizado con origin. 22 páginas. Site: `andresvalerio-web.netlify.app` / dominio `andresvalerio.com`.
+**Último commit de contenido: `9973598`** (clúster blog) — pusheado a `main`, **deploy Netlify `ready`/verde y live** (3 URLs del clúster responden 200). 24 páginas (3 posts de blog). Site: `andresvalerio-web.netlify.app` / dominio `andresvalerio.com`.
 
 > Esta sesión recuperó el trabajo tras un apagón térmico y avanzó muchísimo. Lee también la memoria en `~/.claude/projects/-Users-johnguerrero-andres-valerio-web/memory/` (MEMORY.md indexa todo).
 
@@ -17,7 +17,7 @@ Sesión de **contenidos** (regla capital: keyword research + SERP → bridge.py 
 - **Pilar actualizado**: `related` → ambos posts + 2 enlaces contextuales salientes (§3 permisos, §5 food cost). Clúster cerrado, sin huérfanas.
 - **Template blog** (`[...slug].astro`): añadida regla CSS `.prose img` (responsive) para imágenes de cuerpo (antes no existía → habrían desbordado en móvil).
 - Imágenes en `public/images/blog/` (6 nuevas, 145–225 KB c/u). Verificadas con Read, estética oscura VBC (override del maestro), sin mediterráneo/aceite de oliva.
-- **Validación estática verde** (YAML, slugs `related`, enlaces internos, imágenes en disco). ⚠️ **Build completo pendiente en Netlify** (no se hizo build local por regla térmica; verano Madrid, CPU ~60°C). **Pendiente: commit + push para desplegar y confirmar deploy verde.**
+- **Validación estática verde** (YAML, slugs `related`, enlaces internos, imágenes en disco) y **desplegado**: commit `9973598` pusheado a `main` → **deploy Netlify `ready`/verde**, verificado en producción (H1, 2 imágenes de cuerpo, FAQ, tablas y enlaces internos renderizan; 3 URLs 200). No se hizo build local por regla térmica; el build completo lo hizo Netlius en la nube. Temp 52–60°C durante toda la sesión.
 
 Contenido 100% con `bridge.py` (deepseek-v4-pro, `--max-tokens 11000`, system propio voz Andrés Valerio); imágenes con Nano Banana vía curl. Temp se mantuvo 58–62°C, sin builds locales ni Playwright.
 
