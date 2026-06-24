@@ -23,6 +23,9 @@ faq:
     a: 'No es un requisito legal, pero es una decisión financieramente sabia si no tienes experiencia operativa. Un buen consultor te evita gastar en equipos incorrectos, diseños de cocina ineficientes o cartas sin rentabilidad. La inversión en consultoría de apertura suele pagarse sola al prevenir errores que cuestan mucho más corregirlos sobre la marcha.'
   - q: '¿Cuál es la razón número uno por la que los restaurantes quiebran rápido?'
     a: 'El principal motivo no es la falta de clientes, sino la falta de caja. Una gestión financiera deficiente, donde no se separa el capital de trabajo, no se controla el costo de los insumos y no se reinvierte el flujo correctamente, asfixia el negocio. Puedes tener el restaurante lleno y aun así estar en la quiebra si tu estructura de costos no es sostenible.'
+related:
+  - 'permisos-abrir-restaurante-republica-dominicana'
+  - 'food-cost-restaurante-republica-dominicana'
 featured: true
 ---
 
@@ -46,7 +49,7 @@ Camina la zona, visita a tu futura competencia en horas pico y valle, y haz una 
 
 ## 3. Trámites y permisos en RD: el orden lógico que nadie te explica
 
-La burocracia dominicana puede ser frustrante, pero si sigues un orden lógico y contratas asesoría puntual, reduces tiempos y dolores de cabeza. Abreviaturas clave: **DGII** (Dirección General de Impuestos Internos), **RNC** (Registro Nacional de Contribuyentes), **ProConsumidor**, **MSP** (Ministerio de Salud Pública).
+La burocracia dominicana puede ser frustrante, pero si sigues un orden lógico y contratas asesoría puntual, reduces tiempos y dolores de cabeza. Abreviaturas clave: **DGII** (Dirección General de Impuestos Internos), **RNC** (Registro Nacional de Contribuyentes), **ProConsumidor**, **MSP** (Ministerio de Salud Pública). Si quieres el detalle de cada trámite con sus tiempos y costos —incluida la licencia de Turismo (MITUR) que casi todos olvidan—, lo amplío en mi guía sobre los [permisos para abrir un restaurante en República Dominicana](/blog/permisos-abrir-restaurante-republica-dominicana/).
 
 1. **Constitución legal de la empresa y RNC**  
    Acude a un abogado para registrar la sociedad (SRL, EIRL, etc.) en la Cámara de Comercio. Con el Registro Mercantil y los estatutos, solicitas el RNC en la DGII, obteniendo tu número de identificación fiscal y la clave para facturación electrónica (obligatoria desde hace años). *Este paso es el primero porque lo necesitarás para todo lo demás.*
@@ -90,7 +93,7 @@ Aquí es donde mi corazón de chef y mi cabeza de consultor se unen. La carta no
 Cada plato debe desglosarse gramo a gramo, incluyendo merma, aceite, sal y hasta la servilleta si es parte del servicio. Sin escandallo no sabes cuánto te cuesta producir un plato. Usa una plantilla en Excel o software como Apicbase, MarketMan o simplemente una hoja bien armada. Asegúrate de actualizar los precios de los insumos al menos cada 15 días, porque en RD la fluctuación es alta (piensa en el pollo, plátano, aceite).
 
 **b) Food cost objetivo (ideal: 28-35%)**  
-El *food cost* es el costo de materia prima de un plato dividido entre su precio de venta (sin ITBIS). Un restaurante típico busca entre 28% y 35%. Si vendes un plato a 1,000 RD$, el costo de los ingredientes no debería pasar de 280-350 RD$. Ojo: el *beverage cost* suele ser menor (18-25%), ayudando a compensar. Platos con food cost superior al 40% necesitan un volumen altísimo o te llevan a pérdida.
+El *food cost* es el costo de materia prima de un plato dividido entre su precio de venta (sin ITBIS). Un restaurante típico busca entre 28% y 35%. Si vendes un plato a 1,000 RD$, el costo de los ingredientes no debería pasar de 280-350 RD$. Ojo: el *beverage cost* suele ser menor (18-25%), ayudando a compensar. Platos con food cost superior al 40% necesitan un volumen altísimo o te llevan a pérdida. Si quieres profundizar con escandallos, mermas y ejemplos en RD$, escribí una guía completa sobre [cómo calcular y controlar el food cost de tu restaurante en RD](/blog/food-cost-restaurante-republica-dominicana/).
 
 **c) Ficha técnica e ingeniería de menú**  
 Las fichas técnicas incluyen el escandallo, foto del plato terminado, protocolo de montaje y alérgenos. Es la biblia de cocina. Luego, con la **ingeniería de menú** clasificas cada plato según su popularidad y margen (estrellas, caballos de batalla, puzzles y perros). Elimina los “perros” (poco populares, bajo margen), reposiciona los puzzles (popular pero poco margen: ajusta precio, reduce gramaje o cambia acompañante) y empuja los caballos (alto margen, poca venta) con sugerencia del mesero. Este análisis trimestral salva restaurantes.

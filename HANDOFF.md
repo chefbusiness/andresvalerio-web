@@ -8,6 +8,19 @@ Repo: `chefbusiness/andresvalerio-web` (rama `main`). Working dir: `web/`.
 
 ---
 
+## ✅ Hecho 2026-06-24 (clúster de blog SEO — food cost + permisos)
+
+Sesión de **contenidos** (regla capital: keyword research + SERP → bridge.py DeepSeek → Nano Banana → ensamblar → interenlazar). El blog tenía **solo el post pilar**; se montó un clúster:
+
+- **Post nuevo `food-cost-restaurante-republica-dominicana`** (cat. "Rentabilidad", ~1.700 palabras). KW: "food cost restaurante república dominicana". Diferenciador RD$/ITBIS/ingredientes locales/mermas + 2 tablas (escandallo + food cost ideal). Hero + 2 imágenes de cuerpo (balanza, merma) Nano Banana oscuras fast-good. FAQ ×5. Enlaza a pilar + /consultoria/diagnostico + /consultoria/desarrollo-carta. Mapea a **diagnóstico**.
+- **Post nuevo `permisos-abrir-restaurante-republica-dominicana`** (cat. "Negocio gastronómico", ~1.900 palabras). KW: "permisos para abrir un restaurante república dominicana". Diferenciador: incluye la **Licencia de Turismo (MITUR)** que el pilar omitía + tabla resumen (permiso/entidad/tiempo/costo orientativo con disclaimer). Hero + 2 imágenes de cuerpo (planos, cocina-inspección). FAQ ×5. Enlaza a pilar + food-cost + /consultoria/apertura. Mapea a **apertura**.
+- **Pilar actualizado**: `related` → ambos posts + 2 enlaces contextuales salientes (§3 permisos, §5 food cost). Clúster cerrado, sin huérfanas.
+- **Template blog** (`[...slug].astro`): añadida regla CSS `.prose img` (responsive) para imágenes de cuerpo (antes no existía → habrían desbordado en móvil).
+- Imágenes en `public/images/blog/` (6 nuevas, 145–225 KB c/u). Verificadas con Read, estética oscura VBC (override del maestro), sin mediterráneo/aceite de oliva.
+- **Validación estática verde** (YAML, slugs `related`, enlaces internos, imágenes en disco). ⚠️ **Build completo pendiente en Netlify** (no se hizo build local por regla térmica; verano Madrid, CPU ~60°C). **Pendiente: commit + push para desplegar y confirmar deploy verde.**
+
+Contenido 100% con `bridge.py` (deepseek-v4-pro, `--max-tokens 11000`, system propio voz Andrés Valerio); imágenes con Nano Banana vía curl. Temp se mantuvo 58–62°C, sin builds locales ni Playwright.
+
 ## ✅ Hecho esta sesión (2026-06-08)
 
 ### Rebranding BBQ Parrilla Events → **Bestia Fire**

@@ -230,6 +230,13 @@ const related = data.related
   .prose :global(li) { line-height: 1.75; margin-bottom: 0.5rem; }
   .prose :global(strong) { color: var(--ink); }
   .prose :global(a) { color: var(--pers); text-decoration: underline; text-underline-offset: 3px; }
+  .prose :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
   .prose :global(blockquote) {
     border-left: 3px solid var(--pers);
     padding-left: 1.25rem;
