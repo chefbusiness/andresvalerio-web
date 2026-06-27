@@ -1,0 +1,203 @@
+---
+/**
+ * Pop-up del proyecto Bestia Fire (parrilla a domicilio del chef Andrés Valerio)
+ * para su web personal. Aparece tras DELAY_MS si no se mostró en las últimas 24h.
+ * Modal HTML propio (no usa alert/confirm). Cierra con X, Escape o click fuera.
+ * Imagen: /bestia-fire/popup.jpg (degrada a gradiente si falta).
+ * CTA abre bestiafire.pro en pestaña nueva. Copy en primera persona.
+ */
+const URL = 'https://bestiafire.pro/';
+---
+
+<div id="bf-popup" class="bf-popup" hidden aria-hidden="true">
+  <div class="bf-popup__overlay" data-bf-close></div>
+  <div class="bf-popup__card" role="dialog" aria-modal="true" aria-labelledby="bf-popup-title">
+    <button type="button" class="bf-popup__x" data-bf-close aria-label="Cerrar">×</button>
+    <div class="bf-popup__media" aria-hidden="true"></div>
+    <div class="bf-popup__body">
+      <p class="bf-popup__eyebrow"><span aria-hidden="true">🔥</span> Bestia Fire · Andrés Valerio</p>
+      <h2 id="bf-popup-title" class="bf-popup__title">Llevo el fuego a tu evento</h2>
+      <p class="bf-popup__text">Mi parrilla de carnes premium, brasa de verdad y show del fuego en vivo, a domicilio en todo el Distrito Nacional.</p>
+      <a class="bf-popup__cta" href={URL} target="_blank" rel="noopener noreferrer" data-bf-cta>
+        Descubrir Bestia Fire <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var KEY = 'av.bestiafire.popup';
+    var DELAY_MS = 25000;      // aparece tras 25s en el sitio
+    var COOLDOWN_MS = 86400000; // no repetir en 24h
+    var el = document.getElementById('bf-popup');
+    if (!el) return;
+
+    var lastFocus = null;
+
+    function recentlyShown() {
+      try {
+        var v = localStorage.getItem(KEY);
+        return v && (Date.now() - parseInt(v, 10) < COOLDOWN_MS);
+      } catch (e) { return false; }
+    }
+    function stamp() {
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+    }
+    function open() {
+      if (el.getAttribute('aria-hidden') === 'false') return;
+      lastFocus = document.activeElement;
+      el.hidden = false;
+      void el.offsetWidth;
+      el.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('bf-popup-open');
+      stamp();
+      var x = el.querySelector('.bf-popup__x');
+      if (x) x.focus();
+    }
+    function close() {
+      el.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('bf-popup-open');
+      window.setTimeout(function () { el.hidden = true; }, 300);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    el.addEventListener('click', function (e) {
+      var target = e.target;
+      if (target && target.closest && target.closest('[data-bf-close]')) close();
+      if (target && target.closest && target.closest('[data-bf-cta]')) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && el.getAttribute('aria-hidden') === 'false') close();
+    });
+
+    if (!recentlyShown()) {
+      window.setTimeout(open, DELAY_MS);
+    }
+  })();
+</script>
+
+<style>
+  .bf-popup {
+    --bf-red: #c42017;
+    --bf-red-dark: #7c120e;
+    --bf-ink: #15110c;
+    --bf-cream: #f4ecdd;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+  .bf-popup[hidden] { display: none; }
+
+  .bf-popup__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 7, 4, 0.74);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .bf-popup[aria-hidden='false'] .bf-popup__overlay { opacity: 1; }
+
+  .bf-popup__card {
+    position: relative;
+    z-index: 1;
+    width: min(680px, 100%);
+    max-height: calc(100dvh - 2rem);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: linear-gradient(150deg, var(--bf-red-dark) 0%, var(--bf-red) 50%, var(--bf-ink) 100%);
+    border: 1px solid rgba(255, 180, 120, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    transform: translateY(16px) scale(0.97);
+    opacity: 0;
+    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 320ms ease;
+  }
+  .bf-popup[aria-hidden='false'] .bf-popup__card { transform: none; opacity: 1; }
+
+  .bf-popup__x {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.625rem;
+    z-index: 2;
+    width: 2rem;
+    height: 2rem;
+    line-height: 1;
+    font-size: 1.5rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 200ms ease;
+  }
+  .bf-popup__x:hover { background: rgba(0, 0, 0, 0.6); }
+
+  .bf-popup__media {
+    background:
+      linear-gradient(0deg, rgba(124, 18, 14, 0.35), transparent 60%),
+      radial-gradient(circle at 50% 120%, rgba(255, 140, 50, 0.5), transparent 55%),
+      url('/bestia-fire/popup.jpg') center / cover no-repeat,
+      var(--bf-ink);
+    min-height: 100%;
+  }
+
+  .bf-popup__body { padding: 2rem 1.75rem; color: var(--bf-cream); }
+  .bf-popup__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffd9c2;
+    margin: 0 0 0.875rem;
+  }
+  .bf-popup__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4vw, 2.6rem);
+    line-height: 1.02;
+    color: #fff;
+    margin: 0 0 0.875rem;
+  }
+  .bf-popup__text {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: rgba(244, 236, 221, 0.9);
+    margin: 0 0 1.5rem;
+  }
+  .bf-popup__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--bf-red-dark);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: 4px;
+    transition: transform 200ms ease, background 200ms ease;
+  }
+  .bf-popup__cta:hover { transform: translateY(-2px); background: #ffce8a; }
+
+  :global(body.bf-popup-open) { overflow: hidden; }
+
+  @media (max-width: 560px) {
+    .bf-popup__card { grid-template-columns: 1fr; max-width: 380px; }
+    .bf-popup__media { min-height: 150px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bf-popup__card, .bf-popup__overlay { transition: opacity 150ms ease; transform: none; }
+  }
+</style>

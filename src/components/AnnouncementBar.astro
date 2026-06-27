@@ -1,0 +1,102 @@
+---
+/**
+ * Barra-promo del proyecto Bestia Fire (parrilla a domicilio del chef).
+ * Fija en el tope, por encima del header. La altura la define la variable global
+ * --announce-h (en BaseLayout), que también empuja el header y el <main> para que
+ * el contenido siga despejando el header fijo de 72px en todas las páginas.
+ * Abre bestiafire.pro en pestaña nueva.
+ */
+const URL = 'https://bestiafire.pro/';
+---
+
+<a
+  class="announce"
+  href={URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Bestia Fire — mi parrilla de carnes a domicilio para tus eventos. Abre en una pestaña nueva."
+>
+  <span class="container announce__inner">
+    <span class="announce__icon" aria-hidden="true">🔥</span>
+    <span class="announce__brand">Bestia Fire</span>
+    <span class="announce__sep" aria-hidden="true">·</span>
+    <span class="announce__msg">Mi parrilla de carnes a domicilio para tus eventos</span>
+    <span class="announce__cta">Cotiza →</span>
+  </span>
+</a>
+
+<style>
+  .announce {
+    /* Tema "rojo braza" de Bestia Fire (bestiafire.pro). */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 101; /* por encima del header (z-index:100) */
+    height: var(--announce-h, 38px);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: linear-gradient(90deg, #7c120e 0%, #c42017 55%, #e5453a 100%);
+    color: #f4ecdd;
+    border-bottom: 1px solid rgba(255, 180, 120, 0.25);
+    transition: filter 200ms ease;
+  }
+  .announce:hover { filter: brightness(1.08); }
+  .announce__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .announce__icon {
+    font-size: 0.9rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 140, 50, 0.7));
+    animation: announceFlicker 2.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes announceFlicker {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.14); }
+  }
+  .announce__brand {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .announce__sep { color: rgba(255, 217, 194, 0.7); }
+  .announce__msg {
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: rgba(244, 236, 221, 0.95);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .announce__cta {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffce8a;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .announce__msg { display: none; }
+    .announce__sep { display: none; }
+    .announce__brand { font-size: 0.74rem; }
+    .announce__cta { font-size: 0.72rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .announce__icon { animation: none; }
+  }
+</style>

@@ -10,8 +10,10 @@ import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import '~/styles/global.css';
 import SEO from '@components/SEO.astro';
+import AnnouncementBar from '@components/AnnouncementBar.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
+import BestiaFirePopup from '@components/BestiaFirePopup.astro';
 
 interface Props {
   title: string;
@@ -81,13 +83,23 @@ const GSC_VERIFICATION = import.meta.env.PUBLIC_GSC_VERIFICATION;
   )}
 
   <slot name="head" />
+
+  <style is:global>
+    /* Barra-promo Bestia Fire fija arriba: define su altura y empuja el header
+       fijo y el contenido para que sigan despejando el header de 72px. */
+    :root { --announce-h: 38px; }
+    #main { padding-top: var(--announce-h); }
+    @media (max-width: 480px) { :root { --announce-h: 34px; } }
+  </style>
 </head>
 <body class={bodyClass} data-hero={heroTheme}>
   <a href="#main" class="skip-link">Saltar al contenido</a>
+  <AnnouncementBar />
   <Header />
   <main id="main">
     <slot />
   </main>
   <Footer />
+  <BestiaFirePopup />
 </body>
 </html>

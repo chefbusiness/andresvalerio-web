@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import CtaFinal from '@components/CtaFinal.astro';
+import BestiaFireBanner from '@components/BestiaFireBanner.astro';
 import { proyectos } from '@data/proyectos';
 ---
 
@@ -42,6 +43,8 @@ import { proyectos } from '@data/proyectos';
       </div>
     </div>
   </section>
+
+  <BestiaFireBanner variant="inline" context="projects" bgImage="/bestia-fire/banner.jpg" />
 
   <CtaFinal
     title="¿Una idea para tu próximo negocio?"

@@ -1,0 +1,181 @@
+---
+/**
+ * Banner del proyecto Bestia Fire (parrilla de carnes a domicilio del chef
+ * Andrés Valerio) para su web personal. Tema "rojo braza" de bestiafire.pro
+ * (#c42017 / #7c120e / #e5453a) que armoniza con el persimmon de marca (--pers).
+ * Copy en primera persona (es la web del propio chef).
+ *
+ * - variant="mega": bloque grande, ancho completo, para ir antes del footer.
+ * - variant="inline": versión compacta para intercalar dentro de una página.
+ * - context elige el copy (home | projects).
+ * Siempre abre bestiafire.pro en pestaña nueva.
+ */
+interface Props {
+  variant?: 'mega' | 'inline';
+  context?: 'home' | 'projects';
+  /** Imagen de fondo opcional (ruta en /public, p.ej. "/bestia-fire/banner.jpg"). */
+  bgImage?: string;
+}
+
+const { variant = 'mega', context = 'home', bgImage } = Astro.props;
+
+const URL = 'https://bestiafire.pro/';
+
+const COPY = {
+  home: {
+    eyebrow: 'Mi nuevo proyecto',
+    title: 'Bestia Fire',
+    script: 'parrilla a domicilio',
+    text: 'Llevo la parrilla de carnes premium, la brasa y el show del fuego en vivo a tu evento — donde tú digas, en todo el Distrito Nacional.',
+    cta: 'Descubrir Bestia Fire',
+  },
+  projects: {
+    eyebrow: 'Parrilla a domicilio',
+    title: 'Bestia Fire',
+    script: 'mi parrilla en vivo',
+    text: 'Carnes premium, brasa de verdad y el espectáculo del fuego frente a tus invitados. Mi servicio de parrilla a domicilio para eventos.',
+    cta: 'Ver Bestia Fire',
+  },
+}[context];
+---
+
+<section
+  class:list={['bf-banner', `bf-banner--${variant}`, { 'bf-banner--photo': bgImage }]}
+  style={bgImage ? `--bf-bg: url('${bgImage}')` : undefined}
+>
+  <div class="container bf-banner__inner">
+    <p class="bf-banner__eyebrow">
+      <span class="bf-banner__flame" aria-hidden="true">🔥</span>
+      {COPY.eyebrow}
+    </p>
+    <h2 class="bf-banner__title">
+      {COPY.title}
+      <span class="bf-banner__script">{COPY.script}</span>
+    </h2>
+    <p class="bf-banner__text">{COPY.text}</p>
+    <a class="bf-banner__cta" href={URL} target="_blank" rel="noopener noreferrer">
+      {COPY.cta}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .bf-banner {
+    --bf-red: #c42017;
+    --bf-red-dark: #7c120e;
+    --bf-red-bright: #e5453a;
+    --bf-ink: #15110c;
+    --bf-cream: #f4ecdd;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    text-align: center;
+    color: var(--bf-cream);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(229, 69, 58, 0.35), transparent 60%),
+      linear-gradient(150deg, var(--bf-red-dark) 0%, var(--bf-red) 45%, var(--bf-ink) 100%);
+  }
+  .bf-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 18% 120%, rgba(255, 140, 50, 0.28), transparent 45%),
+      radial-gradient(circle at 85% -10%, rgba(196, 32, 23, 0.4), transparent 50%);
+    pointer-events: none;
+  }
+  .bf-banner--photo {
+    background:
+      linear-gradient(150deg, rgba(124, 18, 14, 0.92) 0%, rgba(196, 32, 23, 0.72) 40%, rgba(21, 17, 12, 0.94) 100%),
+      var(--bf-bg) center / cover no-repeat;
+  }
+
+  .bf-banner__inner { position: relative; z-index: 1; max-width: 760px; margin-inline: auto; }
+
+  .bf-banner--mega { padding-block: clamp(4rem, 9vw, 7rem); }
+  .bf-banner--inline { padding-block: clamp(2.75rem, 6vw, 4rem); }
+
+  .bf-banner__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #ffd9c2;
+    margin: 0 0 1.125rem;
+  }
+  .bf-banner__flame {
+    font-size: 0.95rem;
+    filter: drop-shadow(0 0 6px rgba(255, 120, 40, 0.7));
+    animation: bfFlicker 2.6s ease-in-out infinite;
+  }
+  @keyframes bfFlicker {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.12); }
+  }
+
+  .bf-banner__title {
+    font-family: var(--font-display);
+    color: #fff;
+    line-height: 0.98;
+    margin: 0 0 1.25rem;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+  .bf-banner--mega .bf-banner__title { font-size: clamp(2.75rem, 7vw, 5rem); }
+  .bf-banner--inline .bf-banner__title { font-size: clamp(2rem, 5vw, 3.25rem); }
+
+  .bf-banner__script {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    color: #ffce8a;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .bf-banner--mega .bf-banner__script { font-size: clamp(1.9rem, 4.6vw, 3rem); }
+  .bf-banner--inline .bf-banner__script { font-size: clamp(1.4rem, 3.6vw, 2.1rem); }
+
+  .bf-banner__text {
+    max-width: 56ch;
+    margin: 0 auto 2rem;
+    font-size: clamp(1rem, 1.5vw, 1.1875rem);
+    line-height: 1.6;
+    color: rgba(244, 236, 221, 0.92);
+  }
+  .bf-banner--inline .bf-banner__text { margin-bottom: 1.5rem; font-size: clamp(0.95rem, 1.4vw, 1.0625rem); }
+
+  .bf-banner__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #fff;
+    color: var(--bf-red-dark);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 1.875rem;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  }
+  .bf-banner__cta:hover {
+    transform: translateY(-2px);
+    background: #ffce8a;
+    box-shadow: 0 14px 38px rgba(124, 18, 14, 0.5);
+  }
+  .bf-banner__cta span { transition: transform 200ms ease; }
+  .bf-banner__cta:hover span { transform: translateX(4px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bf-banner__flame { animation: none; }
+    .bf-banner__cta { transition: none; }
+  }
+</style>

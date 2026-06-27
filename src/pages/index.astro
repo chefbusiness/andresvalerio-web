@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import CtaFinal from '@components/CtaFinal.astro';
+import BestiaFireBanner from '@components/BestiaFireBanner.astro';
 import { personSchema } from '@utils/schema';
 ---
 
@@ -141,6 +142,9 @@ import { personSchema } from '@utils/schema';
     title="¿Tienes un proyecto en mente?"
     text="Cuéntame qué necesitas y te preparo una propuesta a medida."
   />
+
+  <!-- PROYECTO HERMANO: Bestia Fire (parrilla a domicilio) -->
+  <BestiaFireBanner variant="mega" context="home" bgImage="/bestia-fire/banner.jpg" />
 </BaseLayout>
 
 <style>
