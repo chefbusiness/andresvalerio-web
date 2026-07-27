@@ -1,7 +1,7 @@
 # Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **28 páginas**, todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **29 páginas**, todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
@@ -61,6 +61,14 @@ El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index
 - **FAQ corregida**: usaba la fórmula del *margen deseado* mientras el cuerpo usaba *food cost objetivo*. Equivalentes pero contradictorias en forma.
 - Cubre las **elaboraciones intermedias** (sub-recetas), que ninguna guía de la SERP explica, y enlaza escandallo → ficha técnica → `/consultoria/franquicias/`.
 
+### Contenido — tercer pilar de operación
+**Post nuevo `ficha-tecnica-de-cocina-estandarizar-platos`** (~4.595 palabras, cat. "Negocio gastronómico" → `/consultoria/franquicias/`). Keyword **"ficha técnica de cocina"** (320, competencia 0,01): junto con *estandarización de recetas* es el entregable real de una consultoría de franquicias, el segmento de mayor ticket del estudio.
+- **La frontera de los tres documentos queda dicha en el texto**: el food cost es el *porcentaje*, el escandallo es el documento que da el *costo*, y la ficha técnica es el que garantiza la *ejecución*. Aquí no se reexplica el rendimiento: se remite al pilar de escandallo.
+- **El ángulo que ninguna guía de la SERP cubre** (toda española, con kilos y euros): *cómo conseguir que la cocina la use de verdad* — soporte que aguante grasa y calor, ubicada donde se ejecuta el plato y no en la oficina, usada como material de formación, y **auditada pesando un plato ya montado en hora pico**. Ese es el ángulo de operador, no de consultor.
+- Ficha completa de ejemplo (mofongo con camarones) con cabecera, ingredientes y costo, procedimiento, montaje, alérgenos y conservación. Suma verificada (188).
+- **🔴 Trampa factual evitada**: las guías españolas presentan los alérgenos como **obligación legal** (normativa UE). **En RD no consta equivalente**, así que se instruyó al bridge para no afirmar obligación legal ni citar normativa dominicana; el texto los trata como buena práctica. Verificado con grep en el resultado. **Repetir esta salvaguarda siempre que se traduzca a RD un tema regulado en Europa** (alérgenos, etiquetado, APPCC, protección de datos).
+- Correcciones aplicadas: errata `Desterra` → `Destierra`; **68 °C como "término medio" → 71 °C**, que es el punto seguro en carne molida; y una contradicción de tiempos de plancha dentro del propio artículo.
+
 ⚠️ **Aprendizaje de imágenes**: el primer hero se descartó en la verificación visual por **texto ilegible inventado, símbolo de libra esterlina y kg** (moneda y unidad equivocadas, justo lo contrario de lo que defiende el artículo) y **cacerolas de cobre**, prohibidas por el maestro. **Al pedir imágenes con documentos o básculas, decir explícitamente "no text, no labels, no copper"**, y verificar siempre con Read antes de optimizar.
 
 ⚠️ **Aprendizaje de `bridge.py`**: a `--max-tokens 14000` la respuesta de OpenRouter llegó **truncada** (`Expecting value: line 2703`) tras 10+ min, dos veces. **Generar los artículos largos en dos mitades de ~11.000 tokens** y concatenar. Ojo al concatenar: si la primera mitad no termina en salto de línea, el primer `##` de la segunda se pega al párrafo anterior y deja de ser encabezado.
@@ -115,7 +123,8 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. Hoy el cross-promo de Bestia Fire es **solo de ida**: andresvalerio.com promociona bestiafire.pro (barra, banner, popup) y no recibe nada de vuelta. *(Menos urgente de lo que parecía: en RD ya es posición 1,6 por su nombre.)*
 4. ✅ **Post "cómo montar una hamburguesería"** — publicado y live (2026-07-27).
 5. ✅ **Pilar de escandallo** — publicado y live (2026-07-27).
-   **Siguientes pilares de operación pendientes**: *fichas técnicas de cocina* (320, comp. 0,01) y *estandarización de recetas* (320, comp. 0,00) — el post de escandallo ya les abre la puerta y ambos alimentan `/consultoria/franquicias/`, que es el segmento de mayor ticket. También *brigada de cocina* (2.900, comp. 0,00).
+6. ✅ **Ficha técnica de cocina** — publicada y live (2026-07-27).
+   **Siguientes pilares pendientes**: *estandarización de recetas* (320, comp. **0,00**) — cuidado con canibalizar la ficha técnica: la frontera pensada es que la ficha es **el documento** y la estandarización es **el proyecto** (desplegarlo en toda la carta, formación, auditoría de consistencia y réplica entre locales). También *manual de operaciones restaurante* (110, comp. 0,07) y *brigada de cocina* (2.900, comp. 0,00).
 6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
 7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
@@ -136,7 +145,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
 
-1. **Vigilar los dos posts del 2026-07-27** (hamburguesería y escandallo): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+1. **Vigilar los tres posts del 2026-07-27** (hamburguesería, escandallo y ficha técnica): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
    ```
    mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
    mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
