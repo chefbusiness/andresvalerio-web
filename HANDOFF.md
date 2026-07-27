@@ -1,7 +1,7 @@
 # Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **30 páginas** (8 posts de blog), todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **31 páginas** (9 posts de blog), todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
@@ -77,6 +77,15 @@ El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index
 - 🔴 **El bridge coló una PALABROTA en el cuerpo** ("todos los putos días"). Se detectó en la auditoría y se eliminó. **Añadir siempre un grep de palabrotas a la revisión previa a publicar**; el system prompt no lo previene.
 - Otras correcciones: errata "No documents" → "No documentes"; una FAQ describía la ficha técnica como "un documento que registra ingredientes y cantidades", infravalorándola y **contradiciendo al post publicado horas antes**; y tres referencias vagas ("búscalas en el blog") convertidas en enlaces reales.
 
+### Contenido — quinto pilar: brigada de cocina
+**Post nuevo `brigada-de-cocina-equipo-real`** (~5.341 palabras, cat. "Negocio gastronómico" → `/consultoria/mentoria/`). Keyword **"brigada de cocina"** (2.900, competencia **0,00**), el de más volumen que quedaba en el mapa.
+- **La SERP es 100% teoría clásica de Escoffier** (la pirámide y los nombres franceses), contenido de escuela escrito en España. **Esa brigada no existe en el 99% de los restaurantes.** El post hace las dos cosas: explica bien la teoría, que es lo que se busca, y luego la baja a lo que se monta en una cocina real. Idea central: **hay que cubrir funciones, no cargos.**
+- **Autoridad propia**: Andrés opera tres formatos con brigadas muy distintas (hamburguesería, parrilla y eventos, catering), y esa comparación no la puede escribir quien solo ha leído el manual.
+- 3 tablas (los 11 puestos clásicos con su equivalente actual, dotación por formato, y la cuenta de turnos), FAQ ×5, hero + 1 imagen.
+- **7 comprobaciones aritméticas** correctas, incluida la cuenta de plantilla que casi nadie hace: 4 personas × 7 días = 28 jornadas ÷ 6 días trabajados = 4,67 → **5 personas para sostener 4 en turno**.
+- Tabla histórica verificada puesto por puesto.
+- Nota de intención de búsqueda: es una keyword **informativa** (estudiantes y curiosos). Sirve para autoridad y audiencia más que para captar proyectos, como ya avisaba el estudio para "ghost kitchen". No esperar leads directos de aquí.
+
 ⚠️ **Aprendizaje de imágenes**: el primer hero se descartó en la verificación visual por **texto ilegible inventado, símbolo de libra esterlina y kg** (moneda y unidad equivocadas, justo lo contrario de lo que defiende el artículo) y **cacerolas de cobre**, prohibidas por el maestro. **Al pedir imágenes con documentos o básculas, decir explícitamente "no text, no labels, no copper"**, y verificar siempre con Read antes de optimizar.
 
 ⚠️ **Aprendizaje de `bridge.py`**: a `--max-tokens 14000` la respuesta de OpenRouter llegó **truncada** (`Expecting value: line 2703`) tras 10+ min, dos veces. **Generar los artículos largos en dos mitades de ~11.000 tokens** y concatenar. Ojo al concatenar: si la primera mitad no termina en salto de línea, el primer `##` de la segunda se pega al párrafo anterior y deja de ser encabezado.
@@ -133,7 +142,8 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 5. ✅ **Pilar de escandallo** — publicado y live (2026-07-27).
 6. ✅ **Ficha técnica de cocina** — publicada y live (2026-07-27).
 7. ✅ **Estandarización de recetas** — publicada y live (2026-07-27). Con ella queda **cerrado el clúster de franquicias**: escandallo → ficha técnica → estandarización, los tres enlazando a `/consultoria/franquicias/`.
-   **Siguientes pilares pendientes**: *brigada de cocina* (2.900, comp. **0,00**, el de más volumen que queda y encaja con mentoría) y *manual de operaciones restaurante* (110, comp. 0,07, que continuaría el clúster de franquicias). Después, el clúster de **formación / manipulación de alimentos**, que es el mayor volumen del mapa.
+8. ✅ **Brigada de cocina** — publicada y live (2026-07-27).
+   **Siguientes pilares pendientes**: *manual de operaciones restaurante* (110, comp. 0,07), que cerraría del todo el clúster de franquicias; y el clúster de **formación / manipulación de alimentos**, que es el mayor volumen del mapa y además es puerta de entrada e infoproducto. Ojo: con 5 pilares publicados el mismo día, **antes de seguir produciendo conviene esperar la primera lectura de GSC** y ver qué entra y por dónde.
 6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
 7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
@@ -154,7 +164,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
 
-1. **Vigilar los cuatro posts del 2026-07-27** (hamburguesería, escandallo, ficha técnica y estandarización): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+1. **Vigilar los cinco posts del 2026-07-27** (hamburguesería, escandallo, ficha técnica, estandarización y brigada de cocina): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
    ```
    mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
    mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
