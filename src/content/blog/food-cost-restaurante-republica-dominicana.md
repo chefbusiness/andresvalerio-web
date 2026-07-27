@@ -26,8 +26,9 @@ faq:
   - q: '¿Necesito un software o me basta una hoja de Excel?'
     a: 'Una hoja de Excel bien construida es suficiente cuando comienzas. Lo imprescindible no es la herramienta, sino la disciplina de pesar, fichar y actualizar. Más adelante, cuando manejes varios puntos de venta, un software de gestión te ahorrará tiempo, pero la lógica de control es la misma.'
 related:
-  - 'abrir-restaurante-republica-dominicana'
+  - 'escandallo-de-cocina-costo-real-por-plato'
   - 'ingenieria-de-menu-restaurante-republica-dominicana'
+  - 'abrir-restaurante-republica-dominicana'
   - 'permisos-abrir-restaurante-republica-dominicana'
 featured: false
 ---
@@ -74,7 +75,7 @@ Ese número ya está por encima de lo saludable para un restaurante de servicio 
 
 ## El escandallo: la ficha que te dice cuánto cuesta de verdad cada plato
 
-Un escandallo es la ficha técnica donde desglosas cada ingrediente de un plato con su cantidad exacta y su costo real. Sin un escandallo, volarías a ciegas; tu food cost sería una estimación y no un dato duro. En República Dominicana, donde el precio de la cebolla o del aceite vegetal puede cambiar tres veces en un mes por la fluctuación cambiaria o por el alza del flete, tener el escandallo actualizado es lo que separa al negocio profesional del que se entera de sus pérdidas cuando ya no tiene flujo de caja.
+Un escandallo es la ficha donde desglosas cada ingrediente de un plato con su cantidad exacta y su costo real. Sin un escandallo, volarías a ciegas; tu food cost sería una estimación y no un dato duro. Aquí te doy la versión resumida; si quieres el método completo, con el factor de rendimiento aplicado ingrediente por ingrediente, las elaboraciones intermedias y cómo sacar el precio de venta, lo tienes en mi [guía del escandallo de cocina](/blog/escandallo-de-cocina-costo-real-por-plato/). En República Dominicana, donde el precio de la cebolla o del aceite vegetal puede cambiar tres veces en un mes por la fluctuación cambiaria o por el alza del flete, tener el escandallo actualizado es lo que separa al negocio profesional del que se entera de sus pérdidas cuando ya no tiene flujo de caja.
 
 Te pongo una tabla real de escandallo de una hamburguesa clásica de Valerio Burger Club, con precios de marzo, pero insisto: actualízalos al menos cada 15 días.
 
