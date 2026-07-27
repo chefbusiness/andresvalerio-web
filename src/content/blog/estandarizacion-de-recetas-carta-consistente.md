@@ -27,6 +27,7 @@ faq:
   - q: "¿Qué hace falta para que un plato salga igual en dos locales?"
     a: "Que el estándar esté definido por resultado y no solo por procedimiento: a qué tiene que saber, qué textura y qué peso exacto tiene que tener el plato terminado. El suplidor, el equipamiento y hasta el agua cambian de un local a otro, así que hay que cocinar la carta completa en la cocina nueva y catarla contra el estándar del local original antes de abrir."
 related:
+  - "manual-de-operaciones-restaurante-guia"
   - "ficha-tecnica-de-cocina-estandarizar-platos"
   - "brigada-de-cocina-equipo-real"
   - "escandallo-de-cocina-costo-real-por-plato"
@@ -205,7 +206,7 @@ El suplidor de carne puede no ser el mismo en otra ciudad, o el mismo suplidor e
 
 Por eso, cuando el objetivo es replicar, el estándar se define **por resultado además de por procedimiento**. No basta con decir “la pechuga se cocina tres minutos por lado en plancha a 180°C”. Tienes que definir a qué tiene que saber, qué textura y qué peso exacto tiene que tener el plato terminado, y probar la carta completa en la cocina nueva antes de abrir. Se cocina el menú entero, se cata contra el estándar del local original y se ajusta lo que haga falta: temperatura, tiempo, proporción de adobo, lo que sea.
 
-Este conjunto documentado —fichas, estándares de resultado, registros de formación, auditorías— es el activo que se transfiere cuando una operación se convierte en [franquicia](/consultoria/franquicias/). Si no tienes esto, no tienes nada que franquiciar. Puedes tener un local exitoso, pero el éxito no se puede empaquetar ni transmitir. En cambio, una carpeta con los estándares validados y un protocolo de formación te permite poner una cocina nueva a producir con la misma calidad en semanas, no en meses.
+Este conjunto documentado —fichas, estándares de resultado, registros de formación, auditorías— es el activo que se transfiere cuando una operación se convierte en [franquicia](/consultoria/franquicias/), y es el núcleo del [manual de operaciones](/blog/manual-de-operaciones-restaurante-guia/) del negocio. Si no tienes esto, no tienes nada que franquiciar. Puedes tener un local exitoso, pero el éxito no se puede empaquetar ni transmitir. En cambio, una carpeta con los estándares validados y un protocolo de formación te permite poner una cocina nueva a producir con la misma calidad en semanas, no en meses.
 
 ## Los errores que más veo
 

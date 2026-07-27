@@ -26,6 +26,7 @@ faq:
   - q: '¿Necesito un abogado o gestor para los trámites?'
     a: 'Para la constitución de la empresa, sí es indispensable un abogado. Para el resto de los permisos, puedes hacer las gestiones personalmente, pero en la práctica muchos emprendedores prefieren contratar a un gestor que conozca los procesos y los tiempos de cada entidad. Si decides hacerlo tú mismo, ármate de paciencia, lleva siempre copias de todos los documentos y no des nada por sentado hasta que tengas el permiso en la mano.'
 related:
+  - 'manipulacion-de-alimentos-republica-dominicana'
   - 'abrir-restaurante-republica-dominicana'
   - 'food-cost-restaurante-republica-dominicana'
   - 'ingenieria-de-menu-restaurante-republica-dominicana'
