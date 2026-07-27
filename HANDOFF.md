@@ -1,4 +1,4 @@
-# Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
+# Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD, GSC operativo y 7 pilares de contenido)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). **33 páginas** (11 posts de blog), todas live y verdes.
@@ -167,9 +167,9 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 ### Higiene del entorno
 11. `~/.claude/bin` no está en el `PATH` (paso 5 del README del cockpit).
-12. El repo está **clonado dos veces**: `/root/andres-valerio-web` (el que se usa) y `/root/andresvalerio-web`, árboles idénticos. Y sobra `web/` dentro del working dir (copia del maestro de imágenes de la migración).
+12. El repo sigue **clonado dos veces**: `/root/andresvalerio-web` (**el canónico ahora**, coincide con el nombre del repo y es donde vive la memoria) y `/root/andres-valerio-web` (obsoleto, con un `web/` residual de la migración). ⚠️ **La memoria del proyecto se consolidó el 2026-07-27 en `~/.claude/projects/-root-andresvalerio-web/memory/`**; trabajar siempre desde `/root/andresvalerio-web` o la sesión no la verá. El clon viejo se puede borrar (está pusheado y sin cambios propios).
 13. `serp_research.py` de `chefbusiness-ai` tiene un fix **sin commitear**: la ruta del intérprete del Mac estaba hardcodeada, ahora usa `sys.executable` con override por `BRIDGE_PYTHON`.
-14. `astro.config.mjs:32` usa `lastmod: new Date()` → las 26 URLs del sitemap declaran la misma fecha (la del build). Señal de frescura falsa.
+14. `astro.config.mjs:33` usa `lastmod: new Date()` → **las 33 URLs del sitemap declaran la misma fecha** (la del build). Señal de frescura falsa: Google ignora el `lastmod` cuando no es fiable. Arreglo pensado: quitarlo, o derivar la fecha real del `pubDate`/`updatedDate` del frontmatter con `serialize`, de forma defensiva (no hay node para probarlo en local).
 
 ---
 
@@ -183,8 +183,10 @@ El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor
    mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
    ```
    Es la primera prueba real de la tesis del estudio: si una pieza de cola larga bien hecha rankea rápido, se replica el patrón con el resto del nivel 3.
-2. **Pilar de escandallo** (punto 5 de pendientes), que es el mayor activo transversal sin explotar.
+   🔴 **Decisión tomada al cerrar la sesión: no producir más contenido hasta tener esa lectura.** Se publicaron 7 piezas largas (~35.000 palabras) el mismo día sobre una base de 4 posts; el plan se apoya en volúmenes **globales estimados** y toca contrastarlos con datos reales de RD antes de seguir invirtiendo.
+2. **Casos de éxito con cifras** — sigue siendo lo único que de verdad convierte y hoy no existe ninguno. **Depende de que Andrés pase datos.** Once posts construyen autoridad; un caso con números cierra ventas.
 3. **Borrar el sitemap fantasma de 2024** en GSC (necesita `GSC_ALLOW_DESTRUCTIVE=true`).
+4. Cuando haya datos: cola larga del clúster de formación (*carnet de manipulador*, *buenas prácticas*, *APPCC*) y el segmento **F&B hotelero** (*gerente de alimentos y bebidas*, 480 y el CPC más alto del estudio → Punta Cana).
 
 Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**. El tráfico hispano global infla impresiones sin traer clientes, y el 30% de lo que hay hoy es marca de Valerio Burger Club que no convierte.
 
@@ -193,7 +195,7 @@ Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**.
 ## 🔧 Cómo retomar
 
 ```bash
-cd /root/andres-valerio-web && git pull
+git pull    # <- clon canónico (ahí vive la memoria)
 # NO hay node: no se puede build local. Se despliega por push:
 git push origin main          # Netlify compila y publica en ~30 s
 curl -s -o /dev/null -w '%{http_code}' https://www.andresvalerio.com/<ruta>/   # verificar
@@ -201,7 +203,7 @@ curl -s -o /dev/null -w '%{http_code}' https://www.andresvalerio.com/<ruta>/   #
 
 ## ⚠️ Reglas del proyecto
 - **Contenido**: SIEMPRE `bridge.py` (nunca redactar a mano). Keyword research + SERP **antes**. Enriquecido: tablas, datos, FAQ, ≥2 imágenes en el cuerpo + 1 destacada distinta. Interenlazado, sin huérfanas.
-- **Verificar lo que genera el bridge**: ha metido errores conceptuales (llamó "perro" a un caballo de batalla), voseo rioplatense en vez de tuteo dominicano, y afirmaciones no verificables sobre la trayectoria de Andrés. **Auditar aritmética y hechos antes de publicar.**
+- **Verificar lo que genera el bridge**: ha metido errores conceptuales, voseo rioplatense (también en la salida de `--task meta`), palabrotas, afirmaciones no verificables sobre Andrés, fugas del prompt y **truncamiento silencioso** (salida cortada a media frase reportada como éxito). **La revisión completa de 13 puntos está en la memoria: `checklist-antes-de-publicar.md`. Pasarla siempre antes de desplegar.**
 - **Estética**: fast-good / street food / cocina de producto RD, oscura (VBC). Fotos reales para hero/persona. **Nunca** mediterráneo, aceite de oliva ni The Crime. Sin emojis como iconografía.
 - **Nomenclatura vs producto**: las páginas de captación se nombran como busca el mercado; las de producto/método (diagnóstico, mentoría) conservan su nombre y solo **suman** señales. No se elimina ni se renombra nada de lo ya publicado.
 - **andresvalerio.com y consultoresgastronomicos.pro son entes independientes.** Andrés tiene ficha contratada en el directorio; eso es off-page (citation + backlink), no un canal estratégico ni fuente de canibalización.
