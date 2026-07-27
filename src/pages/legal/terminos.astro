@@ -1,5 +1,6 @@
 ---
 import LegalPage from '@components/LegalPage.astro';
+import { WHATSAPP, EMAIL } from '@utils/contacto';
 ---
 <LegalPage
   title="Aviso legal y términos de uso"
@@ -8,7 +9,7 @@ import LegalPage from '@components/LegalPage.astro';
   canonicalPath="/legal/terminos/"
 >
   <h2>1. Datos del titular</h2>
-  <p>Este sitio web, <strong>andresvalerio.com</strong>, es titularidad de <strong>Andrés Valerio</strong>, chef y consultor gastronómico, con domicilio profesional en Santo Domingo, República Dominicana. Contacto: <a href="mailto:hola@andresvalerio.com">hola@andresvalerio.com</a> · <a href="https://wa.me/18098847605" target="_blank" rel="noopener noreferrer">+1 809 884 7605</a>.</p>
+  <p>Este sitio web, <strong>andresvalerio.com</strong>, es titularidad de <strong>Andrés Valerio</strong>, chef y consultor gastronómico, con domicilio profesional en Santo Domingo, República Dominicana. Contacto: <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">+1 809 884 7605</a>.</p>
 
   <h2>2. Objeto</h2>
   <p>El presente documento regula el acceso y uso de andresvalerio.com, que ofrece información sobre el chef, sus servicios de consultoría gastronómica, sus proyectos, recetas, blog y formas de contacto.</p>

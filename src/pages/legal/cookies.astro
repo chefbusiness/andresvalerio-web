@@ -1,5 +1,6 @@
 ---
 import LegalPage from '@components/LegalPage.astro';
+import { EMAIL } from '@utils/contacto';
 ---
 <LegalPage
   title="Política de cookies"
@@ -29,5 +30,5 @@ import LegalPage from '@components/LegalPage.astro';
   <p>Todos los navegadores modernos permiten bloquear o eliminar cookies desde sus ajustes. Consulta la documentación de tu navegador para más detalle.</p>
 
   <h2>5. Contacto</h2>
-  <p>Para cualquier duda sobre esta política, escríbenos a <a href="mailto:hola@andresvalerio.com">hola@andresvalerio.com</a>.</p>
+  <p>Para cualquier duda sobre esta política, escríbenos a <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
 </LegalPage>

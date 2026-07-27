@@ -1,5 +1,12 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { whatsappUrl, emailUrl, EMAIL } from '@utils/contacto';
+
+// Estos son los enlaces por defecto (sin origen conocido). Si el visitante
+// llega desde otra página del sitio, el script del final los reescribe con
+// la atribución concreta. Ver src/utils/contacto.ts.
+const waDefault = whatsappUrl();
+const mailDefault = emailUrl();
 ---
 
 <BaseLayout
@@ -36,7 +43,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               <div>
                 <h3>WhatsApp</h3>
                 <p>Escríbeme directo para consultas rápidas.</p>
-                <a href="https://wa.me/18098847605" class="method-link" target="_blank" rel="noopener noreferrer">
+                <a href={waDefault} data-wa class="method-link" target="_blank" rel="noopener noreferrer">
                   Abrir WhatsApp →
                 </a>
               </div>
@@ -51,8 +58,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
               <div>
                 <h3>Correo</h3>
                 <p>Para propuestas formales y documentación.</p>
-                <a href="mailto:hola@andresvalerio.com" class="method-link">
-                  hola@andresvalerio.com
+                <a href={mailDefault} data-mail class="method-link">
+                  {EMAIL}
                 </a>
               </div>
             </div>
@@ -357,5 +364,32 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 <script>
   import { initReveal } from '@utils/reveal';
+  import { etiquetaOrigen, whatsappUrl, emailUrl } from '@utils/contacto';
+
   initReveal();
+
+  // Atribución del lead sin analítica: si el visitante llegó desde otra página
+  // del sitio, se reescriben los enlaces para que el mensaje diga de dónde
+  // viene. El Referrer-Policy del sitio (strict-origin-when-cross-origin)
+  // conserva la ruta completa en navegación interna. Si no hay referrer o es
+  // externo, se quedan los enlaces por defecto renderizados en el build.
+  try {
+    const ref = document.referrer;
+    if (ref) {
+      const url = new URL(ref);
+      if (url.origin === window.location.origin && url.pathname !== window.location.pathname) {
+        const origen = etiquetaOrigen(url.pathname);
+        if (origen) {
+          document.querySelectorAll<HTMLAnchorElement>('a[data-wa]').forEach((a) => {
+            a.href = whatsappUrl(origen);
+          });
+          document.querySelectorAll<HTMLAnchorElement>('a[data-mail]').forEach((a) => {
+            a.href = emailUrl(origen);
+          });
+        }
+      }
+    }
+  } catch {
+    // URL inválida o referrer inaccesible: se dejan los enlaces por defecto.
+  }
 </script>

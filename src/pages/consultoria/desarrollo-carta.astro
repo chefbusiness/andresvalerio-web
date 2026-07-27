@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { serviceSchema, faqSchema } from '@utils/schema';
+import { whatsappUrl, emailUrl, etiquetaOrigen } from '@utils/contacto';
+
+// El origen se conoce en build: este CTA va directo a WhatsApp.
+const origen = etiquetaOrigen('/consultoria/desarrollo-carta/');
 
 const data = {
   hero: { eyebrow: 'Desarrollo y renovación de carta', h1: 'Desarrollo y renovación de carta' },
@@ -279,8 +283,8 @@ const pricingRows = [
       <h2 class="rv d1">¿Tienes platos en mente?</h2>
       <p class="lead rv d2">Cuéntame qué quieres renovar o crear y te envío una propuesta con alcance y presupuesto.</p>
       <div class="final-actions rv d3">
-        <a href="https://wa.me/18098847605" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <span class="ar">→</span></a>
-        <a href="mailto:hola@andresvalerio.com" class="btn btn-ghost">Enviar un correo</a>
+        <a href={whatsappUrl(origen)} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <span class="ar">→</span></a>
+        <a href={emailUrl(origen)} class="btn btn-ghost">Enviar un correo</a>
       </div>
     </div>
   </section>
