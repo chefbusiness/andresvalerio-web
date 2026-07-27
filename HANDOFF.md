@@ -1,7 +1,7 @@
-# Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución)
+# Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **26 páginas**, todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **27 páginas**, todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
@@ -29,7 +29,34 @@ Se trabaja en una **VM Linux** (`/root/andres-valerio-web`), no en el MacBook. I
 
 ---
 
-## ✅ Hecho 2026-07-27
+## ✅ Hecho 2026-07-27 (tarde) — GSC operativo, primeros datos reales y post de hamburguesería
+
+### Search Console: acceso resuelto y línea base medida
+**El MCP `gscServer` ya funciona desde la VM.** Las credenciales están en el cockpit (`mcp-gsc/client_secrets.json` y `token.json` en el `secrets.manifest`), el servidor está instalado como `gsc-mcp` y la propiedad es **`sc-domain:andresvalerio.com`** (`siteOwner`). Se usan las herramientas `mcp__gscServer__*` directamente; no hace falta `gsc_report.py`. Ojo: las herramientas destructivas están bloqueadas salvo `GSC_ALLOW_DESTRUCTIVE=true`.
+
+**Línea base en RD (2026-04-28 → 07-26, filtrando `country=dom`): 607 impresiones, 7 clics, posición media 7,8.** El sitio entró en el índice el **2026-06-02** y sube de ~4 impresiones/día en junio a ~15-20/día a finales de julio. Hallazgos:
+1. **El 30% de la visibilidad en RD es marca ajena y no convierte**: `/proyectos/valerio-burger-club/` se lleva 177 de las 607 impresiones con **0 clics** (pos. 8,7), por consultas "valerio burger club". Quien busca eso quiere el restaurante y hace clic en valerioburgerclub.com. La visibilidad real de la consultoría es casi cero.
+2. **Donde hay contenido de dolor operativo, rankea rápido y sin autoridad**: el post de permisos está en **posición 6,2**. Confirma la tesis 3 del estudio: el cuello de botella es **cantidad de contenido**, no capacidad de rankear.
+3. **La hamburguesa es su tracción real**: "curso de hamburguesas presencial" en posición 3 y uno de los 7 clics.
+4. **Corrección al handoff anterior**: en RD "andres valerio" está en **posición 1,6**, no 8,6 (la cifra global la diluyen otros Valerios de Chile y México). El schema `Person` sigue mereciendo la pena por entidad, pero **no es urgencia de marca**.
+5. Las recetas solo traen tráfico mexicano de "salsa roja para tacos" en posiciones 27-47. Ni daña ni aporta.
+
+### 🔴 Sitemap: defecto encontrado y corregido
+El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index.xml` — **guion bajo**, en el apex, herencia de una época WordPress —, que devuelve **404** y no se rastreaba desde **2024-06-26** (estado "Has errors"). El sitemap real de Astro es `https://www.andresvalerio.com/sitemap-index.xml` (**guion**), estaba bien declarado en `robots.txt` pero **nunca se había enviado**. Se envió: ahora figura **`Valid`, 0 errores**, rastreado al instante.
+⚠️ **Queda borrar el fantasma de 2024** (requiere `GSC_ALLOW_DESTRUCTIVE=true`). Lección: comprobar el sitemap *registrado* contra el que *existe*; que responda 200 en `robots.txt` no basta.
+
+### Contenido — primer post del nivel 3
+**Post nuevo `como-montar-una-hamburgueseria-republica-dominicana`** (~3.850 palabras, cat. "Negocio gastronómico" → `/consultoria/apertura/`). Es la keyword de mejor ratio del estudio (260, competencia 0,02) y la única que solo Andrés puede firmar. **El hueco es real: toda la SERP está escrita para España o Argentina, en euros.**
+- 4 tablas: inversión inicial a dos escenarios (barra para llevar vs. local con salón), equipamiento imprescindible vs. aplazable, escandallo de una hamburguesa y costos fijos. Más punto de equilibrio, FAQ ×5, hero + 2 imágenes de cuerpo.
+- **Aritmética verificada con script**: las 4 sumas de la tabla de inversión, el escandallo (115), el margen (275), el food cost (29,5%), el equilibrio (472,7 → 473/mes ≈ 16/día) y el ejemplo de delivery cuadran exactos.
+- **Contradicción entre posts detectada y resuelta**: el borrador daba un food cost del 32,9% y declaraba sano el rango 28-35%, pero el post de food cost ya afirma **25-30%** para una hamburguesería. Se recalculó el ejemplo a **RD$390** para que caiga dentro. *Revisar siempre la coherencia numérica con los posts hermanos, no solo dentro del propio artículo.*
+- Clúster cerrado con enlaces de ida y vuelta (pilar, food cost, ingeniería de menú, permisos) y CTA a `/consultoria/apertura/`.
+
+⚠️ **Aprendizaje de `bridge.py`**: a `--max-tokens 14000` la respuesta de OpenRouter llegó **truncada** (`Expecting value: line 2703`) tras 10+ min, dos veces. **Generar los artículos largos en dos mitades de ~11.000 tokens** y concatenar. Ojo al concatenar: si la primera mitad no termina en salto de línea, el primer `##` de la segunda se pega al párrafo anterior y deja de ser encabezado.
+
+---
+
+## ✅ Hecho 2026-07-27 (mañana)
 
 ### Contenido — clúster de rentabilidad cerrado
 - **Post nuevo `ingenieria-de-menu-restaurante-republica-dominicana`** (~2.400 palabras, cat. "Rentabilidad" → `/consultoria/desarrollo-carta/`). Matriz estrella/caballo/puzzle/perro, ejemplo con 8 platos de hamburguesería de Santo Domingo (**aritmética verificada**: unidades, popularidades, márgenes, umbral 8,75% y las 8 clasificaciones cuadran), sección propia sobre comisiones de delivery (20-30%) que obliga a una matriz por canal. Hero + 2 imágenes de cuerpo. FAQ ×5.
@@ -73,10 +100,10 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
    - **Cómo leer los resultados en GSC:** filtrar siempre **por país = República Dominicana**. El tráfico hispano global infla impresiones sin traer clientes.
 
 ### Siguiente en el plan (mes 1-2 del estudio)
-2. **Casos de éxito con cifras** — es lo que convierte y hoy no existe ninguno. Empezar por sus propios negocios.
-3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. Hoy el cross-promo de Bestia Fire es **solo de ida**: andresvalerio.com promociona bestiafire.pro (barra, banner, popup) y no recibe nada de vuelta.
-4. **Post "cómo montar una hamburguesería"** (260, competencia 0,02): mejor ratio del estudio y el único que solo Andrés puede firmar.
-5. **Pilar de escandallo** (6.600, competencia 0,05), enlazado al de food cost.
+2. **Casos de éxito con cifras** — es lo que convierte y hoy no existe ninguno. Empezar por sus propios negocios. **Bloqueado: hacen falta datos reales de Andrés.**
+3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. Hoy el cross-promo de Bestia Fire es **solo de ida**: andresvalerio.com promociona bestiafire.pro (barra, banner, popup) y no recibe nada de vuelta. *(Menos urgente de lo que parecía: en RD ya es posición 1,6 por su nombre.)*
+4. ✅ **Post "cómo montar una hamburguesería"** — publicado y live (2026-07-27).
+5. **Pilar de escandallo** (6.600, competencia 0,05), enlazado al de food cost. **Es el siguiente candidato natural**: mayor volumen del estudio y el post de food cost ya rankea.
 6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
 7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
@@ -95,21 +122,20 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 ## ▶️ Lo primero al retomar
 
-**John estaba subiendo las credenciales de Search Console al cockpit cuando se cerró la sesión.** Arrancar por ahí:
+El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
 
-```bash
-cd ~/.claude && git pull --rebase --autostash && bin/secrets-pull
-cd /root/chefbusiness-ai
-.venv/bin/python gsc_report.py --list                                    # confirmar acceso y ver el siteUrl real
-.venv/bin/python gsc_report.py --site sc-domain:andresvalerio.com --country dom --days 90
-.venv/bin/python gsc_report.py --site sc-domain:andresvalerio.com --country dom --dimension page
-```
+1. **Vigilar el post de hamburguesería**: se publicó el 2026-07-27, así que Google todavía no lo conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+   ```
+   mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
+   mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
+   ```
+   Es la primera prueba real de la tesis del estudio: si una pieza de cola larga bien hecha rankea rápido, se replica el patrón con el resto del nivel 3.
+2. **Pilar de escandallo** (punto 5 de pendientes), que es el mayor activo transversal sin explotar.
+3. **Borrar el sitemap fantasma de 2024** en GSC (necesita `GSC_ALLOW_DESTRUCTIVE=true`).
 
-`gsc_report.py` **ya está escrito** y sus librerías instaladas en el venv (acepta service account o token OAuth). Si se usa service account, hay que **añadir su email como usuario en Search Console** o verá cero propiedades — es el fallo más común.
+Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**. El tráfico hispano global infla impresiones sin traer clientes, y el 30% de lo que hay hoy es marca de Valerio Burger Club que no convierte.
 
-Serán los **primeros datos reales de RD** del proyecto: todo el estudio se apoya en volúmenes globales estimados (ver §2 de `ESTRATEGIA-RD-CONSULTORIA.md`), así que **es probable que aparezcan consultas no previstas y haya que ajustar alguna conclusión**. Filtrar siempre por país.
-
-⚠️ En `/root/chefbusiness-ai` hay **dos cambios sin commitear**: el fix de `serp_research.py` (ruta del intérprete del Mac hardcodeada → `sys.executable`) y el nuevo `gsc_report.py`. Decidir si se suben a ese repo.
+⚠️ En `/root/chefbusiness-ai` siguen **dos cambios sin commitear**: el fix de `serp_research.py` (ruta del intérprete del Mac hardcodeada → `sys.executable`) y `gsc_report.py`. Decidir si se suben a ese repo.
 
 ## 🔧 Cómo retomar
 
