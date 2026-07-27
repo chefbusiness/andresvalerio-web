@@ -27,6 +27,7 @@ faq:
   - q: "¿Cada cuánto se actualiza una ficha técnica?"
     a: "Cada vez que cambie la receta, el gramaje o el suplidor, y siempre que se actualice el escandallo, porque el costo por ración que aparece en la ficha tiene que seguir siendo cierto. Cada versión lleva fecha, número y responsable, y la anterior se retira: tener dos versiones circulando a la vez es uno de los errores más caros, porque el plato sale distinto según quién esté en la línea."
 related:
+  - "estandarizacion-de-recetas-carta-consistente"
   - "escandallo-de-cocina-costo-real-por-plato"
   - "food-cost-restaurante-republica-dominicana"
   - "ingenieria-de-menu-restaurante-republica-dominicana"
@@ -222,7 +223,7 @@ Por eso, cuando asesoro a un restaurante que quiere crecer, el primer entregable
 
 Documentar la carta entera de un tirón es la receta perfecta para no terminar nunca. Se vuelve abrumador, se deja a medias y las fichas que quedan hechas se olvidan en una computadora.
 
-Empieza por un solo plato: el que más sale, el que define la casa, el que no puede fallar. Si es el mofongo, que sea el mofongo. Pésalo, escríbelo, ponle foto, cuélgalo en la línea y haz que todo el equipo lo trabaje con esa ficha durante dos semanas. Cuando veas que el plato sale igual todos los días, sin que tú tengas que supervisarlo, ya entendiste para qué sirve una ficha técnica.
+Empieza por un solo plato: el que más sale, el que define la casa, el que no puede fallar. (Llevar esto a la carta entera ya es otro trabajo, con sus fases y su orden: lo cuento en la guía de [estandarización de recetas](/blog/estandarizacion-de-recetas-carta-consistente/).) Si es el mofongo, que sea el mofongo. Pésalo, escríbelo, ponle foto, cuélgalo en la línea y haz que todo el equipo lo trabaje con esa ficha durante dos semanas. Cuando veas que el plato sale igual todos los días, sin que tú tengas que supervisarlo, ya entendiste para qué sirve una ficha técnica.
 
 Ahí sí, pasa al siguiente.
 
