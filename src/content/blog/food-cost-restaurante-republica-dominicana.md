@@ -27,6 +27,8 @@ faq:
     a: 'Una hoja de Excel bien construida es suficiente cuando comienzas. Lo imprescindible no es la herramienta, sino la disciplina de pesar, fichar y actualizar. Más adelante, cuando manejes varios puntos de venta, un software de gestión te ahorrará tiempo, pero la lógica de control es la misma.'
 related:
   - 'abrir-restaurante-republica-dominicana'
+  - 'ingenieria-de-menu-restaurante-republica-dominicana'
+  - 'permisos-abrir-restaurante-republica-dominicana'
 featured: false
 ---
 
@@ -151,7 +153,7 @@ Reducir el food cost no significa servir menos ni bajar la calidad; significa se
 - **Ajustar gramajes con criterio.** A veces 155 gramos de proteína en vez de 180 ofrecen la misma percepción de abundancia si la guarnición es generosa y el plato está bien presentado. Siempre verifica que el cliente reciba valor, pero revisa si estás regalando gramos que no se notan.
 - **Tener fichas técnicas vivas.** Si sube el precio del plátano verde, actualizas el escandallo y, si hace falta, revisas el precio de venta o buscas un sustituto de temporada. No esperes al cierre de mes para enterarte de que vendiste mil tostones a pérdida.
 
-La ingeniería de menú, por su profundidad, merece un análisis completo en otro momento, pero ya con lo que tienes aquí puedes avanzar un tramo enorme.
+La ingeniería de menú, por su profundidad, merecía un análisis aparte: lo tienes completo en mi guía sobre [ingeniería de menú para restaurantes en República Dominicana](/blog/ingenieria-de-menu-restaurante-republica-dominicana/), con la matriz, el umbral de popularidad y una carta de ejemplo analizada plato por plato. Ya con lo que tienes aquí puedes avanzar un tramo enorme.
 
 ## Conclusión
 

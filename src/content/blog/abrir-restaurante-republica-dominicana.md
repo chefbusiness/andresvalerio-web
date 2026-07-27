@@ -25,6 +25,7 @@ faq:
     a: 'El principal motivo no es la falta de clientes, sino la falta de caja. Una gestión financiera deficiente, donde no se separa el capital de trabajo, no se controla el costo de los insumos y no se reinvierte el flujo correctamente, asfixia el negocio. Puedes tener el restaurante lleno y aun así estar en la quiebra si tu estructura de costos no es sostenible.'
 related:
   - 'permisos-abrir-restaurante-republica-dominicana'
+  - 'ingenieria-de-menu-restaurante-republica-dominicana'
   - 'food-cost-restaurante-republica-dominicana'
 featured: true
 ---
@@ -96,7 +97,7 @@ Cada plato debe desglosarse gramo a gramo, incluyendo merma, aceite, sal y hasta
 El *food cost* es el costo de materia prima de un plato dividido entre su precio de venta (sin ITBIS). Un restaurante típico busca entre 28% y 35%. Si vendes un plato a 1,000 RD$, el costo de los ingredientes no debería pasar de 280-350 RD$. Ojo: el *beverage cost* suele ser menor (18-25%), ayudando a compensar. Platos con food cost superior al 40% necesitan un volumen altísimo o te llevan a pérdida. Si quieres profundizar con escandallos, mermas y ejemplos en RD$, escribí una guía completa sobre [cómo calcular y controlar el food cost de tu restaurante en RD](/blog/food-cost-restaurante-republica-dominicana/).
 
 **c) Ficha técnica e ingeniería de menú**  
-Las fichas técnicas incluyen el escandallo, foto del plato terminado, protocolo de montaje y alérgenos. Es la biblia de cocina. Luego, con la **ingeniería de menú** clasificas cada plato según su popularidad y margen (estrellas, caballos de batalla, puzzles y perros). Elimina los “perros” (poco populares, bajo margen), reposiciona los puzzles (popular pero poco margen: ajusta precio, reduce gramaje o cambia acompañante) y empuja los caballos (alto margen, poca venta) con sugerencia del mesero. Este análisis trimestral salva restaurantes.
+Las fichas técnicas incluyen el escandallo, foto del plato terminado, protocolo de montaje y alérgenos. Es la biblia de cocina. Luego, con la **ingeniería de menú** clasificas cada plato según su popularidad y margen (estrellas, caballos de batalla, puzzles y perros). Elimina los “perros” (poco populares, bajo margen), rediseña los caballos de batalla (populares pero de poco margen: ajusta precio, reduce gramaje o cambia acompañante) y empuja los puzzles (alto margen, poca venta) con sugerencia del mesero. Este análisis trimestral salva restaurantes, y lo desarrollo paso a paso, con la carta de una hamburguesería de Santo Domingo y sus números, en mi guía de [ingeniería de menú](/blog/ingenieria-de-menu-restaurante-republica-dominicana/).
 
 ## 6. Equipo de cocina y sala: contrata actitud, entrena técnica
 

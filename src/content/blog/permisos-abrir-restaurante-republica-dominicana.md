@@ -28,6 +28,7 @@ faq:
 related:
   - 'abrir-restaurante-republica-dominicana'
   - 'food-cost-restaurante-republica-dominicana'
+  - 'ingenieria-de-menu-restaurante-republica-dominicana'
 featured: false
 ---
 
