@@ -53,6 +53,10 @@ Se sumó nomenclatura de búsqueda **sin tocar URLs, sin renombrar servicios y s
 - **`/sobre-mi/`**: title y description con la categoría.
 - **`/consultoria/diagnostico/` se dejó INTACTO a propósito**: es la **puerta de entrada comercial** que cualifica al cliente, no una página de captación. Su nombre es parte del método (igual que el diagnóstico de ChefBusiness), y su meta description ya recoge el dolor. **Regla de John: hay servicios que nadie busca y aun así tienen que estar.**
 
+### Atribución de leads (sustituye a la analítica)
+`src/utils/contacto.ts` es la **única fuente de verdad** del teléfono y el email (ya no hay ninguno hardcodeado en `src/`) y construye las URLs de WhatsApp y mailto con el origen dentro del mensaje. En `/consultoria/desarrollo-carta/` el origen se resuelve en build; en `/contacto/` —por donde pasan casi todos los CTA— se deduce del `document.referrer` en cliente. Andrés recibe *"Hola Andrés, te escribo desde la página de franquicias de tu web"*. En los legales el número va sin `?text=` (ahí es dato del titular).
+⚠️ **Al crear una página nueva, añadir su ruta al mapa `ORIGENES`** o sus leads llegarán con el mensaje genérico.
+
 ### Servicio nuevo — `/consultoria/franquicias/`
 Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (patrón `ServiceLanding`) + imagen de contexto (Nano Banana). Enlazado desde el hub y desde el **footer** (site-wide). Delimita que la parte legal y financiera la lleva un abogado.
 ⚠️ El lead generado afirmaba que Andrés "ha replicado sus marcas con éxito"; **no consta que tenga sucursales**, se sustituyó por lo verificable (opera tres marcas a la vez). **Vigilar este tipo de afirmaciones en todo lo que genere el bridge.**
@@ -88,6 +92,24 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 14. `astro.config.mjs:32` usa `lastmod: new Date()` → las 26 URLs del sitemap declaran la misma fecha (la del build). Señal de frescura falsa.
 
 ---
+
+## ▶️ Lo primero al retomar
+
+**John estaba subiendo las credenciales de Search Console al cockpit cuando se cerró la sesión.** Arrancar por ahí:
+
+```bash
+cd ~/.claude && git pull --rebase --autostash && bin/secrets-pull
+cd /root/chefbusiness-ai
+.venv/bin/python gsc_report.py --list                                    # confirmar acceso y ver el siteUrl real
+.venv/bin/python gsc_report.py --site sc-domain:andresvalerio.com --country dom --days 90
+.venv/bin/python gsc_report.py --site sc-domain:andresvalerio.com --country dom --dimension page
+```
+
+`gsc_report.py` **ya está escrito** y sus librerías instaladas en el venv (acepta service account o token OAuth). Si se usa service account, hay que **añadir su email como usuario en Search Console** o verá cero propiedades — es el fallo más común.
+
+Serán los **primeros datos reales de RD** del proyecto: todo el estudio se apoya en volúmenes globales estimados (ver §2 de `ESTRATEGIA-RD-CONSULTORIA.md`), así que **es probable que aparezcan consultas no previstas y haya que ajustar alguna conclusión**. Filtrar siempre por país.
+
+⚠️ En `/root/chefbusiness-ai` hay **dos cambios sin commitear**: el fix de `serp_research.py` (ruta del intérprete del Mac hardcodeada → `sys.executable`) y el nuevo `gsc_report.py`. Decidir si se suben a ese repo.
 
 ## 🔧 Cómo retomar
 
