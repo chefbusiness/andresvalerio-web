@@ -62,7 +62,10 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 ## ⏳ Pendiente
 
 ### 🔴 Crítico
-1. **Analítica sin configurar.** No hay GA4, ni Clarity, ni verificación de GSC en producción: el sitio lleva **más de dos meses publicando a ciegas**. El código ya lo soporta (`BaseLayout.astro:42-44`), faltan las env vars en Netlify: `PUBLIC_GA_ID`, `PUBLIC_MICROSOFT_CLARITY_ID`, `PUBLIC_GSC_VERIFICATION`, `PUBLIC_WHATSAPP`, `PUBLIC_CONTACT_EMAIL`. **Sin esto no se puede medir nada del plan.** Luego: verificar en GSC y enviar `https://www.andresvalerio.com/sitemap-index.xml`.
+1. **Medición.** **No se usa GA4 ni Clarity: es una decisión deliberada de John**, todo el seguimiento técnico se hace en **Google Search Console**. No hay que instalar analítica ni rellenar `PUBLIC_GA_ID` / `PUBLIC_MICROSOFT_CLARITY_ID` / `PUBLIC_GSC_VERIFICATION`.
+   - **La propiedad YA está verificada en GSC por DNS**: `andresvalerio.com` tiene el TXT `google-site-verification=YZPRMYv8hg9…` en el apex. Cubre apex y www, así que la meta de verificación es innecesaria. El sitemap está declarado en `robots.txt` y responde 200.
+   - **No hay acceso a GSC desde esta VM.** Hay un MCP `gscServer` en `~/.claude.json`, pero apunta a `/Users/johnguerrero/mcp-gsc/` (rutas del Mac). El repo `mcp-gsc` **no está en la organización de GitHub** y las credenciales **no viajan en el cockpit** (`secrets.manifest` no contiene nada de Google/GSC). Para trabajar con datos de GSC desde aquí hace falta: subir `mcp-gsc` a GitHub (o indicar de dónde clonarlo), meter su fichero de credenciales en el cockpit con `secrets-push`, y corregir la ruta del MCP en `.claude.json`.
+   - **Punto ciego a cubrir:** GSC mide adquisición (impresiones, clics, posiciones, consultas), no conversión. Todos los CTA apuntan al mismo `wa.me/18098847605` **sin `?text=`**, así que hoy es imposible saber de qué página viene un contacto. Solución sin analítica: un texto prellenado distinto por página.
 
 ### Siguiente en el plan (mes 1-2 del estudio)
 2. **Casos de éxito con cifras** — es lo que convierte y hoy no existe ninguno. Empezar por sus propios negocios.

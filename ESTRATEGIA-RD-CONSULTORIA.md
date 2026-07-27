@@ -286,7 +286,7 @@ Hoy el sitio tiene 4 servicios: diagnóstico, apertura, desarrollo de carta y me
 | **Casos de éxito con cifras** | Es lo que convierte. Hoy no existe ninguno | **Alta** |
 | **Navegación "por problema"** | El eje que hace funcionar a ChefBusiness. La gente busca su problema | **Alta** |
 | **Páginas por ciudad** (Santo Domingo, Santiago, Punta Cana) | Cubre el eje donde opera y el 84% del parque de franquicias | Media |
-| **Analítica (GA4, Clarity, GSC)** | **Dos meses publicando a ciegas.** Sin esto no se puede medir nada de lo anterior | **Crítica** |
+| **Atribución de leads en los CTA** | Se mide con Search Console (decisión tomada: no se usa GA4 ni Clarity). GSC cubre la adquisición, pero **no dice qué página genera contactos**. Ver nota abajo | **Alta** |
 | Producto digital (plantilla de escandallo, calculadora de food cost) | Captura de leads + ingreso pasivo. Encaja con el volumen de "food cost" | Media |
 
 ---
@@ -294,7 +294,8 @@ Hoy el sitio tiene 4 servicios: diagnóstico, apertura, desarrollo de carta y me
 ## 8. Plan de 90 días
 
 **Mes 1 — cimientos y medición**
-- Activar analítica y verificar Search Console. *Sin esto todo lo demás es opinión.*
+- **Medición**: la propiedad **ya está verificada en Search Console por DNS** (registro TXT en el apex, que cubre apex y www), y el sitemap está declarado en `robots.txt` y accesible. No hace falta la meta de verificación ni `PUBLIC_GSC_VERIFICATION`. **No se usa GA4 ni Clarity: es una decisión deliberada**, todo el seguimiento técnico se hace en GSC.
+- **Cubrir el punto ciego de GSC**: Search Console dice quién llega y por qué consulta, pero no qué página genera el contacto. Como todos los CTA apuntan al mismo `wa.me` sin texto prellenado, hoy es imposible atribuir un lead a una página. Solución sin analítica ni cookies: **un `?text=` distinto por página** ("Hola Andrés, te escribo desde la página de franquicias"), de modo que la atribución llegue escrita en el propio mensaje.
 - **Sumar nomenclatura a las páginas existentes** (§7): H1 de la home y del hub, "carta de restaurante" en desarrollo-carta, y entradilla de diagnóstico. Es lo más barato y rentable de todo el plan: **títulos y entradillas, sin tocar una sola URL, sin renombrar ningún servicio y sin eliminar nada de lo publicado.**
 - Optimizar los dos activos existentes: variante "menu engineering" en el post de ingeniería de menú; revisión del post de food cost.
 - Crear la página de **consultoría de franquicias**.
@@ -318,11 +319,12 @@ Hoy el sitio tiene 4 servicios: diagnóstico, apertura, desarrollo de carta y me
 
 ## 9. Cómo se mide
 
-Con la analítica activa, a los 90 días:
+Todo con Search Console (más el conteo manual de contactos), a los 90 días:
 
-- **Leads cualificados por mes** (el único KPI que importa) y su origen.
-- Posiciones para: food cost, menu engineering, carta de restaurante, consultoría gastronómica.
-- Tráfico orgánico de RD específicamente (no global).
+- **Leads cualificados por mes** (el único KPI que importa) y su origen — atribuible por el `?text=` de cada CTA.
+- Posiciones e impresiones para: food cost, menu engineering, escandallo, carta de restaurante, consultoría gastronómica, franquicias.
+- Clics y CTR **filtrando por país = República Dominicana** en GSC, que es el dato que de verdad importa (el tráfico hispano global infla las cifras sin traer clientes).
+- Consultas por las que aparece sin buscarlas: son las que indican qué demanda real existe en su mercado.
 - Menciones de marca y citaciones en prensa.
 - Conversión de post → página de servicio → contacto.
 
@@ -335,7 +337,7 @@ Con la analítica activa, a los 90 días:
 1. **Confundir tráfico con negocio.** "Curso de manipulación de alimentos" tiene mucho volumen y casi ninguna intención de contratar consultoría. Sirve para captar audiencia e infoproducto, no para vender proyectos.
 2. **Solapamiento de ángulo con otras webs del sector en español.** andresvalerio.com compite en las mismas keywords genéricas que cualquier web hispana de consultoría gastronómica, incluida ChefBusiness. No es un problema mientras cada contenido se ancle a lo que solo él puede escribir: **RD$, ITBIS, suplidores dominicanos, permisos locales y sus propios negocios**. Ese anclaje es a la vez la diferenciación SEO y la propuesta de valor. Ya se aplicó al publicar el post de ingeniería de menú.
 3. **Depender del canal equivocado.** Apostarlo todo al SEO en un mercado sin demanda de categoría es el error más caro posible aquí.
-4. **Falta de casos propios.** Sin resultados cuantificados de clientes, la venta de consultoría de alto ticket se atasca. Es el activo más urgente después de la analítica.
+4. **Falta de casos propios.** Sin resultados cuantificados de clientes, la venta de consultoría de alto ticket se atasca. Es el activo más urgente del plan.
 5. **Dispersión.** Cuatro segmentos a la vez no se pueden atacar. El orden es: restaurantes (base) → franquicias (dinero) → hotelería (medio plazo), con street food como credencial transversal.
 
 ---
