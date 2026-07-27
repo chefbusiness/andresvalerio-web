@@ -1,7 +1,7 @@
 # Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **29 páginas**, todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **30 páginas** (8 posts de blog), todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
@@ -69,6 +69,14 @@ El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index
 - **🔴 Trampa factual evitada**: las guías españolas presentan los alérgenos como **obligación legal** (normativa UE). **En RD no consta equivalente**, así que se instruyó al bridge para no afirmar obligación legal ni citar normativa dominicana; el texto los trata como buena práctica. Verificado con grep en el resultado. **Repetir esta salvaguarda siempre que se traduzca a RD un tema regulado en Europa** (alérgenos, etiquetado, APPCC, protección de datos).
 - Correcciones aplicadas: errata `Desterra` → `Destierra`; **68 °C como "término medio" → 71 °C**, que es el punto seguro en carne molida; y una contradicción de tiempos de plancha dentro del propio artículo.
 
+### Contenido — cuarto pilar: cierra el paquete de franquicias
+**Post nuevo `estandarizacion-de-recetas-carta-consistente`** (~4.976 palabras, cat. "Negocio gastronómico" → `/consultoria/franquicias/`). Keyword **"estandarización de recetas"** (320, competencia **0,00**, la más limpia del estudio).
+- **El hueco es de fondo**: toda la SERP confunde estandarizar con la ficha técnica y explica *el documento de un plato*. Estandarizar una carta entera es un **proyecto** con fases, prioridades, responsables, formación y auditoría. **Frontera con el post de ficha técnica: la ficha es el DOCUMENTO, la estandarización es la OBRA.**
+- 4 tablas (las cinco fases, priorización por ventas, auditoría de consistencia y elaboraciones base), FAQ ×5, hero + 1 imagen.
+- **19 comprobaciones aritméticas verificadas**: los 6 porcentajes de priorización suman 100,0%, el top 3 da el 75%, y las 5 desviaciones de la auditoría con sus 5 veredictos de tolerancia al 5% cuadran. El gramaje de hamburguesa (150 g) coincide con el escandallo del post de hamburguesería.
+- 🔴 **El bridge coló una PALABROTA en el cuerpo** ("todos los putos días"). Se detectó en la auditoría y se eliminó. **Añadir siempre un grep de palabrotas a la revisión previa a publicar**; el system prompt no lo previene.
+- Otras correcciones: errata "No documents" → "No documentes"; una FAQ describía la ficha técnica como "un documento que registra ingredientes y cantidades", infravalorándola y **contradiciendo al post publicado horas antes**; y tres referencias vagas ("búscalas en el blog") convertidas en enlaces reales.
+
 ⚠️ **Aprendizaje de imágenes**: el primer hero se descartó en la verificación visual por **texto ilegible inventado, símbolo de libra esterlina y kg** (moneda y unidad equivocadas, justo lo contrario de lo que defiende el artículo) y **cacerolas de cobre**, prohibidas por el maestro. **Al pedir imágenes con documentos o básculas, decir explícitamente "no text, no labels, no copper"**, y verificar siempre con Read antes de optimizar.
 
 ⚠️ **Aprendizaje de `bridge.py`**: a `--max-tokens 14000` la respuesta de OpenRouter llegó **truncada** (`Expecting value: line 2703`) tras 10+ min, dos veces. **Generar los artículos largos en dos mitades de ~11.000 tokens** y concatenar. Ojo al concatenar: si la primera mitad no termina en salto de línea, el primer `##` de la segunda se pega al párrafo anterior y deja de ser encabezado.
@@ -124,7 +132,8 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 4. ✅ **Post "cómo montar una hamburguesería"** — publicado y live (2026-07-27).
 5. ✅ **Pilar de escandallo** — publicado y live (2026-07-27).
 6. ✅ **Ficha técnica de cocina** — publicada y live (2026-07-27).
-   **Siguientes pilares pendientes**: *estandarización de recetas* (320, comp. **0,00**) — cuidado con canibalizar la ficha técnica: la frontera pensada es que la ficha es **el documento** y la estandarización es **el proyecto** (desplegarlo en toda la carta, formación, auditoría de consistencia y réplica entre locales). También *manual de operaciones restaurante* (110, comp. 0,07) y *brigada de cocina* (2.900, comp. 0,00).
+7. ✅ **Estandarización de recetas** — publicada y live (2026-07-27). Con ella queda **cerrado el clúster de franquicias**: escandallo → ficha técnica → estandarización, los tres enlazando a `/consultoria/franquicias/`.
+   **Siguientes pilares pendientes**: *brigada de cocina* (2.900, comp. **0,00**, el de más volumen que queda y encaja con mentoría) y *manual de operaciones restaurante* (110, comp. 0,07, que continuaría el clúster de franquicias). Después, el clúster de **formación / manipulación de alimentos**, que es el mayor volumen del mapa.
 6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
 7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
@@ -145,7 +154,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
 
-1. **Vigilar los tres posts del 2026-07-27** (hamburguesería, escandallo y ficha técnica): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+1. **Vigilar los cuatro posts del 2026-07-27** (hamburguesería, escandallo, ficha técnica y estandarización): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
    ```
    mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
    mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
