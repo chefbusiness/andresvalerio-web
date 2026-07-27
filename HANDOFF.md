@@ -1,7 +1,7 @@
 # Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **27 páginas**, todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **28 páginas**, todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
@@ -51,6 +51,17 @@ El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index
 - **Aritmética verificada con script**: las 4 sumas de la tabla de inversión, el escandallo (115), el margen (275), el food cost (29,5%), el equilibrio (472,7 → 473/mes ≈ 16/día) y el ejemplo de delivery cuadran exactos.
 - **Contradicción entre posts detectada y resuelta**: el borrador daba un food cost del 32,9% y declaraba sano el rango 28-35%, pero el post de food cost ya afirma **25-30%** para una hamburguesería. Se recalculó el ejemplo a **RD$390** para que caiga dentro. *Revisar siempre la coherencia numérica con los posts hermanos, no solo dentro del propio artículo.*
 - Clúster cerrado con enlaces de ida y vuelta (pilar, food cost, ingeniería de menú, permisos) y CTA a `/consultoria/apertura/`.
+
+### Contenido — segundo pilar de operación
+**Post nuevo `escandallo-de-cocina-costo-real-por-plato`** (~4.220 palabras, cat. "Rentabilidad" → `/consultoria/desarrollo-carta/`). Keyword **"escandallo"** (6.600, competencia 0,05), el mayor activo transversal sin explotar del estudio. La SERP está escrita **entera en España, con kilos y euros**; aquí se compra por **libras** y se cocina en gramos, y ese salto (1 lb = 454 g, no 500) es donde se cuelan los errores de cálculo.
+- **Cómo se evitó canibalizar el post de food cost**: ese post explica *qué es* la merma, pero su tabla de escandallo costea con el precio de compra directo, sin aplicar rendimiento. Este pilar es **el método completo**, con el factor de rendimiento ingrediente por ingrediente. La frontera queda dicha explícitamente en el texto: *el food cost es el porcentaje; el escandallo es el documento*.
+- 3 tablas (comparativa receta/escandallo/ficha técnica, rendimientos de ingredientes dominicanos, y el escandallo completo de un churrasco), FAQ ×5, hero + 2 imágenes.
+- **31 comprobaciones aritméticas verificadas con script** y todas correctas.
+- **Incoherencia lógica detectada y corregida**: el texto afirmaba que la salsa entraba en la tabla del churrasco, pero no estaba y el precio de venta se calculaba sin ella. Ahora suma explícita (235,44 → 236,82) y precio recalculado.
+- **FAQ corregida**: usaba la fórmula del *margen deseado* mientras el cuerpo usaba *food cost objetivo*. Equivalentes pero contradictorias en forma.
+- Cubre las **elaboraciones intermedias** (sub-recetas), que ninguna guía de la SERP explica, y enlaza escandallo → ficha técnica → `/consultoria/franquicias/`.
+
+⚠️ **Aprendizaje de imágenes**: el primer hero se descartó en la verificación visual por **texto ilegible inventado, símbolo de libra esterlina y kg** (moneda y unidad equivocadas, justo lo contrario de lo que defiende el artículo) y **cacerolas de cobre**, prohibidas por el maestro. **Al pedir imágenes con documentos o básculas, decir explícitamente "no text, no labels, no copper"**, y verificar siempre con Read antes de optimizar.
 
 ⚠️ **Aprendizaje de `bridge.py`**: a `--max-tokens 14000` la respuesta de OpenRouter llegó **truncada** (`Expecting value: line 2703`) tras 10+ min, dos veces. **Generar los artículos largos en dos mitades de ~11.000 tokens** y concatenar. Ojo al concatenar: si la primera mitad no termina en salto de línea, el primer `##` de la segunda se pega al párrafo anterior y deja de ser encabezado.
 
@@ -103,7 +114,8 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 2. **Casos de éxito con cifras** — es lo que convierte y hoy no existe ninguno. Empezar por sus propios negocios. **Bloqueado: hacen falta datos reales de Andrés.**
 3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. Hoy el cross-promo de Bestia Fire es **solo de ida**: andresvalerio.com promociona bestiafire.pro (barra, banner, popup) y no recibe nada de vuelta. *(Menos urgente de lo que parecía: en RD ya es posición 1,6 por su nombre.)*
 4. ✅ **Post "cómo montar una hamburguesería"** — publicado y live (2026-07-27).
-5. **Pilar de escandallo** (6.600, competencia 0,05), enlazado al de food cost. **Es el siguiente candidato natural**: mayor volumen del estudio y el post de food cost ya rankea.
+5. ✅ **Pilar de escandallo** — publicado y live (2026-07-27).
+   **Siguientes pilares de operación pendientes**: *fichas técnicas de cocina* (320, comp. 0,01) y *estandarización de recetas* (320, comp. 0,00) — el post de escandallo ya les abre la puerta y ambos alimentan `/consultoria/franquicias/`, que es el segmento de mayor ticket. También *brigada de cocina* (2.900, comp. 0,00).
 6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
 7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
@@ -124,7 +136,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
 
-1. **Vigilar el post de hamburguesería**: se publicó el 2026-07-27, así que Google todavía no lo conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+1. **Vigilar los dos posts del 2026-07-27** (hamburguesería y escandallo): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
    ```
    mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
    mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
