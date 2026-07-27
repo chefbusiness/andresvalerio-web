@@ -1,0 +1,65 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceLanding from '@components/ServiceLanding.astro';
+import { serviceSchema, faqSchema } from '@utils/schema';
+import data from '@data/servicios/franquicias.json';
+
+const slug = 'franquicias';
+
+const pricing = {
+  title: 'Inversión orientativa',
+  rows: [
+    {
+      modalidad: 'Marca lista para replicar',
+      alcance: 'Recetario estandarizado, fichas técnicas, escandallos y manual de operaciones de cocina',
+      rd: 'desde 180,000',
+      us: 'desde 3,000',
+      feat: true,
+    },
+    {
+      modalidad: 'Apertura de sucursal',
+      alcance: 'Montaje de cocina, formación de la brigada y acompañamiento en el arranque',
+      rd: 'desde 60,000',
+      us: 'desde 1,000',
+    },
+    {
+      modalidad: 'Auditoría de consistencia',
+      alcance: 'Visita por local, medición contra estándar e informe de desviaciones',
+      rd: '25,000',
+      us: '420',
+    },
+  ],
+  note: 'Conversión aproximada 1 US$ ≈ 60 RD$. Precios orientativos «desde», ajustables según el tamaño de la carta, el número de locales y el estado de partida de la marca. No cubre la parte legal ni financiera de la franquicia (contratos, registro de marca, modelo de royalties), que lleva un abogado especialista con quien trabajo coordinado. Los desplazamientos fuera de Santo Domingo (Santiago, Punta Cana, etc.) se presupuestan aparte.',
+};
+
+const related = [
+  { label: 'Desarrollo de carta', href: '/consultoria/desarrollo-carta/', desc: 'Platos nuevos con escandallos, fichas técnicas y entrenamiento del equipo.' },
+  { label: 'Apertura y concepto', href: '/consultoria/apertura/', desc: 'Del concepto a la puesta en marcha, con los números en firme.' },
+  { label: 'Diagnóstico gastronómico', href: '/consultoria/diagnostico/', desc: 'Auditoría 360 con informe y plan de acción priorizado.' },
+];
+
+const photo = { src: '/images/chef/chef-2.jpeg', alt: 'Andrés Valerio, chef y consultor gastronómico' };
+const contextImage = {
+  src: '/images/contexto/franquicias.jpg',
+  alt: 'Manual de recetas abierto junto a una balanza con la porción pesada y tres hamburguesas idénticas en el pase de una cocina, como muestra de estandarización entre locales',
+};
+---
+
+<BaseLayout
+  title={data.meta_title}
+  description={data.meta_description}
+  image="/og/og-default.jpg"
+  canonicalPath={`/consultoria/${slug}/`}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={serviceSchema(data, slug, pricing.rows)} />
+    <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+  </Fragment>
+
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} />
+</BaseLayout>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>
