@@ -27,8 +27,9 @@ faq:
   - q: "¿Cada cuánto debo actualizar la ingeniería de menú en mi restaurante?"
     a: "Mínimo cada trimestre. En República Dominicana, el dólar y los precios de los suplidores se mueven cada dos por tres. Si ves que el costo de la carne o el queso subió de golpe, adelanta el análisis al mes siguiente. La matriz no es un documento que haces una vez y olvidas: es tu brújula para ajustar precios, recetas y promociones antes de que el negocio empiece a sangrar."
 related:
-  - "abrir-restaurante-republica-dominicana"
+  - "como-montar-una-hamburgueseria-republica-dominicana"
   - "food-cost-restaurante-republica-dominicana"
+  - "abrir-restaurante-republica-dominicana"
   - "permisos-abrir-restaurante-republica-dominicana"
 featured: false
 ---
@@ -90,7 +91,7 @@ Esta tabla es el corazón del menu engineering. La gracia no está en etiquetar,
 
 ## Un ejemplo real con números dominicanos
 
-Para que no se quede en la teoría, voy a analizar una carta corta de hamburguesería al estilo de Valerio Burger Club, con precios realistas del mercado de Santo Domingo y costos basados en lo que pago a mis suplidores.
+Para que no se quede en la teoría, voy a analizar una carta corta de hamburguesería al estilo de Valerio Burger Club, con precios realistas del mercado de Santo Domingo y costos basados en lo que pago a mis suplidores. Si todavía no tienes el negocio montado y lo que quieres es abrirlo, te conviene empezar por mi guía de [cómo montar una hamburguesería en República Dominicana](/blog/como-montar-una-hamburgueseria-republica-dominicana/), donde bajo la inversión, el equipo y el punto de equilibrio a números.
 
 ![Cuatro platos de una carta de hamburguesería alineados en el pase de una cocina oscura: hamburguesa, alitas, carne asada con tostones y un postre](/images/blog/ingenieria-menu-rd-matriz.jpg)
 

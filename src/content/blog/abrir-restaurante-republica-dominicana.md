@@ -25,6 +25,7 @@ faq:
     a: 'El principal motivo no es la falta de clientes, sino la falta de caja. Una gestión financiera deficiente, donde no se separa el capital de trabajo, no se controla el costo de los insumos y no se reinvierte el flujo correctamente, asfixia el negocio. Puedes tener el restaurante lleno y aun así estar en la quiebra si tu estructura de costos no es sostenible.'
 related:
   - 'permisos-abrir-restaurante-republica-dominicana'
+  - 'como-montar-una-hamburgueseria-republica-dominicana'
   - 'ingenieria-de-menu-restaurante-republica-dominicana'
   - 'food-cost-restaurante-republica-dominicana'
 featured: true
@@ -47,6 +48,8 @@ El error más caro que veo es el emprendedor que firma un contrato de alquiler g
 - **Propuesta de valor clara:** ¿Por qué alguien debería elegir tu restaurante y no el de al lado? Puede ser un plato insignia, un ambiente único, rapidez extrema, precio imbatible o una causa social. Escríbela en una frase. Si no emociona, reformúlala.  
 
 Camina la zona, visita a tu futura competencia en horas pico y valle, y haz una pequeña encuesta informal. Con esa información puedes construir un modelo financiero preliminar y decidir si tu tique promedio esperado (cuánto gastará cada cliente) y tu capacidad de asientos pueden sostener el negocio. Esto no es opcional, es supervivencia.
+
+Si el concepto que tienes en mente es una hamburguesería, tengo una guía aparte con los números de ese formato en concreto —inversión, equipo, escandallo y punto de equilibrio—: [cómo montar una hamburguesería en República Dominicana](/blog/como-montar-una-hamburgueseria-republica-dominicana/).
 
 ## 3. Trámites y permisos en RD: el orden lógico que nadie te explica
 
