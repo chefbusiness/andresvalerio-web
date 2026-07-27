@@ -28,6 +28,7 @@ faq:
     a: "Que el estándar esté definido por resultado y no solo por procedimiento: a qué tiene que saber, qué textura y qué peso exacto tiene que tener el plato terminado. El suplidor, el equipamiento y hasta el agua cambian de un local a otro, así que hay que cocinar la carta completa en la cocina nueva y catarla contra el estándar del local original antes de abrir."
 related:
   - "ficha-tecnica-de-cocina-estandarizar-platos"
+  - "brigada-de-cocina-equipo-real"
   - "escandallo-de-cocina-costo-real-por-plato"
   - "food-cost-restaurante-republica-dominicana"
 featured: false
