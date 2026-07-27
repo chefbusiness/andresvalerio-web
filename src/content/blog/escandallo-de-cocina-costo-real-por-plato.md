@@ -27,6 +27,7 @@ faq:
   - q: "¿Cómo se fija el precio de venta a partir del escandallo?"
     a: "Divides el costo del plato entre el food cost objetivo en decimal. Si el churrasco del ejemplo cuesta RD$236.82 y quieres que la comida represente un 30% del precio, la cuenta es 236.82 ÷ 0.30 = RD$789.40 sin ITBIS; el 18% se suma después. Ese precio es un punto de partida, no un dogma: el valor percibido, la zona y la competencia también mandan."
 related:
+  - "ficha-tecnica-de-cocina-estandarizar-platos"
   - "food-cost-restaurante-republica-dominicana"
   - "ingenieria-de-menu-restaurante-republica-dominicana"
   - "abrir-restaurante-republica-dominicana"
@@ -225,7 +226,7 @@ El escandallo domina el costo, pero por sí solo no te garantiza que el plato sa
 
 La ficha técnica agarra el escandallo y le suma: el peso exacto de cada ingrediente (no solo el costo), el procedimiento paso a paso, los tiempos de cocción, la foto del montaje final, el plato en que se sirve y hasta la temperatura interna del corte. Es decir, convierte la receta en un manual que habla el lenguaje de cualquier cocinero que pongas frente a la plancha.
 
-Cuando un cliente me dice que quiere abrir un segundo local o estructurarse para franquiciar, lo primero que busco es si tiene ese conjunto de fichas. Sin ellas, no hay operación replicable. Se puede tener el mejor escandallo del mundo, pero si cada cocinero monta el plato con un ojo distinto, el costo real se descontrola igual. La ficha técnica es lo que te permite defender el margen que calculaste a las cinco de la tarde igual que a las diez de la noche. Ese paquete de escandallos y fichas es, literalmente, el primer entregable de un [proyecto de franquicias y expansión](/consultoria/franquicias/).
+Cuando un cliente me dice que quiere abrir un segundo local o estructurarse para franquiciar, lo primero que busco es si tiene ese conjunto de fichas. Sin ellas, no hay operación replicable. Se puede tener el mejor escandallo del mundo, pero si cada cocinero monta el plato con un ojo distinto, el costo real se descontrola igual. La ficha técnica es lo que te permite defender el margen que calculaste a las cinco de la tarde igual que a las diez de la noche. Cómo se arma una, campo por campo y con un ejemplo completo, lo tienes en mi [guía de la ficha técnica de cocina](/blog/ficha-tecnica-de-cocina-estandarizar-platos/). Ese paquete de escandallos y fichas es, literalmente, el primer entregable de un [proyecto de franquicias y expansión](/consultoria/franquicias/).
 
 ## Los errores que más veo al escandallar
 
