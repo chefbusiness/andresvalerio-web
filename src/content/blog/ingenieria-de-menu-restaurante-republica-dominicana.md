@@ -9,6 +9,7 @@ author: "Andrés Valerio"
 readingMinutes: 12
 keywords:
   - "ingeniería de menú restaurante"
+  - "menu engineering"
   - "matriz de platos restaurante"
   - "margen de contribución menú"
   - "rentabilidad de la carta"
@@ -38,7 +39,7 @@ Calcular el food cost te dice cuánto te cuesta cada plato. Nada más. La ingeni
 
 ## Qué es la ingeniería de menú (y por qué no es lo mismo que calcular tu food cost)
 
-La ingeniería de menú es una metodología que cruza dos números clave de cada plato: cuánto margen de dinero deja y cuánto se vende. El objetivo es clasificar los platos en cuatro categorías para tomar decisiones operativas y de rentabilidad, no para hacer un análisis académico bonito que luego duerme en un Excel.
+La ingeniería de menú —o **menu engineering**, que es como la vas a encontrar en la mayoría de manuales, cursos y softwares de gestión— es una metodología que cruza dos números clave de cada plato: cuánto margen de dinero deja y cuánto se vende. El objetivo es clasificar los platos en cuatro categorías para tomar decisiones operativas y de rentabilidad, no para hacer un análisis académico bonito que luego duerme en un Excel.
 
 El error más costoso que veo es pensar que el plato con menor food cost es el más rentable. Te pongo un ejemplo con cifras de una hamburguesería real: una ensalada con 25% de food cost que vendes cuatro veces al mes puede dejarte RD$1,200 de margen total en el periodo. Una hamburguesa doble con 38% de food cost que despachas 300 veces, con un margen unitario de RD$279, te deja RD$83,700. La ensalada es un fantasma con excelente porcentaje; la hamburguesa es la que te paga la nómina. La ingeniería de menú te obliga a mirar el dinero absoluto, no el porcentaje.
 
@@ -85,7 +86,7 @@ Con margen y popularidad ya tienes las dos coordenadas. Ubicas cada plato en uno
 | **Puzzle** | Baja | Alto | Es rentable pero nadie lo ve. Juega con la ubicación, la descripción, recomiéndalo verbalmente o bájale el precio un poco si el margen lo permite. Conviértelo en estrella. |
 | **Perro** | Baja | Bajo | Lastre. Elimínalo, sustitúyelo o transfórmalo por completo. Mantenerlo solo le quita espacio a los demás y complica el inventario. |
 
-Esta tabla es el corazón de la ingeniería de menú. La gracia no está en etiquetar, sino en mover cada plato hacia la esquina de las estrellas con decisiones concretas. Eso es lo que diferencia a un chef de un operador que solo mira el porcentaje.
+Esta tabla es el corazón del menu engineering. La gracia no está en etiquetar, sino en mover cada plato hacia la esquina de las estrellas con decisiones concretas. Eso es lo que diferencia a un chef de un operador que solo mira el porcentaje.
 
 ## Un ejemplo real con números dominicanos
 
