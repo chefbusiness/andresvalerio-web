@@ -1,88 +1,102 @@
-# Handoff — andresvalerio.com · sesión 2026-06-24 (clúster blog SEO: food cost + permisos)
+# Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución)
 
-Marca personal del **Chef Andrés Valerio** (Santo Domingo, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). Working dir: `web/`.
-**Último commit de contenido: `9973598`** (clúster blog) — pusheado a `main`, **deploy Netlify `ready`/verde y live** (3 URLs del clúster responden 200). 24 páginas (3 posts de blog). Site: `andresvalerio-web.netlify.app` / dominio `andresvalerio.com`.
+Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **26 páginas**, todas live y verdes.
+Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
-> Esta sesión recuperó el trabajo tras un apagón térmico y avanzó muchísimo. Lee también la memoria en `~/.claude/projects/-Users-johnguerrero-andres-valerio-web/memory/` (MEMORY.md indexa todo).
+> **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
+> La hoja de ruta vive en **`ESTRATEGIA-RD-CONSULTORIA.md`** (estudio de mercado, keywords, competencia y plan de 90 días). Léelo antes de tocar contenido o arquitectura.
 
 ---
 
-## ✅ Hecho 2026-06-24 (clúster de blog SEO — food cost + permisos)
+## ⚠️ El entorno cambió: esto ya no es el Mac
 
-Sesión de **contenidos** (regla capital: keyword research + SERP → bridge.py DeepSeek → Nano Banana → ensamblar → interenlazar). El blog tenía **solo el post pilar**; se montó un clúster:
+Se trabaja en una **VM Linux** (`/root/andres-valerio-web`), no en el MacBook. Implicaciones:
 
-- **Post nuevo `food-cost-restaurante-republica-dominicana`** (cat. "Rentabilidad", ~1.700 palabras). KW: "food cost restaurante república dominicana". Diferenciador RD$/ITBIS/ingredientes locales/mermas + 2 tablas (escandallo + food cost ideal). Hero + 2 imágenes de cuerpo (balanza, merma) Nano Banana oscuras fast-good. FAQ ×5. Enlaza a pilar + /consultoria/diagnostico + /consultoria/desarrollo-carta. Mapea a **diagnóstico**.
-- **Post nuevo `permisos-abrir-restaurante-republica-dominicana`** (cat. "Negocio gastronómico", ~1.900 palabras). KW: "permisos para abrir un restaurante república dominicana". Diferenciador: incluye la **Licencia de Turismo (MITUR)** que el pilar omitía + tabla resumen (permiso/entidad/tiempo/costo orientativo con disclaimer). Hero + 2 imágenes de cuerpo (planos, cocina-inspección). FAQ ×5. Enlaza a pilar + food-cost + /consultoria/apertura. Mapea a **apertura**.
-- **Pilar actualizado**: `related` → ambos posts + 2 enlaces contextuales salientes (§3 permisos, §5 food cost). Clúster cerrado, sin huérfanas.
-- **Template blog** (`[...slug].astro`): añadida regla CSS `.prose img` (responsive) para imágenes de cuerpo (antes no existía → habrían desbordado en móvil).
-- Imágenes en `public/images/blog/` (6 nuevas, 145–225 KB c/u). Verificadas con Read, estética oscura VBC (override del maestro), sin mediterráneo/aceite de oliva.
-- **Validación estática verde** (YAML, slugs `related`, enlaces internos, imágenes en disco) y **desplegado**: commit `9973598` pusheado a `main` → **deploy Netlify `ready`/verde**, verificado en producción (H1, 2 imágenes de cuerpo, FAQ, tablas y enlaces internos renderizan; 3 URLs 200). No se hizo build local por regla térmica; el build completo lo hizo Netlius en la nube. Temp 52–60°C durante toda la sesión.
+- **No hay `node`/`npm`** → no se puede `npm run dev` ni `astro build` en local. **Se despliega por push a `main`** y se verifica por HTTP contra producción. El build lo hace Netlify en la nube (~30 s).
+- **La regla térmica del Mac no aplica aquí**, pero se mantiene la costumbre de no hacer builds locales porque directamente no se puede.
+- El toolkit viaja en el sistema **claude-cockpit** (`~/.claude`, ver su `README.md`): tres repos (cockpit, skills, memoria) + `bin/secrets-pull` para restaurar los `.env`. Los proyectos se traen con **`~/.claude/bin/traer-proyecto <repo>`**.
+- **`bridge.py` está en `/root/chefbusiness-ai`** (se trajo con `traer-proyecto`). Ubuntu no traía `pip`; hay un venv propio:
+  ```bash
+  cd /root/chefbusiness-ai
+  .venv/bin/python bridge.py --task content --domain chefbusiness --lang es \
+    --system "<str>" --prompt "<str>" --max-tokens 12000 --output <archivo>
+  ```
+  **Ojo: aquí es `.venv/bin/python`, no `python3`.**
+- **Imágenes**: Nano Banana vía `curl` con la key de `~/.claude/skills/generate-images/secrets.env`. En Linux **no hay `sips`**: se optimiza con Pillow (`python3-pil`), 1200 px de ancho y calidad 76-78 → 95-120 KB.
+- **`BRAVE_API_KEY` está INVÁLIDA** (`SUBSCRIPTION_TOKEN_INVALID`). El research de SERP se hace con WebSearch mientras no se renueve y se haga `secrets-push`.
+- **Keywords Everywhere no segmenta por país**: `country=do` devuelve el volumen **global en español** (idéntico a `mx` y a la consulta global). Solo `us` segmenta; `es` devuelve ceros. Los volúmenes sirven para **comparar términos entre sí**, no como previsión de tráfico. Detalle en §2 del estudio.
 
-Contenido 100% con `bridge.py` (deepseek-v4-pro, `--max-tokens 11000`, system propio voz Andrés Valerio); imágenes con Nano Banana vía curl. Temp se mantuvo 58–62°C, sin builds locales ni Playwright.
+---
 
-## ✅ Hecho esta sesión (2026-06-08)
+## ✅ Hecho 2026-07-27
 
-### Rebranding BBQ Parrilla Events → **Bestia Fire**
-- El proyecto BBQ ahora es la marca **Bestia Fire** (slogan *"Parrillas BBQ & Events"*), con **web propia ya publicada: `https://bestiafire.pro/`**. El slug se mantiene `/proyectos/bbq-parrilla-events/` por SEO.
-- `proyectos.ts`: nuevo campo reutilizable **`sitioDedicado` { url, nombre, slogan }** (sustituye a `sitioProximamente` cuando la web ya existe). BBQ pasó de `sitioProximamente` a `sitioDedicado`. `nombre` → "Bestia Fire", tagline/resumen ajustados.
-- `[slug].astro`: hero con doble CTA ("Visitar Bestia Fire →" externo + "Pedir presupuesto"); el bloque "Próximamente" se convierte en bloque **"Web dedicada"** activo cuando hay `sitioDedicado` (Burger Master Academy sigue con "Próximamente").
-- **Contenido regenerado con bridge.py** (DeepSeek v4-pro): meta, heroTitle/Lead, intro, paraQuien, carnes.intro y las 6 FAQ → voz Bestia Fire, conservando a Chef Andrés Valerio como el chef detrás y TODOS los datos estructurados (9 formatos con precios, 8 cortes). Footer + meta de /proyectos también dicen "Bestia Fire".
-- ⚠️ **Imágenes siguen siendo las genéricas** de `public/images/proyectos/bbq/` — pendiente generar las de Bestia Fire con Nano Banana (hero, formatos, cortes).
+### Contenido — clúster de rentabilidad cerrado
+- **Post nuevo `ingenieria-de-menu-restaurante-republica-dominicana`** (~2.400 palabras, cat. "Rentabilidad" → `/consultoria/desarrollo-carta/`). Matriz estrella/caballo/puzzle/perro, ejemplo con 8 platos de hamburguesería de Santo Domingo (**aritmética verificada**: unidades, popularidades, márgenes, umbral 8,75% y las 8 clasificaciones cuadran), sección propia sobre comisiones de delivery (20-30%) que obliga a una matriz por canal. Hero + 2 imágenes de cuerpo. FAQ ×5.
+- **Fix de contenido en el pilar**: `abrir-restaurante-republica-dominicana` tenía **puzzles y caballos de batalla intercambiados** en sus definiciones (llevaba así en producción desde su publicación). Corregido.
+- Clúster de 4 posts interenlazado con enlaces contextuales cruzados, sin huérfanas.
+- El post se optimizó después con la variante **"menu engineering"** (6.600 de volumen relativo frente a 880 de la castellana).
 
-### Home (`index.astro`) — sesiones previas (2026-06-03/04)
-- **Hero a sangre** con foto REAL de Andrés (chaqueta blanca + corte de carne, `andres-hero.jpg`). NO tarjeta (rechazada por John).
-- Bloque **Valerio Burger Club** con foto real del burger (`andres-burger.jpg`) integrada.
-- **Banda de contexto** clara (IA street-food "SMASH BURGERS") tras la intro. Eliminada la mediterránea (olio d'oliva) por off-brand.
-- Quitada la mención a **The Crime** en la intro.
-- **CTA final con fondo de fuego + parallax** (componente `CtaFinal.astro`).
+### Estrategia — `ESTRATEGIA-RD-CONSULTORIA.md`
+Estudio completo de mercado, competencia, keywords y plan de 90 días. Hallazgos que condicionan todo el trabajo futuro:
+1. **La categoría geolocalizada NO se busca**: "consultoría gastronómica república dominicana" y todas sus variantes dan **cero**, incluso midiendo todo el mundo hispano. El SEO capta por **dolor operativo**, no por nombre de categoría; los clientes llegan por reputación, prensa y referencias.
+2. **La matriz {rol}×{concepto} no existe**: "consultor de cafeterías", "asesor de pizzerías"… **51 de 54 combinaciones por debajo de 50/mes**. No crear páginas de "consultor de X".
+3. **La escala está en {tarea}×{concepto}** ("cómo montar una hamburguesería" 260 con competencia 0,02) y en los **conceptos transversales de operación**: escandallo 6.600 (comp. 0,05), brigada de cocina 2.900 (comp. 0,00).
+4. **Franquicias es el segmento de mayor ticket y menor competencia**: *estandarización de recetas* (0,00) y *fichas técnicas de cocina* (0,01).
+5. Arquitectura en 3 niveles: pocas páginas de servicio (nomenclatura cabeza) + 5-8 pilares de operación + decenas de piezas de cola larga.
 
-### Sección Proyectos (NUEVA, completa) — `/proyectos/` + `[slug].astro` dinámico
-- Nav en Header + Footer. Hub con tarjetas + 4 landings:
-  - **BBQ Parrilla Events**: hero parrillero, cinta equipamiento, intro, para quién, **9 formatos con precios RD$/US$** (orientativos, ver research abajo), sección **"Nuestra carne"** (8 cortes con thumbnails), qué incluye, galería, FAQ, **placeholder de web dedicada futura** (dominio/nombre pendientes que pasará John).
-  - **Valerio Burger Club**: contenido + galería de fotos reales + enlace externo a valerioburgerclub.com.
-  - **Burger Master Academy**: 5 cursos (Perfecta Hamburguesa I/II, Maestría Carnes Premium, Hot Dogs Gourmet *muy pronto*, Pastrami Perfection *muy pronto*) con thumbnails, hero real, placeholder web futura. **SIN marca The Crime** (fuente: thecrimesc.com/burger-master-academy-cursos).
-  - **Catering Fast Good**: contenido + hero + 4 formatos con thumbnails.
-- Contenido en `src/data/proyectos-contenido.ts` (generado con **bridge.py/DeepSeek**). Datos/imágenes en `src/data/proyectos.ts`. Imágenes Nano Banana + reales en `public/images/proyectos/<slug>/`.
+### Nomenclatura (§7 del estudio, ya desplegado)
+Se sumó nomenclatura de búsqueda **sin tocar URLs, sin renombrar servicios y sin eliminar nada**:
+- **Home**: el `<h1>` era solo "Andrés Valerio". Ahora incluye "Consultor gastronómico en República Dominicana" como `.h1-kicker` dentro del propio h1 (cuerpo menor, no compite con la foto a sangre). Eyebrow → geo.
+- **Hub `/consultoria/`**: el h1 usaba "chef consultor" (40/mes) en vez de **"consultoría gastronómica"** (720). Corregido. Meta description ya no duplica la de la home.
+- **`/consultoria/desarrollo-carta/`**: el title suma "carta de restaurante" (5.400).
+- **`/sobre-mi/`**: title y description con la categoría.
+- **`/consultoria/diagnostico/` se dejó INTACTO a propósito**: es la **puerta de entrada comercial** que cualifica al cliente, no una página de captación. Su nombre es parte del método (igual que el diagnóstico de ChefBusiness), y su meta description ya recoge el dolor. **Regla de John: hay servicios que nadie busca y aun así tienen que estar.**
 
-### Otros
-- **CTA de fuego (`CtaFinal.astro`) en TODAS las páginas** (home, consultoría, sobre-mí, proyectos, ServiceLanding ×4, recetas, blog).
-- **Auditoría responsive (P0/P1 corregidos)**: tablas de prosa con scroll, burger nav 44px, heros móvil sobre-mi/consultoria, padding contacto.
-- **Páginas legales** `/legal/terminos`, `/legal/privacidad`, `/legal/cookies` (`LegalPage.astro`, adaptadas de valerioburgerclub.com, ley 172-13). Footer con enlaces legales + **"Desarrollado por GastroSEO"** (gastroseo.com).
+### Servicio nuevo — `/consultoria/franquicias/`
+Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (patrón `ServiceLanding`) + imagen de contexto (Nano Banana). Enlazado desde el hub y desde el **footer** (site-wide). Delimita que la parte legal y financiera la lleva un abogado.
+⚠️ El lead generado afirmaba que Andrés "ha replicado sus marcas con éxito"; **no consta que tenga sucursales**, se sustituyó por lo verificable (opera tres marcas a la vez). **Vigilar este tipo de afirmaciones en todo lo que genere el bridge.**
 
 ---
 
 ## ⏳ Pendiente
 
-### Cliente / datos
-1. **Legales**: falta **razón social + domicilio fiscal** exactos del titular (ahora "Andrés Valerio, Santo Domingo, RD" + email). Validar.
-2. **Precios BBQ**: son **orientativos "desde"** (research de mercado RD: catering RD$1,500–5,000/persona; ribeye Angus súper RD$700–900/lb). Validar cifras finales con Andrés. Tabla en `proyectos-contenido.ts` (bbq formatos).
-3. ✅ **BBQ → Bestia Fire** (`bestiafire.pro`) YA enlazado (2026-06-08). **Burger Master Academy** sigue con web dedicada pendiente (`sitioProximamente`) → al recibir dominio/nombre, pasar a `sitioDedicado` igual que Bestia Fire. **Pendiente Bestia Fire: imágenes reales de marca** (Nano Banana) para reemplazar el stock genérico.
-4. Teléfono `wa.me/18098847605` (dominicano) — confirmar con Valerio (provisional en producción).
+### 🔴 Crítico
+1. **Analítica sin configurar.** No hay GA4, ni Clarity, ni verificación de GSC en producción: el sitio lleva **más de dos meses publicando a ciegas**. El código ya lo soporta (`BaseLayout.astro:42-44`), faltan las env vars en Netlify: `PUBLIC_GA_ID`, `PUBLIC_MICROSOFT_CLARITY_ID`, `PUBLIC_GSC_VERIFICATION`, `PUBLIC_WHATSAPP`, `PUBLIC_CONTACT_EMAIL`. **Sin esto no se puede medir nada del plan.** Luego: verificar en GSC y enviar `https://www.andresvalerio.com/sitemap-index.xml`.
 
-### Infra
-5. **Dominio**: fijar **www.andresvalerio.com como primario** en Netlify (el cert SSL ya cubre apex+www; el código ya apunta a www). Luego verificar en GSC + enviar sitemap `https://www.andresvalerio.com/sitemap-index.xml`.
-6. **Env vars analytics** en Netlify: `PUBLIC_GA_ID`, `PUBLIC_MICROSOFT_CLARITY_ID`, `PUBLIC_GSC_VERIFICATION`, `PUBLIC_WHATSAPP`, `PUBLIC_CONTACT_EMAIL`.
+### Siguiente en el plan (mes 1-2 del estudio)
+2. **Casos de éxito con cifras** — es lo que convierte y hoy no existe ninguno. Empezar por sus propios negocios.
+3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. Hoy el cross-promo de Bestia Fire es **solo de ida**: andresvalerio.com promociona bestiafire.pro (barra, banner, popup) y no recibe nada de vuelta.
+4. **Post "cómo montar una hamburguesería"** (260, competencia 0,02): mejor ratio del estudio y el único que solo Andrés puede firmar.
+5. **Pilar de escandallo** (6.600, competencia 0,05), enlazado al de food cost.
+6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
+7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
-### Mejoras (P2)
-7. Pulir P2 responsive (mínimos de `clamp()` de algún h1 grandes en 320px).
-8. Revisar en móvil real las páginas de proyectos nuevas.
+### Cliente / datos a validar con Andrés
+8. **Precios de franquicias** recién publicados (180.000 / 60.000 / 25.000 RD$) — orientativos, **sin validar**.
+9. Precios BBQ/Bestia Fire, razón social y domicilio fiscal para los legales, y el teléfono `wa.me/18098847605` (sigue provisional en producción).
+10. **Imágenes reales de Bestia Fire** para `/proyectos/bbq-parrilla-events/` (siguen las genéricas).
+
+### Higiene del entorno
+11. `~/.claude/bin` no está en el `PATH` (paso 5 del README del cockpit).
+12. El repo está **clonado dos veces**: `/root/andres-valerio-web` (el que se usa) y `/root/andresvalerio-web`, árboles idénticos. Y sobra `web/` dentro del working dir (copia del maestro de imágenes de la migración).
+13. `serp_research.py` de `chefbusiness-ai` tiene un fix **sin commitear**: la ruta del intérprete del Mac estaba hardcodeada, ahora usa `sys.executable` con override por `BRIDGE_PYTHON`.
+14. `astro.config.mjs:32` usa `lastmod: new Date()` → las 26 URLs del sitemap declaran la misma fecha (la del build). Señal de frescura falsa.
 
 ---
 
-## 🔧 Cómo retomar / comandos
+## 🔧 Cómo retomar
 
 ```bash
-cd /Users/johnguerrero/andres-valerio-web/web
-git pull
-npm run dev          # desarrollo local
-npm run build        # Astro ~4s, trivial térmicamente; push a main = deploy en la nube (preferir)
+cd /root/andres-valerio-web && git pull
+# NO hay node: no se puede build local. Se despliega por push:
+git push origin main          # Netlify compila y publica en ~30 s
+curl -s -o /dev/null -w '%{http_code}' https://www.andresvalerio.com/<ruta>/   # verificar
 ```
 
-- **Contenido**: SIEMPRE `bridge.py` (DeepSeek) — `python3 /Users/johnguerrero/chefbusiness-ai/bridge.py --task content --domain chefbusiness --lang es --system "<str>" --prompt "<str>" --max-tokens 9000+ --output <archivo>`. ⚠️ deepseek-v4-pro es de razonamiento: usar `--max-tokens` alto (9000–12000) o devuelve JSON truncado/vacío. Pedir JSON estricto.
-- **Imágenes**: skill `generate-images` / Nano Banana (Gemini). Endpoint y patrón en la skill; key en `~/.claude/skills/generate-images/secrets.env`. Usar `curl` (Python tiene bug SSL en macOS). Estética: oscura, fast-good, producto/fuego — **NUNCA mediterráneo/aceite de oliva ni The Crime**.
-
-## ⚠️ Reglas (memorizadas)
-- **Térmica**: el Mac apaga a ~65°C. Monitorear `istats cpu temp`; preferir builds en la nube; **no Playwright**.
-- **Estética Valerio**: fast-good / street food / cocina de producto RD, oscura (VBC). Fotos reales para hero/persona. Ver memoria `valerio-brand-aesthetic.md`.
-- **Contenido**: bridge.py + Nano Banana; SERP antes; enriquecido (FAQ, tablas, imágenes); interenlazado; sin huérfanas.
+## ⚠️ Reglas del proyecto
+- **Contenido**: SIEMPRE `bridge.py` (nunca redactar a mano). Keyword research + SERP **antes**. Enriquecido: tablas, datos, FAQ, ≥2 imágenes en el cuerpo + 1 destacada distinta. Interenlazado, sin huérfanas.
+- **Verificar lo que genera el bridge**: ha metido errores conceptuales (llamó "perro" a un caballo de batalla), voseo rioplatense en vez de tuteo dominicano, y afirmaciones no verificables sobre la trayectoria de Andrés. **Auditar aritmética y hechos antes de publicar.**
+- **Estética**: fast-good / street food / cocina de producto RD, oscura (VBC). Fotos reales para hero/persona. **Nunca** mediterráneo, aceite de oliva ni The Crime. Sin emojis como iconografía.
+- **Nomenclatura vs producto**: las páginas de captación se nombran como busca el mercado; las de producto/método (diagnóstico, mentoría) conservan su nombre y solo **suman** señales. No se elimina ni se renombra nada de lo ya publicado.
+- **andresvalerio.com y consultoresgastronomicos.pro son entes independientes.** Andrés tiene ficha contratada en el directorio; eso es off-page (citation + backlink), no un canal estratégico ni fuente de canibalización.
