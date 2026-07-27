@@ -1,7 +1,7 @@
 # Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD + ejecución + primeros datos de GSC)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **31 páginas** (9 posts de blog), todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **33 páginas** (11 posts de blog), todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
@@ -86,6 +86,17 @@ El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index
 - Tabla histórica verificada puesto por puesto.
 - Nota de intención de búsqueda: es una keyword **informativa** (estudiantes y curiosos). Sirve para autoridad y audiencia más que para captar proyectos, como ya avisaba el estudio para "ghost kitchen". No esperar leads directos de aquí.
 
+### Contenido — se cierran los dos clústeres pendientes
+**`manual-de-operaciones-restaurante-guia`** (~5.300 palabras, → `/consultoria/franquicias/`). Keyword "manual de operaciones restaurante" (110, comp. 0,07). **Cierra el clúster de franquicias.** La SERP la escriben consultoras españolas en clave de venta de franquicia; el ángulo del operador es que **el manual sirve ANTES de franquiciar nada**, porque es lo que permite que el negocio funcione sin el dueño. Frontera: ficha técnica, escandallo, estandarización y brigada son **capítulos** del manual, se nombran y se remite. Tabla de los diez capítulos con el documento clave que vive dentro de cada uno.
+
+**`manipulacion-de-alimentos-republica-dominicana`** (~5.000 palabras, → `/consultoria/franquicias/` y contacto). Abre el clúster de **formación y cumplimiento**, el de mayor volumen del mapa ("curso de manipulación de alimentos" 40.500, "carnet de manipulador" 33.100). **Escrito para el DUEÑO, no para quien busca el carnet** — ese enfoque no existe en la SERP y además filtra tráfico inútil. Tabla de los registros que respaldan una inspección y los cinco peligros reales de una cocina dominicana.
+
+🔴 **TERRENO REGULADO — blindaje aplicado y verificado con grep**: cero leyes, artículos, resoluciones, decretos, plazos de vigencia, precios de tramitación o cuantías de multas inventados. Solo se nombran por su papel general **Ministerio de Salud Pública, DIGESA, INFOTEP y el ayuntamiento**, que son los verificados por búsqueda, y el texto dice **tres veces** que es orientativo y que los requisitos hay que confirmarlos con las instituciones. **Repetir este patrón en todo lo que toque normativa.**
+Datos técnicos verificados: zona de peligro 5-60 °C, nevera ≤5 °C, congelador ≤−18 °C, pollo 74 °C y carne molida 71 °C — esta última **coincide con la corrección aplicada en el post de ficha técnica**.
+
+🔴 **FALLO NUEVO DEL BRIDGE — truncamiento silencioso**: una mitad quedó **cortada a media frase** pero `bridge.py` la reportó como éxito y el fichero existía, así que el reintento por "fichero no vacío" **no lo detectó**. Se detectó leyendo el cierre. **Verificar siempre que el texto termina en puntuación final y tiene todas las secciones pedidas.**
+🔴 **Voseo en la salida de `--task meta`**, no solo en el cuerpo: coló "no dependa de vos", "garantizás", "creás" y "Podés" en una meta description y dos FAQ. **Grepear el JSON del meta igual que el cuerpo.**
+
 ⚠️ **Aprendizaje de imágenes**: el primer hero se descartó en la verificación visual por **texto ilegible inventado, símbolo de libra esterlina y kg** (moneda y unidad equivocadas, justo lo contrario de lo que defiende el artículo) y **cacerolas de cobre**, prohibidas por el maestro. **Al pedir imágenes con documentos o básculas, decir explícitamente "no text, no labels, no copper"**, y verificar siempre con Read antes de optimizar.
 
 ⚠️ **Aprendizaje de `bridge.py`**: a `--max-tokens 14000` la respuesta de OpenRouter llegó **truncada** (`Expecting value: line 2703`) tras 10+ min, dos veces. **Generar los artículos largos en dos mitades de ~11.000 tokens** y concatenar. Ojo al concatenar: si la primera mitad no termina en salto de línea, el primer `##` de la segunda se pega al párrafo anterior y deja de ser encabezado.
@@ -143,7 +154,9 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 6. ✅ **Ficha técnica de cocina** — publicada y live (2026-07-27).
 7. ✅ **Estandarización de recetas** — publicada y live (2026-07-27). Con ella queda **cerrado el clúster de franquicias**: escandallo → ficha técnica → estandarización, los tres enlazando a `/consultoria/franquicias/`.
 8. ✅ **Brigada de cocina** — publicada y live (2026-07-27).
-   **Siguientes pilares pendientes**: *manual de operaciones restaurante* (110, comp. 0,07), que cerraría del todo el clúster de franquicias; y el clúster de **formación / manipulación de alimentos**, que es el mayor volumen del mapa y además es puerta de entrada e infoproducto. Ojo: con 5 pilares publicados el mismo día, **antes de seguir produciendo conviene esperar la primera lectura de GSC** y ver qué entra y por dónde.
+9. ✅ **Manual de operaciones** y ✅ **Manipulación de alimentos** — publicados y live (2026-07-27).
+   **El blog pasó de 4 a 11 posts en un día.** 🔴 **Antes de producir nada más, esperar la primera lectura de GSC** (7-10 días): 7 piezas largas del mismo dominio publicadas a la vez necesitan tiempo, y todo el plan se apoya en volúmenes globales estimados que conviene contrastar con datos reales de RD antes de seguir invirtiendo.
+   **Cuando haya datos**, el clúster de formación admite continuación de cola larga (*carnet de manipulador*, *buenas prácticas*, *APPCC*) y queda pendiente el segmento **F&B hotelero** (*gerente de alimentos y bebidas*, 480 con CPC alto → Punta Cana).
 6. **Página de consultoría hotelera / F&B** (140, el CPC más alto: $1,45) — Punta Cana.
 7. **Septiembre es el Mes de la Gastronomía Dominicana (ADERES)**: ventana de PR con fecha. Preparar contenido y acercamiento en agosto.
 
@@ -164,7 +177,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
 
-1. **Vigilar los cinco posts del 2026-07-27** (hamburguesería, escandallo, ficha técnica, estandarización y brigada de cocina): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+1. **Vigilar los siete posts del 2026-07-27** (hamburguesería, escandallo, ficha técnica, estandarización, brigada, manual de operaciones y manipulación de alimentos): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
    ```
    mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
    mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
