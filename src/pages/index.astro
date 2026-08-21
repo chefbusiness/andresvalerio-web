@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import CtaFinal from '@components/CtaFinal.astro';
 import BestiaFireBanner from '@components/BestiaFireBanner.astro';
+import GuiasRelacionadas from '@components/GuiasRelacionadas.astro';
 import { personSchema } from '@utils/schema';
 ---
 
@@ -140,6 +141,21 @@ import { personSchema } from '@utils/schema';
       </a>
     </div>
   </section>
+
+  <!-- GUÍAS DEL BLOG: la home no enlazaba a ninguna pieza de contenido y el blog
+       colgaba entero de /blog/. Este bloque le da a las guías el enlace desde la
+       página más rastreada del sitio. -->
+  <GuiasRelacionadas
+    slugs={[
+      'como-montar-una-hamburgueseria-republica-dominicana',
+      'manipulacion-de-alimentos-republica-dominicana',
+      'escandallo-de-cocina-costo-real-por-plato',
+    ]}
+    tone="teal"
+    eyebrow="Del blog"
+    title="Lo que escribo para dueños de restaurante"
+    lead="Guías largas, con números de República Dominicana, sobre lo que de verdad decide si un negocio de comida gana dinero."
+  />
 
   <CtaFinal
     title="¿Tienes un proyecto en mente?"

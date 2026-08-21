@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import GuiasRelacionadas from '@components/GuiasRelacionadas.astro';
 import { serviceSchema, faqSchema } from '@utils/schema';
 import { whatsappUrl, emailUrl, etiquetaOrigen } from '@utils/contacto';
 
@@ -276,6 +277,19 @@ const pricingRows = [
       </div>
     </div>
   </section>
+
+  <!-- GUÍAS DEL BLOG (interenlazado servicio → contenido). -->
+  <GuiasRelacionadas
+    slugs={[
+      'escandallo-de-cocina-costo-real-por-plato',
+      'ingenieria-de-menu-restaurante-republica-dominicana',
+      'food-cost-restaurante-republica-dominicana',
+    ]}
+    tone="teal"
+    eyebrow="Del blog"
+    title="Los números detrás de una carta que gana dinero"
+    lead="El método de costeo y de ordenación de la carta, publicado paso a paso."
+  />
 
   <section class="dark final sec-pad" id="contacto">
     <div class="container">

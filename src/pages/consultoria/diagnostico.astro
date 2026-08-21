@@ -28,8 +28,12 @@ const related = [
 
 const photo = { src: '/images/chef/andres-emplatando.jpg', alt: 'Andrés Valerio emplatando en cocina' };
 const contextImage = { src: '/images/contexto/diagnostico.jpg', alt: 'Auditoría operativa y de costos con la línea de cocina de hamburguesas trabajando al fondo' };
+const guias = [
+  'food-cost-restaurante-republica-dominicana',
+  'ingenieria-de-menu-restaurante-republica-dominicana',
+  'manipulacion-de-alimentos-republica-dominicana',
+];
 ---
-
 <BaseLayout
   title={data.meta_title}
   description={data.meta_description}
@@ -41,7 +45,7 @@ const contextImage = { src: '/images/contexto/diagnostico.jpg', alt: 'Auditoría
     <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
   </Fragment>
 
-  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} />
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} guias={guias} />
 </BaseLayout>
 
 <script>

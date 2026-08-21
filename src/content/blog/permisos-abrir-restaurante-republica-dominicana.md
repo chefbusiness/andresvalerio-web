@@ -2,6 +2,7 @@
 title: 'Permisos para abrir un restaurante en República Dominicana (2026)'
 description: 'Todos los permisos para abrir un restaurante en RD: RNC, uso de suelo, Salud Pública, la licencia de Turismo (MITUR) que muchos olvidan, bomberos, tiempos y costos.'
 pubDate: 2026-06-24
+updatedDate: 2026-08-21
 heroImage: "/images/blog/permisos-restaurante-rd.jpg"
 heroAlt: 'Comedor de un restaurante de ladrillo a punto de abrir al anochecer, con lámparas cálidas encendidas y un rollo de planos sobre la barra'
 category: "Negocio gastronómico"
@@ -76,7 +77,7 @@ Si hay un permiso que define la fecha real de apertura de un restaurante, es est
 
 El trámite comienza con una solicitud formal acompañada de planos del local, memoria descriptiva de las instalaciones y el RNC de la empresa. Luego, un inspector de Salud Pública visita el restaurante para verificar in situ las condiciones: ventilación adecuada, superficies lavables, manejo de residuos sólidos y líquidos, trampa de grasa, baños para el personal y para clientes, programa de fumigación y control de plagas, y neveras con termómetros visibles.
 
-Un requisito indispensable es que todo el personal que manipula alimentos tenga el carnet de manipulador de alimentos, que se obtiene mediante una capacitación y un examen en el mismo Ministerio de Salud o en centros autorizados. El costo por persona ronda los RD$1,200 (US$20). Si piensas fabricar productos propios, como salsas, aderezos o postres envasados para la venta al público, necesitas además el registro sanitario de cada producto, un trámite aparte que puede tomar varias semanas.
+Un requisito indispensable es que todo el personal que manipula alimentos tenga el [carnet de manipulador de alimentos](/blog/manipulacion-de-alimentos-republica-dominicana/), que se obtiene mediante una capacitación y un examen en el mismo Ministerio de Salud o en centros autorizados. El costo por persona ronda los RD$1,200 (US$20). Si piensas fabricar productos propios, como salsas, aderezos o postres envasados para la venta al público, necesitas además el registro sanitario de cada producto, un trámite aparte que puede tomar varias semanas.
 
 Mi recomendación práctica es que inicies el contacto con Salud Pública mientras la obra civil avanza. Así puedes ir corrigiendo detalles antes de la inspección final. El tiempo de tramitación puede ir de tres a seis semanas, pero la inspección final suele ser el último candado antes de abrir.
 

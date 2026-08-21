@@ -28,8 +28,12 @@ const related = [
 
 const photo = { src: '/images/platos/valerio-burger.jpg', alt: 'Andrés Valerio con un plato de Valerio Burger Club' };
 const contextImage = { src: '/images/contexto/mentoria.jpg', alt: 'Andrés guiando a un cocinero en la plancha de hamburguesas durante una sesión de mentoría' };
+const guias = [
+  'brigada-de-cocina-equipo-real',
+  'manual-de-operaciones-restaurante-guia',
+  'manipulacion-de-alimentos-republica-dominicana',
+];
 ---
-
 <BaseLayout
   title={data.meta_title}
   description={data.meta_description}
@@ -41,7 +45,7 @@ const contextImage = { src: '/images/contexto/mentoria.jpg', alt: 'Andrés guian
     <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
   </Fragment>
 
-  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} />
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} guias={guias} />
 </BaseLayout>
 
 <script>

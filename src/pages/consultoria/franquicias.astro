@@ -43,8 +43,12 @@ const contextImage = {
   src: '/images/contexto/franquicias.jpg',
   alt: 'Manual de recetas abierto junto a una balanza con la porción pesada y tres hamburguesas idénticas en el pase de una cocina, como muestra de estandarización entre locales',
 };
+const guias = [
+  'ficha-tecnica-de-cocina-estandarizar-platos',
+  'estandarizacion-de-recetas-carta-consistente',
+  'manual-de-operaciones-restaurante-guia',
+];
 ---
-
 <BaseLayout
   title={data.meta_title}
   description={data.meta_description}
@@ -56,7 +60,7 @@ const contextImage = {
     <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
   </Fragment>
 
-  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} />
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} guias={guias} />
 </BaseLayout>
 
 <script>

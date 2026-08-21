@@ -2,6 +2,7 @@
 title: 'Cómo abrir un restaurante en República Dominicana: guía completa 2026'
 description: 'Guía completa para abrir un restaurante en República Dominicana en 2026: viabilidad, permisos (DGII, Salud, Ayuntamiento), presupuesto con costos reales en RD$/US$, food cost y errores que evitar.'
 pubDate: 2026-06-03
+updatedDate: 2026-08-21
 heroImage: "/images/blog/abrir-restaurante-rd.jpg"
 heroAlt: 'Comedor de un restaurante moderno preparándose antes de la apertura en Santo Domingo'
 category: "Negocio gastronómico"
@@ -108,6 +109,8 @@ El mercado laboral gastronómico dominicano es limitado. Hay talento, pero mucha
 
 - **Reclutamiento por valores:** busca personas con ganas reales de aprender y buena disposición, no solo experiencia previa. La actitud de servicio no se entrena; las recetas sí.  
 - **Manuales desde el día uno:** antes de abrir, ten listo un manual de operación con estándares de servicio (tiempos de bienvenida, protocolo de quejas, venta sugerida) y un manual de cocina con recetas estandarizadas.
+
+Sobre cómo se arma ese equipo en la vida real —y por qué la brigada clásica de los libros no existe en el 99% de las cocinas—, lo cuento entero en mi guía de [brigada de cocina](/blog/brigada-de-cocina-equipo-real/). Y los dos manuales que menciono aquí los desgloso paso a paso en [cómo construir el manual de operaciones](/blog/manual-de-operaciones-restaurante-guia/) y en [cómo estandarizar las recetas de toda la carta](/blog/estandarizacion-de-recetas-carta-consistente/).
 
 ## 7. Errores comunes que hacen quebrar un restaurante en el primer año
 

@@ -6,6 +6,7 @@
 // Nivel premium "gold standard" (ver consultoria/desarrollo-carta.astro), data-driven.
 
 import CtaFinal from '@components/CtaFinal.astro';
+import GuiasRelacionadas from '@components/GuiasRelacionadas.astro';
 
 interface Faq { q: string; a: string; }
 interface TitleDesc { title: string; desc: string; }
@@ -33,9 +34,11 @@ interface Props {
   pricing: { title: string; rows: PricingRow[]; note: string };
   related: RelatedLink[];
   contextImage?: { src: string; alt: string };
+  /** Slugs del blog a enlazar desde esta landing (interenlazado servicio → guía). */
+  guias?: string[];
 }
 
-const { slug, data, photo, pricing, related, contextImage } = Astro.props;
+const { slug, data, photo, pricing, related, contextImage, guias = [] } = Astro.props;
 void slug;
 
 // Etiquetas cortas para el "flow" del ejemplo: primera palabra significativa de cada paso.
@@ -257,6 +260,15 @@ const incluyeCols = [data.incluye.slice(0, half), data.incluye.slice(half)];
     </div>
   </div>
 </section>
+
+<!-- GUÍAS DEL BLOG (interenlazado servicio → contenido) -->
+<GuiasRelacionadas
+  slugs={guias}
+  tone="teal"
+  eyebrow="Del blog"
+  title="Guías para profundizar"
+  lead="Lo que explico en estas guías es el método con el que trabajo en este servicio."
+/>
 
 <!-- CTA FINAL -->
 <CtaFinal id="contacto" title={data.cta.h2} text={data.cta.text} ctaLabel="Solicitar propuesta" />
