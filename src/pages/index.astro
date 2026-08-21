@@ -261,7 +261,8 @@ import { personSchema } from '@utils/schema';
   }
 
   .hero-lead {
-    font-size: 1.25rem;
+    /* Fijo en 1,25rem se iba a 21px en movil y comia 5 lineas sobre la foto. */
+    font-size: clamp(1.05rem, 0.9rem + 0.9vw, 1.25rem);
     color: var(--bone-soft);
     margin-top: 1.5rem;
     max-width: 50ch;
