@@ -58,7 +58,8 @@ Las 33 URLs declaraban el mismo `lastmod` (el instante del build). Señal de fre
 
 ### Ventana de septiembre: es PR, no contenido
 Confirmado con búsqueda (no inventado): **Restaurant Week 2026** (9ª edición, ADERES + ASONAHORES), **+200 restaurantes en 5 destinos**. Ruta: **Punta Cana 1–6 sep · Santiago 7–13 · Santo Domingo 14–20 · Puerto Plata y Jarabacoa 21–27**. Septiembre es el Mes de la Gastronomía Dominicana.
-Lectura estratégica: el cuello de botella hoy es **autoridad/enlaces externos**, no volumen de contenido. Septiembre concentra a **200+ dueños de restaurante** (su cliente exacto) y a la prensa del sector. **El play correcto es off-page** (prensa, ADERES, presencia), no otro pilar de 5.000 palabras. Pendiente de decisión de John.
+Lectura estratégica: el cuello de botella hoy es **autoridad/enlaces externos**, no volumen de contenido. Septiembre concentra a **200+ dueños de restaurante** (su cliente exacto) y a la prensa del sector. **El play correcto es off-page** (prensa, ADERES, presencia), no otro pilar de 5.000 palabras.
+Plan completo en **`SEPTIEMBRE-2026-OFFPAGE.md`** (aritmética verificada del menú, tres frentes, borradores de pitch y calendario) y como página compartible con Andrés en https://claude.ai/code/artifact/13afc856-8065-4526-b8e1-f741747197fd.
 
 ---
 
