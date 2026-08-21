@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 import { whatsappUrl, emailUrl, EMAIL } from '@utils/contacto';
 
 // Estos son los enlaces por defecto (sin origen conocido). Si el visitante
@@ -7,6 +8,16 @@ import { whatsappUrl, emailUrl, EMAIL } from '@utils/contacto';
 // la atribución concreta. Ver src/utils/contacto.ts.
 const waDefault = whatsappUrl();
 const mailDefault = emailUrl();
+
+// Atribución fina del blog. `etiquetaOrigen` solo sabe decir "un artículo del
+// blog", y ahora que el blog es el motor de captación eso no basta: un lead
+// del clúster de franquicias no vale lo mismo que uno de brigada de cocina.
+// Este mapa (ruta → etiqueta) se genera en el build y viaja a la página como
+// JSON para que el script pueda resolver QUÉ guía trajo al visitante.
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const origenesBlog = Object.fromEntries(
+  posts.map((p) => [`/blog/${p.id}/`, `la guía «${p.data.title.split(':')[0].trim()}»`]),
+);
 ---
 
 <BaseLayout
@@ -362,11 +373,25 @@ const mailDefault = emailUrl();
   }
 </style>
 
+<script type="application/json" id="origenes-blog" is:inline set:html={JSON.stringify(origenesBlog)} />
+
 <script>
   import { initReveal } from '@utils/reveal';
   import { etiquetaOrigen, whatsappUrl, emailUrl } from '@utils/contacto';
 
   initReveal();
+
+  /** Etiqueta de la guía concreta del blog, si el visitante viene de una. */
+  function origenBlog(pathname: string): string | null {
+    const nodo = document.getElementById('origenes-blog');
+    if (!nodo?.textContent) return null;
+    try {
+      const mapa = JSON.parse(nodo.textContent) as Record<string, string>;
+      return mapa[pathname] ?? null;
+    } catch {
+      return null;
+    }
+  }
 
   // Atribución del lead sin analítica: si el visitante llegó desde otra página
   // del sitio, se reescriben los enlaces para que el mensaje diga de dónde
@@ -378,7 +403,7 @@ const mailDefault = emailUrl();
     if (ref) {
       const url = new URL(ref);
       if (url.origin === window.location.origin && url.pathname !== window.location.pathname) {
-        const origen = etiquetaOrigen(url.pathname);
+        const origen = origenBlog(url.pathname) ?? etiquetaOrigen(url.pathname);
         if (origen) {
           document.querySelectorAll<HTMLAnchorElement>('a[data-wa]').forEach((a) => {
             a.href = whatsappUrl(origen);
