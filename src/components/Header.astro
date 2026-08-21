@@ -267,6 +267,7 @@ const currentPath = Astro.url.pathname;
     transform: translateX(0);
   }
 
+
   .drawer-header {
     display: flex;
     justify-content: space-between;
@@ -287,6 +288,15 @@ const currentPath = Astro.url.pathname;
     flex-direction: column;
     gap: 0.5rem;
     flex: 1;
+    /* Con 7 enlaces el cajón necesitaba ~695px de alto: en pantallas cortas
+       (360x640, o cualquier móvil con la barra del navegador visible) el CTA
+       quedaba fuera y sin forma de llegar a él, porque el nav no scrolleaba.
+       `min-height: 0` es imprescindible: sin él un hijo flex no encoge por
+       debajo de su contenido y `overflow` no llega a activarse. */
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: 1rem;
   }
 
   .drawer-link {
@@ -306,6 +316,10 @@ const currentPath = Astro.url.pathname;
   .drawer-cta {
     margin-top: auto;
     justify-content: center;
+    /* Nunca se encoge ni se sale: es la conversión del menú. */
+    flex: none;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
   }
 </style>
 

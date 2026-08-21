@@ -30,7 +30,7 @@
 
   --maxw: 1180px;
   --pad: clamp(20px, 5vw, 64px);
-  --sec: clamp(72px, 11vw, 150px);
+  --sec: clamp(46px, 11vw, 150px);
 }
 
 @theme {
@@ -58,9 +58,18 @@
 
 html {
   scroll-behavior: smooth;
-  /* Escala base más generosa (Schibsted Grotesk tiene x-height pequeña → 16px se ve diminuto).
-     Sube la tipografía basada en rem de forma uniforme. */
-  font-size: 118.75%;
+  /* Escala base. Schibsted Grotesk tiene x-height pequeña y a 16px se ve
+     diminuto, de ahí la escala generosa del escritorio. Pero aplicarla también
+     en móvil inflaba TODO un 19%: como casi toda la tipografía del sitio está
+     en rem, un h2 de 2,4rem salía a 45,6px en una pantalla de 390px. La escala
+     grande empieza en tablet; el móvil se queda en 17px. */
+  font-size: 106.25%;
+}
+
+@media (min-width: 720px) {
+  html {
+    font-size: 118.75%;
+  }
 }
 
 body {
@@ -288,12 +297,12 @@ img {
 }
 
 .sec-head h2 {
-  font-size: clamp(2.4rem, 5vw, 3.7rem);
+  font-size: clamp(1.85rem, 5vw, 3.7rem);
   margin-top: 0.75rem;
 }
 
 .sec-head p {
-  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
   color: var(--ink-soft);
   max-width: 60ch;
   margin-top: 1rem;
