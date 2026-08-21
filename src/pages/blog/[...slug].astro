@@ -63,6 +63,7 @@ const related = data.related
         <div class="post-byline rv font-mono">
           Por {data.author} · {dateFmt.format(data.pubDate)}
           {data.readingMinutes && ` · ${data.readingMinutes} min de lectura`}
+          {data.updatedDate && ` · actualizado el ${dateFmt.format(data.updatedDate)}`}
         </div>
       </div>
     </header>
