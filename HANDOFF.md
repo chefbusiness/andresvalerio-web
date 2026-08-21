@@ -1,4 +1,4 @@
-# Handoff — andresvalerio.com · sesión 2026-07-27 (estrategia RD, GSC operativo y 7 pilares de contenido)
+# Handoff — andresvalerio.com · sesión 2026-08-21 (la lectura de GSC: por qué los 7 pilares no despegaron)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). **33 páginas** (11 posts de blog), todas live y verdes.
@@ -9,7 +9,62 @@ Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex
 
 ---
 
+## ✅ Hecho 2026-08-21 — la lectura de GSC que se estaba esperando, y el arreglo estructural
+
+Sesión hecha **desde el Mac** (`/Users/johnguerrero/andres-valerio-web/web`), no desde la VM. El clon del Mac estaba 23 commits por detrás; se hizo `pull` y se trabajó aquí. **Aquí SÍ hay node**, así que se pudo compilar en local para verificar antes de desplegar (build de 33 páginas en ~6 s, CPU de 40 a 51 °C: dentro del margen de la regla térmica). El deploy sigue siendo por push.
+
+### 🔴 El veredicto de los 7 pilares del 27-jul (25 días después)
+
+**No despegaron, y el motivo no es la calidad del contenido.**
+
+| Post | Índice | Impresiones (global, 28-jul → 20-ago) |
+|---|---|---|
+| como-montar-una-hamburgueseria-rd | ❌ Descubierta, sin indexar | 0 |
+| brigada-de-cocina-equipo-real | ❌ **URL desconocida para Google** | 0 |
+| manipulacion-de-alimentos-rd | ❌ Descubierta, sin indexar | 0 |
+| ficha-tecnica-de-cocina | ✅ | 8 |
+| escandallo-de-cocina | ✅ | 7 |
+| estandarizacion-de-recetas | ✅ | 7 (1 clic) |
+| manual-de-operaciones | ✅ | 7 (posición 49) |
+
+- **En RD los 7 posts nuevos suman 0 impresiones.** Todo RD en 24 días: **115 impresiones y 1 clic**, de las cuales **101 son "valerio burger club"** (posición 9, CTR 0%).
+- La curva global lleva plana en ~25 imp/día desde junio: **35.000 palabras no movieron la aguja**.
+- Las 3 sin indexar responden **200** y **están en el sitemap**. No es un fallo técnico de la web.
+
+**La tesis del estudio ("el cuello de botella es cantidad de contenido, rankea rápido sin autoridad") NO se confirmó.** Hay un techo de rastreo/autoridad, y publicar 7 piezas largas el mismo día en un dominio de 3 meses lo agravó. La decisión de parar antes de producir más fue la correcta y **sigue vigente**.
+
+### La causa estructural que sí se encontró: el grafo interno era de un solo sentido
+
+Medido en producción: **la home enlazaba a 0 posts** y **las 6 páginas de consultoría, a 0 posts**. Los 11 posts colgaban únicamente de `/blog/`, una página con 3 impresiones. `brigada` y `manipulación` solo recibían enlace desde el array `related` de otros dos posts del 27-jul igual de nuevos — de ahí el "URL desconocida para Google".
+
+**Arreglado** (commit `355b247`):
+- Componente nuevo **`GuiasRelacionadas.astro`** (recibe slugs, resuelve título/categoría/descripción de la colección, descarta slugs inexistentes sin romper el build, dos tonos: claro y sobre banda teal).
+- Cableado en **home**, **hub `/consultoria/`**, **desarrollo-carta** y —vía prop `guias` de `ServiceLanding`— **apertura, mentoría, diagnóstico y franquicias**. 3 guías por página.
+- **Enlaces contextuales en cuerpo** desde las dos piezas más rastreadas: el pilar enlaza *brigada*, *manual de operaciones* y *estandarización*; *permisos* enlaza *manipulación de alimentos* sobre el ancla "carnet de manipulador".
+- Resultado verificado en el build: cada post pasa de 2 páginas enlazantes a **entre 4 y 8** (sin contar `/blog/` ni la propia).
+
+### Sitemap: `lastmod` real (commit `383988e`)
+Las 33 URLs declaraban el mismo `lastmod` (el instante del build). Señal de frescura falsa: cuando el `lastmod` no es fiable **Google deja de tenerlo en cuenta en todo el dominio**, justo lo que no conviene con piezas esperando indexación. Ahora `serialize` toma la fecha del frontmatter (`updatedDate ?? pubDate`) para blog y recetas, los índices toman la de su pieza más reciente, y **las páginas sin fecha verificable se quedan sin `lastmod`** (es opcional; mejor ninguno que uno falso).
+⚠️ **Trampa a recordar**: si `serialize` devuelve `undefined`, la URL **desaparece** del sitemap. Devolver siempre el item. Verificado: 33 URLs intactas, 16 con `lastmod` real y 4 fechas distintas.
+
+### GSC
+- ✅ **Sitemap fantasma de 2024 borrado** (`https://andresvalerio.com/sitemap_index.xml`, guion bajo, 404 desde 2024). Resultó que **no hacía falta `GSC_ALLOW_DESTRUCTIVE`**: `delete_sitemap` funcionó tal cual. Solo queda el sitemap real.
+- ✅ Sitemap real **reenviado** tras el deploy para forzar relectura con las fechas nuevas.
+- ⛔ **La API de GSC no permite solicitar indexación** (la Indexing API solo cubre JobPosting y BroadcastEvent). Las 3 URLs sin indexar hay que mandarlas **a mano** desde la interfaz de GSC (Inspección de URL → Solicitar indexación). **Eso lo tiene que hacer John.**
+
+### Correcciones a cosas que este handoff daba por ciertas
+1. **"El cross-promo de Bestia Fire es solo de ida"** → **falso a día de hoy**: `bestiafire.pro` enlaza a `www.andresvalerio.com` desde el footer ("Un proyecto de Andrés Valerio · Chef & Consultor") y desde `founder` en su JSON-LD.
+2. **Valerio Burger Club tampoco está "sin enlazar"**: `valerioburgerclub.com/chef/` (ES+EN) tiene **4 enlaces visibles** a andresvalerio.com, uno de ellos un CTA primario, más el `Person` schema. Lo que sí estaba mal: **apuntaban al apex**, que hace 301 a www. Hay un fix preparado y **sin commitear** en el clon `chefbusiness/valerio-burger-club-web` (6 URLs → `https://www.andresvalerio.com/`); el clasificador de permisos bloqueó el commit/push en ese repo. **Decisión de John.**
+
+### Ventana de septiembre: es PR, no contenido
+Confirmado con búsqueda (no inventado): **Restaurant Week 2026** (9ª edición, ADERES + ASONAHORES), **+200 restaurantes en 5 destinos**. Ruta: **Punta Cana 1–6 sep · Santiago 7–13 · Santo Domingo 14–20 · Puerto Plata y Jarabacoa 21–27**. Septiembre es el Mes de la Gastronomía Dominicana.
+Lectura estratégica: el cuello de botella hoy es **autoridad/enlaces externos**, no volumen de contenido. Septiembre concentra a **200+ dueños de restaurante** (su cliente exacto) y a la prensa del sector. **El play correcto es off-page** (prensa, ADERES, presencia), no otro pilar de 5.000 palabras. Pendiente de decisión de John.
+
+---
+
 ## ⚠️ El entorno cambió: esto ya no es el Mac
+
+> **Matiz añadido el 2026-08-21**: la sesión de esa fecha se hizo **desde el Mac**, que sí tiene node y compila en ~6 s. Lo de abajo describe la VM. Vale para las dos: nada de builds pesados, deploy por push.
 
 Se trabaja en una **VM Linux** (`/root/andres-valerio-web`), no en el MacBook. Implicaciones:
 
@@ -43,7 +98,7 @@ Se trabaja en una **VM Linux** (`/root/andres-valerio-web`), no en el MacBook. I
 
 ### 🔴 Sitemap: defecto encontrado y corregido
 El único sitemap registrado en GSC era `https://andresvalerio.com/sitemap_index.xml` — **guion bajo**, en el apex, herencia de una época WordPress —, que devuelve **404** y no se rastreaba desde **2024-06-26** (estado "Has errors"). El sitemap real de Astro es `https://www.andresvalerio.com/sitemap-index.xml` (**guion**), estaba bien declarado en `robots.txt` pero **nunca se había enviado**. Se envió: ahora figura **`Valid`, 0 errores**, rastreado al instante.
-⚠️ **Queda borrar el fantasma de 2024** (requiere `GSC_ALLOW_DESTRUCTIVE=true`). Lección: comprobar el sitemap *registrado* contra el que *existe*; que responda 200 en `robots.txt` no basta.
+✅ **Fantasma de 2024 borrado el 2026-08-21** (y no hizo falta `GSC_ALLOW_DESTRUCTIVE`: `delete_sitemap` funcionó tal cual). Lección: comprobar el sitemap *registrado* contra el que *existe*; que responda 200 en `robots.txt` no basta.
 
 ### Contenido — primer post del nivel 3
 **Post nuevo `como-montar-una-hamburgueseria-republica-dominicana`** (~3.850 palabras, cat. "Negocio gastronómico" → `/consultoria/apertura/`). Es la keyword de mejor ratio del estudio (260, competencia 0,02) y la única que solo Andrés puede firmar. **El hueco es real: toda la SERP está escrita para España o Argentina, en euros.**
@@ -148,7 +203,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 ### Siguiente en el plan (mes 1-2 del estudio)
 2. **Casos de éxito con cifras** — es lo que convierte y hoy no existe ninguno. Empezar por sus propios negocios. **Bloqueado: hacen falta datos reales de Andrés.**
-3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. Hoy el cross-promo de Bestia Fire es **solo de ida**: andresvalerio.com promociona bestiafire.pro (barra, banner, popup) y no recibe nada de vuelta. *(Menos urgente de lo que parecía: en RD ya es posición 1,6 por su nombre.)*
+3. **Schema `Person` con `sameAs`** completo + enlazado entre sus tres negocios y la web personal. ~~Hoy el cross-promo de Bestia Fire es solo de ida~~ → **desmentido el 2026-08-21**: bestiafire.pro enlaza de vuelta (footer + `founder` en su JSON-LD) y valerioburgerclub.com/chef/ tiene 4 enlaces visibles. Lo que falta es el `sameAs` completo en el Person de andresvalerio.com. *(Menos urgente de lo que parecía: en RD ya es posición 1,6 por su nombre.)*
 4. ✅ **Post "cómo montar una hamburguesería"** — publicado y live (2026-07-27).
 5. ✅ **Pilar de escandallo** — publicado y live (2026-07-27).
 6. ✅ **Ficha técnica de cocina** — publicada y live (2026-07-27).
@@ -169,28 +224,34 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 11. `~/.claude/bin` no está en el `PATH` (paso 5 del README del cockpit).
 12. El repo sigue **clonado dos veces**: `/root/andresvalerio-web` (**el canónico ahora**, coincide con el nombre del repo y es donde vive la memoria) y `/root/andres-valerio-web` (obsoleto, con un `web/` residual de la migración). ⚠️ **La memoria del proyecto se consolidó el 2026-07-27 en `~/.claude/projects/-root-andresvalerio-web/memory/`**; trabajar siempre desde `/root/andresvalerio-web` o la sesión no la verá. El clon viejo se puede borrar (está pusheado y sin cambios propios).
 13. `serp_research.py` de `chefbusiness-ai` tiene un fix **sin commitear**: la ruta del intérprete del Mac estaba hardcodeada, ahora usa `sys.executable` con override por `BRIDGE_PYTHON`.
-14. `astro.config.mjs:33` usa `lastmod: new Date()` → **las 33 URLs del sitemap declaran la misma fecha** (la del build). Señal de frescura falsa: Google ignora el `lastmod` cuando no es fiable. Arreglo pensado: quitarlo, o derivar la fecha real del `pubDate`/`updatedDate` del frontmatter con `serialize`, de forma defensiva (no hay node para probarlo en local).
+14. ✅ **RESUELTO 2026-08-21** (commit `383988e`). ~~`astro.config.mjs:33` usa `lastmod: new Date()`~~ → **las 33 URLs del sitemap declaran la misma fecha** (la del build). Señal de frescura falsa: Google ignora el `lastmod` cuando no es fiable. Arreglo pensado: quitarlo, o derivar la fecha real del `pubDate`/`updatedDate` del frontmatter con `serialize`, de forma defensiva (no hay node para probarlo en local).
 
 ---
 
 ## ▶️ Lo primero al retomar
 
-El acceso a GSC ya está resuelto (ver arriba). Lo siguiente, por orden de valor:
+La lectura de GSC ya se hizo (2026-08-21, sección de arriba) y cambió las prioridades: **el cuello de botella es indexación y autoridad, no volumen de contenido.**
 
-1. **Vigilar los siete posts del 2026-07-27** (hamburguesería, escandallo, ficha técnica, estandarización, brigada, manual de operaciones y manipulación de alimentos): Google todavía no los conoce. Comprobar indexación y primeras posiciones a los 7-10 días:
+1. **🔴 Solicitar indexación a mano de las 3 URLs sin indexar** — la API no lo permite, es clic humano en GSC (Inspección de URL → Solicitar indexación). Sin esto, todo lo demás va lento:
+   - `https://www.andresvalerio.com/blog/como-montar-una-hamburgueseria-republica-dominicana/`
+   - `https://www.andresvalerio.com/blog/brigada-de-cocina-equipo-real/`
+   - `https://www.andresvalerio.com/blog/manipulacion-de-alimentos-republica-dominicana/`
+2. **Volver a medir a los 10-14 días del 2026-08-21** (≈ 31-ago / 4-sep) para saber si el interenlazado y el `lastmod` real desatascaron el rastreo:
    ```
-   mcp__gscServer__check_indexing_issues  (site sc-domain:andresvalerio.com)
-   mcp__gscServer__get_advanced_search_analytics  (dimensions page, filtro country=dom)
+   mcp__gscServer__check_indexing_issues        (site sc-domain:andresvalerio.com)
+   mcp__gscServer__get_advanced_search_analytics (dimensions page, filtro country=dom)
    ```
-   Es la primera prueba real de la tesis del estudio: si una pieza de cola larga bien hecha rankea rápido, se replica el patrón con el resto del nivel 3.
-   🔴 **Decisión tomada al cerrar la sesión: no producir más contenido hasta tener esa lectura.** Se publicaron 7 piezas largas (~35.000 palabras) el mismo día sobre una base de 4 posts; el plan se apoya en volúmenes **globales estimados** y toca contrastarlos con datos reales de RD antes de seguir invirtiendo.
-2. **Casos de éxito con cifras** — sigue siendo lo único que de verdad convierte y hoy no existe ninguno. **Depende de que Andrés pase datos.** Once posts construyen autoridad; un caso con números cierra ventas.
-3. **Borrar el sitemap fantasma de 2024** en GSC (necesita `GSC_ALLOW_DESTRUCTIVE=true`).
-4. Cuando haya datos: cola larga del clúster de formación (*carnet de manipulador*, *buenas prácticas*, *APPCC*) y el segmento **F&B hotelero** (*gerente de alimentos y bebidas*, 480 y el CPC más alto del estudio → Punta Cana).
+   **Este es el experimento limpio**: no se ha tocado el contenido de esas 3 piezas, solo su interenlazado y las señales de frescura. Si se indexan, el patrón queda validado y se replica. Si no, el problema es autoridad de dominio y toca off-page antes que contenido.
+3. **Off-page / septiembre** — Restaurant Week 2026 (Punta Cana 1–6, Santiago 7–13, Santo Domingo 14–20, Puerto Plata y Jarabacoa 21–27). 200+ dueños de restaurante y prensa del sector concentrados en un mes. Es la vía más directa a enlaces y menciones reales, que es lo que falta.
+4. **Casos de éxito con cifras** — sigue siendo lo único que de verdad convierte y hoy no existe ninguno. **Depende de que Andrés pase datos.**
+5. **NO producir más pilares largos hasta el punto 2.** Ya hay 11 posts y 3 sin indexar; añadir un duodécimo compite por el mismo presupuesto de rastreo.
+6. Mejora pendiente de atribución: los leads del blog llegan todos como *"un artículo del blog"* (`etiquetaOrigen` en `src/utils/contacto.ts`). Ahora que el blog es el motor de captación, conviene que diga **qué guía** generó el lead (un lead del clúster de franquicias no vale lo mismo que uno de brigada).
 
 Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**. El tráfico hispano global infla impresiones sin traer clientes, y el 30% de lo que hay hoy es marca de Valerio Burger Club que no convierte.
 
-⚠️ En `/root/chefbusiness-ai` siguen **dos cambios sin commitear**: el fix de `serp_research.py` (ruta del intérprete del Mac hardcodeada → `sys.executable`) y `gsc_report.py`. Decidir si se suben a ese repo.
+⚠️ En `/root/chefbusiness-ai` (VM) siguen **dos cambios sin commitear**: el fix de `serp_research.py` y `gsc_report.py`. Decidir si se suben a ese repo.
+
+⚠️ **Dos clones vivos**: la VM (`/root/andresvalerio-web`, donde vive la memoria del proyecto) y el Mac (`/Users/johnguerrero/andres-valerio-web/web`). El del Mac se puso al día el 2026-08-21 y **compila** (hay node); el de la VM no. Hacer `pull` en el que se retome.
 
 ## 🔧 Cómo retomar
 
