@@ -1,4 +1,4 @@
-# Handoff — andresvalerio.com · sesión 2026-08-21 (la lectura de GSC: por qué los 7 pilares no despegaron)
+# Handoff — andresvalerio.com · sesión 2026-08-21 (lectura de GSC + arreglo del responsive móvil)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). **33 páginas** (11 posts de blog), todas live y verdes.
@@ -60,6 +60,24 @@ Las 33 URLs declaraban el mismo `lastmod` (el instante del build). Señal de fre
 Confirmado con búsqueda (no inventado): **Restaurant Week 2026** (9ª edición, ADERES + ASONAHORES), **+200 restaurantes en 5 destinos**. Ruta: **Punta Cana 1–6 sep · Santiago 7–13 · Santo Domingo 14–20 · Puerto Plata y Jarabacoa 21–27**. Septiembre es el Mes de la Gastronomía Dominicana.
 Lectura estratégica: el cuello de botella hoy es **autoridad/enlaces externos**, no volumen de contenido. Septiembre concentra a **200+ dueños de restaurante** (su cliente exacto) y a la prensa del sector. **El play correcto es off-page** (prensa, ADERES, presencia), no otro pilar de 5.000 palabras.
 Plan completo en **`SEPTIEMBRE-2026-OFFPAGE.md`** (aritmética verificada del menú, tres frentes, borradores de pitch y calendario) y como página compartible con Andrés en https://claude.ai/code/artifact/13afc856-8065-4526-b8e1-f741747197fd.
+
+---
+
+## ✅ Hecho 2026-08-21 (tarde) — responsive móvil: escala, aire y el CTA del menú
+
+John reportó que en el móvil «el menú está muy grande, el botón de solicitar propuesta apenas se ve y queda cortado, hay muchos espacios y las letras están muy grandes». Verificado en el **Chrome de Windows** (regla térmica) con un viewport real: como el Chrome tenía zoom de página al ~42% y `resize_window` no daba un viewport móvil, se midió dentro de un **iframe de 390px**, que sí crea un viewport real para el documento. Truco reutilizable.
+
+**Eran tres problemas distintos, no uno:**
+
+1. **La escala base** (`global.css`). `html { font-size: 118.75% }` (19px) se aplicaba también en móvil y, como casi toda la tipografía va en `rem`, **todo salía inflado un 19%**: h2 a 45,6px y h1 del hero a 57px en una pantalla de 390px. Ahora el móvil usa **106,25% (17px)** y la escala generosa arranca en `min-width: 720px`.
+2. **El patrón `clamp()` mal calibrado.** En `clamp(min, Xvw, max)`, en móvil el término `vw` cae por debajo del mínimo, **así que el móvil siempre se come el mínimo** — y los mínimos estaban puestos a ojo de escritorio. Afectaba a `--sec` (72px → 144px de aire entre secciones), a los h2 de sección, sus leads y a los h1 de las cuatro plantillas (la landing de servicio se iba a 45,9px). Corregidos los mínimos; **los máximos de escritorio no se han tocado**.
+3. **🔴 El CTA del menú móvil, cortado de verdad.** Con 7 enlaces el cajón necesitaba **~695px de alto**. A **360×640 el botón «Solicitar propuesta» quedaba 52px por debajo del borde** y era **inalcanzable**, porque `.drawer-nav` no tenía scroll (`overflow: visible`). Arreglado con `min-height: 0` + `overflow-y: auto` en el nav —**el `min-height: 0` es imprescindible**: sin él un hijo flex no encoge por debajo de su contenido y el `overflow` nunca llega a activarse— y `flex: none` en el CTA.
+
+**Resultado medido a 390×844** (antes → después): base 19 → 17px · h1 hero 57 → 40px · h2 45,6 → 31,4px · padding de sección 72 → 46px · **altura de la home 9.075 → 7.644px (−15,6%)**. Sin desbordamiento horizontal en ninguna plantilla. **CTA entero con 26px de margen a 360×640, 375×667 y 390×844**, y con la lista scrolleando en viewports muy cortos (360×420 verificado).
+
+**Escritorio sin tocar**: a 1440px los valores son idénticos a antes del cambio (h1 95px, h2 70,3px, secciones 150px). El único cambio fuera del móvil es una reducción moderada en tablet (720–900px), deseable.
+
+Commits `d123018` y `aa561e3`.
 
 ---
 
