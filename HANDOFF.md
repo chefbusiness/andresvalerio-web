@@ -1,11 +1,54 @@
-# Handoff — andresvalerio.com · sesión 2026-08-21 (lectura de GSC + arreglo del responsive móvil)
+# Handoff — andresvalerio.com · sesión 2026-08-24/25 (teléfono nuevo + representación oficial de Miselup y Timlup)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
-Repo: `chefbusiness/andresvalerio-web` (rama `main`). **33 páginas** (11 posts de blog), todas live y verdes.
+Repo: `chefbusiness/andresvalerio-web` (rama `main`). **36 páginas** (11 posts de blog), todas live y verdes.
 Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex redirige 301 a www).
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
 > La hoja de ruta vive en **`ESTRATEGIA-RD-CONSULTORIA.md`** (estudio de mercado, keywords, competencia y plan de 90 días). Léelo antes de tocar contenido o arquitectura.
+
+---
+
+## ✅ Hecho 2026-08-24/25 — teléfono definitivo y la rama de software de gestión
+
+### Teléfono (commit `51c8f6f`)
+El provisional `809 884 7605` pasó a **`+1 829 399 8979`** (`wa.me/18293998979`). RD está en el NANP, así que el formato internacional lleva el `1` delante igual que el anterior.
+Estaba centralizado en `src/utils/contacto.ts`, así que **todos los CTA del sitio** se actualizaron solos. Los dos avisos legales lo tenían escrito a mano: ahora usan la constante nueva **`WHATSAPP_DISPLAY`** para que no vuelva a descolgarse. Verificado en producción: cero ocurrencias del viejo.
+
+### Nueva rama: representación oficial de los SaaS del grupo (commits `3886172`, `dbe824e`, `d609f47`, `5ac4039`)
+Andrés es **representante, distribuidor oficial e implementador de Miselup.pro y Timlup.pro en República Dominicana**.
+
+```
+/consultoria/software-gestion/            hub de la representación
+/consultoria/software-gestion/miselup/    costeo de recetas y food cost
+/consultoria/software-gestion/timlup/     checklists de tareas recurrentes
+```
+
+**Reglas del encargo, que están grabadas en el código y NO se pueden romper:**
+- El **porcentaje de comisión es acuerdo privado interno**. No aparece en ninguna página ni insinuado.
+- **El cliente se suscribe directamente en miselup.pro / timlup.pro** (Stripe, en euros). Nunca hay checkout aquí.
+- Por eso **el euro es la fuente de verdad** y US$/RD$ se **derivan** de una sola constante `TASAS` en `src/data/saas.ts`, siempre etiquetados como referencia al cambio. Actualizar el cambio = tocar una línea.
+- Los planes salen del `web/src/lib/billing-plans.ts` de cada repo, **no de memoria**: Miselup 0/19/49/79 € *por negocio*; Timlup 0/19/29/49 € **por local** + Enterprise. Anual = mensual × 10.
+- **La implantación de Andrés va a presupuesto.** Sin cifras publicadas (decisión de John).
+- Estas suscripciones **se cierran dentro de una consultoría**, no por autoservicio → el CTA primario es contactar con Andrés, y el secundario ir a la web oficial del producto.
+
+**Sistema de tres marcas** (requisito de John): el fondo es siempre el teal de Valerio y el color del SaaS entra solo como acento. El teal de Miselup (`#0f9e8c`) es de la familia del suyo (`#103330`); el oro de ambos SaaS (`#ffce47`) rima con su latón (`#BC9248`) y hace de hilo común; el azul de Timlup (`#2f6bff`), el más ajeno, va anclado sobre teal oscuro y **nunca de fondo**. Los logos son SVG inline, reproducidos del `Logo.astro` de cada repo.
+
+**Galería.** Las capturas se abren a pantalla completa al hacer clic, sobre `<dialog>` nativo (foco atrapado, Escape y fondo inerte gratis), con flechas de teclado y devolución del foco. La rejilla es de 2 columnas: a 3 las capturas eran ilegibles.
+
+**Interenlazado** (ninguna URL nace huérfana): footer, sexto servicio del hub de consultoría, banner contextual en las 5 landings de servicio, en el índice del blog y **uno por artículo según su tema**, más enlace cruzado entre los dos productos.
+
+### 🔴 Jerga: el copy venía en español de España
+Corregido y **es regla de proyecto de ahora en adelante** (ver la sección de reglas al final). `APPCC`→**HACCP** (es el acrónimo del Decreto 528-01, que supervisa DIGESA del Ministerio de Salud Pública), `escandallo`→**costeo de recetas**, `coste`→**costo**, `móvil`→**celular**, `IVA`→**ITBIS**, y fuera `turno`, que en RD se entiende como *horario* y esto no gestiona horarios.
+
+### Errores de esta sesión, para no repetirlos
+- **El bridge metió dos afirmaciones falsas** que se detectaron antes de publicar: que los SaaS *"se integran con tu POS"* (no existe integración: **conviven**) y que la suscripción se cobra *en dólares* (es en **euros**). Confirma que la revisión post-bridge no es opcional.
+- **Un build roto (`dbe824e`)** por encadenar literales de texto al estilo Python (`'a'\n'b'`), que en JavaScript es error de sintaxis. Producción no se vio afectada (Netlify no publica un build fallido), pero se perdió un ciclo.
+  → **Solución adoptada, úsala siempre antes de un push:** pasar el frontmatter de los `.astro` tocados por **esbuild**, que es instantáneo y no calienta la CPU como un `astro build`:
+  ```bash
+  python3 -c "s=open('RUTA.astro',encoding='utf-8').read(); print(s[3:s.index(chr(10)+'---',3)])" \
+    | ./node_modules/.bin/esbuild --loader=tsx --log-level=error > /dev/null && echo OK
+  ```
 
 ---
 
@@ -213,6 +256,14 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 ## ⏳ Pendiente
 
+### 🔴 De la rama de software de gestión (2026-08-25)
+0. **Capturas de Timlup — John las pasa.** Hoy la landing va con **esqueletos etiquetados**, no con imágenes rotas. Hacen falta de un workspace CON DATOS: la lista de tareas del día, el empleado fichando con PIN y el semáforo de cumplimiento. **No sirven las de `~/timlup-pro/.playwright-mcp/`**: son de una auditoría técnica, con estados vacíos («Sin datos para este periodo») y UUIDs crudos a la vista; publicarlas haría parecer el producto vacío.
+   → Al ponerlas: añadir `src` y `alt` a los ítems de `capturas` en `src/pages/consultoria/software-gestion/timlup.astro`. El visor y los índices ya soportan mezclar capturas reales con esqueletos.
+0b. **Captura de temperaturas de Miselup**: muestra «Superadmin» en el menú lateral porque se sacó desde la cuenta de John. No es sensible, pero si se quiere limpia es sustituir el fichero.
+0c. **Sección de distribuidores oficiales por país** en miselup.pro y timlup.pro — la otra mitad de la triangulación, tarea de esos repos, no de este.
+0d. **Decisión pendiente de John: ¿re-terminologizar el blog?** «escandallo» aparece **108 veces** en los 11 posts y ya posiciona; «HACCP» no aparece **ninguna**, así que hoy el blog no cubre el término que sí busca un dominicano. Recomendación: **añadir** el término local en esas piezas, no sustituirlo, para cubrir ambas búsquedas. No se tocó nada del contenido previo.
+0e. Frase a validar con Andrés: el copy dice que una implantación típica «puede estar funcionando en una o dos semanas». Lo generó el bridge y va matizado, pero **es un compromiso en su nombre sin verificar**.
+
 ### 🔴 Crítico
 1. **Medición.** **No se usa GA4 ni Clarity: es una decisión deliberada de John**, todo el seguimiento técnico se hace en **Google Search Console**. No hay que instalar analítica ni rellenar `PUBLIC_GA_ID` / `PUBLIC_MICROSOFT_CLARITY_ID` / `PUBLIC_GSC_VERIFICATION`.
    - **La propiedad YA está verificada en GSC por DNS**: `andresvalerio.com` tiene el TXT `google-site-verification=YZPRMYv8hg9…` en el apex. Cubre apex y www, así que la meta de verificación es innecesaria. El sitemap está declarado en `robots.txt` y responde 200.
@@ -249,6 +300,10 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 ## ▶️ Lo primero al retomar
 
+**0. Capturas de Timlup** — John dijo que las pasa (2026-08-25). Es lo único que deja una página del sitio a medias. Ver punto 0 de Pendiente.
+
+**0b. Las 3 URLs nuevas necesitan rastreo.** `/consultoria/software-gestion/` y sus dos hijas se publicaron el 2026-08-25 y ya están en el sitemap. Recordar la lección de [[indexacion-dominio-joven]]: el cuello de botella aquí es rastreo y autoridad, no volumen. Conviene solicitar indexación a mano de al menos el hub.
+
 La lectura de GSC ya se hizo (2026-08-21, sección de arriba) y cambió las prioridades: **el cuello de botella es indexación y autoridad, no volumen de contenido.**
 
 1. **🔴 Solicitar indexación a mano de las 3 URLs sin indexar** — la API no lo permite, es clic humano en GSC (Inspección de URL → Solicitar indexación). Sin esto, todo lo demás va lento:
@@ -274,9 +329,11 @@ Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**.
 
 ## 🔧 Cómo retomar
 
+> **La sesión 2026-08-24/25 se hizo en el Mac** (`/Users/johnguerrero/andres-valerio-web/web`), que sí tiene node y netlify CLI. Aun así **no se hace build local**: rige la regla térmica (la CPU apaga el equipo por encima de ~65 °C y llegó a marcar 66,4 °C durante los barridos de `grep`/`find`). Se compila en Netlify y se verifica con `curl`. Para no mandar builds rotos a la nube, el atajo es esbuild sobre el frontmatter (ver la sección de la sesión 2026-08-25).
+
 ```bash
 git pull    # <- clon canónico (ahí vive la memoria)
-# NO hay node: no se puede build local. Se despliega por push:
+# NO hacer build local (regla térmica). Se despliega por push:
 git push origin main          # Netlify compila y publica en ~30 s
 curl -s -o /dev/null -w '%{http_code}' https://www.andresvalerio.com/<ruta>/   # verificar
 ```
@@ -284,6 +341,7 @@ curl -s -o /dev/null -w '%{http_code}' https://www.andresvalerio.com/<ruta>/   #
 ## ⚠️ Reglas del proyecto
 - **Contenido**: SIEMPRE `bridge.py` (nunca redactar a mano). Keyword research + SERP **antes**. Enriquecido: tablas, datos, FAQ, ≥2 imágenes en el cuerpo + 1 destacada distinta. Interenlazado, sin huérfanas.
 - **Verificar lo que genera el bridge**: ha metido errores conceptuales, voseo rioplatense (también en la salida de `--task meta`), palabrotas, afirmaciones no verificables sobre Andrés, fugas del prompt y **truncamiento silencioso** (salida cortada a media frase reportada como éxito). **La revisión completa de 13 puntos está en la memoria: `checklist-antes-de-publicar.md`. Pasarla siempre antes de desplegar.**
+- 🔴 **Jerga profesional dominicana** (John, 2026-08-25): el lector es un dueño de restaurante de RD; si lee español de España, no convierte. **HACCP** (no APPCC — es el acrónimo del Decreto 528-01/DIGESA), **costeo de recetas** y **ficha de costeo** (no escandallo), **costo** (no coste), **celular** (no móvil), **ITBIS** (no IVA), **tareas recurrentes / checklists** (no «turno», que allí es *horario*). Quien factura es la **DGII**; el food cost de referencia en RD es **28-35 %**. Excepción razonada: «escandallo» no se borra del sitio porque ya posiciona — el término local va delante y se deja una glosa que ate los dos.
 - **Estética**: fast-good / street food / cocina de producto RD, oscura (VBC). Fotos reales para hero/persona. **Nunca** mediterráneo, aceite de oliva ni The Crime. Sin emojis como iconografía.
 - **Nomenclatura vs producto**: las páginas de captación se nombran como busca el mercado; las de producto/método (diagnóstico, mentoría) conservan su nombre y solo **suman** señales. No se elimina ni se renombra nada de lo ya publicado.
 - **andresvalerio.com y consultoresgastronomicos.pro son entes independientes.** Andrés tiene ficha contratada en el directorio; eso es off-page (citation + backlink), no un canal estratégico ni fuente de canibalización.
