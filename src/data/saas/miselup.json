@@ -20,24 +20,24 @@
     },
     {
       "title": "Catering y eventos",
-      "desc": "Operaciones por volumen, con costes por evento y control de producción sin sorpresas."
+      "desc": "Operaciones por volumen, con costos por evento y control de producción sin sorpresas."
     },
     {
       "title": "Dark kitchens y delivery",
-      "desc": "Cocinas que escalan menús y necesitan fichas claras, costes por unidad y rentabilidad por pedido."
+      "desc": "Cocinas que escalan menús y necesitan fichas claras, costos por unidad y rentabilidad por pedido."
     },
     {
       "title": "Consultores gastronómicos",
-      "desc": "Profesionales que auditan cartas y necesitan datos reales de coste, mermas y márgenes para sus clientes."
+      "desc": "Profesionales que auditan cartas y necesitan datos reales de costo, mermas y márgenes para sus clientes."
     }
   ],
   "resuelve": {
     "h2": "Qué resuelve Miselup en el día a día",
-    "intro": "Deja de adivinar el coste de tu carta y empieza a decidir con números.",
+    "intro": "Deja de adivinar el costo de tu carta y empieza a decidir con números.",
     "items": [
       {
         "title": "Food cost fuera de control",
-        "desc": "Calcula el coste por ración y por unidad de cada plato, con mermas y rendimientos incluidos."
+        "desc": "Calcula el costo por ración y por unidad de cada plato, con mermas y rendimientos incluidos."
       },
       {
         "title": "Recetas en la cabeza",
@@ -52,8 +52,8 @@
         "desc": "Cuando sube un insumo, recalculas el escandallo y ves el impacto en margen y PVP sugerido."
       },
       {
-        "title": "Trazabilidad y APPCC",
-        "desc": "Lleva temperaturas, caducidades, lotes, etiquetas de alérgenos y el informe de inspección sin hojas sueltas."
+        "title": "Trazabilidad y HACCP",
+        "desc": "Lleva temperaturas, caducidades, lotes, etiquetas de alérgenos y el informe de inspección sin hojas sueltas. HACCP es el Análisis de Peligros y Puntos Críticos de Control, el sistema que exige el Reglamento de Alimentos y Bebidas de RD."
       },
       {
         "title": "Sin foto de rentabilidad",
@@ -75,7 +75,7 @@
       },
       {
         "title": "Formación del equipo",
-        "desc": "Entreno a cocina, administración y sala en el flujo diario: escandallos, producción, compras y APPCC."
+        "desc": "Entreno a cocina, administración y sala en el flujo diario: escandallos, producción, compras y HACCP."
       },
       {
         "title": "Soporte local",
@@ -86,7 +86,7 @@
   "faq": [
     {
       "q": "¿Miselup reemplaza mi POS o factura a la DGII?",
-      "a": "No. Miselup no es un POS y no factura a la DGII. Convive con el sistema de facturación y el POS que ya uses: Miselup se encarga de la cocina, los costes y la gestión, no de la facturación fiscal."
+      "a": "No. Miselup no es un POS y no factura a la DGII. Convive con el sistema de facturación y el POS que ya uses: Miselup se encarga de la cocina, los costos y la gestión, no de la facturación fiscal."
     },
     {
       "q": "¿Miselup se integra con mi POS actual?",
@@ -101,12 +101,16 @@
       "a": "Depende del tamaño de tu operación, la cantidad de recetas a migrar y el alcance del acompañamiento. Sin ver tu cocina no te doy un número al aire: agendamos una llamada, revisamos tu caso y te paso un presupuesto claro."
     },
     {
+      "q": "¿Me sirve para una inspección de Salud Pública?",
+      "a": "Te sirve para llegar con los registros hechos, que es donde casi todo el mundo falla. El control sanitario en RD se rige por el Decreto 528-01 y lo supervisa DIGESA, del Ministerio de Salud Pública, y ahí se te piden registros de temperaturas, trazabilidad de lotes y control de alérgenos. Miselup los guarda con su fecha y su hora y te los exporta como informe. Ojo: la herramienta te ordena la evidencia, no te certifica — el permiso sanitario sigue dependiendo de cómo operes tu cocina."
+    },
+    {
       "q": "¿Puedo empezar gratis?",
-      "a": "Sí, Miselup tiene un plan Gratis de hasta 50 recetas. Es una buena puerta de entrada para probar el flujo antes de decidir si necesitas más recetas, IA, inventario o la suite APPCC completa."
+      "a": "Sí, Miselup tiene un plan Gratis de hasta 50 recetas. Es una buena puerta de entrada para probar el flujo antes de decidir si necesitas más recetas, IA, inventario o la suite HACCP completa."
     },
     {
       "q": "¿Sirve para un restaurante pequeño o solo para operaciones grandes?",
-      "a": "Sirve para ambos. Un negocio pequeño puede empezar con el plan Gratis y controlar sus 20 o 30 platos. Una operación más grande aprovecha inventario, producción, compras y APPCC sin cambiar de herramienta."
+      "a": "Sirve para ambos. Un negocio pequeño puede empezar con el plan Gratis y controlar sus 20 o 30 platos. Una operación más grande aprovecha inventario, producción, compras y HACCP sin cambiar de herramienta."
     }
   ],
   "cta": {

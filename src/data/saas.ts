@@ -41,7 +41,7 @@ export interface Captura {
 
 export interface Plan {
   nombre: string;
-  /** € al mes, sin IVA. 0 = gratis, null = a medida. */
+  /** € al mes, sin impuestos. 0 = gratis, null = a medida. */
   eur: number | null;
   /** Qué se paga: por organización o por local. Cambia el sentido del precio. */
   unidad: string;
@@ -86,7 +86,7 @@ export const MISELUP: Saas = {
       resumen: 'Para probar el flujo completo con tu carta real.',
       incluye: [
         'Hasta 50 recetas propias',
-        'Escandallos con mermas y coste por ración',
+        'Escandallos con mermas y costo por ración',
         'Fichas técnicas y alérgenos',
         'Catálogo de más de 1.200 ingredientes',
         'Sin tarjeta',
@@ -114,7 +114,7 @@ export const MISELUP: Saas = {
         'IA de cocina para fichas y escandallos',
         'Inventario, producción y compras',
         'P&L diario y rentabilidad por plato',
-        'Registro de temperaturas APPCC',
+        'Registro de temperaturas HACCP',
       ],
       destacado: true,
     },
@@ -125,7 +125,7 @@ export const MISELUP: Saas = {
       resumen: 'Para quien recibe inspección y necesita el libro al día.',
       incluye: [
         'Todo lo del plan Pro',
-        'Suite APPCC completa',
+        'Suite HACCP completa',
         'Caducidades, lotes y trazabilidad',
         'Etiquetas de alérgenos',
         'Informe de inspección',
@@ -143,8 +143,8 @@ export const TIMLUP: Saas = {
   brand: '#2f6bff',
   brandInk: '#1338a8',
   brandSoft: '#eaf0ff',
-  tagline: 'Checklists y tareas por turno',
-  gancho: 'Sabe qué se hizo en cada turno, quién lo firmó y a qué hora.',
+  tagline: 'Checklists de tareas recurrentes',
+  gancho: 'Sabe qué se hizo cada día, quién lo firmó y a qué hora.',
   planes: [
     {
       nombre: 'Gratis',
@@ -163,7 +163,7 @@ export const TIMLUP: Saas = {
       nombre: 'Esencial',
       eur: 19,
       unidad: 'por local / mes',
-      resumen: 'Para un local con equipo y turnos de verdad.',
+      resumen: 'Para un local con equipo y rutina de verdad.',
       incluye: [
         'Hasta 50 listas activas',
         'Hasta 15 empleados con PIN',

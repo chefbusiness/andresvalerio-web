@@ -1,9 +1,9 @@
 {
   "meta_title": "Timlup en RD | Checklists y tareas para tu equipo",
-  "meta_description": "Timlup en República Dominicana: checklists por turno, empleados con PIN y cumplimiento firmado. Implantación y soporte local con Andrés Valerio.",
+  "meta_description": "Timlup en República Dominicana: checklists de tareas, empleados con PIN y cumplimiento firmado. Implantación y soporte local con Andrés Valerio.",
   "hero": {
     "eyebrow": "Sistematiza tu operación",
-    "h1": "Cada tarea del turno, firmada y con hora",
+    "h1": "Cada tarea, firmada y con hora",
     "lead": "Yo uso Timlup en mis restaurantes y ahora te ayudo a implantarlo en el tuyo. Sin enredos, con soporte local y a tu ritmo."
   },
   "intro": {
@@ -41,7 +41,7 @@
       },
       {
         "title": "Nadie sabe quién hizo qué",
-        "desc": "Cada empleado ficha con PIN desde su móvil y firma sus tareas completadas. No más «yo lo hice» sin prueba."
+        "desc": "Cada empleado ficha con PIN desde su celular y firma sus tareas completadas. No más «yo lo hice» sin prueba."
       },
       {
         "title": "Dueño atado a un solo local",
@@ -67,7 +67,7 @@
     "pasos": [
       {
         "title": "Diagnóstico operativo",
-        "desc": "Reviso cuántos locales tienes, las áreas de trabajo, los turnos y las tareas que necesitas controlar. Si ya usas papel o Excel, los tomamos como base."
+        "desc": "Reviso cuántos locales tienes, las áreas de trabajo y las tareas que necesitas controlar. Si ya usas papel o Excel, los tomamos como base."
       },
       {
         "title": "Configuración y migración",
@@ -86,7 +86,7 @@
   "faq": [
     {
       "q": "¿Necesito comprar tablets o equipos especiales?",
-      "a": "No. Tus empleados usan su propio teléfono o cualquier móvil con acceso a internet. Fichan con un PIN que tú les asignas, sin necesidad de cuenta de correo electrónico."
+      "a": "No. Tus empleados usan su propio teléfono o cualquier celular con acceso a internet. Fichan con un PIN que tú les asignas, sin necesidad de cuenta de correo electrónico."
     },
     {
       "q": "¿Timlup reemplaza mi punto de venta actual?",
@@ -105,8 +105,8 @@
       "a": "La aplicación guarda las tareas completadas sin conexión y las sincroniza cuando vuelve la señal. No se pierde ningún registro, algo clave en nuestro país."
     },
     {
-      "q": "¿Puedo tener listas diferentes para cada turno o área?",
-      "a": "Claro. Puedes crear listas de apertura, cierre, limpieza semanal, mantenimiento mensual, etc., y asignarlas por turno, local o área de trabajo. Además, las plantillas se replican entre locales en dos toques."
+      "q": "¿Puedo tener listas diferentes para cada área o local?",
+      "a": "Claro. Puedes crear listas de apertura, cierre, limpieza semanal, mantenimiento mensual, etc., y asignarlas por local, área o área de trabajo. Además, las plantillas se replican entre locales en dos toques."
     }
   ],
   "cta": {

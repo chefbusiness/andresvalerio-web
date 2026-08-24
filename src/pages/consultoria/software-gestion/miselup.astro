@@ -22,15 +22,15 @@ const capturas: Captura[] = [
     src: '/images/saas/miselup/escandallo.webp',
     title: 'El escandallo de un plato',
     caption:
-      'Cada componente con su cantidad, su merma y su coste. Abajo, el coste por unidad, el PVP sugerido, el margen y el food cost que te deja el plato.',
-    alt: 'Ficha de una elaboración final en Miselup, con la composición del escandallo componente a componente y los indicadores de coste total, coste por unidad, PVP sugerido, margen y tiempo',
+      'Cada componente con su cantidad, su merma y su costo. Abajo, el costo por unidad, el PVP sugerido, el margen y el food cost que te deja el plato.',
+    alt: 'Ficha de una elaboración final en Miselup, con la composición del escandallo componente a componente y los indicadores de costo total, costo por unidad, PVP sugerido, margen y tiempo',
   },
   {
     src: '/images/saas/miselup/panel-resumen.webp',
     title: 'Tu cocina en números',
     caption:
-      'El panel de entrada: cuántas recetas y elaboraciones tienes montadas, tu coste medio por unidad de venta, el food cost medio y los platos que más te dejan.',
-    alt: 'Panel de resumen de Miselup con el recuento de ingredientes y elaboraciones, el coste medio por unidad de venta, el margen y food cost medios, y el listado de elaboraciones más rentables',
+      'El panel de entrada: cuántas recetas y elaboraciones tienes montadas, tu costo medio por unidad de venta, el food cost medio y los platos que más te dejan.',
+    alt: 'Panel de resumen de Miselup con el recuento de ingredientes y elaboraciones, el costo medio por unidad de venta, el margen y food cost medios, y el listado de elaboraciones más rentables',
   },
   {
     src: '/images/saas/miselup/ingredientes.webp',
@@ -43,8 +43,10 @@ const capturas: Captura[] = [
     src: '/images/saas/miselup/temperaturas.webp',
     title: 'Temperaturas para la inspección',
     caption:
-      'Cada cámara y nevera con su rango. La lectura se marca ok o alerta según el equipo y queda guardada como registro APPCC, con su acción correctiva.',
-    alt: 'Pantalla de control de temperaturas APPCC de Miselup con los puntos de control de cámara, congelador, nevera de barra y mesa caliente, cada uno con su rango y su última lectura marcada como ok o alerta',
+      'Cada cámara y nevera con su rango. La lectura se marca ok o alerta según el equipo y queda '
+      'guardada como registro HACCP, con su acción correctiva. En la pantalla verás APPCC, que es '
+      'el mismo sistema con las siglas en español.',
+    alt: 'Pantalla de control de temperaturas HACCP de Miselup con los puntos de control de cámara, congelador, nevera de barra y mesa caliente, cada uno con su rango y su última lectura marcada como ok o alerta',
   },
 ];
 
@@ -69,7 +71,7 @@ const guias = [
 const hermano = {
   nombre: 'Timlup',
   href: rutaSaas('timlup'),
-  tagline: 'Checklists y tareas por turno, firmadas y con hora.',
+  tagline: 'Checklists de tareas recurrentes, firmadas y con hora.',
   slug: 'timlup' as const,
 };
 

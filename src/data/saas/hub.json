@@ -1,15 +1,15 @@
 {
   "meta_title": "Andrés Valerio | Miselup y Timlup en República Dominicana",
-  "meta_description": "Representante oficial de Miselup (escandallos y food cost) y Timlup (checklists de turno) en RD. Implantación, formación y soporte local.",
+  "meta_description": "Representante oficial de Miselup (escandallos y food cost) y Timlup (checklists de tareas) en RD. Implantación, formación y soporte local.",
   "hero": {
     "eyebrow": "Software de cocina real",
-    "h1": "Controla el costo real de cada plato y las tareas de cada turno",
+    "h1": "Controla el costo real de cada plato y las tareas de cada día",
     "lead": "Soy Andrés Valerio, chef y consultor. Represento a Miselup y Timlup en República Dominicana porque los uso a diario en mis propios negocios. No son otro POS: conviven con el que ya tienes y resuelven lo que aquí no resuelve nadie."
   },
   "intro": {
     "h2": "Lo que el POS no te dice",
     "parrafos": [
-      "En la mayoría de los restaurantes dominicanos, el software que se consigue se enfoca en facturar y llevar inventario básico. Pero el costo real del plato, las mermas, las recetas estandarizadas y la disciplina del turno quedan en el aire. Ahí es donde entran Miselup y Timlup: dos herramientas que trabajan al lado de tu POS y atacan justo lo que te quita el sueño.",
+      "En la mayoría de los restaurantes dominicanos, el software que se consigue se enfoca en facturar y llevar inventario básico. Pero el costo real del plato, las mermas, las recetas estandarizadas y la disciplina de las tareas del día quedan en el aire. Ahí es donde entran Miselup y Timlup: dos herramientas que trabajan al lado de tu POS y atacan justo lo que te quita el sueño.",
       "Yo las uso todos los días en Valerio Burger Club, en mi catering y en la parrilla. Por eso decidí representarlas aquí: sé que funcionan y sé cómo sacarles el máximo provecho en una cocina dominicana."
     ]
   },
@@ -22,11 +22,11 @@
       },
       {
         "title": "Checklists que se cumplen",
-        "desc": "Timlup convierte las tareas de apertura, cierre y turno en listas digitales con firma y semáforo de cumplimiento. Se acabaron los papeles que se botan."
+        "desc": "Timlup convierte las tareas de apertura, cierre y limpieza en checklists digitales con firma y semáforo de cumplimiento. Se acabaron los papeles que se botan."
       },
       {
         "title": "Conviven, no reemplazan",
-        "desc": "No son un POS ni facturan a la DGII. Funcionan al lado del sistema que ya usas: tu POS sigue cobrando y facturando, y estas herramientas se ocupan de la cocina y del turno."
+        "desc": "No son un POS ni facturan a la DGII. Funcionan al lado del sistema que ya usas: tu POS sigue cobrando y facturando, y estas herramientas se ocupan de la cocina y de la operación del día a día."
       },
       {
         "title": "Plan gratis de verdad",
@@ -48,7 +48,7 @@
       },
       {
         "title": "Formación del equipo",
-        "desc": "Entreno a tu cocina y a tus encargados de turno para que usen el software con soltura desde el día uno."
+        "desc": "Entreno a tu cocina y a tus encargados para que usen el software con soltura desde el día uno."
       },
       {
         "title": "Soporte local en español",
@@ -59,7 +59,7 @@
   "faq": [
     {
       "q": "¿Esto sustituye al POS que ya tengo?",
-      "a": "No. Ni Miselup ni Timlup son un punto de venta ni facturan a la DGII. Conviven con tu POS actual: el POS sigue cobrando, y estas herramientas te dan el control de cocina y turnos que el POS no trae."
+      "a": "No. Ni Miselup ni Timlup son un punto de venta ni facturan a la DGII. Conviven con tu POS actual: el POS sigue cobrando, y estas herramientas te dan el control de la cocina y de las tareas diarias que el POS no trae."
     },
     {
       "q": "¿Cómo contrato y en qué moneda se paga?",

@@ -44,7 +44,13 @@ interface Props {
 }
 
 const { saas, data, capturas, guias = [], hermano } = Astro.props;
-const conCaptura = capturas.filter((c) => c.src).length;
+
+/** Solo las que tienen imagen son ampliables; el visor navega entre ELLAS. */
+const ampliables = capturas.filter((c) => c.src);
+const conCaptura = ampliables.length;
+/** Posición de cada captura dentro de `ampliables`, para que el índice del
+ *  botón case con el del visor aunque en medio haya esqueletos. */
+const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
 ---
 
 <div class="sl" style={`--sb-brand:${saas.brand}; --sb-ink:${saas.brandInk}; --sb-soft:${saas.brandSoft}`}>
@@ -130,7 +136,21 @@ const conCaptura = capturas.filter((c) => c.src).length;
           capturas.map((c, i) => (
             <figure class:list={['sl-shot', 'rv', `d${Math.min(i + 1, 4)}`, { 'sl-shot--vacia': !c.src }]}>
               {c.src ? (
-                <img src={c.src} alt={c.alt ?? c.title} loading="lazy" decoding="async" width="1920" height="1177" />
+                <button
+                  type="button"
+                  class="sl-shot__zoom"
+                  data-shot={String(indiceVisor.get(c))}
+                  aria-label={`Ampliar la captura: ${c.title}`}
+                >
+                  <img src={c.src} alt={c.alt ?? c.title} loading="lazy" decoding="async" width="1920" height="1177" />
+                  <span class="sl-shot__lupa" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="7" />
+                      <path d="M20 20l-3.2-3.2M11 8.5v5M8.5 11h5" />
+                    </svg>
+                    Ampliar
+                  </span>
+                </button>
               ) : (
                 <div class="sl-shot__hueco" aria-hidden="true">
                   <SaasMark saas={saas.slug as 'miselup' | 'timlup'} size={30} />
@@ -146,6 +166,46 @@ const conCaptura = capturas.filter((c) => c.src).length;
         }
       </div>
     </div>
+
+    {
+      conCaptura > 0 && (
+        <dialog class="sl-visor" aria-label="Captura ampliada">
+          <div class="sl-visor__caja">
+            <button type="button" class="sl-visor__x" data-cerrar aria-label="Cerrar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+
+            <img class="sl-visor__img" src="" alt="" />
+
+            <p class="sl-visor__pie">
+              <strong data-visor-titulo />
+              <span data-visor-pie />
+            </p>
+
+            <div class="sl-visor__nav">
+              <button type="button" data-paso="-1" aria-label="Captura anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+              </button>
+              <span class="sl-visor__cuenta" data-visor-cuenta />
+              <button type="button" data-paso="1" aria-label="Captura siguiente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )
+    }
+
+    <script
+      type="application/json"
+      class="sl-shots-datos"
+      is:inline
+      set:html={JSON.stringify(
+        ampliables.map((c) => ({ src: c.src, alt: c.alt ?? c.title, t: c.title, p: c.caption })),
+      )}
+    />
   </section>
 
   <!-- ── QUÉ RESUELVE ── -->
@@ -437,8 +497,8 @@ const conCaptura = capturas.filter((c) => c.src).length;
   /* ── Capturas ── */
   .sl-shots__grid {
     display: grid;
-    gap: 1.75rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
   }
   .sl-shot {
     margin: 0;
@@ -450,6 +510,171 @@ const conCaptura = capturas.filter((c) => c.src).length;
     border-radius: 6px;
     border: 1px solid rgba(243, 236, 221, 0.16);
     background: #fff;
+  }
+
+  /* ── Disparador de la galería ── */
+  .sl-shot__zoom {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    border-radius: 6px;
+  }
+  .sl-shot__zoom img {
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .sl-shot__zoom:hover img,
+  .sl-shot__zoom:focus-visible img {
+    transform: scale(1.012);
+    border-color: var(--sb-brand);
+  }
+  .sl-shot__lupa {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(13, 42, 39, 0.82);
+    color: var(--bone);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .sl-shot__lupa svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+  .sl-shot__zoom:hover .sl-shot__lupa,
+  .sl-shot__zoom:focus-visible .sl-shot__lupa {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* En táctil no hay hover: la pista se queda siempre visible. */
+  @media (hover: none) {
+    .sl-shot__lupa {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ── Visor ── */
+  .sl-visor {
+    width: min(96vw, 1500px);
+    max-width: none;
+    max-height: 94vh;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+  .sl-visor::backdrop {
+    background: rgba(7, 24, 22, 0.92);
+    backdrop-filter: blur(3px);
+  }
+  .sl-visor__caja {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .sl-visor__img {
+    display: block;
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid rgba(243, 236, 221, 0.2);
+  }
+  .sl-visor__pie {
+    margin: 0;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(243, 236, 221, 0.78);
+  }
+  .sl-visor__pie strong {
+    display: block;
+    color: var(--bone);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+  .sl-visor__x {
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(243, 236, 221, 0.25);
+    background: rgba(243, 236, 221, 0.08);
+    color: var(--bone);
+    cursor: pointer;
+  }
+  .sl-visor__x svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .sl-visor__x:hover {
+    background: rgba(243, 236, 221, 0.18);
+  }
+  .sl-visor__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  .sl-visor__nav button {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(243, 236, 221, 0.25);
+    background: rgba(243, 236, 221, 0.08);
+    color: var(--bone);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .sl-visor__nav button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .sl-visor__nav button:hover {
+    background: var(--sb-brand);
+    border-color: var(--sb-brand);
+  }
+  .sl-visor__cuenta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: rgba(243, 236, 221, 0.7);
+    min-width: 3.5rem;
+    text-align: center;
+  }
+  /* Con una sola captura no hay nada entre lo que navegar. */
+  .sl-visor[data-unica] .sl-visor__nav {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .sl-visor__x {
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(7, 24, 22, 0.75);
+    }
   }
   .sl-shot__hueco {
     display: flex;
@@ -676,11 +901,100 @@ const conCaptura = capturas.filter((c) => c.src).length;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .sl-shot__zoom img,
+    .sl-shot__lupa,
+    .sl-visor__nav button,
     .sl-otro {
       transition: none;
+    }
+    .sl-shot__zoom:hover img,
+    .sl-shot__zoom:focus-visible img {
+      transform: none;
     }
     .sl-otro:hover {
       transform: none;
     }
   }
 </style>
+
+<script>
+  /**
+   * Galería de capturas: abre la imagen a tamaño grande al hacer clic.
+   *
+   * Va sobre <dialog> a propósito — el navegador ya nos da gratis el foco
+   * atrapado dentro, el cierre con Escape y el fondo inerte, que es justo lo
+   * que suele salir mal cuando esto se escribe a mano.
+   *
+   * Los datos viajan en un <script type="application/json"> junto al visor y
+   * NO en atributos de cada botón: los pies de foto llevan comillas y acentos,
+   * y así no hay que escaparlos dos veces.
+   */
+  type Shot = { src: string; alt: string; t: string; p: string };
+
+  function montarGaleria(seccion: HTMLElement) {
+    const visor = seccion.querySelector<HTMLDialogElement>('.sl-visor');
+    const datos = seccion.querySelector<HTMLScriptElement>('.sl-shots-datos');
+    if (!visor || !datos) return;
+
+    let shots: Shot[] = [];
+    try {
+      shots = JSON.parse(datos.textContent || '[]');
+    } catch {
+      return; // sin datos utilizables, la página se queda como estaba
+    }
+    if (!shots.length) return;
+
+    const img = visor.querySelector<HTMLImageElement>('.sl-visor__img')!;
+    const titulo = visor.querySelector<HTMLElement>('[data-visor-titulo]')!;
+    const pie = visor.querySelector<HTMLElement>('[data-visor-pie]')!;
+    const cuenta = visor.querySelector<HTMLElement>('[data-visor-cuenta]')!;
+    if (shots.length < 2) visor.setAttribute('data-unica', '');
+
+    let actual = 0;
+    /** Quién abrió el visor, para devolverle el foco al cerrar. */
+    let origen: HTMLElement | null = null;
+
+    function pintar(i: number) {
+      actual = (i + shots.length) % shots.length;
+      const s = shots[actual];
+      img.src = s.src;
+      img.alt = s.alt;
+      titulo.textContent = s.t;
+      pie.textContent = s.p;
+      cuenta.textContent = `${actual + 1} / ${shots.length}`;
+    }
+
+    seccion.querySelectorAll<HTMLButtonElement>('.sl-shot__zoom').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        origen = btn;
+        pintar(Number(btn.dataset.shot));
+        visor.showModal();
+      });
+    });
+
+    visor.querySelectorAll<HTMLButtonElement>('[data-paso]').forEach((btn) => {
+      btn.addEventListener('click', () => pintar(actual + Number(btn.dataset.paso)));
+    });
+    visor.querySelector('[data-cerrar]')?.addEventListener('click', () => visor.close());
+
+    // Clic fuera de la imagen = cerrar. El <dialog> ocupa toda la pantalla, así
+    // que hay que mirar si el clic cayó dentro de la caja, no del elemento.
+    visor.addEventListener('click', (e) => {
+      const caja = visor.querySelector('.sl-visor__caja');
+      if (caja && !caja.contains(e.target as Node)) visor.close();
+    });
+
+    visor.addEventListener('keydown', (e) => {
+      if (shots.length < 2) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); pintar(actual + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); pintar(actual - 1); }
+    });
+
+    visor.addEventListener('close', () => {
+      origen?.focus();
+      origen = null;
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.sl-shots').forEach(montarGaleria);
+</script>
