@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import GuiasRelacionadas from '@components/GuiasRelacionadas.astro';
+import SaasBanner from '@components/SaasBanner.astro';
 import { serviceSchema, faqSchema } from '@utils/schema';
 import { whatsappUrl, emailUrl, etiquetaOrigen } from '@utils/contacto';
 
@@ -279,6 +280,8 @@ const pricingRows = [
   </section>
 
   <!-- GUÍAS DEL BLOG (interenlazado servicio → contenido). -->
+  <SaasBanner variant="inline" context="miselup" />
+
   <GuiasRelacionadas
     slugs={[
       'escandallo-de-cocina-costo-real-por-plato',

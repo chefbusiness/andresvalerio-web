@@ -1,0 +1,100 @@
+---
+/**
+ * Landing de Timlup dentro de la representación oficial en RD.
+ *
+ * ⚠️ CAPTURAS PENDIENTES (2026-08-24): el repo de Timlup no tiene ninguna
+ * captura publicable — las de `.playwright-mcp/` son de una auditoría técnica,
+ * con estados vacíos ("Sin datos para este periodo") y UUIDs crudos a la vista.
+ * Publicarlas haría parecer el producto vacío, así que van ESQUELETOS etiquetados
+ * hasta que John pase capturas de un workspace con datos. Al sustituirlas basta
+ * con añadir `src` y `alt` a cada ítem de `capturas`.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SaasLanding from '@components/SaasLanding.astro';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '@utils/schema';
+import { TIMLUP, HUB, rutaSaas, aUSD, aDOP, type Captura } from '@data/saas';
+import data from '@data/saas/timlup.json';
+
+const migas = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Consultoría', path: '/consultoria/' },
+  { name: 'Software de gestión', path: HUB },
+  { name: 'Timlup', path: rutaSaas('timlup') },
+];
+
+const capturas: Captura[] = [
+  {
+    title: 'La lista del turno',
+    caption:
+      'Las tareas de apertura, cierre o limpieza del día, con su hora y su responsable.',
+  },
+  {
+    title: 'El empleado ficha con PIN',
+    caption:
+      'Cada persona entra con su PIN desde el móvil y firma lo que completa. Sin cuentas de correo ni contraseñas que nadie recuerda.',
+  },
+  {
+    title: 'Semáforo de cumplimiento',
+    caption:
+      'De un vistazo, qué local va al día y cuál se está quedando atrás.',
+  },
+];
+
+const guias = [
+  {
+    label: 'Manual de operaciones',
+    href: '/blog/manual-de-operaciones-restaurante-guia/',
+    desc: 'Qué es, qué lleva dentro y cómo se construye el tuyo.',
+  },
+  {
+    label: 'Brigada de cocina',
+    href: '/blog/brigada-de-cocina-equipo-real/',
+    desc: 'Cómo repartir el trabajo en una cocina de verdad.',
+  },
+  {
+    label: 'Manipulación de alimentos',
+    href: '/blog/manipulacion-de-alimentos-republica-dominicana/',
+    desc: 'Lo que el dueño tiene que tener en regla en RD.',
+  },
+];
+
+const hermano = {
+  nombre: 'Miselup',
+  href: rutaSaas('miselup'),
+  tagline: 'Escandallos, fichas técnicas y food cost plato a plato.',
+  slug: 'miselup' as const,
+};
+
+const filasSchema = TIMLUP.planes
+  .filter((p) => p.eur !== null)
+  .map((p) => ({
+    modalidad: `${TIMLUP.nombre} ${p.nombre}`,
+    alcance: p.resumen,
+    rd: p.eur ? aDOP(p.eur) : '0',
+    us: p.eur ? aUSD(p.eur) : '0',
+  }));
+---
+
+<BaseLayout
+  title={data.meta_title}
+  description={data.meta_description}
+  image="/og/og-default.jpg"
+  canonicalPath={rutaSaas('timlup')}
+>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={serviceSchema(data, 'software-gestion/timlup', filasSchema)}
+    />
+    <script type="application/ld+json" is:inline set:html={breadcrumbSchema(migas)} />
+    <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+  </Fragment>
+
+  <SaasLanding saas={TIMLUP} data={data} capturas={capturas} guias={guias} hermano={hermano} />
+</BaseLayout>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

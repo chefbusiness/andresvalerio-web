@@ -1,0 +1,199 @@
+---
+/**
+ * Banner de la representación oficial de Miselup y Timlup, para sembrarlo desde
+ * las landings de consultoría y el blog hacia `/consultoria/software-gestion/`.
+ *
+ * SISTEMA DE TRES MARCAS (requisito de John, 2026-08-24): el fondo es SIEMPRE
+ * territorio de Andrés — el teal profundo de su paleta — y el color del SaaS
+ * entra solo como acento (halo, filo y CTA). Así ninguna de las tres marcas se
+ * come a las otras:
+ *   · El teal de Miselup (#0f9e8c) es de la misma familia que el de Valerio
+ *     (#103330), así que se funden sin ruido.
+ *   · El oro de los dos SaaS (#ffce47) rima con el latón de Valerio (#BC9248):
+ *     es el hilo que cose el sistema y el acento del banner del hub.
+ *   · El azul de Timlup (#2f6bff) es el más ajeno a la paleta, por eso va
+ *     SIEMPRE anclado sobre el teal oscuro y nunca como fondo dominante.
+ *
+ * - variant="mega": bloque de ancho completo, para antes del footer.
+ * - variant="inline": compacto, para intercalar dentro de un artículo.
+ * - context elige destino y copy (hub | miselup | timlup).
+ */
+import SaasMark from '@components/SaasMark.astro';
+import { HUB, rutaSaas } from '@data/saas';
+
+interface Props {
+  variant?: 'mega' | 'inline';
+  context?: 'hub' | 'miselup' | 'timlup';
+}
+
+const { variant = 'mega', context = 'hub' } = Astro.props;
+
+const COPY = {
+  hub: {
+    href: HUB,
+    eyebrow: 'Representación oficial',
+    title: 'El software que uso en mis cocinas',
+    text: 'Represento a Miselup y Timlup en República Dominicana. Escandallos y food cost por un lado, tareas y turnos por el otro — y yo te lo dejo montado y con el equipo formado.',
+    cta: 'Ver los dos programas',
+    marcas: ['miselup', 'timlup'] as const,
+    acento: '#ffce47',
+    acentoSuave: 'rgba(255, 206, 71, 0.22)',
+  },
+  miselup: {
+    href: rutaSaas('miselup'),
+    eyebrow: 'Distribuidor oficial · Miselup',
+    title: '¿Sabes lo que te cuesta de verdad cada plato?',
+    text: 'Miselup calcula el escandallo con mermas, te da el food cost y el margen plato a plato, y recalcula la carta cuando sube un insumo. Lo uso a diario y lo implanto en RD.',
+    cta: 'Ver Miselup en República Dominicana',
+    marcas: ['miselup'] as const,
+    acento: '#2fbfa9',
+    acentoSuave: 'rgba(15, 158, 140, 0.3)',
+  },
+  timlup: {
+    href: rutaSaas('timlup'),
+    eyebrow: 'Distribuidor oficial · Timlup',
+    title: 'Lo que no se registra, no se hizo',
+    text: 'Timlup pone la apertura, el cierre y las tareas del turno en el móvil del equipo, firmadas y con hora. Tú ves el cumplimiento de cada local sin estar allí.',
+    cta: 'Ver Timlup en República Dominicana',
+    marcas: ['timlup'] as const,
+    acento: '#7aa2ff',
+    acentoSuave: 'rgba(47, 107, 255, 0.32)',
+  },
+}[context];
+---
+
+<section
+  class:list={['saas-banner', `saas-banner--${variant}`]}
+  style={`--sb-acento:${COPY.acento}; --sb-halo:${COPY.acentoSuave}`}
+>
+  <div class="container saas-banner__inner">
+    <p class="saas-banner__eyebrow">{COPY.eyebrow}</p>
+
+    <div class="saas-banner__marcas" aria-hidden="true">
+      {
+        COPY.marcas.map((m) => (
+          <span class="saas-banner__chip">
+            <SaasMark saas={m} size={variant === 'mega' ? 34 : 28} wordmark />
+          </span>
+        ))
+      }
+    </div>
+
+    <h2 class="saas-banner__title">{COPY.title}</h2>
+    <p class="saas-banner__text">{COPY.text}</p>
+
+    <a class="saas-banner__cta" href={COPY.href}>
+      {COPY.cta}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .saas-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    text-align: center;
+    color: var(--bone);
+    /* Territorio de Andrés: su teal. El SaaS solo pone el halo. */
+    background:
+      radial-gradient(ellipse at 50% -10%, var(--sb-halo), transparent 62%),
+      linear-gradient(155deg, var(--teal) 0%, var(--footer-bg) 55%, #071e1c 100%);
+  }
+  .saas-banner::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 2px;
+    /* El filo superior es el guiño de color del producto. */
+    background: linear-gradient(90deg, transparent, var(--sb-acento), transparent);
+  }
+
+  .saas-banner__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .saas-banner--mega {
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .saas-banner--inline {
+    padding-block: clamp(2.5rem, 5.5vw, 3.75rem);
+  }
+
+  .saas-banner__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sb-acento);
+    margin: 0 0 1.25rem;
+  }
+
+  .saas-banner__marcas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .saas-banner__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(243, 236, 221, 0.16);
+    border-radius: 999px;
+    background: rgba(243, 236, 221, 0.06);
+    color: var(--bone);
+  }
+
+  .saas-banner__title {
+    font-family: var(--font-display);
+    /* El mínimo del clamp es el que manda en móvil: se queda legible, no enorme. */
+    font-size: clamp(1.6rem, 4.2vw, 2.75rem);
+    line-height: 1.12;
+    color: var(--bone);
+    margin: 0 0 1rem;
+  }
+
+  .saas-banner__text {
+    font-size: clamp(0.975rem, 1.5vw, 1.0625rem);
+    line-height: 1.7;
+    color: rgba(243, 236, 221, 0.82);
+    margin: 0 auto 2rem;
+    max-width: 56ch;
+  }
+
+  .saas-banner__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 4px;
+    /* El persimmon de Andrés manda en la acción: es su web y su lead. */
+    background: var(--pers-deep);
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .saas-banner__cta:hover {
+    transform: translateY(-2px);
+    background: #9a3517;
+    box-shadow: 0 8px 20px rgba(178, 62, 30, 0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .saas-banner__cta {
+      transition: none;
+    }
+    .saas-banner__cta:hover {
+      transform: none;
+    }
+  }
+</style>

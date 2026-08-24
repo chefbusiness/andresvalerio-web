@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import CtaFinal from '@components/CtaFinal.astro';
 import GuiasRelacionadas from '@components/GuiasRelacionadas.astro';
+import SaasBanner from '@components/SaasBanner.astro';
 
 const services = [
   {
@@ -34,6 +35,12 @@ const services = [
     title: 'Franquicias y expansión',
     desc: 'Estandarización de recetas, fichas técnicas y manual de operaciones para replicar tu marca.',
     href: '/consultoria/franquicias/',
+  },
+  {
+    num: '06',
+    title: 'Software de gestión',
+    desc: 'Represento a Miselup y Timlup en RD: escandallos y food cost por un lado, tareas del turno por el otro.',
+    href: '/consultoria/software-gestion/',
   },
 ];
 ---
@@ -161,6 +168,8 @@ const services = [
 
   <!-- GUÍAS DEL BLOG (interenlazado hub → contenido). Banda clara: la sección
        anterior es bg-teal. -->
+  <SaasBanner variant="mega" context="hub" />
+
   <GuiasRelacionadas
     slugs={[
       'abrir-restaurante-republica-dominicana',

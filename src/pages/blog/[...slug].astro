@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { articleSchema, faqSchema, breadcrumbSchema } from '@utils/schema';
+import SaasBanner from '@components/SaasBanner.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -22,6 +23,18 @@ const related = data.related
   .map((slug) => all.find((p) => p.id === slug))
   .filter(Boolean)
   .slice(0, 2);
+/** Producto que le pega a cada guía. Sin entrada → el hub, que ofrece los dos. */
+const SAAS_POR_POST: Record<string, 'miselup' | 'timlup'> = {
+  'escandallo-de-cocina-costo-real-por-plato': 'miselup',
+  'food-cost-restaurante-republica-dominicana': 'miselup',
+  'ficha-tecnica-de-cocina-estandarizar-platos': 'miselup',
+  'estandarizacion-de-recetas-carta-consistente': 'miselup',
+  'ingenieria-de-menu-restaurante-republica-dominicana': 'miselup',
+  'manual-de-operaciones-restaurante-guia': 'timlup',
+  'brigada-de-cocina-equipo-real': 'timlup',
+  'manipulacion-de-alimentos-republica-dominicana': 'timlup',
+};
+const saasContext = SAAS_POR_POST[post.id] ?? 'hub';
 ---
 
 <BaseLayout
@@ -119,6 +132,8 @@ const related = data.related
         </a>
       </div>
     </section>
+
+    <SaasBanner variant="inline" context={saasContext} />
 
     {related.length > 0 && (
       <section class="post-related section bg-teal">

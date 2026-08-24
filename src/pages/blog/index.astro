@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import CtaFinal from '@components/CtaFinal.astro';
+import SaasBanner from '@components/SaasBanner.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -85,6 +86,8 @@ const dateFmt = new Intl.DateTimeFormat('es-DO', { dateStyle: 'medium' });
       </div>
     </section>
   )}
+
+  <SaasBanner variant="inline" context="hub" />
 
   <CtaFinal
     eyebrow="¿Tienes un proyecto?"

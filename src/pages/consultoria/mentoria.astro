@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ServiceLanding from '@components/ServiceLanding.astro';
+import SaasBanner from '@components/SaasBanner.astro';
 import { serviceSchema, faqSchema } from '@utils/schema';
 import data from '@data/servicios/mentoria.json';
 
@@ -45,7 +46,9 @@ const guias = [
     <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
   </Fragment>
 
-  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} guias={guias} />
+  <ServiceLanding slug={slug} data={data} photo={photo} pricing={pricing} related={related} contextImage={contextImage} guias={guias}>
+    <SaasBanner slot="banner" variant="inline" context="hub" />
+  </ServiceLanding>
 </BaseLayout>
 
 <script>

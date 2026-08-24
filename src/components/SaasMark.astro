@@ -1,0 +1,81 @@
+---
+/**
+ * Marcas oficiales de Miselup y Timlup, reproducidas fielmente desde el
+ * `Logo.astro` de cada repo (monograma M + punto oro / check).
+ *
+ * Van como SVG inline y no como PNG a propósito: se ven nítidas a cualquier
+ * tamaño, no piden una petición extra y el color de marca queda declarado en el
+ * propio marcado, que es justo lo que pide el respeto a los activos de marca.
+ */
+interface Props {
+  saas: 'miselup' | 'timlup';
+  /** Lado del cuadrado, en px. */
+  size?: number;
+  /** Añade el wordmark al lado de la marca. */
+  wordmark?: boolean;
+  class?: string;
+}
+
+const { saas, size = 32, wordmark = false, class: cls = '' } = Astro.props;
+
+const MARCAS = {
+  miselup: { fondo: '#0f9e8c', nombre: 'Miselup' },
+  timlup: { fondo: '#2f6bff', nombre: 'Timlup' },
+} as const;
+
+const marca = MARCAS[saas];
+---
+
+<span class:list={['saas-mark', cls]}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    fill="none"
+    aria-hidden="true"
+    class="saas-mark__svg"
+  >
+    <rect width="32" height="32" rx="8" fill={marca.fondo} />
+    {
+      saas === 'miselup' ? (
+        <>
+          <path
+            d="M9.5 22V11l6.5 7 6.5-7v11"
+            fill="none"
+            stroke="white"
+            stroke-width="3.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="24.8" cy="9.2" r="2.3" fill="#ffce47" />
+        </>
+      ) : (
+        <path
+          d="M9 16.5l4.5 4.5L23 11"
+          stroke="white"
+          stroke-width="3.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      )
+    }
+  </svg>
+  {wordmark && <span class="saas-mark__word" style={`font-size:${size * 0.6}px`}>{marca.nombre}</span>}
+</span>
+
+<style>
+  .saas-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .saas-mark__svg {
+    flex-shrink: 0;
+  }
+  .saas-mark__word {
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+</style>

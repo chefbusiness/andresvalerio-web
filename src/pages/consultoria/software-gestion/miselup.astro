@@ -1,0 +1,109 @@
+---
+/**
+ * Landing de Miselup dentro de la representación oficial en RD.
+ * Las capturas son REALES, del workspace demo de Miselup: los pies de foto
+ * describen lo que de verdad se ve en cada una, no lo que nos gustaría que se viera.
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SaasLanding from '@components/SaasLanding.astro';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '@utils/schema';
+import { MISELUP, HUB, rutaSaas, aUSD, aDOP, type Captura } from '@data/saas';
+import data from '@data/saas/miselup.json';
+
+const migas = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Consultoría', path: '/consultoria/' },
+  { name: 'Software de gestión', path: HUB },
+  { name: 'Miselup', path: rutaSaas('miselup') },
+];
+
+const capturas: Captura[] = [
+  {
+    src: '/images/saas/miselup/escandallo.webp',
+    title: 'El escandallo de un plato',
+    caption:
+      'Cada componente con su cantidad, su merma y su coste. Abajo, el coste por unidad, el PVP sugerido, el margen y el food cost que te deja el plato.',
+    alt: 'Ficha de una elaboración final en Miselup, con la composición del escandallo componente a componente y los indicadores de coste total, coste por unidad, PVP sugerido, margen y tiempo',
+  },
+  {
+    src: '/images/saas/miselup/panel-resumen.webp',
+    title: 'Tu cocina en números',
+    caption:
+      'El panel de entrada: cuántas recetas y elaboraciones tienes montadas, tu coste medio por unidad de venta, el food cost medio y los platos que más te dejan.',
+    alt: 'Panel de resumen de Miselup con el recuento de ingredientes y elaboraciones, el coste medio por unidad de venta, el margen y food cost medios, y el listado de elaboraciones más rentables',
+  },
+  {
+    src: '/images/saas/miselup/ingredientes.webp',
+    title: 'La materia prima, con alérgenos',
+    caption:
+      'Tu base de ingredientes con precio, unidad, categoría y alérgenos. Trae un catálogo de más de 1.200 de serie: personalizas el que uses y pasa a ser tuyo.',
+    alt: 'Listado de ingredientes en Miselup con imagen, alérgenos declarados, categoría, precio por kilo o litro y origen de catálogo',
+  },
+  {
+    src: '/images/saas/miselup/temperaturas.webp',
+    title: 'Temperaturas para la inspección',
+    caption:
+      'Cada cámara y nevera con su rango. La lectura se marca ok o alerta según el equipo y queda guardada como registro APPCC, con su acción correctiva.',
+    alt: 'Pantalla de control de temperaturas APPCC de Miselup con los puntos de control de cámara, congelador, nevera de barra y mesa caliente, cada uno con su rango y su última lectura marcada como ok o alerta',
+  },
+];
+
+const guias = [
+  {
+    label: 'Escandallo de cocina',
+    href: '/blog/escandallo-de-cocina-costo-real-por-plato/',
+    desc: 'Cómo se calcula a mano el costo real de un plato, paso a paso.',
+  },
+  {
+    label: 'Food cost en RD',
+    href: '/blog/food-cost-restaurante-republica-dominicana/',
+    desc: 'Qué porcentaje deberías tener y cómo llegar a él.',
+  },
+  {
+    label: 'Ficha técnica de cocina',
+    href: '/blog/ficha-tecnica-de-cocina-estandarizar-platos/',
+    desc: 'El documento que hace que el plato salga igual siempre.',
+  },
+];
+
+const hermano = {
+  nombre: 'Timlup',
+  href: rutaSaas('timlup'),
+  tagline: 'Checklists y tareas por turno, firmadas y con hora.',
+  slug: 'timlup' as const,
+};
+
+/** Filas de precio para el Schema.org Offer, con el € como fuente de verdad. */
+const filasSchema = MISELUP.planes
+  .filter((p) => p.eur !== null)
+  .map((p) => ({
+    modalidad: `${MISELUP.nombre} ${p.nombre}`,
+    alcance: p.resumen,
+    rd: p.eur ? aDOP(p.eur) : '0',
+    us: p.eur ? aUSD(p.eur) : '0',
+  }));
+---
+
+<BaseLayout
+  title={data.meta_title}
+  description={data.meta_description}
+  image="/og/og-default.jpg"
+  canonicalPath={rutaSaas('miselup')}
+>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={serviceSchema(data, 'software-gestion/miselup', filasSchema)}
+    />
+    <script type="application/ld+json" is:inline set:html={breadcrumbSchema(migas)} />
+    <script type="application/ld+json" is:inline set:html={faqSchema(data.faq)} />
+  </Fragment>
+
+  <SaasLanding saas={MISELUP} data={data} capturas={capturas} guias={guias} hermano={hermano} />
+</BaseLayout>
+
+<script>
+  import { initReveal } from '@utils/reveal';
+  initReveal();
+</script>

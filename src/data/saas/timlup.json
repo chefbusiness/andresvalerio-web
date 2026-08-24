@@ -1,0 +1,116 @@
+{
+  "meta_title": "Timlup en RD | Checklists y tareas para tu equipo",
+  "meta_description": "Timlup en República Dominicana: checklists por turno, empleados con PIN y cumplimiento firmado. Implantación y soporte local con Andrés Valerio.",
+  "hero": {
+    "eyebrow": "Sistematiza tu operación",
+    "h1": "Cada tarea del turno, firmada y con hora",
+    "lead": "Yo uso Timlup en mis restaurantes y ahora te ayudo a implantarlo en el tuyo. Sin enredos, con soporte local y a tu ritmo."
+  },
+  "intro": {
+    "h2": "Soy Andrés Valerio y esto no es teoría: lo aplico a diario en Valerio Burger Club, mi catering y mi parrilla.",
+    "parrafos": [
+      "Sé lo que se siente cuando falla una apertura, nadie sabe quién hizo qué y te enteras por el cliente. Timlup me devolvió el control sin volverme un vigilante. Por eso me convertí en su representante y distribuidor oficial en República Dominicana.",
+      "Aquí no te cobro la suscripción del software —esa la contratas directamente con Timlup—. Yo me encargo de la implantación, migro tus datos si ya trabajas con listas en papel o Excel, formo a tu equipo y te doy soporte local. Mi trabajo va a presupuesto, sin sorpresas."
+    ]
+  },
+  "para_quien": [
+    {
+      "title": "Dueño de restaurante independiente",
+      "desc": "Quieres dejar de repetir lo mismo todos los días y saber que las tareas se cumplen sin estar encima."
+    },
+    {
+      "title": "Grupo con dos o más locales",
+      "desc": "Necesitas comparar cumplimiento entre locales y estandarizar procesos sin viajar de uno a otro."
+    },
+    {
+      "title": "Bar, cafetería o food truck",
+      "desc": "Operas con equipo reducido y cada olvido de limpieza o montaje te cuesta reputación."
+    },
+    {
+      "title": "Franquicia o cadena local",
+      "desc": "Buscas replicar tus checklists de marca en cada punto de venta y auditar cumplimiento en tiempo real."
+    }
+  ],
+  "resuelve": {
+    "h2": "Lo que dejas atrás cuando trabajas con Timlup",
+    "intro": "Problemas reales que viven los restaurantes dominicanos, resueltos con una herramienta simple.",
+    "items": [
+      {
+        "title": "Listas de papel que desaparecen",
+        "desc": "Hojas mojadas, perdidas o tachadas sin fecha. Ahora cada tarea queda registrada, firmada digitalmente y con trazabilidad."
+      },
+      {
+        "title": "Nadie sabe quién hizo qué",
+        "desc": "Cada empleado ficha con PIN desde su móvil y firma sus tareas completadas. No más «yo lo hice» sin prueba."
+      },
+      {
+        "title": "Dueño atado a un solo local",
+        "desc": "Desde tu celular ves el semáforo de cumplimiento de todos tus locales en tiempo real, donde estés."
+      },
+      {
+        "title": "Inspecciones sin evidencia",
+        "desc": "Cuando Salud Pública o la marca auditora llega, tú muestras el historial de tareas firmadas, con su hora y su responsable."
+      },
+      {
+        "title": "Procesos que se repiten mal",
+        "desc": "Creas plantillas de apertura, cierre, mise en place o limpieza profunda y las replicas en segundos a otros locales."
+      },
+      {
+        "title": "Falta de visión sobre el equipo",
+        "desc": "Métricas comparadas por local, área y trabajador te muestran quién cumple y quién necesita refuerzo, sin conjeturas."
+      }
+    ]
+  },
+  "implantacion": {
+    "h2": "No te entrego un login y te dejo solo: así trabajo la implantación",
+    "intro": "Mi servicio va a presupuesto y cubre desde el diagnóstico hasta que tu equipo vuela solo.",
+    "pasos": [
+      {
+        "title": "Diagnóstico operativo",
+        "desc": "Reviso cuántos locales tienes, las áreas de trabajo, los turnos y las tareas que necesitas controlar. Si ya usas papel o Excel, los tomamos como base."
+      },
+      {
+        "title": "Configuración y migración",
+        "desc": "Monto tus listas en Timlup reflejando tu operación real. Migro datos existentes para que no empieces de cero."
+      },
+      {
+        "title": "Formación al equipo",
+        "desc": "Capacito a gestores y empleados en tu propio local, en menos de una hora. Sin manuales eternos, practicando lo que harán cada día."
+      },
+      {
+        "title": "Acompañamiento y soporte local",
+        "desc": "Te sigo las primeras semanas, ajusto lo que haga falta y quedo disponible para nuevas listas, dudas o cambios. No estás solo."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Necesito comprar tablets o equipos especiales?",
+      "a": "No. Tus empleados usan su propio teléfono o cualquier móvil con acceso a internet. Fichan con un PIN que tú les asignas, sin necesidad de cuenta de correo electrónico."
+    },
+    {
+      "q": "¿Timlup reemplaza mi punto de venta actual?",
+      "a": "No. Timlup no es un POS ni factura a la DGII; convive con el sistema de cobro que ya tengas instalado. Su función es gestionar listas de tareas y checklists operativos, no ventas."
+    },
+    {
+      "q": "¿Cuánto cuesta la suscripción del software?",
+      "a": "La suscripción la contratas directamente con Timlup. Tienen desde un plan Gratis para un local hasta planes Pro multi-local y Avanzado. Mi honorario de implantación y formación es aparte y lo presupuesto según tu caso, sin compromiso."
+    },
+    {
+      "q": "Mis empleados no saben de tecnología, ¿podrán usarlo?",
+      "a": "Sin problema. La interfaz es tan simple como marcar una lista con el dedo. En la formación practicamos hasta que todos se sientan cómodos. Solo necesitan saber usar un teléfono táctil."
+    },
+    {
+      "q": "¿Qué pasa si se va la luz o falla el internet?",
+      "a": "La aplicación guarda las tareas completadas sin conexión y las sincroniza cuando vuelve la señal. No se pierde ningún registro, algo clave en nuestro país."
+    },
+    {
+      "q": "¿Puedo tener listas diferentes para cada turno o área?",
+      "a": "Claro. Puedes crear listas de apertura, cierre, limpieza semanal, mantenimiento mensual, etc., y asignarlas por turno, local o área de trabajo. Además, las plantillas se replican entre locales en dos toques."
+    }
+  ],
+  "cta": {
+    "h2": "Hablemos de tu operación, sin costo ni compromiso",
+    "text": "Escríbeme y conversamos de tus locales, tus dolores y si Timlup tiene sentido para ti. Te explico cómo funciona y cómo sería la implantación en tu caso."
+  }
+}

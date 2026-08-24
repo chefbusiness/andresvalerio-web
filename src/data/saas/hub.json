@@ -1,0 +1,89 @@
+{
+  "meta_title": "Andrés Valerio | Miselup y Timlup en República Dominicana",
+  "meta_description": "Representante oficial de Miselup (escandallos y food cost) y Timlup (checklists de turno) en RD. Implantación, formación y soporte local.",
+  "hero": {
+    "eyebrow": "Software de cocina real",
+    "h1": "Controla el costo real de cada plato y las tareas de cada turno",
+    "lead": "Soy Andrés Valerio, chef y consultor. Represento a Miselup y Timlup en República Dominicana porque los uso a diario en mis propios negocios. No son otro POS: conviven con el que ya tienes y resuelven lo que aquí no resuelve nadie."
+  },
+  "intro": {
+    "h2": "Lo que el POS no te dice",
+    "parrafos": [
+      "En la mayoría de los restaurantes dominicanos, el software que se consigue se enfoca en facturar y llevar inventario básico. Pero el costo real del plato, las mermas, las recetas estandarizadas y la disciplina del turno quedan en el aire. Ahí es donde entran Miselup y Timlup: dos herramientas que trabajan al lado de tu POS y atacan justo lo que te quita el sueño.",
+      "Yo las uso todos los días en Valerio Burger Club, en mi catering y en la parrilla. Por eso decidí representarlas aquí: sé que funcionan y sé cómo sacarles el máximo provecho en una cocina dominicana."
+    ]
+  },
+  "por_que": {
+    "h2": "¿Por qué Miselup y Timlup?",
+    "items": [
+      {
+        "title": "Escandallo real, no estimaciones",
+        "desc": "Miselup calcula el costo por ración con mermas, rendimientos y PVP sugerido. Vas más allá del inventario: sabes exactamente cuánto te deja cada plato."
+      },
+      {
+        "title": "Checklists que se cumplen",
+        "desc": "Timlup convierte las tareas de apertura, cierre y turno en listas digitales con firma y semáforo de cumplimiento. Se acabaron los papeles que se botan."
+      },
+      {
+        "title": "Conviven, no reemplazan",
+        "desc": "No son un POS ni facturan a la DGII. Funcionan al lado del sistema que ya usas: tu POS sigue cobrando y facturando, y estas herramientas se ocupan de la cocina y del turno."
+      },
+      {
+        "title": "Plan gratis de verdad",
+        "desc": "Ambos tienen un plan gratuito real para que arranques sin compromiso. Si necesitas más funciones, escalas cuando te convenga."
+      }
+    ]
+  },
+  "que_aporto": {
+    "h2": "Mi papel como representante",
+    "intro": "Más que un distribuidor, soy un chef que te acompaña en el proceso.",
+    "items": [
+      {
+        "title": "Implantación personalizada",
+        "desc": "Voy a tu cocina y configuro las herramientas según tus recetas y procesos reales, no con plantillas genéricas."
+      },
+      {
+        "title": "Migración de datos",
+        "desc": "Paso tus recetas, inventarios y listas de tareas actuales a la plataforma para que no pierdas nada ni empieces de cero."
+      },
+      {
+        "title": "Formación del equipo",
+        "desc": "Entreno a tu cocina y a tus encargados de turno para que usen el software con soltura desde el día uno."
+      },
+      {
+        "title": "Soporte local en español",
+        "desc": "Resuelvo tus dudas en horario dominicano y con conocimiento de cómo operamos aquí. No estás solo después de la instalación."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Esto sustituye al POS que ya tengo?",
+      "a": "No. Ni Miselup ni Timlup son un punto de venta ni facturan a la DGII. Conviven con tu POS actual: el POS sigue cobrando, y estas herramientas te dan el control de cocina y turnos que el POS no trae."
+    },
+    {
+      "q": "¿Cómo contrato y en qué moneda se paga?",
+      "a": "La suscripción la contratas directamente en miselup.pro o timlup.pro, y el cargo se hace en euros con tarjeta. Los importes en dólares y en pesos que ves aquí son una referencia al cambio del día, para que sepas a qué te enfrentas. Yo no cobro esa suscripción: mi servicio de implantación y formación se presupuesta aparte."
+    },
+    {
+      "q": "¿Funciona si solo tengo un local?",
+      "a": "Perfectamente. Tanto Miselup como Timlup están diseñados para operar desde un solo restaurante hasta cadenas con múltiples ubicaciones. El plan gratuito cubre un local sin problema."
+    },
+    {
+      "q": "¿Cuánto tiempo toma tenerlo listo?",
+      "a": "Depende del tamaño y la complejidad de tu operación, pero una implantación típica puede estar funcionando en una o dos semanas. Lo importante es que el equipo quede entrenado, no solo instalado."
+    },
+    {
+      "q": "¿De verdad hay un plan gratis?",
+      "a": "Sí. Ambos software tienen un plan gratuito real, sin trampas. Puedes empezar con ese plan y, si necesitas más funciones, escalar más adelante."
+    },
+    {
+      "q": "¿Qué pasa si necesito ayuda después?",
+      "a": "Yo te doy soporte local en español y en horario de República Dominicana. Además, las plataformas tienen su propio soporte en línea. No te quedas solo."
+    }
+  ],
+  "cta": {
+    "h2": "Hablemos de tu cocina",
+    "text": "Escríbeme sin compromiso. Te cuento cómo funcionan en un restaurante como el tuyo y armamos un plan a tu medida."
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "meta_title": "Miselup en RD | Software de escandallos y food cost",
+  "meta_description": "Controla escandallos, recetas, mermas y food cost con Miselup. Soy Andrés Valerio, distribuidor oficial en República Dominicana. Soporte local.",
+  "hero": {
+    "eyebrow": "Escandallos y food cost",
+    "h1": "Miselup: controla el food cost de tu restaurante en RD",
+    "lead": "Soy Andrés Valerio, chef, consultor y distribuidor oficial de Miselup en República Dominicana. Lo uso en mis propios negocios y quiero ayudarte a implantarlo en el tuyo sin humo."
+  },
+  "intro": {
+    "h2": "Por qué confío en Miselup para mis cocinas",
+    "parrafos": [
+      "No soy un revendedor que aprendió el producto en un folleto. Uso Miselup en Valerio Burger Club, en catering y en la parrilla: tengo el mismo problema que tú cuando el insumo sube, la receta vive en la cabeza del cocinero y el food cost se dispara sin que nadie lo vea venir.",
+      "Mi trabajo aquí no es cobrarte la suscripción de Miselup: tú contratas directamente en la web oficial. Yo me encargo de implantarlo, migrar tus recetas, formar a tu equipo y darte soporte local en Santo Domingo y todo el país. Miselup no es un POS y no factura a la DGII: convive con el sistema que ya usas. La implantación se presupuesta aparte según tu operación."
+    ]
+  },
+  "para_quien": [
+    {
+      "title": "Restaurantes y food trucks",
+      "desc": "Negocios que necesitan saber cuánto les cuesta cada plato y qué margen dejan de verdad."
+    },
+    {
+      "title": "Catering y eventos",
+      "desc": "Operaciones por volumen, con costes por evento y control de producción sin sorpresas."
+    },
+    {
+      "title": "Dark kitchens y delivery",
+      "desc": "Cocinas que escalan menús y necesitan fichas claras, costes por unidad y rentabilidad por pedido."
+    },
+    {
+      "title": "Consultores gastronómicos",
+      "desc": "Profesionales que auditan cartas y necesitan datos reales de coste, mermas y márgenes para sus clientes."
+    }
+  ],
+  "resuelve": {
+    "h2": "Qué resuelve Miselup en el día a día",
+    "intro": "Deja de adivinar el coste de tu carta y empieza a decidir con números.",
+    "items": [
+      {
+        "title": "Food cost fuera de control",
+        "desc": "Calcula el coste por ración y por unidad de cada plato, con mermas y rendimientos incluidos."
+      },
+      {
+        "title": "Recetas en la cabeza",
+        "desc": "Documenta recetario, elaboraciones intermedias y finales para que tu cocina no dependa de una sola persona."
+      },
+      {
+        "title": "Mermas invisibles",
+        "desc": "Registra mermas y rendimientos de cada ingrediente y deja de perder dinero en la basura."
+      },
+      {
+        "title": "Cartas desactualizadas",
+        "desc": "Cuando sube un insumo, recalculas el escandallo y ves el impacto en margen y PVP sugerido."
+      },
+      {
+        "title": "Trazabilidad y APPCC",
+        "desc": "Lleva temperaturas, caducidades, lotes, etiquetas de alérgenos y el informe de inspección sin hojas sueltas."
+      },
+      {
+        "title": "Sin foto de rentabilidad",
+        "desc": "Obtén P&L diario y rentabilidad por plato para saber qué vender más y qué ajustar."
+      }
+    ]
+  },
+  "implantacion": {
+    "h2": "Cómo te acompaño en la implantación",
+    "intro": "No te dejo solo con el software. Mi trabajo es que lo uses con criterio desde la primera semana.",
+    "pasos": [
+      {
+        "title": "Diagnóstico",
+        "desc": "Revisamos tu operación, tus recetas y tu carta para definir qué datos migrar y qué necesitas priorizar."
+      },
+      {
+        "title": "Migración y montaje",
+        "desc": "Paso tus recetas, ingredientes y fichas a Miselup, o montamos juntos las recetas clave para que arranques con información real."
+      },
+      {
+        "title": "Formación del equipo",
+        "desc": "Entreno a cocina, administración y sala en el flujo diario: escandallos, producción, compras y APPCC."
+      },
+      {
+        "title": "Soporte local",
+        "desc": "Te acompaño después del arranque para resolver dudas, afinar escandallos y asegurar que el sistema se quede."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Miselup reemplaza mi POS o factura a la DGII?",
+      "a": "No. Miselup no es un POS y no factura a la DGII. Convive con el sistema de facturación y el POS que ya uses: Miselup se encarga de la cocina, los costes y la gestión, no de la facturación fiscal."
+    },
+    {
+      "q": "¿Miselup se integra con mi POS actual?",
+      "a": "Hoy no hay integración con el POS. Es una convivencia: tu POS sigue cobrando y facturando, y Miselup controla recetas, escandallos, inventario y rentabilidad. No te vendo una integración que no existe."
+    },
+    {
+      "q": "¿Tengo que pagar la suscripción a través de Andrés?",
+      "a": "No. Contratas directamente en la web oficial de Miselup, con los planes que ofrece el producto. Yo no cobro esa suscripción; mi servicio de implantación, migración, formación y soporte local se presupuesta aparte."
+    },
+    {
+      "q": "¿Cuánto cuesta la implantación?",
+      "a": "Depende del tamaño de tu operación, la cantidad de recetas a migrar y el alcance del acompañamiento. Sin ver tu cocina no te doy un número al aire: agendamos una llamada, revisamos tu caso y te paso un presupuesto claro."
+    },
+    {
+      "q": "¿Puedo empezar gratis?",
+      "a": "Sí, Miselup tiene un plan Gratis de hasta 50 recetas. Es una buena puerta de entrada para probar el flujo antes de decidir si necesitas más recetas, IA, inventario o la suite APPCC completa."
+    },
+    {
+      "q": "¿Sirve para un restaurante pequeño o solo para operaciones grandes?",
+      "a": "Sirve para ambos. Un negocio pequeño puede empezar con el plan Gratis y controlar sus 20 o 30 platos. Una operación más grande aprovecha inventario, producción, compras y APPCC sin cambiar de herramienta."
+    }
+  ],
+  "cta": {
+    "h2": "Hablemos de tu food cost",
+    "text": "Si sientes que la carta se te está comiendo el margen, escríbeme o agenda una llamada. Te explico cómo uso Miselup en mis negocios y si encaja en el tuyo."
+  }
+}

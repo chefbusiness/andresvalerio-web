@@ -261,6 +261,9 @@ const incluyeCols = [data.incluye.slice(0, half), data.incluye.slice(half)];
   </div>
 </section>
 
+<!-- BANNER DEL SOFTWARE DE GESTIÓN (opcional, por página) -->
+<slot name="banner" />
+
 <!-- GUÍAS DEL BLOG (interenlazado servicio → contenido) -->
 <GuiasRelacionadas
   slugs={guias}
