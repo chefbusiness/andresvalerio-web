@@ -236,7 +236,7 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 
 ### Cliente / datos a validar con Andrés
 8. **Precios de franquicias** recién publicados (180.000 / 60.000 / 25.000 RD$) — orientativos, **sin validar**.
-9. Precios BBQ/Bestia Fire, razón social y domicilio fiscal para los legales, y el teléfono `wa.me/18098847605` (sigue provisional en producción).
+9. Precios BBQ/Bestia Fire, razón social y domicilio fiscal para los legales. Teléfono **actualizado el 2026-08-24** al definitivo de Andrés: `wa.me/18293998979` (+1 829 399 8979, RD).
 10. **Imágenes reales de Bestia Fire** para `/proyectos/bbq-parrilla-events/` (siguen las genéricas).
 
 ### Higiene del entorno

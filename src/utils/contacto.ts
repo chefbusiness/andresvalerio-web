@@ -7,7 +7,9 @@
  * atribución le llega a Andrés escrita en el propio WhatsApp o correo.
  */
 
-export const WHATSAPP = '18098847605';
+export const WHATSAPP = '18293998979';
+/** Mismo número, formateado para mostrarlo en pantalla. */
+export const WHATSAPP_DISPLAY = '+1 829 399 8979';
 export const EMAIL = 'hola@andresvalerio.com';
 
 /** Etiqueta legible por ruta, para el mensaje prellenado. */

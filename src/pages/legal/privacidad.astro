@@ -1,6 +1,6 @@
 ---
 import LegalPage from '@components/LegalPage.astro';
-import { WHATSAPP, EMAIL } from '@utils/contacto';
+import { WHATSAPP, WHATSAPP_DISPLAY, EMAIL } from '@utils/contacto';
 ---
 <LegalPage
   title="Política de privacidad"
@@ -9,7 +9,7 @@ import { WHATSAPP, EMAIL } from '@utils/contacto';
   canonicalPath="/legal/privacidad/"
 >
   <h2>1. Responsable del tratamiento</h2>
-  <p>El responsable del tratamiento de los datos es <strong>Andrés Valerio</strong> (Santo Domingo, República Dominicana). Contacto: <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">+1 809 884 7605</a>.</p>
+  <p>El responsable del tratamiento de los datos es <strong>Andrés Valerio</strong> (Santo Domingo, República Dominicana). Contacto: <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer">{WHATSAPP_DISPLAY}</a>.</p>
 
   <h2>2. Qué datos recogemos</h2>
   <p>Recopilamos los datos que nos facilitas a través del formulario de contacto (nombre, correo, tipo de proyecto y mensaje). También utilizamos, con tu consentimiento, cookies analíticas: Google Analytics 4 y Microsoft Clarity, ambas con IP anonimizada.</p>
