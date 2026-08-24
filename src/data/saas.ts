@@ -76,8 +76,8 @@ export const MISELUP: Saas = {
   brand: '#0f9e8c',
   brandInk: '#07604f',
   brandSoft: '#e3f4f1',
-  tagline: 'Escandallos, fichas técnicas y food cost',
-  gancho: 'Sabe lo que cuesta cada plato, con mermas incluidas.',
+  tagline: 'Costeo de recetas, fichas técnicas y food cost',
+  gancho: 'Sabe lo que te cuesta cada plato, con las mermas adentro.',
   planes: [
     {
       nombre: 'Gratis',
@@ -86,7 +86,7 @@ export const MISELUP: Saas = {
       resumen: 'Para probar el flujo completo con tu carta real.',
       incluye: [
         'Hasta 50 recetas propias',
-        'Escandallos con mermas y costo por ración',
+        'Costeo de recetas con mermas y costo por ración',
         'Fichas técnicas y alérgenos',
         'Catálogo de más de 1.200 ingredientes',
         'Sin tarjeta',
@@ -111,7 +111,7 @@ export const MISELUP: Saas = {
       resumen: 'El que uso yo. Recetas sin límite y los números del día.',
       incluye: [
         'Recetas ilimitadas',
-        'IA de cocina para fichas y escandallos',
+        'IA de cocina para fichas y costeos',
         'Inventario, producción y compras',
         'P&L diario y rentabilidad por plato',
         'Registro de temperaturas HACCP',

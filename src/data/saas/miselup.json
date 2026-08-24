@@ -1,15 +1,15 @@
 {
-  "meta_title": "Miselup en RD | Software de escandallos y food cost",
-  "meta_description": "Controla escandallos, recetas, mermas y food cost con Miselup. Soy Andrés Valerio, distribuidor oficial en República Dominicana. Soporte local.",
+  "meta_title": "Miselup en RD | Costeo de recetas y food cost",
+  "meta_description": "Costeo de recetas, mermas y food cost plato a plato con Miselup. Andrés Valerio, distribuidor oficial en República Dominicana.",
   "hero": {
-    "eyebrow": "Escandallos y food cost",
+    "eyebrow": "Costeo de recetas y food cost",
     "h1": "Miselup: controla el food cost de tu restaurante en RD",
     "lead": "Soy Andrés Valerio, chef, consultor y distribuidor oficial de Miselup en República Dominicana. Lo uso en mis propios negocios y quiero ayudarte a implantarlo en el tuyo sin humo."
   },
   "intro": {
     "h2": "Por qué confío en Miselup para mis cocinas",
     "parrafos": [
-      "No soy un revendedor que aprendió el producto en un folleto. Uso Miselup en Valerio Burger Club, en catering y en la parrilla: tengo el mismo problema que tú cuando el insumo sube, la receta vive en la cabeza del cocinero y el food cost se dispara sin que nadie lo vea venir.",
+      "No soy un revendedor que aprendió el producto en un folleto. Uso Miselup en Valerio Burger Club, en catering y en la parrilla: tengo el mismo problema que tú cuando el insumo sube, la receta vive en la cabeza del cocinero y el food cost se dispara sin que nadie lo vea venir. Aquí le decimos costeo de recetas; en España lo llaman escandallo, y es exactamente lo mismo.",
       "Mi trabajo aquí no es cobrarte la suscripción de Miselup: tú contratas directamente en la web oficial. Yo me encargo de implantarlo, migrar tus recetas, formar a tu equipo y darte soporte local en Santo Domingo y todo el país. Miselup no es un POS y no factura a la DGII: convive con el sistema que ya usas. La implantación se presupuesta aparte según tu operación."
     ]
   },
@@ -49,7 +49,7 @@
       },
       {
         "title": "Cartas desactualizadas",
-        "desc": "Cuando sube un insumo, recalculas el escandallo y ves el impacto en margen y PVP sugerido."
+        "desc": "Cuando sube un insumo, recalculas el costeo y ves el impacto en margen y PVP sugerido."
       },
       {
         "title": "Trazabilidad y HACCP",
@@ -75,11 +75,11 @@
       },
       {
         "title": "Formación del equipo",
-        "desc": "Entreno a cocina, administración y sala en el flujo diario: escandallos, producción, compras y HACCP."
+        "desc": "Entreno a cocina, administración y sala en el flujo diario: costeo de recetas, producción, compras y HACCP."
       },
       {
         "title": "Soporte local",
-        "desc": "Te acompaño después del arranque para resolver dudas, afinar escandallos y asegurar que el sistema se quede."
+        "desc": "Te acompaño después del arranque para resolver dudas, afinar costeos y asegurar que el sistema se quede."
       }
     ]
   },
@@ -90,7 +90,7 @@
     },
     {
       "q": "¿Miselup se integra con mi POS actual?",
-      "a": "Hoy no hay integración con el POS. Es una convivencia: tu POS sigue cobrando y facturando, y Miselup controla recetas, escandallos, inventario y rentabilidad. No te vendo una integración que no existe."
+      "a": "Hoy no hay integración con el POS. Es una convivencia: tu POS sigue cobrando y facturando, y Miselup controla recetas, costeos, inventario y rentabilidad. No te vendo una integración que no existe."
     },
     {
       "q": "¿Tengo que pagar la suscripción a través de Andrés?",

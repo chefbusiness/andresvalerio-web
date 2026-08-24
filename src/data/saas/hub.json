@@ -1,6 +1,6 @@
 {
   "meta_title": "Andrés Valerio | Miselup y Timlup en República Dominicana",
-  "meta_description": "Representante oficial de Miselup (escandallos y food cost) y Timlup (checklists de tareas) en RD. Implantación, formación y soporte local.",
+  "meta_description": "Representante oficial de Miselup (costeo de recetas y food cost) y Timlup (checklists de tareas) en RD. Implantación, formación y soporte local.",
   "hero": {
     "eyebrow": "Software de cocina real",
     "h1": "Controla el costo real de cada plato y las tareas de cada día",
@@ -17,8 +17,8 @@
     "h2": "¿Por qué Miselup y Timlup?",
     "items": [
       {
-        "title": "Escandallo real, no estimaciones",
-        "desc": "Miselup calcula el costo por ración con mermas, rendimientos y PVP sugerido. Vas más allá del inventario: sabes exactamente cuánto te deja cada plato."
+        "title": "Costo real, no estimaciones",
+        "desc": "Miselup costea cada receta con sus mermas y rendimientos, y te saca el costo por ración y el PVP sugerido. Vas más allá del inventario: sabes exactamente cuánto te deja cada plato."
       },
       {
         "title": "Checklists que se cumplen",
