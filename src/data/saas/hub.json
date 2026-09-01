@@ -29,8 +29,8 @@
         "desc": "No son un POS ni facturan a la DGII. Funcionan al lado del sistema que ya usas: tu POS sigue cobrando y facturando, y estas herramientas se ocupan de la cocina y de la operación del día a día."
       },
       {
-        "title": "Plan gratis de verdad",
-        "desc": "Ambos tienen un plan gratuito real para que arranques sin compromiso. Si necesitas más funciones, escalas cuando te convenga."
+        "title": "No te las entrego y me voy",
+        "desc": "Comprar la licencia es la parte fácil. Yo levanto tus recetas o tus listas, las cargo en la plataforma, formo a tu equipo y te acompaño hasta que rueda solo. Con tarifa cerrada por banda, en dólares, antes de empezar."
       }
     ]
   },
@@ -63,19 +63,19 @@
     },
     {
       "q": "¿Cómo contrato y en qué moneda se paga?",
-      "a": "La suscripción la contratas directamente en miselup.pro o timlup.pro, y el cargo se hace en euros con tarjeta. Los importes en dólares y en pesos que ves aquí son una referencia al cambio del día, para que sepas a qué te enfrentas. Yo no cobro esa suscripción: mi servicio de implantación y formación se presupuesta aparte."
+      "a": "Son dos pagos distintos y a dos destinatarios distintos. La suscripción la contratas directamente en miselup.pro o timlup.pro y el cargo lo hace la plataforma en euros con tarjeta; los importes en dólares y pesos que ves aquí son una referencia al cambio del día. Mi servicio de implementación, en cambio, me lo pagas a mí y va en dólares estadounidenses, con la tarifa por bandas publicada en la página de cada herramienta."
     },
     {
       "q": "¿Funciona si solo tengo un local?",
-      "a": "Perfectamente. Tanto Miselup como Timlup están diseñados para operar desde un solo restaurante hasta cadenas con múltiples ubicaciones. El plan gratuito cubre un local sin problema."
+      "a": "Perfectamente. Tanto Miselup como Timlup operan desde un solo restaurante hasta cadenas con varias ubicaciones, y de hecho la mayoría de mis implementaciones son de un local. Lo que cambia es la banda de la tarifa: cada local adicional suma un 50 % sobre el baremo, porque hay más datos que cargar y más gente que formar."
     },
     {
       "q": "¿Cuánto tiempo toma tenerlo listo?",
-      "a": "Depende del tamaño y la complejidad de tu operación, pero una implantación típica puede estar funcionando en una o dos semanas. Lo importante es que el equipo quede entrenado, no solo instalado."
+      "a": "Depende de la herramienta. Timlup se resuelve en un mes: se levantan las listas de tareas por área y por franja horaria, se montan y se entrena al equipo. Miselup lleva 3 meses, porque hay que estandarizar recetas, mermas, proveedores y costos desde cero: de mes a mes y medio de levantamiento más otro tanto ya trabajando dentro de la plataforma. La excepción es la banda Micro de Miselup, que es solo montaje y sale en un mes. Lo importante no es instalar, es que el equipo lo use sin ti."
     },
     {
-      "q": "¿De verdad hay un plan gratis?",
-      "a": "Sí. Ambos software tienen un plan gratuito real, sin trampas. Puedes empezar con ese plan y, si necesitas más funciones, escalar más adelante."
+      "q": "¿Cuánto cuesta la implementación?",
+      "a": "Está publicada, no la invento en la llamada. En Miselup va por bandas según el tamaño de tu operación: desde 600 US$ el montaje básico de un local muy pequeño hasta 2,850 US$ la implementación completa de una operación grande, facturada como fee mensual durante los 3 meses que dura. En Timlup, que no lleva recetas ni costos, es un pago único de 200 a 665 US$ y se resuelve en un mes. Si quieres las dos y arrancas pequeño, el paquete Micro cierra en 800 US$. Cada local adicional suma un 50 %."
     },
     {
       "q": "¿Qué pasa si necesito ayuda después?",

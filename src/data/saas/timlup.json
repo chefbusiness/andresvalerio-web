@@ -10,7 +10,7 @@
     "h2": "Soy Andrés Valerio y esto no es teoría: lo aplico a diario en Valerio Burger Club, mi catering y mi parrilla.",
     "parrafos": [
       "Sé lo que se siente cuando falla una apertura, nadie sabe quién hizo qué y te enteras por el cliente. Timlup me devolvió el control sin volverme un vigilante. Por eso me convertí en su representante y distribuidor oficial en República Dominicana.",
-      "Aquí no te cobro la suscripción del software —esa la contratas directamente con Timlup—. Yo me encargo de la implantación, migro tus datos si ya trabajas con listas en papel o Excel, formo a tu equipo y te doy soporte local. Mi trabajo va a presupuesto, sin sorpresas."
+      "Aquí no te cobro la suscripción del software —esa la contratas directamente con Timlup—. Yo me encargo de la implantación, migro tus datos si ya trabajas con listas en papel o Excel, formo a tu equipo y te doy soporte local. Mi trabajo tiene tarifa cerrada por bandas, en dólares y publicada más abajo: sin sorpresas."
     ]
   },
   "para_quien": [
@@ -63,7 +63,7 @@
   },
   "implantacion": {
     "h2": "No te entrego un login y te dejo solo: así trabajo la implantación",
-    "intro": "Mi servicio va a presupuesto y cubre desde el diagnóstico hasta que tu equipo vuela solo.",
+    "intro": "Tarifa cerrada por banda, un solo mes de trabajo y un pago único. Esto es lo que cubre, desde el diagnóstico hasta que tu equipo vuela solo.",
     "pasos": [
       {
         "title": "Diagnóstico operativo",
@@ -94,7 +94,15 @@
     },
     {
       "q": "¿Cuánto cuesta la suscripción del software?",
-      "a": "La suscripción la contratas directamente con Timlup. Tienen desde un plan Gratis para un local hasta planes Pro multi-local y Avanzado. Mi honorario de implantación y formación es aparte y lo presupuesto según tu caso, sin compromiso."
+      "a": "La suscripción la contratas directamente con Timlup y se paga por local: 29 € al mes el plan Pro, que es el mínimo desde el que implemento, y 49 € el Avanzado. Desde siete locales entra el descuento por volumen. Mi honorario de implementación es aparte, va en dólares y lo tienes publicado en esta misma página."
+    },
+    {
+      "q": "¿Cuánto cuesta la implementación?",
+      "a": "Es un pago único y va por bandas, publicadas arriba en dólares: 200 US$ la banda Micro de un local muy pequeño, 455 US$ la Baja, 525 US$ la Media y 665 US$ la Alta. Timlup se resuelve en un solo mes porque no hay recetas, costos, proveedores ni alérgenos que levantar; por eso cuesta un 30 % menos que implementar Miselup. El mes siguiente puedes añadir un seguimiento opcional del 30 % para pulir las listas ya creadas, salvo en la banda Micro. Cada local adicional suma un 50 %."
+    },
+    {
+      "q": "¿Por qué no aparecen los planes más baratos de Timlup?",
+      "a": "Porque no implemento sobre ellos. Timlup tiene planes más cortos en su web, pero por debajo de Pro te topas con el límite de listas, el de empleados con PIN y no hay multi-local ni plantillas replicables: justo lo que hace que valga la pena montarlo bien. Si vas a pagar una implementación, el mínimo con sentido es Pro, 29 € al mes por local."
     },
     {
       "q": "Mis empleados no saben de tecnología, ¿podrán usarlo?",
