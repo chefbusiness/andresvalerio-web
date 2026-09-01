@@ -1,4 +1,4 @@
-# Handoff — andresvalerio.com · sesión 2026-08-24/25 (teléfono nuevo + representación oficial de Miselup y Timlup)
+# Handoff — andresvalerio.com · última sesión 2026-09-01 (baremo de implementación publicado)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). **36 páginas** (11 posts de blog), todas live y verdes.
@@ -6,6 +6,53 @@ Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
 > La hoja de ruta vive en **`ESTRATEGIA-RD-CONSULTORIA.md`** (estudio de mercado, keywords, competencia y plan de 90 días). Léelo antes de tocar contenido o arquitectura.
+
+---
+
+## ✅ Hecho 2026-09-01 — el baremo de implementación, publicado (sesión Claude Code)
+
+**El problema.** Andrés monetiza *implantando* Miselup y Timlup en RD, pero las dos landings solo enseñaban la **suscripción al SaaS** —que cobra la plataforma, no él— y la encabezaban con un **plan Gratis**. El visitante llegaba a la llamada creyendo que la entrada era cero y sin haber visto nunca el precio del servicio que Andrés factura.
+
+### 1. Fuera los planes gratuitos y de entrada
+Se retiran **Gratis** y **Esencial** de los dos productos. Se publica desde el suelo con el que tiene sentido implementar:
+
+| | Suelo publicado | Antes se veía |
+|---|---|---|
+| Miselup | **Pro 49 €** + Cumplimiento 79 € | Gratis · 19 · 49 · 79 |
+| Timlup | **Pro 29 €** + Avanzado 49 € + Enterprise | Gratis · 19 · 29 · 49 · Enterprise |
+
+El porqué está en la constante **`PLANES_MINIMOS`** de `src/data/saas.ts`, documentado para que nadie los reponga sin querer. Las tarjetas Pro **absorben** las funciones que solo se listaban en los tramos retirados (costeo con mermas, catálogo de ingredientes, PIN, firma y semáforo), verificadas contra el `billing-plans.ts` y el copy de planes de cada repo: la carta se acorta, **no se empobrece**.
+
+### 2. Baremo de implementación (sección nueva, `#implementacion`)
+Sale del Excel *Tarifas-implementacion-Miselup-Timlup*, hoja `1 · Tarifas (pública)`. Va en **US$ cerrados**, no en conversión aproximada: a diferencia de la suscripción, este servicio **sí se factura en RD**.
+
+| | Miselup | Timlup |
+|---|---|---|
+| Modelo | Fee mensual × 3 meses | Pago único, 1 mes |
+| Micro | 600 US$ (solo montaje, 1 mes) | 200 US$ (sin seguimiento) |
+| Baja | 1.950 US$ | 455 US$ |
+| Media | 2.250 US$ | 525 US$ |
+| Alta | 2.850 US$ | 665 US$ |
+| Seguimiento mes 2 | — | 30 % opcional (137 / 158 / 200) |
+
+Más el **paquete Micro de 800 US$** (600 + 200) que cierra las dos herramientas, y **+50 % por local adicional** en ambas (×1,5 · ×2,0 · ×2,5).
+
+**La banda Baja de Timlup NO estaba en el Excel** (la hoja solo trae Micro, Media y Alta). Se calcula con la misma regla que el resto —650 de Miselup − 30 % = 455— y la decisión la tomó John en esta sesión. Si algún día se revisa la hoja, es el dato a cuadrar primero.
+
+### 3. Detalles que importan
+- **La tabla se adapta al producto** en vez de duplicarse: `conMeses` y `conSeguimiento` en `SaasLanding.astro` deciden las columnas. Miselup saca Meses + Total; Timlup, Seguimiento.
+- **Bajo 860 px las filas se vuelven fichas** con el `data-col` de cada celda como etiqueta. Una tabla de 6 columnas con scroll lateral en móvil se descubre tarde y mal.
+- **Las tarjetas de plan se topan a `--sl-cols × 330px` y se centran.** Al bajar de 4 planes a 2 y 3, el `auto-fit: 1fr` las estiraba a media pantalla y el bloque se veía desmontado.
+- **Las bandas entran como `Offer` del Schema.org** (`filasOferta` en `@data/saas`), que es donde miran los buscadores de IA. Verificado en el HTML del preview: 6 ofertas por página.
+- Copy rehecho en las tres páginas: fuera las FAQ de plan gratuito y las promesas de «presupuesto sin números». **Corregido además el plazo del hub**, que decía *una o dos semanas* cuando Miselup son 3 meses y Timlup uno.
+
+### 4. Herramienta nueva: `npm run check`
+`scripts/validar-astro.mjs` compila **todos los `.astro`** con el compilador de Astro + esbuild en milisegundos, sin levantar Vite ni Sharp. Existe por la **regla térmica**: el build de verdad va en Netlify, pero empujar un `.astro` roto cuesta una vuelta entera (pasó el 2026-08-25). No sustituye al build —no resuelve imports ni colecciones— pero caza los errores de sintaxis, que son casi todos los deploys rotos.
+
+### 5. Verificación
+- `npm run check` → 35/35 verdes.
+- Script de aritmética sobre el módulo compilado: `importe × meses = total`, el 30 % del seguimiento, el −30 % de Timlup frente a Miselup y `600 + 200 = 800`. Todo cuadra.
+- **Deploy preview verde** y comprobado con `curl` + grep sobre el HTML servido (sin navegador local): cero ocurrencias de «gratis»/«gratuito» en las tres páginas, planes `49 €/79 €` y `29 €/49 €/A medida`, las 4 bandas por tabla y las columnas correctas en cada producto.
 
 ---
 
@@ -29,7 +76,7 @@ Andrés es **representante, distribuidor oficial e implementador de Miselup.pro 
 - **El cliente se suscribe directamente en miselup.pro / timlup.pro** (Stripe, en euros). Nunca hay checkout aquí.
 - Por eso **el euro es la fuente de verdad** y US$/RD$ se **derivan** de una sola constante `TASAS` en `src/data/saas.ts`, siempre etiquetados como referencia al cambio. Actualizar el cambio = tocar una línea.
 - Los planes salen del `web/src/lib/billing-plans.ts` de cada repo, **no de memoria**: Miselup 0/19/49/79 € *por negocio*; Timlup 0/19/29/49 € **por local** + Enterprise. Anual = mensual × 10.
-- **La implantación de Andrés va a presupuesto.** Sin cifras publicadas (decisión de John).
+- ~~**La implantación de Andrés va a presupuesto.** Sin cifras publicadas (decisión de John).~~ → **REVOCADO el 2026-09-01**: ahora el baremo de implementación está publicado en US$ y los planes gratuitos/de entrada retirados. Ver la sesión de esa fecha, arriba.
 - Estas suscripciones **se cierran dentro de una consultoría**, no por autoservicio → el CTA primario es contactar con Andrés, y el secundario ir a la web oficial del producto.
 
 **Sistema de tres marcas** (requisito de John): el fondo es siempre el teal de Valerio y el color del SaaS entra solo como acento. El teal de Miselup (`#0f9e8c`) es de la familia del suyo (`#103330`); el oro de ambos SaaS (`#ffce47`) rima con su latón (`#BC9248`) y hace de hilo común; el azul de Timlup (`#2f6bff`), el más ajeno, va anclado sobre teal oscuro y **nunca de fondo**. Los logos son SVG inline, reproducidos del `Logo.astro` de cada repo.
