@@ -271,7 +271,7 @@ export const TIMLUP: Saas = {
         perfil:
           'Local muy pequeño de un solo emprendedor: pocas áreas de trabajo y pocas franjas horarias. Las listas de tareas son sencillas de levantar.',
         incluye:
-          'Tarifa cerrada de la banda Micro. Se combina con Miselup Micro en el paquete de 800 US$.',
+          'Montaje de las listas de un local con pocas áreas. Un mes, sin seguimiento. Se combina con Miselup Micro en el paquete de 800 US$.',
         importe: 200,
         meses: 1,
         total: 200,
@@ -281,7 +281,8 @@ export const TIMLUP: Saas = {
         banda: 'Baja',
         perfil:
           'Hasta 50 pax de aforo · 3 personas en cocina · un solo emprendedor · un solo local.',
-        incluye: 'El baremo de Miselup Baja (650 US$) menos un 30 %.',
+        incluye:
+          'Levantamiento por área de trabajo y franja horaria, montaje en la plataforma y formación del equipo.',
         importe: 455,
         meses: 1,
         total: 455,
@@ -291,7 +292,8 @@ export const TIMLUP: Saas = {
         banda: 'Media',
         perfil:
           '60–80 pax de aforo · 5–6 empleados en cocina · 1–2 socios emprendedores.',
-        incluye: 'El baremo de Miselup Media (750 US$) menos un 30 %.',
+        incluye:
+          'Lo mismo que la banda Baja, con más áreas de trabajo que levantar y más gente que entrenar.',
         importe: 525,
         meses: 1,
         total: 525,
@@ -301,7 +303,8 @@ export const TIMLUP: Saas = {
         banda: 'Alta',
         perfil:
           'Por encima de la banda media: más áreas de trabajo, más personal y más franjas horarias que cubrir.',
-        incluye: 'El baremo de Miselup Alta (950 US$) menos un 30 %.',
+        incluye:
+          'Levantamiento, montaje y formación cubriendo todas las áreas de trabajo y franjas horarias de la operación.',
         importe: 665,
         meses: 1,
         total: 665,
