@@ -520,7 +520,12 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
       radial-gradient(ellipse at 15% 0%, color-mix(in srgb, var(--sb-brand) 26%, transparent), transparent 58%),
       linear-gradient(155deg, var(--teal) 0%, var(--footer-bg) 100%);
     color: var(--bone);
-    padding-block: clamp(3.5rem, 9vw, 7rem);
+    /* Los 72px del header fijo se RESERVAN, igual que en ServiceLanding: sin
+       ellos el minimo del clamp (3.5rem = 59.5px en movil) se queda corto y las
+       migas quedan pegadas al filo del header. Medido a 390px: 12px de aire
+       frente a los 57px del resto del sitio. */
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(3.5rem, 9vw, 7rem);
     border-top: 2px solid var(--sb-brand);
   }
   .sl-crumb {
