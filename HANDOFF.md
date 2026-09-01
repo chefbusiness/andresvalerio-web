@@ -1,4 +1,4 @@
-# Handoff — andresvalerio.com · última sesión 2026-09-01 (baremo de implementación publicado)
+# Handoff — andresvalerio.com · última sesión 2026-09-01 (widget de WhatsApp, leyendas de precio y el hero de las landings)
 
 Marca personal del **Chef Andrés Valerio** (Santo Domingo y Santiago, RD). Astro 6 + Tailwind v4, salida estática, deploy en Netlify.
 Repo: `chefbusiness/andresvalerio-web` (rama `main`). **36 páginas** (11 posts de blog), todas live y verdes.
@@ -6,6 +6,61 @@ Site: `andresvalerio-web.netlify.app` / dominio `www.andresvalerio.com` (el apex
 
 > **Objetivo declarado por John (2026-07-27): dominar la SERP de RD y generar el máximo de clientes potenciales para Andrés en su mercado.**
 > La hoja de ruta vive en **`ESTRATEGIA-RD-CONSULTORIA.md`** (estudio de mercado, keywords, competencia y plan de 90 días). Léelo antes de tocar contenido o arquitectura.
+
+---
+
+## ✅ Hecho 2026-09-01 (tarde) — widget de WhatsApp, leyendas de precio y el hero de las landings (sesión Claude Code)
+
+> **Esta sesión empieza recuperando otra.** El Mac se apagó por temperatura a media tarea y se perdió la sesión `c44b09ee` (corte exacto: **08:49:17**). El estado real se reconstruyó leyendo su `.jsonl` en `~/.claude/projects/`, no de memoria. Lección operativa, ya en la memoria térmica: **tras un apagón, el Mac arranca con `mobileassetd` al 99 % de CPU y load >20 — hay que esperar antes de lanzar nada.**
+>
+> Lo que se rescató del corte: el avatar ya estaba recortado y sin commitear; el widget, sin empezar; y las leyendas, **sin una sola línea escrita** (grep de `orientativ` en las dos landings: 0). El encargo de las leyendas fue **verbal** y no consta en el log — queda escrito aquí para que no se vuelva a perder.
+
+### 1. Leyenda de precios orientativos en las dos tablas
+Encargo de Andrés: que quede **explícito** que ninguna de las dos cifras es un precio cerrado. Antes solo se deducía de las notas al pie, en gris y en cuarto lugar. Se añade la clase **`.sl-aviso`** (en `SaasLanding.astro`), con filo de color de marca, pegada a cada tabla:
+
+| Tabla | Qué fija la leyenda |
+|---|---|
+| Suscripción | La tarifa la fija la plataforma **en euros** y puede cambiar; US$ y RD$ son conversión de referencia. |
+| Implementación | La banda se cierra **por escrito tras ver la operación** (carta, locales, volumen, punto de partida). |
+
+⚠️ **La leyenda del baremo va FUERA de `.sl-tabla__marco`, a propósito.** El marco lleva `overflow-x: auto` con una tabla de `min-width: 720px`: un párrafo dentro cae en la zona desplazable y habría que buscar el aviso con scroll lateral. Si alguien la «ordena» metiéndola en el marco, reintroduce el bug.
+
+De paso se quita la redundancia que las leyendas creaban: las notas al pie se quedan solo con lo que aportan (la tasa aplicada, la moneda, el «nunca por horas»).
+
+### 2. Widget flotante de WhatsApp
+Portado de `johnguerrero.es`, con tres cambios de casa:
+
+- **El mensaje no va hardcodeado**: sale de `@utils/contacto`, así que **cada página manda su atribución** («te escribo desde la página de Miselup»). Hasta ahora esa medición solo la usaban los CTA de dentro del contenido; con el widget en el layout, pasa a cubrir **todo el sitio**.
+- **`z-index: 190`**, por DEBAJO del drawer del menú (200/201) y del popup de Bestia Fire (1000). El original usa `9998`, que habría dejado el widget flotando sobre el velo oscuro de los dos modales.
+- **Sin bocadillo en móvil**, donde no hay hover y taparía media pantalla.
+
+Se añaden a `ORIGENES` las **tres rutas de `software-gestion`**, que faltaban: sin ellas el widget mandaba el mensaje genérico justo en las páginas donde está el negocio de la implementación.
+
+### 3. 🔴 El hero de las landings no reservaba el header fijo
+**Lo detectó John a ojo en el celular**, antes que ninguna medición: las migas quedaban pegadas al filo del header y se leían como si la línea las cortara.
+
+Causa: `.sl-hero` usaba `padding-block: clamp(3.5rem, 9vw, 7rem)` y **en móvil manda el mínimo del clamp** — 3.5rem = **59,5px** con la escala base de 17px —, menos que los **72px** del header `position: fixed`. Es el mismo defecto que ya documenta la memoria `responsive-clamp-y-escala-base`, en su cuarta variante.
+
+**El patrón correcto ya estaba en el repo**, en `ServiceLanding.astro:286`: `padding: calc(72px + clamp(2rem, 6vw, 4rem)) 0 …`. `SaasLanding` no lo copió.
+
+| Aire entre el header y las migas | Antes | Después |
+|---|---|---|
+| Landings SaaS (Miselup, Timlup) | **12 px** | **59 px** |
+| Resto del sitio (referencia) | 57 px | 57 px |
+
+Medido a 360, 390 y 412px sobre el deploy preview, y verificado luego en producción. Escritorio a 1440px: 82 → 101px, sin desbordamiento horizontal. **Afectaba solo a las dos landings SaaS**; el resto del sitio ya estaba bien.
+
+→ **Regla que queda**: con header fijo, el padding-top de un hero se escribe como `calc(<alto del header> + <clamp de aire>)`, **nunca un clamp a secas**. Al crear una plantilla nueva, copiar el cálculo de la que ya funciona.
+
+### Cómo se verificó sin calentar el Mac
+Sin builds locales y sin Playwright, cumpliendo la regla térmica:
+- **`npm run check`** (`web/scripts/validar-astro.mjs`): compila los 36 `.astro` en milisegundos. Ya existía; es el sustituto del apaño de esbuild de la sesión anterior.
+- **Build en la nube**: rama → PR → deploy preview de Netlify.
+- **Medición del responsive en el Chrome de Windows** (nunca el del Mac), con la técnica de la memoria: **iframe de 390/360/412px** apuntando al propio deploy preview, que da un viewport móvil real con sus media queries, y desde el padre se leen `getComputedStyle` y `getBoundingClientRect` de dentro.
+  ⚠️ **Trampa del método**: dentro del iframe **el `IntersectionObserver` del reveal no dispara**, así que los 55 elementos `.rv` se quedan en `opacity: 0`. No es un bug del sitio — hay que añadirles `.visible` a mano antes de medir o de capturar.
+- Verificación final **en producción con `curl`**, incluida la hoja de estilos compilada (`/_astro/SaasLanding.*.css`), donde se confirmó el `calc(72px + clamp(2rem,6vw,4rem))` literal.
+
+**Publicado en producción** (PR #2 → `be6b511`), con OK explícito de John.
 
 ---
 
@@ -309,13 +364,14 @@ Primer servicio del plan. `franquicias.json` (bridge.py) + `franquicias.astro` (
 0b. **Captura de temperaturas de Miselup**: muestra «Superadmin» en el menú lateral porque se sacó desde la cuenta de John. No es sensible, pero si se quiere limpia es sustituir el fichero.
 0c. **Sección de distribuidores oficiales por país** en miselup.pro y timlup.pro — la otra mitad de la triangulación, tarea de esos repos, no de este.
 0d. **Decisión pendiente de John: ¿re-terminologizar el blog?** «escandallo» aparece **108 veces** en los 11 posts y ya posiciona; «HACCP» no aparece **ninguna**, así que hoy el blog no cubre el término que sí busca un dominicano. Recomendación: **añadir** el término local en esas piezas, no sustituirlo, para cubrir ambas búsquedas. No se tocó nada del contenido previo.
+0f. **El hub `/consultoria/software-gestion/` muestra cifras sin leyenda de «orientativo»** («Suscripción desde 49 € ≈ US$ · RD$» y la mención a la tarifa por bandas). El 2026-09-01 se pusieron las leyendas en las **dos tablas** de las landings, que era el encargo; el hub no es una tabla y se dejó fuera a propósito. Es incoherente a medias: si alguien compara, ve el precio sin el aviso. Cambio de cinco minutos, **pendiente de que John lo pida**.
 0e. Frase a validar con Andrés: el copy dice que una implantación típica «puede estar funcionando en una o dos semanas». Lo generó el bridge y va matizado, pero **es un compromiso en su nombre sin verificar**.
 
 ### 🔴 Crítico
 1. **Medición.** **No se usa GA4 ni Clarity: es una decisión deliberada de John**, todo el seguimiento técnico se hace en **Google Search Console**. No hay que instalar analítica ni rellenar `PUBLIC_GA_ID` / `PUBLIC_MICROSOFT_CLARITY_ID` / `PUBLIC_GSC_VERIFICATION`.
    - **La propiedad YA está verificada en GSC por DNS**: `andresvalerio.com` tiene el TXT `google-site-verification=YZPRMYv8hg9…` en el apex. Cubre apex y www, así que la meta de verificación es innecesaria. El sitemap está declarado en `robots.txt` y responde 200.
    - **No hay acceso a GSC desde esta VM.** Hay un MCP `gscServer` en `~/.claude.json`, pero apunta a `/Users/johnguerrero/mcp-gsc/` (rutas del Mac). El repo `mcp-gsc` **no está en la organización de GitHub** y las credenciales **no viajan en el cockpit** (`secrets.manifest` no contiene nada de Google/GSC). Para trabajar con datos de GSC desde aquí hace falta: subir `mcp-gsc` a GitHub (o indicar de dónde clonarlo), meter su fichero de credenciales en el cockpit con `secrets-push`, y corregir la ruta del MCP en `.claude.json`.
-   - **Punto ciego, ya cubierto (2026-07-27):** GSC mide adquisición, no conversión. Se añadió **atribución del origen del lead** sin analítica ni cookies: `src/utils/contacto.ts` es ahora la única fuente de verdad del teléfono y el email, y construye las URLs de WhatsApp y mailto con el origen dentro del propio mensaje. En `/consultoria/desarrollo-carta/` el origen se resuelve en build; en `/contacto/` (por donde pasan casi todos los CTA) se deduce del `document.referrer` en cliente. Andrés recibe *"Hola Andrés, te escribo desde la página de franquicias de tu web"*. **Al crear páginas nuevas, añadir su ruta al mapa `ORIGENES`.**
+   - **Punto ciego, ya cubierto (2026-07-27):** GSC mide adquisición, no conversión. Se añadió **atribución del origen del lead** sin analítica ni cookies: `src/utils/contacto.ts` es ahora la única fuente de verdad del teléfono y el email, y construye las URLs de WhatsApp y mailto con el origen dentro del propio mensaje. En `/consultoria/desarrollo-carta/` el origen se resuelve en build; en `/contacto/` (por donde pasan casi todos los CTA) se deduce del `document.referrer` en cliente. Andrés recibe *"Hola Andrés, te escribo desde la página de franquicias de tu web"*. **Al crear páginas nuevas, añadir su ruta al mapa `ORIGENES`.** 🔴 **Subió de importancia el 2026-09-01**: el widget flotante de WhatsApp vive en `BaseLayout` y usa este mismo mapa, así que una ruta que falte ya no degrada un CTA suelto sino **el botón de contacto de toda esa página**. Las tres rutas de `software-gestion` se añadieron en esa sesión; estaban sin cubrir.
    - **Cómo leer los resultados en GSC:** filtrar siempre **por país = República Dominicana**. El tráfico hispano global infla impresiones sin traer clientes.
 
 ### Siguiente en el plan (mes 1-2 del estudio)
@@ -366,7 +422,7 @@ La lectura de GSC ya se hizo (2026-08-21, sección de arriba) y cambió las prio
 3. **Off-page / septiembre** — Restaurant Week 2026 (Punta Cana 1–6, Santiago 7–13, Santo Domingo 14–20, Puerto Plata y Jarabacoa 21–27). 200+ dueños de restaurante y prensa del sector concentrados en un mes. Es la vía más directa a enlaces y menciones reales, que es lo que falta.
 4. **Casos de éxito con cifras** — sigue siendo lo único que de verdad convierte y hoy no existe ninguno. **Depende de que Andrés pase datos.**
 5. **NO producir más pilares largos hasta el punto 2.** Ya hay 11 posts y 3 sin indexar; añadir un duodécimo compite por el mismo presupuesto de rastreo.
-6. Mejora pendiente de atribución: los leads del blog llegan todos como *"un artículo del blog"* (`etiquetaOrigen` en `src/utils/contacto.ts`). Ahora que el blog es el motor de captación, conviene que diga **qué guía** generó el lead (un lead del clúster de franquicias no vale lo mismo que uno de brigada).
+6. Mejora pendiente de atribución: los leads del blog llegan todos como *"un artículo del blog"* (`etiquetaOrigen` en `src/utils/contacto.ts`). Ahora que el blog es el motor de captación, conviene que diga **qué guía** generó el lead (un lead del clúster de franquicias no vale lo mismo que uno de brigada). **Más rentable desde el 2026-09-01**: el widget de WhatsApp está en todas las páginas, así que arreglar esto afina la atribución de *todo* el tráfico del blog, no solo la de quien llega al CTA del final. Se resuelve leyendo el `title`/slug del post en el frontmatter de la página en vez de caer al `startsWith('/blog/')`.
 
 Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**. El tráfico hispano global infla impresiones sin traer clientes, y el 30% de lo que hay hoy es marca de Valerio Burger Club que no convierte.
 
@@ -376,7 +432,7 @@ Recordatorio al leer GSC: **filtrar siempre por país = República Dominicana**.
 
 ## 🔧 Cómo retomar
 
-> **La sesión 2026-08-24/25 se hizo en el Mac** (`/Users/johnguerrero/andres-valerio-web/web`), que sí tiene node y netlify CLI. Aun así **no se hace build local**: rige la regla térmica (la CPU apaga el equipo por encima de ~65 °C y llegó a marcar 66,4 °C durante los barridos de `grep`/`find`). Se compila en Netlify y se verifica con `curl`. Para no mandar builds rotos a la nube, el atajo es esbuild sobre el frontmatter (ver la sección de la sesión 2026-08-25).
+> **La sesión 2026-08-24/25 se hizo en el Mac** (`/Users/johnguerrero/andres-valerio-web/web`), que sí tiene node y netlify CLI. Aun así **no se hace build local**: rige la regla térmica (la CPU apaga el equipo por encima de ~65 °C y llegó a marcar 66,4 °C durante los barridos de `grep`/`find`). Se compila en Netlify y se verifica con `curl`. Para no mandar builds rotos a la nube, **`npm run check`** (`web/scripts/validar-astro.mjs`) compila los 36 `.astro` con el compilador de Astro + esbuild en milisegundos y a coste térmico nulo. Sustituye al apaño manual de esbuild de la sesión 2026-08-25. **No sustituye al build**: no caza errores de plantilla ni de tipos.
 
 ```bash
 git pull    # <- clon canónico (ahí vive la memoria)
