@@ -307,11 +307,17 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
         }
       </div>
 
+      <p class="sl-aviso rv">
+        <strong>Precios orientativos.</strong> La tarifa oficial la fija {saas.nombre}
+        en euros y puede cambiar sin previo aviso. Las cifras en dólares y en pesos
+        son una conversión de referencia, no un precio cerrado.
+      </p>
+
       <div class="sl-planes__nota rv">
         <p>{saas.notaPrecios}</p>
         <p>
-          <strong>Sobre las cifras en dólares y pesos:</strong> son una referencia al
-          cambio de {TASAS.fecha} ({TASAS.usd} US$ y {TASAS.dop} RD$ por euro). El
+          <strong>El cambio aplicado</strong> es el de {TASAS.fecha}
+          ({TASAS.usd} US$ y {TASAS.dop} RD$ por euro). El
           cargo real lo hace {saas.nombre} <strong>en euros</strong> con tarjeta, así
           que lo que te aparezca en el estado de cuenta depende de la tasa de tu banco.
           Los precios no incluyen impuestos.
@@ -381,6 +387,12 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
         </table>
       </div>
 
+      <p class="sl-aviso sl-aviso--tabla rv d1">
+        <strong>Precios orientativos.</strong> La banda que te toca se cierra por
+        escrito después de ver tu operación —carta, locales, volumen de datos y
+        punto de partida—, así que el importe final puede variar.
+      </p>
+
       <div class="sl-paquete rv d2">
         <div class="sl-paquete__txt">
           <h3>Paquete Micro · las dos herramientas</h3>
@@ -417,8 +429,8 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
           {' '}{planSuelo.nombre} ({planSuelo.eur} €).
         </p>
         <p>
-          Importes en dólares estadounidenses, sin impuestos. Se cierra por banda
-          después de ver tu operación, no por horas:
+          Importes en dólares estadounidenses, sin impuestos. Se cierra por banda,
+          nunca por horas trabajadas:
           {' '}<a href="/contacto/">cuéntame tu caso</a> y te digo cuál te toca.
         </p>
       </div>
@@ -508,7 +520,12 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
       radial-gradient(ellipse at 15% 0%, color-mix(in srgb, var(--sb-brand) 26%, transparent), transparent 58%),
       linear-gradient(155deg, var(--teal) 0%, var(--footer-bg) 100%);
     color: var(--bone);
-    padding-block: clamp(3.5rem, 9vw, 7rem);
+    /* Los 72px del header fijo se RESERVAN, igual que en ServiceLanding: sin
+       ellos el minimo del clamp (3.5rem = 59.5px en movil) se queda corto y las
+       migas quedan pegadas al filo del header. Medido a 390px: 12px de aire
+       frente a los 57px del resto del sitio. */
+    padding-top: calc(72px + clamp(2rem, 6vw, 4rem));
+    padding-bottom: clamp(3.5rem, 9vw, 7rem);
     border-top: 2px solid var(--sb-brand);
   }
   .sl-crumb {
@@ -944,6 +961,32 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
     border-radius: 50%;
     background: var(--sb-brand);
   }
+  /* ── Leyenda de precios orientativos ────────────────────────────────────
+     Va PEGADA a cada tabla y con filo de marca, no diluida entre las notas
+     al pie: el encargo es que se lea sin buscarla. Misma clase en las dos
+     tablas para que digan lo mismo con la misma voz. */
+  .sl-aviso {
+    margin: 1.75rem 0 0;
+    max-width: 74ch;
+    padding: 0.85rem 1.1rem;
+    border-left: 3px solid var(--sb-brand);
+    border-radius: 0 6px 6px 0;
+    background: color-mix(in srgb, var(--sb-brand) 7%, transparent);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .sl-aviso strong {
+    color: var(--ink);
+  }
+  /* Va FUERA del `.sl-tabla__marco` a propósito: el marco lleva
+     `overflow-x: auto` con una tabla de `min-width: 720px`, así que un párrafo
+     dentro caería en la zona desplazable y habría que buscar la leyenda con
+     scroll lateral. Pegado por debajo se lee siempre. */
+  .sl-aviso--tabla {
+    margin-top: 1.25rem;
+  }
+
   .sl-planes__nota {
     margin-top: 2.5rem;
     max-width: 70ch;
