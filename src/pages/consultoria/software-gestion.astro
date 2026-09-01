@@ -11,7 +11,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import CtaFinal from '@components/CtaFinal.astro';
 import SaasMark from '@components/SaasMark.astro';
 import { breadcrumbSchema, faqSchema } from '@utils/schema';
-import { SAAS, HUB, rutaSaas, aUSD, aDOP } from '@data/saas';
+import { SAAS, HUB, rutaSaas, aUSD, aDOP, usd, PAQUETE_MICRO, type Saas } from '@data/saas';
 import data from '@data/saas/hub.json';
 
 const migas = [
@@ -20,9 +20,17 @@ const migas = [
   { name: 'Software de gestión', path: HUB },
 ];
 
-/** Precio de entrada de cada producto, para la tarjeta comparativa. */
+/**
+ * Precio de entrada de cada producto, para la tarjeta comparativa. Aquí ya no
+ * hay planes gratuitos ni de entrada (ver `PLANES_MINIMOS` en `@data/saas`),
+ * así que el mínimo publicado ES el suelo desde el que se implementa.
+ */
 const desde = (planes: (typeof SAAS)[number]['planes']) =>
   planes.filter((p) => p.eur && p.eur > 0).sort((a, b) => a.eur! - b.eur!)[0];
+
+/** La banda más barata del baremo: el "desde" del servicio de Andrés, en US$. */
+const implDesde = (s: Saas) =>
+  Math.min(...s.implantacion.bandas.map((b) => b.total));
 ---
 
 <BaseLayout
@@ -96,12 +104,15 @@ const desde = (planes: (typeof SAAS)[number]['planes']) =>
                 <p class="sg-card__gancho">{s.gancho}</p>
 
                 <p class="sg-card__precio">
-                  <span class="sg-card__gratis">Plan gratis real</span>
                   {entrada && (
                     <span class="sg-card__desde">
-                      · de pago desde {entrada.eur} € <span class="sg-card__ref">(≈ {aUSD(entrada.eur!)} US$ · {aDOP(entrada.eur!)} RD$)</span>
+                      Suscripción desde <span class="sg-card__cifra">{entrada.eur} €</span>
+                      <span class="sg-card__ref"> (≈ {aUSD(entrada.eur!)} US$ · {aDOP(entrada.eur!)} RD$)</span>
                     </span>
                   )}
+                  <span class="sg-card__impl">
+                    Implementación desde <span class="sg-card__cifra">{usd(implDesde(s))} US$</span>
+                  </span>
                 </p>
 
                 <a class="sg-card__cta" href={rutaSaas(s.slug)}>
@@ -156,8 +167,11 @@ const desde = (planes: (typeof SAAS)[number]['planes']) =>
       </div>
       <p class="sg-nota rv">
         La suscripción la contratas tú directamente en la web de cada producto. Mi
-        trabajo de implantación, migración y formación va <strong>a presupuesto</strong>,
-        según el tamaño de tu operación.
+        trabajo de implementación, migración y formación se cobra aparte, con
+        <strong>tarifa por bandas en dólares</strong> según el tamaño de tu operación:
+        está publicada en la página de <a href={rutaSaas('miselup')}>Miselup</a> y en la
+        de <a href={rutaSaas('timlup')}>Timlup</a>. Si arrancas pequeño y quieres las
+        dos, el paquete Micro cierra en <strong>{usd(PAQUETE_MICRO.total)} US$</strong>.
       </p>
     </div>
   </section>
@@ -307,7 +321,11 @@ const desde = (planes: (typeof SAAS)[number]['planes']) =>
     color: rgba(243, 236, 221, 0.75);
     margin: 0;
   }
-  .sg-card__gratis {
+  .sg-card__desde,
+  .sg-card__impl {
+    display: block;
+  }
+  .sg-card__cifra {
     color: var(--brass);
     font-weight: 600;
   }

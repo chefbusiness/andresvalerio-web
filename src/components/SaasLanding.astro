@@ -9,17 +9,36 @@
  * entra por `--sb-brand` en filos, eyebrows y acentos. Ver la nota larga en
  * `SaasBanner.astro` — mismo sistema, misma razón.
  *
- * PRECIOS: € es la fuente de verdad (es lo que cobra Stripe en la web oficial).
- * US$ y RD$ se derivan de `TASAS` en `@data/saas` y se marcan SIEMPRE como
- * referencia — el cliente no paga aquí, así que prometer un importe local
- * exacto sería mentirle.
+ * DOS TABLAS DE DINERO, y no se pueden confundir:
+ *   1. PLANES — la suscripción al SaaS. La cobra la plataforma en euros, no
+ *      Andrés. € es la fuente de verdad; US$ y RD$ se derivan de `TASAS` y se
+ *      marcan SIEMPRE como referencia, porque el cliente no paga aquí y
+ *      prometerle un importe local exacto sería mentirle.
+ *   2. BAREMO DE IMPLEMENTACIÓN — el trabajo de Andrés. Ese SÍ se factura en
+ *      República Dominicana, así que va en US$ CERRADOS, sin conversión ni
+ *      "≈": es el precio, no una referencia.
+ *
+ * SIN PLANES GRATUITOS: los dos productos tienen plan Gratis y plan de entrada
+ * en su web oficial, pero aquí NO se publican (ver `PLANES_MINIMOS` en
+ * `@data/saas`). Debajo del suelo no hay capacidad suficiente para implementar,
+ * y vender el montaje sobre un plan corto es regalar horas.
  *
  * CAPTURAS: un ítem sin `src` pinta un ESQUELETO etiquetado, nunca una imagen
  * rota. Mismo criterio que el carrusel de la landing de Miselup.
  */
 import CtaFinal from '@components/CtaFinal.astro';
 import SaasMark from '@components/SaasMark.astro';
-import { aUSD, aDOP, TASAS, MESES_ANUAL, HUB, type Saas, type Captura } from '@data/saas';
+import {
+  aUSD,
+  aDOP,
+  usd,
+  TASAS,
+  MESES_ANUAL,
+  HUB,
+  PAQUETE_MICRO,
+  type Saas,
+  type Captura,
+} from '@data/saas';
 
 export interface SaasData {
   meta_title: string;
@@ -44,6 +63,21 @@ interface Props {
 }
 
 const { saas, data, capturas, guias = [], hermano } = Astro.props;
+
+/** El plan más barato que SÍ se publica: es el suelo para implementar. */
+const planSuelo = saas.planes
+  .filter((p) => p.eur !== null)
+  .sort((a, b) => a.eur! - b.eur!)[0];
+
+/**
+ * La tabla del baremo se adapta al producto en vez de duplicarse: Miselup
+ * factura un fee × 3 meses (necesita Meses y Total) y Timlup un pago único con
+ * seguimiento opcional (necesita la columna de seguimiento y no las otras dos).
+ * Pintar columnas que siempre valen 1 o repiten la anterior sería ruido.
+ */
+const bandas = saas.implantacion.bandas;
+const conMeses = bandas.some((b) => b.meses > 1);
+const conSeguimiento = bandas.some((b) => b.seguimiento != null);
 
 /** Solo las que tienen imagen son ampliables; el visor navega entre ELLAS. */
 const ampliables = capturas.filter((c) => c.src);
@@ -237,13 +271,15 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
         <span class="eyebrow">Planes</span>
         <h2>Cuánto cuesta {saas.nombre}</h2>
         <p>
-          Estos son los planes oficiales. <strong>La suscripción la contratas tú
-          directamente en {saas.nombre}</strong>, no aquí: yo me ocupo de dejártelo
-          funcionando y de formar a tu equipo.
+          Estos son los planes desde los que trabajo. <strong>La suscripción la
+          contratas tú directamente en {saas.nombre}</strong>, no aquí: yo me ocupo
+          de dejártelo funcionando y de formar a tu equipo. Por debajo del plan
+          {planSuelo.nombre} no implemento, porque la herramienta se queda corta
+          para lo que hay que montar.
         </p>
       </div>
 
-      <div class="sl-planes__grid">
+      <div class="sl-planes__grid" style={`--sl-cols:${saas.planes.length}`}>
         {
           saas.planes.map((p, i) => (
             <article class:list={['sl-plan', 'rv', `d${Math.min(i + 1, 4)}`, { 'sl-plan--top': p.destacado }]}>
@@ -253,8 +289,6 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
               <p class="sl-plan__precio">
                 {p.eur === null ? (
                   <span class="sl-plan__medida">A medida</span>
-                ) : p.eur === 0 ? (
-                  <span class="sl-plan__eur">Gratis</span>
                 ) : (
                   <>
                     <span class="sl-plan__eur">{p.eur} €</span>
@@ -289,6 +323,108 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
     </div>
   </section>
 
+  <!-- ── BAREMO DE IMPLEMENTACIÓN (esto sí lo cobro yo) ── -->
+  <section class="section sl-baremo" id="implementacion">
+    <div class="container">
+      <div class="sec-head rv">
+        <span class="eyebrow">Implementación en RD</span>
+        <h2>Cuánto cuesta que te lo deje funcionando</h2>
+        <p>{saas.implantacion.intro}</p>
+      </div>
+
+      <div class="sl-tabla__marco rv d1">
+        <table class="sl-tabla">
+          <caption class="sl-oculto">
+            Baremo de implementación de {saas.nombre} en República Dominicana, en
+            dólares estadounidenses.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Banda</th>
+              <th scope="col">Perfil de negocio al que aplica</th>
+              <th scope="col">Qué incluye</th>
+              <th scope="col" class="num">{saas.implantacion.colImporte}</th>
+              {conMeses && <th scope="col" class="num">Meses</th>}
+              {conMeses && <th scope="col" class="num">Total del servicio</th>}
+              {conSeguimiento && <th scope="col" class="num">Seguimiento mes 2</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              bandas.map((b) => (
+                <tr>
+                  <th scope="row" class="sl-tabla__banda" data-col="Banda">{b.banda}</th>
+                  <td data-col="Perfil de negocio">{b.perfil}</td>
+                  <td data-col="Qué incluye">{b.incluye}</td>
+                  <td class="num" data-col={saas.implantacion.colImporte}>
+                    <strong>{usd(b.importe)} US$</strong>
+                  </td>
+                  {conMeses && <td class="num" data-col="Meses">{b.meses}</td>}
+                  {conMeses && (
+                    <td class="num" data-col="Total del servicio">
+                      <strong>{usd(b.total)} US$</strong>
+                    </td>
+                  )}
+                  {conSeguimiento && (
+                    <td class="num" data-col="Seguimiento mes 2">
+                      {b.seguimiento == null ? (
+                        <span class="sl-tabla__na">No aplica</span>
+                      ) : (
+                        `${usd(b.seguimiento)} US$`
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sl-paquete rv d2">
+        <div class="sl-paquete__txt">
+          <h3>Paquete Micro · las dos herramientas</h3>
+          <p>
+            Si arrancas pequeño y quieres las dos a la vez, va cerrado.
+            {' '}{PAQUETE_MICRO.alcance}
+          </p>
+        </div>
+        <ul class="sl-paquete__lineas">
+          {
+            PAQUETE_MICRO.lineas.map((l) => (
+              <li>
+                <span class="sl-paquete__que">
+                  <strong>{l.saas}</strong> · {l.alcance}
+                </span>
+                <span class="sl-paquete__eur font-mono">{usd(l.importe)} US$</span>
+              </li>
+            ))
+          }
+          <li class="sl-paquete__total">
+            <span class="sl-paquete__que"><strong>Paquete cerrado</strong></span>
+            <span class="sl-paquete__eur font-mono">{usd(PAQUETE_MICRO.total)} US$</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sl-baremo__notas rv d3">
+        {saas.implantacion.notas.map((n) => <p>{n}</p>)}
+        <p>
+          <strong>La suscripción va aparte.</strong> Este baremo es mi trabajo:
+          levantamiento, carga de datos, montaje, formación del equipo y
+          acompañamiento. La mensualidad de {saas.nombre} la pagas tú a la plataforma,
+          como quien paga la factura del teléfono, y arranca desde el plan
+          {' '}{planSuelo.nombre} ({planSuelo.eur} €).
+        </p>
+        <p>
+          Importes en dólares estadounidenses, sin impuestos. Se cierra por banda
+          después de ver tu operación, no por horas:
+          {' '}<a href="/contacto/">cuéntame tu caso</a> y te digo cuál te toca.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ── IMPLANTACIÓN (mi parte) ── -->
   <section class="section sl-implanta">
     <div class="container">
@@ -309,9 +445,11 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
         }
       </div>
       <p class="sl-implanta__presupuesto rv">
-        La implantación se presupuesta según tu operación: cuántas recetas o locales
-        hay que montar, y hasta dónde llega el acompañamiento.
-        <a href="/contacto/">Cuéntame tu caso</a> y te paso una propuesta cerrada.
+        Todo esto es lo que pagas en el baremo de arriba: la banda sale de tu
+        operación —aforo, personal a formar y volumen de datos que cargar—, no de
+        las horas que me lleve.
+        <a href="#implementacion">Ver las bandas</a> o
+        <a href="/contacto/">cuéntame tu caso</a> y te paso la propuesta cerrada.
       </p>
     </div>
   </section>
@@ -710,10 +848,17 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
   }
 
   /* ── Planes ── */
+  /* Al retirar los planes gratuitos y de entrada, Miselup se quedó en 2 tarjetas
+     y Timlup en 3. Con `auto-fit` y `1fr` esas pocas columnas se estiraban a
+     media pantalla cada una y el bloque se veía desmontado, así que el ancho se
+     topa al que ocuparían a 330px y se centra. `--sl-cols` lo pone la plantilla
+     con el número real de planes, no una cifra escrita a mano. */
   .sl-planes__grid {
     display: grid;
     gap: 1.25rem;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    max-width: calc(var(--sl-cols, 4) * 330px + (var(--sl-cols, 4) - 1) * 1.25rem);
+    margin-inline: auto;
   }
   .sl-plan {
     position: relative;
@@ -808,6 +953,226 @@ const indiceVisor = new Map(ampliables.map((c, n) => [c, n]));
     line-height: 1.75;
     color: var(--ink-soft);
     margin: 0 0 0.75rem;
+  }
+
+  /* ── Baremo de implementación ───────────────────────────────────────────
+     Panel en `--paper` sobre el `--bone` de la página: el escalón de tono más
+     el filo de marca separan ESTE dinero (el mío) del de la suscripción, que
+     va justo encima. La cabecera de la tabla toma el color del producto a
+     propósito — es el mismo código de color del Excel de tarifas, así que el
+     cliente que ha visto la hoja reconoce la tabla. */
+  .sl-baremo {
+    background: var(--paper);
+    border-top: 2px solid var(--sb-brand);
+    /* El header es `position: fixed` (72px) y va empujado por la barra de
+       anuncio, así que un salto a #implementacion aterriza tapado si no se
+       reserva ese alto. */
+    scroll-margin-top: calc(var(--announce-h, 38px) + 72px + 1rem);
+  }
+  .sl-oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* El marco es quien desborda, nunca el <body>: una tabla de 7 columnas no
+     cabe en 390px y el scroll tiene que quedarse DENTRO de la caja. */
+  .sl-tabla__marco {
+    overflow-x: auto;
+    border: 1px solid rgba(22, 36, 31, 0.14);
+    border-radius: 6px;
+    background: var(--paper);
+    -webkit-overflow-scrolling: touch;
+  }
+  .sl-tabla {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+  .sl-tabla thead th {
+    background: var(--sb-brand);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    vertical-align: middle;
+  }
+  .sl-tabla tbody tr + tr {
+    border-top: 1px solid rgba(22, 36, 31, 0.12);
+  }
+  .sl-tabla tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--sb-soft) 55%, transparent);
+  }
+  .sl-tabla th,
+  .sl-tabla td {
+    padding: 1rem;
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+  .sl-tabla th.sl-tabla__banda {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    color: var(--sb-ink);
+    white-space: nowrap;
+  }
+  .sl-tabla .num {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .sl-tabla tbody .num {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ink);
+  }
+  .sl-tabla tbody .num strong {
+    font-weight: 600;
+    color: var(--sb-ink);
+  }
+  .sl-tabla__na {
+    color: var(--ink-soft);
+    opacity: 0.75;
+  }
+
+  /* Debajo de 860px la tabla se vuelve una pila de fichas: el `data-col` de
+     cada celda se pinta como etiqueta y desaparece el scroll lateral, que en
+     móvil se descubre tarde y mal. */
+  @media (max-width: 860px) {
+    .sl-tabla__marco {
+      overflow-x: visible;
+      border: 0;
+      background: none;
+    }
+    .sl-tabla,
+    .sl-tabla tbody,
+    .sl-tabla tr,
+    .sl-tabla td,
+    .sl-tabla tbody th {
+      display: block;
+      width: auto;
+      min-width: 0;
+    }
+    .sl-tabla thead {
+      display: none;
+    }
+    .sl-tabla tbody tr {
+      border: 1px solid rgba(22, 36, 31, 0.14);
+      border-top: 3px solid var(--sb-brand);
+      border-radius: 6px;
+      background: var(--paper);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .sl-tabla tbody tr:nth-child(even) {
+      background: var(--paper);
+    }
+    .sl-tabla tbody tr + tr {
+      border-top: 3px solid var(--sb-brand);
+    }
+    .sl-tabla th,
+    .sl-tabla td {
+      padding: 0;
+    }
+    .sl-tabla td + td,
+    .sl-tabla tbody th + td {
+      margin-top: 0.85rem;
+    }
+    .sl-tabla td::before {
+      content: attr(data-col);
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sb-ink);
+      margin-bottom: 0.2rem;
+    }
+    .sl-tabla .num,
+    .sl-tabla tbody .num {
+      text-align: left;
+      font-size: 1rem;
+    }
+  }
+
+  /* ── Paquete Micro ── */
+  .sl-paquete {
+    display: grid;
+    gap: 1.5rem 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border: 1px solid var(--sb-brand);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--sb-soft) 45%, var(--paper));
+  }
+  .sl-paquete h3 {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1.25;
+    margin: 0 0 0.4rem;
+  }
+  .sl-paquete__txt p {
+    margin: 0;
+    font-size: 0.9063rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .sl-paquete__lineas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .sl-paquete__lineas li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1.25rem;
+    padding: 0.6rem 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    border-bottom: 1px solid rgba(22, 36, 31, 0.12);
+  }
+  .sl-paquete__eur {
+    font-size: 0.8125rem;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .sl-paquete__lineas li.sl-paquete__total {
+    border-bottom: 0;
+    color: var(--ink);
+  }
+  .sl-paquete__total .sl-paquete__eur {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--sb-ink);
+  }
+
+  .sl-baremo__notas {
+    margin-top: 2.5rem;
+    max-width: 74ch;
+  }
+  .sl-baremo__notas p {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 0.75rem;
+  }
+  .sl-baremo__notas a {
+    color: var(--pers-deep);
   }
 
   .sl-implanta__presupuesto {

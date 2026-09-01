@@ -10,7 +10,7 @@
     "h2": "Por qué confío en Miselup para mis cocinas",
     "parrafos": [
       "No soy un revendedor que aprendió el producto en un folleto. Uso Miselup en Valerio Burger Club, en catering y en la parrilla: tengo el mismo problema que tú cuando el insumo sube, la receta vive en la cabeza del cocinero y el food cost se dispara sin que nadie lo vea venir. Aquí le decimos costeo de recetas; en España lo llaman escandallo, y es exactamente lo mismo.",
-      "Mi trabajo aquí no es cobrarte la suscripción de Miselup: tú contratas directamente en la web oficial. Yo me encargo de implantarlo, migrar tus recetas, formar a tu equipo y darte soporte local en Santo Domingo y todo el país. Miselup no es un POS y no factura a la DGII: convive con el sistema que ya usas. La implantación se presupuesta aparte según tu operación."
+      "Mi trabajo aquí no es cobrarte la suscripción de Miselup: tú contratas directamente en la web oficial. Yo me encargo de implantarlo, migrar tus recetas, formar a tu equipo y darte soporte local en Santo Domingo y todo el país. Miselup no es un POS y no factura a la DGII: convive con el sistema que ya usas. La implementación se paga aparte, con tarifa por bandas en dólares que tienes publicada más abajo."
     ]
   },
   "para_quien": [
@@ -63,7 +63,7 @@
   },
   "implantacion": {
     "h2": "Cómo te acompaño en la implantación",
-    "intro": "No te dejo solo con el software. Mi trabajo es que lo uses con criterio desde la primera semana.",
+    "intro": "No te dejo solo con el software. La implementación completa lleva 3 meses y se factura como fee mensual: esto es lo que pasa en cada uno.",
     "pasos": [
       {
         "title": "Diagnóstico",
@@ -94,23 +94,23 @@
     },
     {
       "q": "¿Tengo que pagar la suscripción a través de Andrés?",
-      "a": "No. Contratas directamente en la web oficial de Miselup, con los planes que ofrece el producto. Yo no cobro esa suscripción; mi servicio de implantación, migración, formación y soporte local se presupuesta aparte."
+      "a": "No, y son dos cosas distintas. La suscripción la contratas directamente en la web oficial de Miselup y se la pagas a la plataforma en euros, como quien paga la factura del teléfono. Mi trabajo de implementación, migración, formación y soporte local me lo pagas a mí, en dólares, con la tarifa por bandas que ves en esta misma página."
     },
     {
-      "q": "¿Cuánto cuesta la implantación?",
-      "a": "Depende del tamaño de tu operación, la cantidad de recetas a migrar y el alcance del acompañamiento. Sin ver tu cocina no te doy un número al aire: agendamos una llamada, revisamos tu caso y te paso un presupuesto claro."
+      "q": "¿Cuánto cuesta la implementación?",
+      "a": "Va por bandas y las tienes publicadas arriba, en dólares. La banda Micro son 600 US$ por el montaje de un local muy pequeño con recetas ya usables, en un mes y sin acompañamiento. Las bandas Baja, Media y Alta son la implementación completa —estandarizar las recetas desde cero, cargarlas, formar al equipo y acompañarte— y van de 1,950 a 2,850 US$, facturados como fee mensual durante los 3 meses que dura. Cada local adicional suma un 50 %. La banda te la digo después de ver tu operación: aforo, gente en cocina, tamaño de la carta y volumen de datos."
     },
     {
       "q": "¿Me sirve para una inspección de Salud Pública?",
       "a": "Te sirve para llegar con los registros hechos, que es donde casi todo el mundo falla. El control sanitario en RD se rige por el Decreto 528-01 y lo supervisa DIGESA, del Ministerio de Salud Pública, y ahí se te piden registros de temperaturas, trazabilidad de lotes y control de alérgenos. Miselup los guarda con su fecha y su hora y te los exporta como informe. Ojo: la herramienta te ordena la evidencia, no te certifica — el permiso sanitario sigue dependiendo de cómo operes tu cocina."
     },
     {
-      "q": "¿Puedo empezar gratis?",
-      "a": "Sí, Miselup tiene un plan Gratis de hasta 50 recetas. Es una buena puerta de entrada para probar el flujo antes de decidir si necesitas más recetas, IA, inventario o la suite HACCP completa."
+      "q": "¿Por qué no aparecen los planes más baratos de Miselup?",
+      "a": "Porque no implemento sobre ellos. Miselup tiene planes más cortos en su web, pero por debajo de Pro no hay recetas ilimitadas, ni inventario, ni producción, ni P&L diario: montar tu operación ahí es dejarla a medias y volver a empezar en tres meses. Si vas a pagar una implementación, el mínimo con sentido es Pro, 49 € al mes por negocio."
     },
     {
       "q": "¿Sirve para un restaurante pequeño o solo para operaciones grandes?",
-      "a": "Sirve para ambos. Un negocio pequeño puede empezar con el plan Gratis y controlar sus 20 o 30 platos. Una operación más grande aprovecha inventario, producción, compras y HACCP sin cambiar de herramienta."
+      "a": "Sirve para ambos, y por eso la tarifa va por bandas. Un local pequeño con la carta corta y las recetas ya usables entra por la banda Micro y en un mes lo tiene montado. Una operación con más aforo, más personal que formar y más volumen de datos entra por Media o Alta y aprovecha inventario, producción, compras y HACCP sin cambiar de herramienta."
     }
   ],
   "cta": {

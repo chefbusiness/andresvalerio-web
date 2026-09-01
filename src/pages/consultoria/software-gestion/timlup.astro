@@ -12,7 +12,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SaasLanding from '@components/SaasLanding.astro';
 import { serviceSchema, breadcrumbSchema, faqSchema } from '@utils/schema';
-import { TIMLUP, HUB, rutaSaas, aUSD, aDOP, type Captura } from '@data/saas';
+import { TIMLUP, HUB, rutaSaas, filasOferta, type Captura } from '@data/saas';
 import data from '@data/saas/timlup.json';
 
 const migas = [
@@ -61,18 +61,12 @@ const guias = [
 const hermano = {
   nombre: 'Miselup',
   href: rutaSaas('miselup'),
-  tagline: 'Escandallos, fichas técnicas y food cost plato a plato.',
+  tagline: 'Costeo de recetas, fichas técnicas y food cost plato a plato.',
   slug: 'miselup' as const,
 };
 
-const filasSchema = TIMLUP.planes
-  .filter((p) => p.eur !== null)
-  .map((p) => ({
-    modalidad: `${TIMLUP.nombre} ${p.nombre}`,
-    alcance: p.resumen,
-    rd: p.eur ? aDOP(p.eur) : '0',
-    us: p.eur ? aUSD(p.eur) : '0',
-  }));
+/** Ofertas del Schema.org: suscripción + baremo de implementación, en US$. */
+const filasSchema = filasOferta(TIMLUP);
 ---
 
 <BaseLayout
