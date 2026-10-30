@@ -1,10 +1,11 @@
 /**
  * Datos de contacto centralizados + atribución de origen del lead.
  *
- * No se usa GA4 ni Clarity: la medición es Search Console, que cubre la
- * adquisición pero no dice qué página genera el contacto. Para cerrar ese
- * hueco, cada CTA lleva un mensaje prellenado distinto, de modo que la
- * atribución le llega a Andrés escrita en el propio WhatsApp o correo.
+ * GA4 se carga solo si PUBLIC_GA_ID está definido y quien visita acepta
+ * analítica (Consent Mode v2). whatsapp_click y call_click registran el clic;
+ * hay que marcarlos como eventos clave en GA4. Search Console sigue cubriendo
+ * la adquisición. El mensaje prellenado de cada CTA complementa esa medición:
+ * la atribución le llega a Andrés escrita en el propio WhatsApp o correo.
  */
 
 export const WHATSAPP = '18293998979';

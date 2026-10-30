@@ -1,4 +1,6 @@
 ---
+import { WHATSAPP, WHATSAPP_DISPLAY } from '@utils/contacto';
+
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
@@ -41,6 +43,7 @@ const socialLinks = [
         Chef-consultor en Santo Domingo. Desarrollo de cartas, apertura de conceptos
         y mentoría para equipos de cocina.
       </p>
+      <a class="footer-tel" href={`tel:+${WHATSAPP}`}>{WHATSAPP_DISPLAY}</a>
     </div>
 
     <div class="footer-col">
@@ -139,6 +142,19 @@ const socialLinks = [
     font-size: 0.95rem;
     line-height: 1.7;
     max-width: 32ch;
+  }
+
+  .footer-tel {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--bone);
+  }
+
+  .footer-tel:hover {
+    color: var(--brass);
   }
 
   .footer-col-title {
