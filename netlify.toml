@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Fuerza el escaneo de formularios en el HTML publicado. Sin esto, un sitio
+# con la detección apagada en el panel publica 0 forms aunque /contacto/ tenga
+# el <form>. El esqueleto estático está en public/__forms.html.
+[build.processing]
+  ignore_html_forms = false
+
 [[redirects]]
   from = "https://andresvalerio.com/*"
   to = "https://www.andresvalerio.com/:splat"
